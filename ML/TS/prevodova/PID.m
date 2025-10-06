@@ -23,7 +23,7 @@ time6 = time; spir6 = spir; y16 = snimac1; y26 = snimac2; vent6 = vent;
 load prevodova_vent9.mat
 time9 = time; spir9 = spir; y19 = snimac1; y29 = snimac2; vent9 = vent;
 
-% mean values of skokoVfs on the beat 
+% mean values of skoks
 
 y13_skok = zeros(7, 1000);
 y23_skok = zeros(7, 1000);
@@ -105,7 +105,7 @@ rmse_total = mean([rmse_3n, rmse_3f, rmse_6n, rmse_6f, rmse_9n, rmse_9f]);
 
 % Plot results
 figure('Name','Model vs averaged response','Color','w');
-sgtitle(sprintf('Model vs Averaged Data — RMSE avg = %.4f', rmse_total));  % overall RMSE
+sgtitle(sprintf('Model vs Averaged Data — RMSE avg = %.4f', rmse_total)); 
 
 subplot(3,2,1)
 plot(t, y13_mean, 'k', t, y3n_model, 'r--', 'LineWidth', 1.2)
@@ -145,4 +145,5 @@ for k = 1:6
     grid on
 end
 
+% STEP 3 - PIDiddy  --------------------------------------------------------------------------------
 
