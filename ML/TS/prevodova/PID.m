@@ -1,5 +1,5 @@
-%%LPV MIMO MPC
-%LPV MIMO MPC - Model Predictive Control for Linear Parameter-Varying (LPV) Multi-Input Multi-Output (MIMO) systems.
+%%PID
+%PIDDidiy - PID controller design for MIMO system
 
 clc
 clear
@@ -77,10 +77,6 @@ G6_far  = tfest(data_6_far,  np, nz);
 G9_near = tfest(data_9_near, np, nz);
 G9_far  = tfest(data_9_far,  np, nz);
 
-% Combine into MIMO systems
-G3 = [G3_near; G3_far];  
-G6 = [G6_near; G6_far];
-G9 = [G9_near; G9_far];
 
 % model comparison
 
@@ -145,5 +141,78 @@ for k = 1:6
     grid on
 end
 
-% STEP 3 - PIDiddy  --------------------------------------------------------------------------------
+% STEP 3 — Autotuned PID with individual tuning for near/far ---------------------------------------------
 
+Tsim = 100;
+t = 0:Ts:Tsim;
+r = 6 * ones(size(t));  
+
+systems = {G3_near, G3_far, G6_near, G6_far, G9_near, G9_far};
+labels  = {'G3 near', 'G3 far', 'G6 near', 'G6 far', 'G9 near', 'G9 far'};
+omega_c = [0.8, 2, 0.6, 2, 0.8, 2];  
+
+figure('Name','Autotuned PID Step Responses (Individual Near/Far)','Color','w');
+sgtitle('Step responses — Autotuned PID (0→6), near vs far tuned separately');
+
+u_all = zeros(length(t), 6);  
+
+for i = 1:6
+    G = systems{i};
+    
+    [C, info] = pidtune(G, 'PID', omega_c(i));
+
+    T_cl = feedback(C * G, 1);      
+    T_u  = feedback(C, G);           
+
+    y = lsim(T_cl, r, t);
+    u_pid = lsim(T_u, r, t);
+    
+    u_pid = max(0, min(10, u_pid));
+    u_all(:, i) = u_pid;
+
+    % Remove undershoot
+    y(y < 0) = 0;
+
+    % Plot outputs
+    subplot(4,2,i)
+    plot(t, y, 'b', 'LineWidth', 1.5)
+    title(sprintf('%s — Kp=%.2f, Ki=%.2f, Kd=%.2f', ...
+        labels{i}, C.Kp, C.Ki, C.Kd))
+    xlabel('Time [s]')
+    ylabel('Output')
+    grid on
+end
+
+subplot(4,2,[7 8])
+hold on
+colors = lines(6);
+for i = 1:6
+    plot(t, u_all(:, i), 'Color', colors(i,:), 'LineWidth', 1.4)
+end
+hold off
+grid on
+xlabel('Time [s]')
+ylabel('Control signal u(t)')
+title('All PID control signals (saturated 0–10)')
+legend(labels, 'Location','bestoutside')
+
+set(gcf,'Position',[100 100 1000 800]);
+
+
+% STEP 4 — Matrix of PID parameters --------------------------------------------------------------
+
+pid_matrix = table({'G3_near'; 'G3_far'; 'G6_near'; 'G6_far'; 'G9_near'; 'G9_far'}, zeros(6,1), zeros(6,1), zeros(6,1), 'VariableNames', {'System','Kp','Ki','Kd'});
+
+for i = 1:6
+    G = systems{i};
+    [C, info] = pidtune(G, 'PID', omega_c(i));
+    pid_matrix.Kp(i) = C.Kp;
+    pid_matrix.Ki(i) = C.Ki;
+    pid_matrix.Kd(i) = C.Kd;
+end
+
+disp('Matrix of PID parameters:')
+disp(pid_matrix)
+
+save('pid_parameters.mat', 'pid_matrix');
+%writetable(pid_matrix, 'pid_parameters.csv');
