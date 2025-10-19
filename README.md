@@ -5,7 +5,7 @@
 - [+] init all systems vents(3,6,9) & sensors (1&2);
 - [-] make documentation of system description;
 
-# TS (ML) - Interpolated PI for diff step perpormance
+# TS (ML) - Interpolated PI for diff step performance
 
 - [+] init system for 6vent/1snim;
 - [+] tune PI for idented system and steps 1-8;
@@ -14,7 +14,7 @@
 - [-] test method on real system and save results;
 - [-] make documentation for that part (hell noooooo);
 
-# TS (ESP32) - Interpolated PI for diff step perpormance
+# TS (ESP32) - Interpolated PI for diff step performance
 
 - [-] discover about how it works;
 - [-] make plan of project;
