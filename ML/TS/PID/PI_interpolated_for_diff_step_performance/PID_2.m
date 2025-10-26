@@ -1,47 +1,25 @@
 %% PIDDidiy - simplified PI controller design for vent6_near (different step amplitudes)
+clc; clear; close all;
 
-clc
-clear
-close all
+% === Load identified model ==================================================
+load('C:\MyFiles\Study\DP-Stoliar\ML\TS\identification\identified_models.mat');
 
-% Load and prepare data ------------------------------------------------------------
-
-Ts = 0.1;
-load ./prevodova_mer/prevodova_vent6.mat
-y16 = snimac1;  
-
-% Average step response (7 jumps × 1000 samples)
-y16_skok = zeros(7,1000);
-for i = 1:7
-    idx = 1000*i + (1:1000);
-    y16_skok(i,:) = y16(idx) - y16(idx(1));
-end
-y16_mean = mean(y16_skok,1);
-
-% Ident -------------------------------------------------------------------
-
-t = (0:999)' * Ts;
-data = iddata(y16_mean', ones(size(t)), Ts);
-G6_near = tfest(data, 2, 2);
-
-%PI for diff steps  -----------------------------------------------------------
-
+% === Simulation setup =======================================================
 Tsim = 100;
 t_sim = 0:Ts:Tsim;
 amps = 1:8;
 
-u_min = 0; 
+u_min = 0;
 u_max = 10;
-base_w = 0.5;     
+base_w = 0.5;
 
 Y_all = zeros(length(t_sim), numel(amps));
 U_all = zeros(length(t_sim), numel(amps));
 pi_table = zeros(numel(amps), 4);
 
+% === Loop through step amplitudes ===========================================
 for k = 1:numel(amps)
-
-    omega_c = base_w * (1 + 0.1*(k-1));  
-
+    omega_c = base_w * (1 + 0.1*(k-1)); 
     [C, ~] = pidtune(G6_near, 'PI', omega_c);
 
     T_cl = feedback(C * G6_near, 1);
@@ -60,8 +38,7 @@ for k = 1:numel(amps)
     pi_table(k,:) = [amps(k), C.Kp, C.Ki, omega_c];
 end
 
-% Plot responses ------------------------------------------------------------
-
+% === Plot responses =========================================================
 figure('Name','vent6 near — PI step responses','Color','w');
 hold on
 for k = 1:numel(amps)
@@ -79,7 +56,7 @@ hold on
 for k = 1:numel(amps)
     plot(t_sim, U_all(:,k), 'LineWidth', 1.4)
 end
-yline(u_min,'k--'); 
+yline(u_min,'k--');
 yline(u_max,'k--');
 grid on
 xlabel('Time [s]')
@@ -87,7 +64,10 @@ ylabel('Control signal u(t)')
 legend(arrayfun(@(a)sprintf('step=%d',a), amps, 'UniformOutput',false), 'Location','bestoutside')
 title('vent6 near — PI control signals (saturation 0–10)')
 
-% Save PI parameters ------------------------------------------------------
+% === Save PI parameters =====================================================
+if ~exist('./pi_params', 'dir')
+    mkdir('./pi_params');
+end
 
 pi_matrix_6_near = array2table(pi_table, ...
     'VariableNames',{'Step','Kp','Ki','Omega_c'});

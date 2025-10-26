@@ -1,0 +1,6 @@
+ts_prevodovaN.csv' - [time, vent, spir, snimac1, snimac2]
+
+ts_staticN.csv' - [in', static1', static2']
+
+ts_identified_results.csv - {'time', 'y13_data', 'y23_data', 'y16_data', 'y26_data', 'y19_data', 'y29_data', 'y3n_model', 'y3f_model', 'y6n_model', 'y6f_model', 'y9n_model', 'y9f_model'}
+
