@@ -4,7 +4,7 @@ clc; clear; close all;
 
 % Parameters
 Ts = 0.1;
-step_len = 100;
+step_len = 4*60;
 NsPerStep = step_len / Ts;
 levels = 0:10;
 
@@ -19,16 +19,16 @@ load('./prevodova_mer/prevodova_vent9.mat')
 time9 = time; spir9 = spir; y19 = snimac1; y29 = snimac2;
 
 % Compute averaged step responses
-y13_skok = zeros(7, 1000);
-y23_skok = zeros(7, 1000);
-y16_skok = zeros(7, 1000);
-y26_skok = zeros(7, 1000);
-y19_skok = zeros(7, 1000);
-y29_skok = zeros(7, 1000);
+y13_skok = zeros(6, 2400);
+y23_skok = zeros(6, 2400);
+y16_skok = zeros(6, 2400);
+y26_skok = zeros(6, 2400);
+y19_skok = zeros(6, 2400);
+y29_skok = zeros(6, 2400);
 
-for i = 1:7
-    idx_start = 1000*i + 1;
-    idx_end = idx_start + 999;
+for i = 1:6
+    idx_start = 2400*i + 1;
+    idx_end = idx_start + 2399;
     y13_skok(i, :) = y13(idx_start:idx_end) - y13(idx_start);
     y23_skok(i, :) = y23(idx_start:idx_end) - y23(idx_start);
     y16_skok(i, :) = y16(idx_start:idx_end) - y16(idx_start);
@@ -45,9 +45,8 @@ y19_mean = mean(y19_skok, 1);
 y29_mean = mean(y29_skok, 1);
 
 % Identification
-t = (0:999)' * Ts;
+t = (0:2399)' * Ts;
 u = ones(size(t));
-np = 2; nz = 2;
 
 data_3_near = iddata(y13_mean', u, Ts);
 data_3_far  = iddata(y23_mean', u, Ts);
