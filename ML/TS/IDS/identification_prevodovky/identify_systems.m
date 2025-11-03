@@ -48,13 +48,6 @@ y29_mean = mean(y29_skok, 1);
 t = (0:2399)' * Ts;
 u = ones(size(t));
 
-data_3_near = iddata(y13_mean', u, Ts);
-data_3_far  = iddata(y23_mean', u, Ts);
-data_6_near = iddata(y16_mean', u, Ts);
-data_6_far  = iddata(y26_mean', u, Ts);
-data_9_near = iddata(y19_mean', u, Ts);
-data_9_far  = iddata(y29_mean', u, Ts);
-
 G3_near = ls_identify_basic(y13_mean', u, Ts)
 G3_far  = ls_identify_basic(y23_mean', u, Ts)
 G6_near = ls_identify_basic(y16_mean', u, Ts)
@@ -170,3 +163,29 @@ function G = ls_identify_basic(y, u, Ts)
 
 end
 
+% function G = ls_identify_basic(y, u, Ts)
+
+%     y = y(:);
+%     u = u(:);
+%     N = length(y);
+%     na = 2; nb = 2;
+
+%     Phi = zeros(N - na, na + nb);
+%     for k = na+1:N
+%         Phi(k - na, :) = [-y(k-1), -y(k-2), u(k-1), u(k-2)];
+%     end
+%     Y = y(na+1:N);
+
+%     theta = pinv(Phi) * Y;
+
+%     a1 = theta(1); 
+%     a2 = theta(2);
+%     b1 = theta(3);
+%     b2 = theta(4);
+
+%     num = [b1 b2];
+%     den = [1 a1 a2];
+%     Gd = tf(num, den, Ts);
+
+%     G = d2c(Gd, 'tustin');
+% end
