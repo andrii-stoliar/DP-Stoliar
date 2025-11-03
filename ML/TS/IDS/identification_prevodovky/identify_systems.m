@@ -4,7 +4,7 @@ clc; clear; close all;
 
 % Parameters
 Ts = 0.1;
-step_len = 100;
+step_len = 4*60;
 NsPerStep = step_len / Ts;
 levels = 0:10;
 
@@ -19,16 +19,16 @@ load('./prevodova_mer/prevodova_vent9.mat')
 time9 = time; spir9 = spir; y19 = snimac1; y29 = snimac2;
 
 % Compute averaged step responses
-y13_skok = zeros(7, 1000);
-y23_skok = zeros(7, 1000);
-y16_skok = zeros(7, 1000);
-y26_skok = zeros(7, 1000);
-y19_skok = zeros(7, 1000);
-y29_skok = zeros(7, 1000);
+y13_skok = zeros(6, 2400);
+y23_skok = zeros(6, 2400);
+y16_skok = zeros(6, 2400);
+y26_skok = zeros(6, 2400);
+y19_skok = zeros(6, 2400);
+y29_skok = zeros(6, 2400);
 
-for i = 1:7
-    idx_start = 1000*i + 1;
-    idx_end = idx_start + 999;
+for i = 1:6
+    idx_start = 2400*i + 1;
+    idx_end = idx_start + 2399;
     y13_skok(i, :) = y13(idx_start:idx_end) - y13(idx_start);
     y23_skok(i, :) = y23(idx_start:idx_end) - y23(idx_start);
     y16_skok(i, :) = y16(idx_start:idx_end) - y16(idx_start);
@@ -45,16 +45,8 @@ y19_mean = mean(y19_skok, 1);
 y29_mean = mean(y29_skok, 1);
 
 % Identification
-t = (0:999)' * Ts;
+t = (0:2399)' * Ts;
 u = ones(size(t));
-np = 2; nz = 2;
-
-data_3_near = iddata(y13_mean', u, Ts);
-data_3_far  = iddata(y23_mean', u, Ts);
-data_6_near = iddata(y16_mean', u, Ts);
-data_6_far  = iddata(y26_mean', u, Ts);
-data_9_near = iddata(y19_mean', u, Ts);
-data_9_far  = iddata(y29_mean', u, Ts);
 
 G3_near = ls_identify_basic(y13_mean', u, Ts)
 G3_far  = ls_identify_basic(y23_mean', u, Ts)
@@ -171,3 +163,29 @@ function G = ls_identify_basic(y, u, Ts)
 
 end
 
+% function G = ls_identify_basic(y, u, Ts)
+
+%     y = y(:);
+%     u = u(:);
+%     N = length(y);
+%     na = 2; nb = 2;
+
+%     Phi = zeros(N - na, na + nb);
+%     for k = na+1:N
+%         Phi(k - na, :) = [-y(k-1), -y(k-2), u(k-1), u(k-2)];
+%     end
+%     Y = y(na+1:N);
+
+%     theta = pinv(Phi) * Y;
+
+%     a1 = theta(1); 
+%     a2 = theta(2);
+%     b1 = theta(3);
+%     b2 = theta(4);
+
+%     num = [b1 b2];
+%     den = [1 a1 a2];
+%     Gd = tf(num, den, Ts);
+
+%     G = d2c(Gd, 'tustin');
+% end
