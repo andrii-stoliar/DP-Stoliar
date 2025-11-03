@@ -3,17 +3,7 @@
 # TS - theory
 
 - [+] popis systemu
-- [-] init all systems vents(3,6,9) & sensors (1&2);
 - [-] make documentation of system description;
-
-$ TS (ML) - Normal PI 
-
-- [-] init system for 6vent/1snim
-- [-] tune PI for step 1
-- [-] make fcn in ML for PI
-- [-] make Simulink scheme
-- [-] test it on real system
-- [-] make documentation
 
 # TS (ML) - Interpolated PI for diff step performance
 
