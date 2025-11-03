@@ -125,10 +125,19 @@ Súčasťou práce je tiež implementácia vybraných riadiacich algoritmov na r
 Táto časť má umožniť porovnanie prístupov k implementácii riadenia v simulačnom prostredí \textit{MATLAB/Simulink} a na vybranom mikrokontroléri, čím sa vytvorí priestor pre analýzu rozdielov v správaní systému a v samotnej realizácii algoritmov.
 
 % -------------------------------------------------------------------
-% Subsection 1.1 - Popis tepelneho systemu
+% Subsection 1.1 - Tepelný systém TS05
 % -------------------------------------------------------------------
 
-\subsection{Popis systému TS05}
+\subsection{Tepelný systém TS05}
+
+Táto kapitola sa zaoberá popisom laboratórneho modelu \textit{TS05} a jeho základnými statickými vlastnosťami.  
+Model predstavuje fyzický systém určený na výučbu a experimentálne overovanie princípov riadenia v oblasti automatizácie a mechatroniky.
+
+% -------------------------------------------------------------------
+% Subsubsection 1.1.1 - Popis systému
+% -------------------------------------------------------------------
+
+\subsubsection{Popis systému}
 
 Laboratórny model TS05 predstavuje \textit{MIMO} systém (Multiple Input – Multiple Output) so dvomi vstupmi a dvomi výstupmi, ktorého zapojenie je uvedené v tabuľke~\ref{tab:io_ts05}.  
 Vstupné veličiny tvoria napätia riadiace \textit{ventilátor} a \textit{vykurovaciu špirálu} (v rozsahu 0–10~V), zatiaľ čo výstupy sú merané pomocou \textit{Senzora~1} a \textit{Senzora~2} (tiež v rozsahu 0–10~V).
@@ -155,7 +164,7 @@ kde sú zreteľne vyznačené všetky vstupy a výstupy zariadenia.
 \makebox[\textwidth][c]{%
 \includegraphics[width=1.1\textwidth]{TS_sch3_foto.pdf}
 }
-\figcaption{Laboratórny model TS05 – reálna zostava}
+\figcaption{Laboratórny model TS05 – reálna zostava~\cite{kut015}}
 \label{fig:ts05_real}
 }%vbox
 \end{center}
@@ -166,8 +175,8 @@ Táto karta umožňuje obojsmerný prenos analógových signálov – prijíma m
 
 Samotná komunikácia a spracovanie signálov prebieha v prostredí \textit{Simulink},  
 v rámci vopred pripravenej schémy (obr.~\ref{fig:simulink_schema}),  
-ktorá bola vytvorená ešte pred začiatkom tohto akademického roka ako súčasť projektu KUT – Krátke výučbové materiály.  
-Táto schéma slúžila aj ako podklad pre predmet \textit{Modelovanie a riadenie systémov}.
+ktorá bola vytvorená ako súčasť projektu KUT – Krátke výučbové materiály.  
+Táto schéma slúži aj ako podklad pre predmet \textit{Modelovanie a riadenie systémov}~\cite{kut015}.
 
 \begin{center}
 \vbox{%
@@ -180,25 +189,15 @@ Táto schéma slúžila aj ako podklad pre predmet \textit{Modelovanie a riadeni
 \end{center}
 
 % -------------------------------------------------------------------
-% Subsection 1.2 - Identifikacia tepelneho systemu
+% Subsubsection 1.1.2 - Statické vlastnosti systému
 % -------------------------------------------------------------------
 
-\subsection{Identifikácia systému TS05}
+\subsubsection{Statické vlastnosti systému}
 
-Keďže ide o \textin{MIMO systém} (Multiple Input – Multiple Output), jeho identifikácia v jednom kroku nie je realizovateľná.  
-Z tohto dôvodu bolo rozhodnuté vykonať identifikáciu systému osobitne pre tri pracovné body ventilátora – 3~V, 6~V a 9~V – a pre oba senzory samostatne.  
-Takto získame komplexnejší pohľad na správanie systému v rôznych prevádzkových režimoch.
-
-% -------------------------------------------------------------------
-% Subsubsection 1.2.1 - Merabie prechodovych charakteristik
-% -------------------------------------------------------------------
-
-\subsubsection{Meranie prechodových charakteristík}
-
-Ako bolo spomenuté, prvým krokom bola identifikácia systému prostredníctvom merania jeho statických a prechodových charakteristík.  
-Na tento účel boli vykonané tri experimenty, zodpovedajúce trom pracovným bodom ventilátora (3~V, 6~V a 9~V).  
-Počas každého experimentu bola hodnota napätia ventilátora udržiavaná konštantná, zatiaľ čo napätie vykurovacej špirály sa lineárne zvyšovalo z 0~V na 10~V počas celého trvania merania, keďže špirála má výrazne dynamickejší vplyv na teplotu ako ventilátor.  
-Priebeh signálu špirály počas experimentov je znázornený na obrázku~\ref{fig:spiral_signal}.
+Na lepšie pochopenie správania systému boli experimentálne namerané jeho statické charakteristiky.  
+Počas meraní boli skúmané tri pracovné body ventilátora – 3~V, 6~V a 9~V – pričom v každom prípade bola hodnota napätia ventilátora udržiavaná konštantná.  
+Napätie na vykurovacej špirále sa menilo lineárne od 0~V do 10~V počas celého merania, keďže špirála má výraznejší vplyv na teplotu ako ventilátor.  
+Priebeh signálu špirály počas experimentov je zobrazený na obrázku~\ref{fig:spiral_signal}.
 
 \begin{center}
 \vbox{%
@@ -210,8 +209,8 @@ Priebeh signálu špirály počas experimentov je znázornený na obrázku~\ref{
 }%vbox
 \end{center}
 
-Výsledkom meraní sú šesť grafov, ktoré znázorňujú odozvu systému na zmenu vstupných veličín.  
-Každý graf zobrazuje výstupné signály zo Senzora~1 a Senzora~2 ako funkciu času pre daný pracovný bod ventilátora.
+Výsledkom meraní sú šesť grafov, ktoré zobrazujú odozvu systému na zmenu vstupných veličín.  
+Každý graf obsahuje výstupy zo Senzora~1 a Senzora~2 ako funkcie času pre jednotlivé pracovné body ventilátora.
 
 \begin{center}
 \vbox{%
@@ -243,7 +242,8 @@ Každý graf zobrazuje výstupné signály zo Senzora~1 a Senzora~2 ako funkciu 
 }%vbox
 \end{center}
 
-Na účely kvalitnejšieho opisu systému z hľadiska statických charakteristík boli z rovnakých meraní zostavené aj prevodové charakteristiky, ktoré opisujú závislosť výstupných veličín od vstupného napätia špirály pre jednotlivé pracovné body ventilátora.
+Z tých istých meraní boli zostavené aj prevodové (statické) charakteristiky,  
+ktoré opisujú závislosť výstupných veličín od vstupného napätia špirály pre jednotlivé pracovné body ventilátora.
 
 \begin{center}
 \vbox{%
@@ -274,6 +274,7 @@ Na účely kvalitnejšieho opisu systému z hľadiska statických charakteristí
 \label{fig:static_9V}
 }%vbox
 \end{center}
+
 
 % -------------------------------------------------------------------
 % Subsubsection 1.2.2 - Identifikacia pomocou metody najmensich stvorcov
@@ -352,50 +353,7 @@ ale aj z hľadiska laditeľnosti parametrov riadiaceho algoritmu.
 Zníženie poradia systému zaisťuje lepšiu interpretovateľnosť a stabilnejšie správanie modelu 
 pri simuláciách aj pri následnej implementácii na reálnom hardvéri.
 
-\begin{center}
-\vbox{%
-\makebox[\textwidth][c]{%
-\includegraphics[width=1.25\textwidth]{ts_idented_steps.png}
-}
-\figcaption{Porovnanie reálnych a identifikovaných skokových odoziev systému TS05}
-\label{fig:ts_idented_steps}
-}%vbox
-\end{center}
 
-\begin{table}[h!]
-\centering
-\caption{Prenosové funkcie identifikované pre jednotlivé pracovné body systému TS05}
-\label{tab:identified_models}
-\renewcommand{\arraystretch}{1.3}
-\begin{tabular}{|c|c|l|}
-\hline
-\textbf{Pracovný bod [V]} & \textbf{Senzor} & \textbf{Prenosová funkcia $G(s)$} \\ \hline
-3 & Near &
-$\displaystyle G_{3N}(s) = \frac{1.385\times10^{-15}s^2 - 0.1973s + 3.947}{s^2 + 67.03s + 5.015}$ \\ \hline
-3 & Far &
-$\displaystyle G_{3F}(s) = \frac{-2.898\times10^{-18}s^2 - 0.1044s + 2.088}{s^2 + 56s + 3.534}$ \\ \hline
-6 & Near &
-$\displaystyle G_{6N}(s) = \frac{-5.539\times10^{-17}s^2 - 0.2101s + 4.201}{s^2 + 69.59s + 6.914}$ \\ \hline
-6 & Far &
-$\displaystyle G_{6F}(s) = \frac{1.165\times10^{-15}s^2 - 0.1216s + 2.431}{s^2 + 59.73s + 5.338}$ \\ \hline
-9 & Near &
-$\displaystyle G_{9N}(s) = \frac{-2.405\times10^{-17}s^2 - 0.1969s + 3.938}{s^2 + 64.82s + 6.505}$ \\ \hline
-9 & Far &
-$\displaystyle G_{9F}(s) = \frac{-4.79\times10^{-16}s^2 - 0.113s + 2.26}{s^2 + 58.73s + 5}$ \\ \hline
-\end{tabular}
-\end{table}
-
-\vspace{4mm}
-
-Na základe identifikácie sme získali šesť prenosových funkcií, 
-ktoré reprezentujú správanie systému pri rôznych pracovných bodoch ventilátora 
-(3~V, 6~V a~9~V) a~pre obe meracie pozície (\textit{near} – bližší senzor, 
-\textit{far} – vzdialenejší senzor).  
-Tieto modely môžu slúžiť ako podklad pre návrh a~ladenie parametrov \textit{PID} regulátorov.
-
-Tieto prenosové funkcie poskytujú základ pre návrh regulácie, 
-umožňujú odhadnúť dynamiku systému v~rôznych prevádzkových režimoch 
-a~zároveň slúžia na porovnanie vplyvu vzdialenosti senzora na odozvu systému.
 
 % -------------------------------------------------------------------
 % Zoznam literatúry 
@@ -412,6 +370,11 @@ M. Fikar, J. Mikleš, \textit{Identifikácia systémov}.
 Slovenská technická univerzita v Bratislave, 1998.  
 ISBN 80-227-1177-2.  
 Dostupné online: \url{http://TODO.htm}
+
+\bibitem{kut015}
+M. Tárnik, \textit{KUT015 – Laboratórne zariadenie TS: orientačný prehľad}.
+Slovenská technická univerzita v Bratislave, 2025.
+Dostupné online: \url{https://github.com/OkoliePracovnehoBodu/KUT/blob/main/KUT_items/KUT015/TeX/KUT015.pdf}
 
 \end{thebibliography}
 

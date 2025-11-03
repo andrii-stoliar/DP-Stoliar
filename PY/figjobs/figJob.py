@@ -13,7 +13,7 @@ figName = 'ts_prevodova_spirala'
 
 # load CSV
 data_main = pd.read_csv(
-    '../dataRepo/ts_prevodova3.csv', 
+    '../dataRepo/prevodova3.csv', 
     header=None
 ).values  
 
