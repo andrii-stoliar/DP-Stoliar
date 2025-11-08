@@ -9,43 +9,43 @@ from figFcns_TeX import *
 figSaveDir = '../fig'
 os.makedirs(figSaveDir, exist_ok=True)
 
-figName = 'ts_static_sensors3'
+figName = 'ts_pb_vent6_spir4_ident_avg'
 
 # load CSV
-data_main = pd.read_csv('../dataRepo/ts_static3.csv', header=None).values
+data_main = pd.read_csv('../dataRepo/ts_pb_vent6_spir4_avg.csv', header=None, skiprows=1).values
 t  = data_main[:, 0]
-y1 = data_main[:, 1]   # Snímač 1
-y2 = data_main[:, 2]   # Snímač 2
+y1 = data_main[:, 1]   
+y2 = data_main[:, 2]   
 
 # ===== Panel =====
-figPlotParam = fcnDefaultFigSize(7, 0.17, 0.88, 0.12, 0.40, 13)
+figPlotParam = fcnDefaultFigSize(9, 0.17, 0.88, 0.12, 0.40, 13)
 fig = plt.figure(0, figsize=figPlotParam[0:2])
 subPlots = gridspec.GridSpec(2, 1, height_ratios=[1, 1])
 
 
-fcn_setFigStyle_basicTimeSeries(fig, figPlotParam, ['Spirála [V]', '', ''])
+fcn_setFigStyle_basicTimeSeries(fig, figPlotParam, ['Čas [s]', '', ''])
 
-# --- Horný graf: Snímač 1 ---
+# --- Horný graf
 ax0 = plt.subplot(subPlots[0])
-ax0.plot(t, y1, 'o', lw=0.5, ms = 2, color='k', drawstyle='default')
+ax0.plot(t, y1, '-', lw=0.5, ms = 2, color='k', drawstyle='default')
 fcnDefaultAxisStyle(ax0)
 ax0.grid(True, which='both', linestyle='--', linewidth=0.1, color='k')
-ax0.set_xlabel('Spirála [V]', ha='left', va='top')
+ax0.set_xlabel('Čas [s]', ha='left', va='top')
 ax0.xaxis.set_label_coords(1.05, -0.07, transform=ax0.transAxes)
-ax0.set_ylabel('Snímač 1 [V]', ha='right', va='bottom', rotation=0)
+ax0.set_ylabel('Spirál [V]', ha='right', va='bottom', rotation=0)
 ax0.yaxis.set_label_coords(-0.07, 1.05, transform=ax0.transAxes)
-ax0.set_ylim(3, 10)
+ax0.set_ylim(-1, 1)
 
-# --- Dolný graf: Snímač 2 ---
+# --- Dolný graf
 ax1 = plt.subplot(subPlots[1])
-ax1.plot(t, y2, 'o', lw=0.5, ms = 2, color='k', drawstyle='default')
+ax1.plot(t, y2, '-', lw=0.5, ms = 2, color='k', drawstyle='default')
 fcnDefaultAxisStyle(ax1)
 ax1.grid(True, which='both', linestyle='--', linewidth=0.1, color='k')
-ax1.set_xlabel('Spirála [V]', ha='left', va='top')
+ax1.set_xlabel('Čas [s]', ha='left', va='top')
 ax1.xaxis.set_label_coords(1.05, -0.07, transform=ax1.transAxes)
-ax1.set_ylabel('Snímač 2 [V]', ha='right', va='bottom', rotation=0)
+ax1.set_ylabel('Snímač 1 [V]', ha='right', va='bottom', rotation=0)
 ax1.yaxis.set_label_coords(-0.07, 1.05, transform=ax1.transAxes)
-ax1.set_ylim(3, 10)
+ax1.set_ylim(-0.7, 0.7)
 
 # ===== Layout =====
 fcnDefaultLayoutAdj(fig, figPlotParam[2], figPlotParam[3],
