@@ -9,4 +9,4 @@
 \contentsline {subsubsection}{\numberline {1.2.2}Identifikácia pomocou metódy najmenších štvorcov}{8}{subsubsection.1.2.2}%
 \contentsline {subsubsection}{\numberline {1.2.3}Identifikácia parametrov pomocou optimalizácie prenosovej funkcie}{9}{subsubsection.1.2.3}%
 \contentsline {subsubsection}{\numberline {1.2.4}Výsledky identifikácie TS05}{10}{subsubsection.1.2.4}%
-\contentsline {section}{Zoznam literatúry}{12}{equation.6}%
+\contentsline {section}{Zoznam literatúry}{12}{equation.11}%
