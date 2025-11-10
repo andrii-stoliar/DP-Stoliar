@@ -418,24 +418,23 @@ Implementácia tejto funkcie je uvedená nižšie:
 caption={MATLAB implementácia identifikácie metódou najmenších štvorcov},
 label={lst:ls_identify_basic}]
 function G = ls_identify_basic(y, u, Ts)
-
+    
     y = y(:);
     u = u(:);
     N = length(y);
-    na = 2; 
-    nb = 2;
+    na = 2; nb = 2;
     
-    Phi = zeros(N-2, na+nb);
+    H = zeros(N-2, na+nb);
     for k = 3:N
-        Phi(k-2,:) = [-y(k-1), -y(k-2), u(k-1), u(k-2)];
+        H(k-2,:) = [-y(k-1), -y(k-2), u(k-1), u(k-2)];
     end
     Y = y(3:N);
     
-    theta = pinv(Phi) * Y;
+    theta = pinv(H) * Y;  
     
-    a1 = theta(1);
+    a1 = theta(1); 
     a2 = theta(2);
-    b1 = theta(3);
+    b1 = theta(3); 
     b2 = theta(4);
     
     num = [b1 b2];
@@ -443,7 +442,9 @@ function G = ls_identify_basic(y, u, Ts)
     Gd = tf(num, den, Ts);
     
     G = d2c(Gd, 'tustin');
+
 end
+
 \end{lstlisting}
 
 % -------------------------------------------------------------------
@@ -486,54 +487,46 @@ function G = tf_identify_fmin(y, u, time, Ts)
     u = u(:);
     time = time(:);
 
-    p0 = [0 0 0 0];  
+    p0 = [0 0 0 0];
 
-    cost_fun = @(p) rmse_cost_bounded(p, u, y, time, Ts);
+    cost_fun = @(p) rmse_cost_stable(p, u, y, time, Ts);
 
     opts = optimset('Display', 'off', 'TolX', 1e-8, 'TolFun', 1e-8);
     p_opt = fminsearch(cost_fun, p0, opts);
 
     p_opt = 50 * tanh(p_opt);
-    a1 = p_opt(1); 
-    a2 = p_opt(2); 
-    b1 = p_opt(3); 
-    b2 = p_opt(4);
+    a1 = p_opt(1); a2 = p_opt(2); b1 = p_opt(3); b2 = p_opt(4);
 
     Gd = tf([b1 b2], [1 a1 a2], Ts);
     G  = d2c(Gd, 'tustin');
 
 end
 
-% --- helper cost function with bounded parameters ---
-function err = rmse_cost_bounded(p, u, y, t, Ts)
+function err = rmse_cost_stable(p, u, y, t, Ts)
+
     p = 50 * tanh(p);
-    err = rmse_cost(p, u, y, t, Ts);
-end
-
-% --- base RMSE cost function ---
-function err = rmse_cost(p, u, y, t, Ts)
-    if any(isnan(p)) || any(~isfinite(p))
-        err = 1e6;
-        return;
-    end
-
-    a1 = p(1); 
-    a2 = p(2); 
-    b1 = p(3); 
-    b2 = p(4);
+    a1 = p(1); a2 = p(2); b1 = p(3); b2 = p(4);
 
     try
+
         Gd = tf([b1 b2], [1 a1 a2], Ts);
-        G  = d2c(Gd, 'tustin');
-        y_sim = lsim(G, u, t);
-        err = sqrt(mean((y - y_sim).^2));
-        if isnan(err) || isinf(err)
+
+        poles = pole(Gd);
+        if any(abs(poles) >= 1)
             err = 1e6;
+            return;
         end
+
+        G = d2c(Gd, 'tustin');
+        y_sim = lsim(G, u, t);
+
+        err = sqrt(mean((y - y_sim).^2));
+
     catch
         err = 1e6;
     end
 end
+
 \end{lstlisting}
 
 Pri tomto prístupe je dôležité upozorniť na jeden podstatný problém.  
@@ -606,6 +599,76 @@ Ako je vidieť, oba modely poskytujú veľmi uspokojivú aproximáciu dynamiky s
 pričom model získaný metódou \textit{fminsearch} dosahuje o niečo menšiu hodnotu RMSE.  
 Treba však zdôrazniť, že oba identifikované modely sú len druhého rádu,  
 čo predstavuje rozumný kompromis medzi jednoduchosťou a presnosťou pre následný návrh regulácie.
+
+% -------------------------------------------------------------------
+% Subsubsection 1.2.5 - Aproximácia identifikovaných modelov
+% -------------------------------------------------------------------
+
+\subsubsection{Aproximácia identifikovaných modelov}
+
+Na základe získaných prenosových funkcií možno pozorovať, že ich čitatele obsahujú veľmi malé koeficienty pri prvom a druhom rade.  
+Prítomnosť týchto členov je s veľkou pravdepodobnosťou len výsledkom numerických „artefaktov“ vzniknutých pri prevode z diskrétnej prenosovej funkcie na spojitú formu.  
+Zahrnutie týchto vyšších rádov v čitateli by výrazne komplikovalo niektoré analytické metódy návrhu regulátorov, napríklad metódu umiestnenia pólov.
+
+Pre účely ďalšej práce sme sa preto rozhodli tieto prenosové funkcie aproximovať jednoduchšou formou.  
+Najzrejmejší prístup spočíva v tom, že malé koeficienty pri $s$ a $s^2$ v čitateli zanedbáme a overíme vplyv tejto úpravy pomocou simulácie.
+
+Výsledkom tejto aproximácie sú nasledujúce prenosové funkcie:
+
+\begin{equation}
+	G_{s,\mathrm{LS,approx}}(s) =
+	\frac{6.074}{s^2 + 59.01s + 8.95}
+	\label{eq:Gs_ls_approx}
+\end{equation}
+
+póly:
+\begin{equation}
+	-58.8550, \quad -0.1521
+	\label{eq:poles_ls_approx}
+\end{equation}
+
+a
+
+\begin{equation}
+	G_{s,\mathrm{fmin,approx}}(s) =
+	\frac{0.9012}{s^2 + 18.94s + 1.291}
+	\label{eq:Gs_fmin_approx}
+\end{equation}
+
+póly:
+\begin{equation}
+	-18.8736, \quad -0.0684
+	\label{eq:poles_fmin_approx}
+\end{equation}
+
+Z uvedených hodnôt pólov je zrejmé, že obidva modely majú póly s negatívnymi reálnymi časťami, teda ide o stabilné systémy.
+
+Následne bola uskutočnená simulácia odozvy systému analogická tej, ktorá bola uvedená na obrázku~\ref{fig:ts_pb_vent6_spir4_ident_comparison}.  
+Porovnanie reálnej odozvy systému TS05 s oboma aproximovanými modelmi je zobrazené na obrázku~\ref{fig:ts_pb_vent6_spir4_ident_approximated_comparison}.
+
+\begin{center}
+	\vbox{
+		\makebox[\textwidth][c]{%
+			\includegraphics[width=1.5\textwidth]{ts_pb_vent6_spir4_ident_approximated_comparison.png}
+		}
+		\figcaption{Porovnanie skokovej odozvy reálneho systému TS05 a aproximovaných modelov}
+		\label{fig:ts_pb_vent6_spir4_ident_approximated_comparison}
+	}
+\end{center}
+
+Výsledné hodnoty strednej kvadratickej chyby (RMSE) medzi reálnym systémom a simulovanými odozvami boli:
+
+\begin{align}
+	\mathrm{RMSE}_{\mathrm{LS,approx}} &= 0.036951,
+	\label{eq:rmse_ls_approx} \\
+	\mathrm{RMSE}_{\mathrm{fmin,approx}} &= 0.026998
+	\label{eq:rmse_fmin_approx}
+\end{align}
+
+Z výsledkov, ako aj z priebehov simulácií, je zrejmé, že rozdiel medzi pôvodnými a aproximovanými modelmi je zanedbateľný.  
+Hodnota RMSE sa zhoršila len minimálne, čo je z pohľadu ďalšieho použitia modelov úplne prijateľné, najmä vzhľadom na zjednodušenie analytického spracovania, ktoré táto aproximácia prináša.
+
+
 
 % -------------------------------------------------------------------
 % Zoznam literatúry

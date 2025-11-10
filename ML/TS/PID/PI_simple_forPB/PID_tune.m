@@ -3,8 +3,6 @@ load pb_vent6_spir4_id.mat
 [num, den] = tfdata(Gs_ls, 'v');
 
 a0 = den(1);
-a1 = den(2);
-a2 = den(3);
 b0 = num(1);
 b1 = num(2);
 b2 = num(3);

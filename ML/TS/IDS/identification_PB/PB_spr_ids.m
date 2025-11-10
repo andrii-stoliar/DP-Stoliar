@@ -64,15 +64,9 @@ writetable(T, fname);
 Ts = 0.1;
 
 Gs_ls = ls_identify_basic(snimac_n, spir_n, Ts)
-[num, den] = tfdata(Gs_ls, 'v');
-num = [0, 0, num(3)];
-Gs_ls = tf(num, den)
 snimac_s_ls = lsim(Gs_ls, spir_n, time);
 
 Gs_fmin = tf_identify_fmin(snimac_n, spir_n, time, Ts)
-[num, den] = tfdata(Gs_fmin, 'v');
-num = [0, 0, num(3)];
-Gs_fmin = tf(num, den)
 snimac_s_fmin = lsim(Gs_fmin, spir_n, time);
 
 rmse_ls   = sqrt(mean((snimac_n - snimac_s_ls).^2));
@@ -94,7 +88,40 @@ T = table(time, spir_n, snimac_n, snimac_s_ls, snimac_s_fmin, 'VariableNames', {
 fname = fullfile(save_dir, 'pb_vent6_spir4_id.csv');
 writetable(T, fname);
 
-% save('pb_vent6_spir4_id.mat', 'Gs_fmin', 'Gs_ls');
+% Approximation of the identified models 
+
+[num, den] = tfdata(Gs_ls, 'v');
+num = [0, 0, num(3)];
+Gs_ls = tf(num, den)
+roots(den)
+snimac_s_ls = lsim(Gs_ls, spir_n, time);
+
+[num, den] = tfdata(Gs_fmin, 'v');
+num = [0, 0, num(3)];
+Gs_fmin = tf(num, den)
+roots(den)
+snimac_s_fmin = lsim(Gs_fmin, spir_n, time);
+
+rmse_ls   = sqrt(mean((snimac_n - snimac_s_ls).^2));
+rmse_fmin = sqrt(mean((snimac_n - snimac_s_fmin).^2));
+
+fprintf('\n---------------------------------------------\n');
+fprintf('RMSE (Least Squares): %.6f\n', rmse_ls);
+fprintf('RMSE (fminsearch):    %.6f\n', rmse_fmin);
+fprintf('---------------------------------------------\n\n');
+
+figure(4);
+plot(time, snimac_n, 'k', 'LineWidth', 1.5); hold on;
+plot(time, snimac_s_ls, 'r--', 'LineWidth', 1.3);
+plot(time, snimac_s_fmin, 'b-.', 'LineWidth', 1.3);
+grid on;
+hold off;
+
+T = table(time, spir_n, snimac_n, snimac_s_ls, snimac_s_fmin, 'VariableNames', {'time','spir_n','snimac1_n','snimac1_s_ls','snimac1_s_fmin'});
+fname = fullfile(save_dir, 'pb_vent6_spir4_id_apprx.csv');
+writetable(T, fname);
+
+save('pb_vent6_spir4_id.mat', 'Gs_fmin', 'Gs_ls');
 
 %----------------------------------------------------------------------------------------
 % FUNCTIONS -----------------------------------------------------------------------------
@@ -108,13 +135,13 @@ function G = ls_identify_basic(y, u, Ts)
     N = length(y);
     na = 2; nb = 2;
     
-    Phi = zeros(N-2, na+nb);
+    H = zeros(N-2, na+nb);
     for k = 3:N
-        Phi(k-2,:) = [-y(k-1), -y(k-2), u(k-1), u(k-2)];
+        H(k-2,:) = [-y(k-1), -y(k-2), u(k-1), u(k-2)];
     end
     Y = y(3:N);
     
-    theta = pinv(Phi) * Y;  
+    theta = pinv(H) * Y;  
     
     a1 = theta(1); 
     a2 = theta(2);
@@ -169,10 +196,6 @@ function err = rmse_cost_stable(p, u, y, t, Ts)
         y_sim = lsim(G, u, t);
 
         err = sqrt(mean((y - y_sim).^2));
-
-        if isnan(err) || isinf(err)
-            err = 1e6;
-        end
 
     catch
         err = 1e6;
