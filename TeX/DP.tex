@@ -395,15 +395,15 @@ Cieľom bolo získať lineárny model druhého rádu, ktorý dostatočne presne 
 
 Identifikácia bola realizovaná pomocou \textit{metódy najmenších štvorcov}~\cite{fikar},  
 ktorá umožňuje odhad parametrov diskrétneho modelu systému na základe meraných vstupov a výstupov.  
-Pre odhad parametrov bola vytvorená regresná matica $\Phi(k,:)$ a vektor výstupov $Y$, pričom výsledný odhad parametrov $\hat{\theta}$ bol určený podľa rovníc:
+Pre odhad parametrov bola vytvorená regresná matica $H(k,:)$ a vektor výstupov $Y$, pričom výsledný odhad parametrov $\hat{\theta}$ bol určený podľa rovníc:
 
 \begin{equation}
-    \Phi(k,:) = [-y(k-1), -y(k-2), u(k-1), u(k-2)]
+    H(k,:) = [-y(k-1), -y(k-2), u(k-1), u(k-2)]
     \label{eq:phi_matrix}
 \end{equation}
 
 \begin{equation}
-    \hat{\theta} = (\Phi^\mathrm{T}\Phi)^{-1}\Phi^\mathrm{T}Y
+    \hat{\theta} = (H^\mathrm{T}H)^{-1}H^\mathrm{T}Y
     \label{eq:theta_estimation}
 \end{equation}
 

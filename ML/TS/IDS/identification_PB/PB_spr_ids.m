@@ -64,8 +64,15 @@ writetable(T, fname);
 Ts = 0.1;
 
 Gs_ls = ls_identify_basic(snimac_n, spir_n, Ts)
+[num, den] = tfdata(Gs_ls, 'v');
+num = [0, 0, num(3)];
+Gs_ls = tf(num, den)
 snimac_s_ls = lsim(Gs_ls, spir_n, time);
+
 Gs_fmin = tf_identify_fmin(snimac_n, spir_n, time, Ts)
+[num, den] = tfdata(Gs_fmin, 'v');
+num = [0, 0, num(3)];
+Gs_fmin = tf(num, den)
 snimac_s_fmin = lsim(Gs_fmin, spir_n, time);
 
 rmse_ls   = sqrt(mean((snimac_n - snimac_s_ls).^2));
@@ -128,9 +135,9 @@ function G = tf_identify_fmin(y, u, time, Ts)
     u = u(:);
     time = time(:);
 
-    p0 = [0 0 0 0];  
+    p0 = [0 0 0 0];
 
-    cost_fun = @(p) rmse_cost_bounded(p, u, y, time, Ts);
+    cost_fun = @(p) rmse_cost_stable(p, u, y, time, Ts);
 
     opts = optimset('Display', 'off', 'TolX', 1e-8, 'TolFun', 1e-8);
     p_opt = fminsearch(cost_fun, p0, opts);
@@ -142,37 +149,35 @@ function G = tf_identify_fmin(y, u, time, Ts)
     G  = d2c(Gd, 'tustin');
 
 end
-% --- helper cost function with bounded parameters ---
-function err = rmse_cost_bounded(p, u, y, t, Ts)
+
+function err = rmse_cost_stable(p, u, y, t, Ts)
 
     p = 50 * tanh(p);
-    err = rmse_cost(p, u, y, t, Ts);
-
-end
-% --- base RMSE cost function ---
-function err = rmse_cost(p, u, y, t, Ts)
-
-    if any(isnan(p)) || any(~isfinite(p))
-        err = 1e6;
-        return;
-    end
-
     a1 = p(1); a2 = p(2); b1 = p(3); b2 = p(4);
 
     try
+
         Gd = tf([b1 b2], [1 a1 a2], Ts);
-        G  = d2c(Gd, 'tustin');
+
+        poles = pole(Gd);
+        if any(abs(poles) >= 1)
+            err = 1e6;
+            return;
+        end
+
+        G = d2c(Gd, 'tustin');
         y_sim = lsim(G, u, t);
+
         err = sqrt(mean((y - y_sim).^2));
+
         if isnan(err) || isinf(err)
             err = 1e6;
         end
+
     catch
         err = 1e6;
     end
-
 end
-
 
 % my_detrend
 % Implements subtraction of the linear trend using formulas (2.6)-(2.7)
