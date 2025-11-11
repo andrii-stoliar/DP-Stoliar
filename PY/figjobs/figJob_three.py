@@ -9,11 +9,11 @@ from figFcns_TeX import *
 figSaveDir = '../fig'
 os.makedirs(figSaveDir, exist_ok=True)
 
-figName = 'ts_pb_vent6_spir4_ident_approximated_comparison'
+figName = 'ts_pb_vent6_spir4_ident_comparison'
 
 # ===== Load CSV =====
 data_main = pd.read_csv(
-    '../dataRepo/pb_vent6_spir4_id_apprx.csv',
+    '../dataRepo/ts_pb_vent6_spir4_id.csv',
     header=None,
     skiprows=1  # skip first line
 ).values

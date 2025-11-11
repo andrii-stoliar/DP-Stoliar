@@ -539,11 +539,15 @@ ktoré boli použiteľné iba pre konkrétny fitovaný experiment.
 Z tohto dôvodu sú v uvedenej implementácii parametre počas optimalizácie mapované pomocou transformácie
 
 \begin{equation}
-    p_i^\ast = 50 \tanh(p_i)
-    \label{eq:param_transform}
+	p_i^\ast = 50 \tanh(p_i)
+	\label{eq:param_transform_extended}
 \end{equation}
 
-čím sú efektívne udržiavané v konečnom rozsahu a znižuje sa riziko vzniku numericky extrémnych alebo fyzikálne nezmyselných modelov.
+čím sú efektívne udržiavané v konečnom rozsahu a znižuje sa riziko vzniku numericky extrémnych alebo fyzikálne nezmyselných modelov.  
+Okrem toho bola do optimalizácie pridaná aj dodatočná penalizácia, ktorá výrazne zvyšuje hodnotu účelovej funkcie v prípade,  
+že identifikovaná prenosová funkcia vykazuje známky nestability.  
+Týmto spôsobom algoritmus uprednostňuje iba stabilné riešenia a zabraňuje vzniku modelov so „zdravotne“ nevhodnými pólmi.
+
 
 % -------------------------------------------------------------------
 % Subsubsection 1.2.4 - Výsledky identifikácie TS05
@@ -683,7 +687,6 @@ Hodnota RMSE sa zhoršila len minimálne, čo je z pohľadu ďalšieho použitia
 M. Fikar, J. Mikleš, \textit{Identifikácia systémov}.  
 Slovenská technická univerzita v Bratislave, 1998.  
 ISBN 80-227-1177-2.  
-Dostupné online: \url{http://TODO.htm}
 
 \bibitem{kut015}
 M. Tárnik, \textit{KUT015 – Laboratórne zariadenie TS: orientačný prehľad}.  
@@ -696,8 +699,6 @@ D. C. Montgomery, E. A. Peck, G. G. Vining,
 \textit{Introduction to Linear Regression Analysis, Fifth Edition}.  
 John Wiley \& Sons, Inc., Hoboken, New Jersey, 2012.  
 ISBN 978-0-470-54281-1.  
-Dostupné online:  
-\url{https://www.kwcsangli.in/uploads/3--Introduction_to_Linear_Regression_Analysis__5th_ed._Douglas_C._Montgomery__Elizabeth_A._Peck__and_G._.pdf}
 
 \end{thebibliography}
 

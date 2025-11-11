@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.6.29)  10 NOV 2025 23:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.6.29)  11 NOV 2025 11:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -970,29 +970,29 @@ See the caption package documentation for explanation.
 [8 <../PY/fig/ts_pb_vent6_spir4_ident_avg.png>]
 
 [9]
-<../PY/fig/ts_pb_vent6_spir4_ident_comparison.png, id=300, 560.3334pt x 170.5572pt>
+<../PY/fig/ts_pb_vent6_spir4_ident_comparison.png, id=300, 560.3334pt x 170.67764pt>
 File: ../PY/fig/ts_pb_vent6_spir4_ident_comparison.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_spir4_ident_comparison.png>
-Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_ident_comparison.png  used on input line 562.
-(pdftex.def)             Requested size: 554.82875pt x 168.88597pt.
+Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_ident_comparison.png  used on input line 566.
+(pdftex.def)             Requested size: 554.82875pt x 169.00522pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 563.
+(caption)                particular \caption on input line 567.
 See the caption package documentation for explanation.
 
 
 
 [10 <../PY/fig/ts_pb_vent6_spir4_ident_comparison.png>]
-<../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png, id=330, 560.3334pt x 170.67764pt>
+<../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png, id=329, 560.3334pt x 170.67764pt>
 File: ../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png>
-Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png  used on input line 653.
+Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png  used on input line 657.
 (pdftex.def)             Requested size: 554.82875pt x 169.00522pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 654.
+(caption)                particular \caption on input line 658.
 See the caption package documentation for explanation.
 
 
@@ -1000,11 +1000,6 @@ See the caption package documentation for explanation.
 [11]
 
 [12 <../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 695--701
-\T1/clm2t/m/n/10 Introduction _ to _ Linear _ Regression _ Analysis _ _5th _ ed . _Douglas _ C .
- []
-
-
 
 [13
 
@@ -1019,18 +1014,18 @@ Package rerunfilecheck Info: File `DP.out' has not changed.
 (rerunfilecheck)             Checksum: 70610CC7B615CBFCE504EDC419ECACCE;2504.
  ) 
 Here is how much of TeX's memory you used:
- 21097 strings out of 467888
- 340501 string characters out of 5431467
+ 21101 strings out of 467888
+ 340559 string characters out of 5431467
  1069237 words of memory out of 5000000
  48858 multiletter control sequences out of 15000+600000
- 721458 words of font info for 301 fonts, out of 8000000 for 9000
+ 721570 words of font info for 304 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  80i,12n,82p,1273b,2092s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt8.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt9.pfb>
-Output written on DP.pdf (17 pages, 1404185 bytes).
+Output written on DP.pdf (17 pages, 1520941 bytes).
 PDF statistics:
- 485 PDF objects out of 1000 (max. 8388607)
- 388 compressed objects within 4 object streams
+ 481 PDF objects out of 1000 (max. 8388607)
+ 384 compressed objects within 4 object streams
  149 named destinations out of 1000 (max. 500000)
  83122 words of extra memory for PDF output out of 89155 (max. 10000000)
 
