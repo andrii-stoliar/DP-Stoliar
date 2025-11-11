@@ -2,24 +2,42 @@
 
 # TS - theory
 
-- [+] popis systemu
-- [-] make documentation of system description;
+- [+] - Popis systemu
+- [+] - Make documentation of system description
 
-# TS (ML) - Interpolated PI for diff step performance
+# TS (ML) - DESC
 
-- [-] init system for 6vent/1snim;
-- [-] tune PI for idented system and steps 1-8;
-- [+] make fcn in ML for PI with flex params;
-- [+] make Simulink scheme for function;
-- [-] test method on real system and save results;
-- [-] make documentation for that part (hell noooooo);
+- [+] - merania 3 prev
+- [+] - spracovanie stat. char
+- [+] - dokumentacia pre staticke char
 
-# TS (ESP32) - Interpolated PI for diff step performance
+# TS (ML) - IDS
 
-- [-] discover about how it works;
-- [-] make plan of project;
-- [-] buy issue hardwear;
-- [-] build system;
-- [-] test;
-- [-] save results;
-- [-] make documanetation for that part;
+- [+] - Namerat 3 experimenty pre PB 4 +- 0.5
+- [+] - Detrend
+- [+] - Average experiment
+- [+] - IDS LS
+- [+] - IDS fmin
+- [+] - Approximacia
+- [+] - Dokumentacia pre IDS
+
+# TS (ML) - PI reg
+
+- [+] - Vepocet Poleplacement pre system
+- [-] - Najst poleplacement parametre
+- [-] - Vymislit este nejaku metodu
+- [-] - Najst parametre 2u metodou
+- [-] - Skusit dve metody na RS
+- [-] - Dokumentacia
+
+# TS (ML) - Prepinac
+
+- [-] - Porozmyslat
+
+# TS (C++) - OG metoda
+
+- [+] - Nakupit hardwear
+- [-] - Schema systemu
+- [-] - Build the system
+- [-] - Test
+- [-] - Dokumentation 
