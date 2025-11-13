@@ -24,7 +24,6 @@
 # TS (ML) - PI reg
 
 - [+] - Vepocet Poleplacement pre system
-- [-] - Najst poleplacement parametre
 - [-] - Vymislit este nejaku metodu
 - [-] - Najst parametre 2u metodou
 - [-] - Skusit dve metody na RS
@@ -41,3 +40,14 @@
 - [-] - Build the system
 - [-] - Test
 - [-] - Dokumentation 
+
+# Conzultacia$$
+1.
+![PXL_20251113_131421177](https://github.com/user-attachments/assets/1682dcb3-81fd-4be5-8abb-22d8a46b0c8c)
+2.
+![PXL_20251113_131434006](https://github.com/user-attachments/assets/10e09122-3354-4df5-9884-08df7e81b3d9)
+![PXL_20251113_131439978](https://github.com/user-attachments/assets/91e6fd53-4277-420a-b5c6-3b7e0cd504d3)
+3.
+![PXL_20251113_131453372](https://github.com/user-attachments/assets/54ec1c84-d1a0-4be0-96a4-79301a79d2ef)
+4.
+![PXL_20251113_131503294](https://github.com/user-attachments/assets/aba2f810-ed67-4496-9012-252bd0875c83)
