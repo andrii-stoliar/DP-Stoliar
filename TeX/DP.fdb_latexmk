@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1762858185.63263 "c:/MyFiles/Study/DP-Stoliar/TeX/DP.tex" "DP.pdf" "DP" 1762858192.10616 0
+["pdflatex"] 1762948686.85394 "c:/MyFiles/Study/DP-Stoliar/TeX/DP.tex" "DP.pdf" "DP" 1762948692.8343 0
   "../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png" 1762814064 289397 fbbc4689653227899b80b9b85e342a0e ""
   "../PY/fig/ts_pb_vent6_spir4_ident_avg.png" 1762637180 84264 c0fd8a94ecd482402f3d59edb68654d9 ""
   "../PY/fig/ts_pb_vent6_spir4_ident_comparison.png" 1762858095 289511 c853f05a55c9f3352cd20b1626728e00 ""
@@ -16,10 +16,10 @@
   "../SVG/TS_simulink_scheme.pdf" 1761496045 11614 f1bfc7a9b0d2d3ba36328a0a4e130f68 ""
   "../SVG/zadanie.png" 1761419150 139341 83769a2029c94be28efc9500ab6ebcff ""
   "COMMONFILES/preamble.tex" 1761506909 6743 777120a7c54e6ed5f560bc9f91f47f04 ""
-  "DP.aux" 1762858191 9484 0d380e4743a84bda194e0740fa74a4c0 "pdflatex"
-  "DP.out" 1762858191 2504 70610cc7b615cbfce504edc419ecacce "pdflatex"
-  "DP.tex" 1762858184 28400 98ff2a60aefc3803de4a8b742e787cad ""
-  "DP.toc" 1762858191 1187 10eb6cfff761eea24db0485f19f6a976 "pdflatex"
+  "DP.aux" 1762948692 9484 0d380e4743a84bda194e0740fa74a4c0 "pdflatex"
+  "DP.out" 1762948692 2504 70610cc7b615cbfce504edc419ecacce "pdflatex"
+  "DP.tex" 1762948685 28400 98ff2a60aefc3803de4a8b742e787cad ""
+  "DP.toc" 1762948692 1187 10eb6cfff761eea24db0485f19f6a976 "pdflatex"
   "c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/cfr-lm/dotdigits-clm.enc" 1751211575 3961 0be40e3656f35017c05e134577abc1fd ""
   "c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/cfr-lm/t1-clm.enc" 1751211575 3104 9c132d3e58cccc51852b38df311d678a ""
   "c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1751213751 2375 baa924870cfb487815765f9094cf3728 ""
@@ -211,7 +211,7 @@
   "c:/MyFiles/Soft/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1751216876 5569496 7e211e74f6b66c03eb4b8aa646f4724b ""
   "c:/MyFiles/Soft/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1751217036 3599728 f7310df183ae6b740dc5c5a69750efab ""
   "c:/MyFiles/Soft/texlive/2025/texmf.cnf" 1751216848 713 e69b156964470283e0530f5060668171 ""
-  "c:/MyFiles/Study/DP-Stoliar/TeX/DP.tex" 1762858184 28400 98ff2a60aefc3803de4a8b742e787cad ""
+  "c:/MyFiles/Study/DP-Stoliar/TeX/DP.tex" 1762948685 28400 98ff2a60aefc3803de4a8b742e787cad ""
   (generated)
   "DP.aux"
   "DP.log"
