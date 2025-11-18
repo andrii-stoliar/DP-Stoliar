@@ -44,7 +44,7 @@ disp(f_mark)
 wc = sqrt(w_mark(2)*w_mark(3)); 
 
 wi = 0.2*wc; % integral frequency
-Ti = 1/wi;
+Ti = 1/wi
 
 % P gain at wc
 
@@ -57,7 +57,7 @@ magC = squeeze(magC);
 [magGs, ~] = bode(Gs, wc);
 magGs = squeeze(magGs);
 
-Kp = 1 / (magC * magGs);
+Kp = 1 / (magC * magGs)
 C  = Kp * C_pi_noK;
 
 G_oro = C * Gs;
