@@ -24,8 +24,8 @@
 # TS (ML) - PI reg
 
 - [+] - Vepocet Poleplacement pre system
-- [-] - Vymislit este nejaku metodu
-- [-] - Najst parametre 2u metodou
+- [+] - Najst parametre
+- [+] - Dokumentacia teoria
 - [-] - Skusit dve metody na RS
 - [-] - Dokumentacia
 
