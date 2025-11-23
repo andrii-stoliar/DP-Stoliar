@@ -250,23 +250,13 @@
 
 
 % --- Colorful MATLAB-style listings ----------------------------------------
-\usepackage{xcolor}
-\usepackage{listings}
-
-\definecolor{MatlabBlue}{RGB}{0,0,255}
-\definecolor{MatlabGreen}{RGB}{34,139,34}
-\definecolor{MatlabOrange}{RGB}{255,140,0}
-\definecolor{MatlabPurple}{RGB}{160,32,240}
-\definecolor{MatlabGray}{RGB}{245,245,245}
-\definecolor{MatlabComment}{RGB}{0,128,0}
-
 \lstset{
     language=Matlab,
-    backgroundcolor=\color{MatlabGray},
-    basicstyle=\ttfamily\footnotesize,
-    keywordstyle=\color{MatlabBlue}\bfseries,
-    stringstyle=\color{MatlabPurple},
-    commentstyle=\color{MatlabComment}\itshape,
+    backgroundcolor=\color[RGB]{245,245,245}, % light gray background
+    basicstyle=\fontfamily{cmtt}\selectfont\footnotesize,
+    keywordstyle=\color[RGB]{0,0,255}\bfseries,
+    stringstyle=\color[RGB]{163,21,21}, % MATLAB string color
+    commentstyle=\color[RGB]{0,128,0}\itshape,
     showstringspaces=false,
     numbers=left,
     numberstyle=\scriptsize\color{gray!80},
@@ -278,10 +268,12 @@
     breakatwhitespace=true,
     tabsize=4,
     captionpos=b,
-    emph={for,end,if,else,elseif,while,function,return},
-    emphstyle={\color{MatlabOrange}\bfseries}
+    emph={for,end,if,else,elseif,while,function,return,case,otherwise,try,catch},
+    emphstyle={\color[RGB]{0,0,255}\bfseries}, % MATLAB keywords
+    columns=fullflexible,
+    keepspaces=true,
+    upquote=true
 }
-
 
 % ------------------------------
 

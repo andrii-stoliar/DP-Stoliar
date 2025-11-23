@@ -10,4 +10,7 @@
 \contentsline {subsubsection}{\numberline {1.2.3}Identifikácia parametrov pomocou optimalizácie prenosovej funkcie}{9}{subsubsection.1.2.3}%
 \contentsline {subsubsection}{\numberline {1.2.4}Výsledky identifikácie TS05}{10}{subsubsection.1.2.4}%
 \contentsline {subsubsection}{\numberline {1.2.5}Aproximácia identifikovaných modelov}{11}{subsubsection.1.2.5}%
-\contentsline {section}{Zoznam literatúry}{13}{equation.17}%
+\contentsline {subsection}{\numberline {1.3}PI regulátor pre systém TS05}{12}{subsection.1.3}%
+\contentsline {subsubsection}{\numberline {1.3.1}Štruktúra PI regulátora}{12}{subsubsection.1.3.1}%
+\contentsline {subsubsection}{\numberline {1.3.2}Ladenie PI regulátora}{13}{subsubsection.1.3.2}%
+\contentsline {section}{Zoznam literatúry}{16}{equation.29}%
