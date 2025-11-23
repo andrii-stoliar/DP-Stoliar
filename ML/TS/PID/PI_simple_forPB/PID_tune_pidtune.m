@@ -7,7 +7,7 @@ Ts = 0.1;
 Gz = c2d(Gs, Ts, 'tustin');
 [Ad,Bd,Cd,Dd] = ssdata(Gz);
 
-wc = 0.7;                        
+wc = 1.0;                        
 Cz = pidtune(Gz, 'pi', wc) 
 Goro = Gs*d2c(Cz, 'tustin')
 
@@ -16,7 +16,7 @@ Goro = Gs*d2c(Cz, 'tustin')
 
 N  = 300;
 t  = (0:N-1)*Ts;
-ref = 0.4 * ones(1,N);
+ref = 0.35 * ones(1,N);
 K_limit = [-4 6];
 
 xG = zeros(size(Ad,1),1);   
@@ -39,45 +39,45 @@ for k = 2:N
 
 end
 
-% % results of regulation
+% results of regulation
 
-% % Parameters
-% ref_val = ref(end);        % step reference value
-% tol = 0.02;                % settling tolerance (2%)
+% Parameters
+ref_val = ref(end);        % step reference value
+tol = 0.02;                % settling tolerance (2%)
 
-% % Steady-state estimate (mean of last 10% of samples)
-% idx_last = round(0.9*N):N;
-% steady_val = mean(y(idx_last));
+% Steady-state estimate (mean of last 10% of samples)
+idx_last = round(0.9*N):N;
+steady_val = mean(y(idx_last));
 
-% % Overshoot (перерегулирование) in percent relative to reference
-% ymax = max(y);
-% overshoot = max(0,(ymax - ref_val)/abs(ref_val)) * 100;
+% Overshoot (перерегулирование) in percent relative to reference
+ymax = max(y);
+overshoot = max(0,(ymax - ref_val)/abs(ref_val)) * 100;
 
-% % Settling time (время регулирования): first time after which y stays within tol*ref
-% outside = find(abs(y - ref_val) > tol*abs(ref_val));
-% if isempty(outside)
-%     settling_time = 0; % already within tolerance
-% else
-%     last_out = max(outside);
-%     if last_out < N
-%         settling_time = t(last_out+1);
-%     else
-%         settling_time = NaN; % did not settle within simulation time
-%     end
-% end
+% Settling time (время регулирования): first time after which y stays within tol*ref
+outside = find(abs(y - ref_val) > tol*abs(ref_val));
+if isempty(outside)
+    settling_time = 0; % already within tolerance
+else
+    last_out = max(outside);
+    if last_out < N
+        settling_time = t(last_out+1);
+    else
+        settling_time = NaN; % did not settle within simulation time
+    end
+end
 
-% % Mean squared error (средняя квадратичная ошибка)
-% mse = mean((y - ref).^2);
+% Mean squared error (средняя квадратичная ошибка)
+mse = mean((y - ref).^2);
 
-% % Display results
-% fprintf('Steady-state (last 10%% mean): %.4f\n', steady_val);
-% if isnan(settling_time)
-%     fprintf('Settling time (%.2f%% tol): not settled within simulation time\n', tol*100);
-% else
-%     fprintf('Settling time (%.2f%% tol): %.3f s\n', tol*100, settling_time);
-% end
-% fprintf('Overshoot: %.2f %%\n', overshoot);
-% fprintf('MSE: %.6f\n', mse);
+% Display results
+fprintf('Steady-state (last 10%% mean): %.4f\n', steady_val);
+if isnan(settling_time)
+    fprintf('Settling time (%.2f%% tol): not settled within simulation time\n', tol*100);
+else
+    fprintf('Settling time (%.2f%% tol): %.3f s\n', tol*100, settling_time);
+end
+fprintf('Overshoot: %.2f %%\n', overshoot);
+fprintf('MSE: %.6f\n', mse);
 
 figure;
 subplot(2,1,1);
@@ -91,6 +91,6 @@ title('Control Signal (Saturated)');
 ylabel('u');
 xlabel('Time [s]');
 
-% T = table(t', ref', u', y', 'VariableNames', {'time','setpoint','vstup','vystup'});
-% fname = fullfile('pb_vent6_spir4_pidtune_sim.csv');
-% writetable(T, fname);
+T = table(t', ref', u', y', 'VariableNames', {'time','setpoint','vstup','vystup'});
+fname = fullfile('ts_pb_vent6_spir4_pidtune_sim.csv');
+writetable(T, fname);

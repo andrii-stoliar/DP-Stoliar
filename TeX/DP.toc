@@ -13,4 +13,5 @@
 \contentsline {subsection}{\numberline {1.3}PI regulátor pre systém TS05}{12}{subsection.1.3}%
 \contentsline {subsubsection}{\numberline {1.3.1}Štruktúra PI regulátora}{12}{subsubsection.1.3.1}%
 \contentsline {subsubsection}{\numberline {1.3.2}Ladenie PI regulátora}{13}{subsubsection.1.3.2}%
-\contentsline {section}{Zoznam literatúry}{16}{equation.29}%
+\contentsline {subsubsection}{\numberline {1.3.3}Realizácia PI regulátora pre riadenie v reálnom čase}{15}{subsubsection.1.3.3}%
+\contentsline {section}{Zoznam literatúry}{17}{figure.17}%

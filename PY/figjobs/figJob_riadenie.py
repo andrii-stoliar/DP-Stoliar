@@ -43,7 +43,7 @@ ax0.xaxis.set_label_coords(1.05, -0.07, transform=ax0.transAxes)
 ax0.set_ylabel('Výstup [V]', ha='right', va='bottom', rotation=0)
 ax0.yaxis.set_label_coords(-0.07, 1.05, transform=ax0.transAxes)
 
-ax0.set_ylim(0, 0.6)
+ax0.set_ylim(0, 0.5)
 ax0.legend(loc='upper right', fontsize=9)
 
 # --- Lower plot
@@ -60,7 +60,7 @@ ax1.xaxis.set_label_coords(1.05, -0.07, transform=ax1.transAxes)
 ax1.set_ylabel('Vstup [V]', ha='right', va='bottom', rotation=0)
 ax1.yaxis.set_label_coords(-0.07, 1.05, transform=ax1.transAxes)
 
-ax1.set_ylim(-4, 6)
+ax1.set_ylim(-4, 6.5)
 
 # ===== Layout =====
 fcnDefaultLayoutAdj(fig, figPlotParam[2], figPlotParam[3],

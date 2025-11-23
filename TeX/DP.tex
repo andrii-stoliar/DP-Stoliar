@@ -779,7 +779,7 @@ Gz = c2d(Gs, Ts, 'tustin');
 Následne bolo vykonané ladenie PI regulátora:
 
 \begin{lstlisting}[language=Matlab]
-wc = 0.7;
+wc = 1.0;
 Cz = pidtune(Gz, 'pi', wc);
 
 [numC,denC] = tfdata(Cz,'v');
@@ -789,14 +789,14 @@ Cz = pidtune(Gz, 'pi', wc);
 Získané parametre regulátora:
 
 \[
-K_p = 12.6, \qquad K_i = 5.69
+K_p = 18.6, \qquad K_i = 10.8
 \]
 
 Prenosová funkcia uzavretého regulačného obvodu je
 
 \begin{equation}
 	G_{oro}(s) =
-	\frac{11.09 s + 5.13}{s^3 + 18.94 s^2 + 1.291 s}
+	\frac{16.27 s + 9.737}{s^3 + 18.94 s^2 + 1.291 s}
 	\label{eq:oro_tf}
 \end{equation}
 
@@ -826,17 +826,122 @@ Výsledok simulácie je uvedený na obrázku~\ref{fig:pi_simulation_results}.
 Z výsledkov boli namerané tieto hodnoty:
 
 \begin{align}
-	\text{Čas ustálenia} &= 9.20 \text{ s}
+	\text{Čas ustálenia} &= 6.7 \text{ s}
 	\label{eq:settling_time} \\
-	\text{Prekmit} &= 19.79 \%
+	\text{Prekmit} &= 20.76 \%
 	\label{eq:overshoot} \\
-	\text{MSE} &= 0.004191
+	\text{MSE} &= 0.002388
 	\label{eq:mse_pi}
 \end{align}
 
 Dosiahnutý výsledok možno považovať za vhodný pre riadenie tepelného systému.  
 Cieľom je dosiahnuť čo najrýchlejšiu odozvu bez výrazného prekmitu.  
 Prekmit približne 20 percent je akceptovateľný, keďže riadený skok je malý a tepelná sústava je pomalá, čo prirodzene limituje tvar dynamickej odozvy.
+
+% -------------------------------------------------------------------
+% Subsubsection - 1.3.3 Realizácia PI regulátora pre riadenie v reálnom čase
+% -------------------------------------------------------------------
+
+\subsubsection{Realizácia PI regulátora pre riadenie v reálnom čase}
+
+Ako je uvedené v zadaní, cieľom práce je implementácia vybraných riadiacich algoritmov na rôznych platformách.  
+V tejto časti bol preto PI regulátor implementovaný tak, aby mohol byť spustený v reálnom čase bez pomoci hotových blokov z prostredia Simulink.  
+Regulátor je definovaný ako samostatná MATLAB funkcia, ktorá je volaná raz za každý riadiaci cyklus s periódou vzorkovania 0.1 sekundy.  
+Implementácia funkcie je nasledovná:
+
+\begin{lstlisting}[language=Matlab]
+function [u, integrator_out, y_ss_out] = pi_block(y, setpoint, integrator_in, time, y_ss_in)
+
+    % PI controller
+
+    % Inputs:
+    %   y              
+    %   setpoint        
+    %   integrator_in   
+    %   Kp, Ki          
+
+    % Outputs:
+    %   u              
+    %   integrator_out  
+
+    pb_u = 4;
+    Ts = 0.1;
+    u_min = - pb_u;
+    u_max = 10 - pb_u;
+    Kp = 12.6;
+    Ki = 5.69;
+
+    % init state of integrator
+
+    if time < 10*60
+        u = 4;
+        y_ss_out = y;
+    else
+
+        y_ss_out = y_ss_in;
+        pb_y = y_ss_in;
+
+        % Outputs normalization
+        y = y - pb_y;
+
+        % PI control law
+        e = setpoint - y;
+
+        if time <= 0.1
+            integrator_out = 0;
+        else
+            integrator_out = integrator_in + e * Ts;
+        end
+
+        u = Kp * e + Ki * integrator_out;
+        u = min(max(u, u_min), u_max);
+
+        % Inputs normalization
+        u = u + pb_u;
+
+    end
+
+end
+\end{lstlisting}
+
+Okrem samotného riadiaceho zákona obsahuje funkcia aj niekoľko doplnkových riešení potrebných pre správnu funkciu v reálnom čase.  
+Keďže funkcia bola použitá v bloku Interpreted MATLAB Fcn v prostredí Simulink, nemá vlastnú vnútornú pamäť.  
+Z tohto dôvodu bola vytvorená spätná väzba medzi výstupmi a vstupmi funkcie.  
+Hodnoty integrátora sú preto prenášané z jedného kroku do nasledujúceho, čím sa simuluje vnútorný stav bloku.  
+Takýmto spôsobom bolo zabezpečené správne správanie integrátora v každom kroku riadenia.
+
+Logika zapojenia je zobrazená na obrázku~\ref{fig:pi_rt_scheme},  
+ktorý zobrazuje vstupy a výstupy PI bloku a spätnú väzbu potrebnú pre uloženie stavov medzi jednotlivými cyklami.
+
+\begin{center}
+    \vbox{
+        \makebox[\textwidth][c]{%
+            \includegraphics[width=1.3\textwidth, trim=100 150 100 150, clip]{TS_pi_scheme.pdf}
+        }
+        \figcaption{Bloková schéma zapojenia PI regulátora pri riadení v reálnom čase}
+        \label{fig:pi_rt_scheme}
+    }
+\end{center}
+
+Ďalším dôležitým rozhodnutím bolo zavedenie fázy čakania pred začiatkom samotnej regulácie.  
+Počas prvých desiatich minút regulátor nevykonáva žiadne riadenie a na výstupe ponecháva hodnotu vstupu pracovného bodu.  
+Tento čas umožňuje systému prejsť do ustáleného stavu, ktorý je následne uložený do premennej $y\_{ss\_out}$.  
+Po uplynutí tejto fázy je práve táto hodnota použitá ako referenčný pracovný bod pre normalizáciu vstupov a výstupov.
+
+Použitie pevne určených statických hodnôt zo statických charakteristík systému (obr.~\ref{fig:ts_static_sensors6}) nebolo vhodné z dvoch dôvodov.  
+Prvým dôvodom je vysoká citlivosť tepelného systému na teplotu okolitého prostredia.  
+Experimenty neboli realizované v rovnaký deň a ich priebeh mohol byť ovplyvnený rozdielnou teplotou miestnosti.
+
+Druhým dôvodom je dlhodobá dynamika systému.  
+Ako bolo viditeľné na grafe so surovými meraniami (obr.~\ref{fig:ts_pb_vent6_spir4_ident_raw}), teplota sa zvyšuje aj veľmi pomaly počas celého priebehu merania, ktoré trvalo približne 40 minút.  
+Tento efekt nie je zanedbateľný a spôsobuje, že systém nemá jednu univerzálnu hodnotu, ktorú by bolo možné pre všetky prípady použiť ako reprezentáciu ustáleného stavu.
+
+Z toho dôvodu bol ustálený stav určovaný priamo počas spúšťania regulátora.  
+Za jeho hodnotu bolo zvolené posledné namerané $y$ pred spustením PI regulácie.  
+Tento prístup zabezpečuje, že regulátor pracuje správne bez ohľadu na to, či je systém iba jemne zahriaty alebo sa už nachádza v plne rozohriatom stave.
+
+Rovnako bolo potrebné ošetriť aj počiatočný stav integrátora.  
+Keďže integrátor je súčasťou pamäťového procesu, jeho hodnota musí byť inicializovaná presným spôsobom, aby nespôsobila prudký zásah alebo skok na výstupe hneď pri začiatku regulácie.
 
 
 % -------------------------------------------------------------------
