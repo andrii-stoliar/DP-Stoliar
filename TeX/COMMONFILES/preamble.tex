@@ -7,9 +7,9 @@
 
 \usepackage[left=4cm,
 			right=4cm,
-			top=2.1cm,
-			bottom=2.6cm,
-			footskip=7.5mm,
+			top=2.6cm,
+			bottom=2.8cm,
+			footskip=10mm,
 			twoside,
 			marginparwidth=3.0cm,
 			%showframe,
@@ -23,7 +23,7 @@
 
 \usepackage{lmodern}
 
-\usepackage[tt={oldstyle=false,proportional=true,monowidth}]{cfr-lm}
+% \usepackage[tt={oldstyle=false,proportional=true,monowidth}]{cfr-lm}
 % https://mirror.szerverem.hu/ctan/fonts/cfr-lm/doc/cfr-lm.pdf
 
 % ------------------------------
@@ -54,7 +54,7 @@
 
 \makeatletter
 
-	\def\@seccntformat#1{\protect\makebox[0pt][r]{\csname the#1\endcsname\hspace{4mm}}}
+	% \def\@seccntformat#1{\protect\makebox[0pt][r]{\csname the#1\endcsname\hspace{4mm}}}
 
 	\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
 	\hbox{}
@@ -78,7 +78,8 @@
 \fancypagestyle{plain}{%
 \fancyhf{} % clear all header and footer fields
 % \fancyfoot[C]{\sffamily {\bfseries \thepage}\ | {\scriptsize\oznacenieCasti}}
-\fancyfoot[C]{\sffamily {\bfseries \thepage}{\color{Gray}\scriptsize$\,$z$\,$\pageref{LastPage}}\ | \includegraphics[height=5pt]{./COMMONFILES/KUT_logo_v0.1.pdf}{\scriptsize\KUTporadoveCislo}}
+% \fancyfoot[C]{\sffamily {\bfseries \thepage}{\color{Gray}\scriptsize$\,$z$\,$\pageref{LastPage}}\ | \includegraphics[height=5pt]{./COMMONFILES/KUT_logo_v0.1.pdf}{\scriptsize\KUTporadoveCislo}}
+\fancyfoot[C]{\sffamily {\bfseries \thepage}}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}}
 \pagestyle{plain}
@@ -123,6 +124,10 @@
 \usepackage{enumitem}
 
 \usepackage{lettrine}
+
+% ------------------------------
+
+\usepackage{setspace}
 
 % ------------------------------
 

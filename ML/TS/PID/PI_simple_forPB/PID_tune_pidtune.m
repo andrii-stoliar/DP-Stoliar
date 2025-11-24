@@ -7,7 +7,7 @@ Ts = 0.1;
 Gz = c2d(Gs, Ts, 'tustin');
 [Ad,Bd,Cd,Dd] = ssdata(Gz);
 
-wc = 1.0;                        
+wc = 0.4;                        
 Cz = pidtune(Gz, 'pi', wc) 
 Goro = Gs*d2c(Cz, 'tustin')
 

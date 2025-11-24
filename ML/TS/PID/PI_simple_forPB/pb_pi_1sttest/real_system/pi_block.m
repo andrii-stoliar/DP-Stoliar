@@ -1,4 +1,4 @@
-function [u, integrator_out, y_ss_out] = pi_block(y, setpoint, integrator_in, time, y_ss_in)
+function [u, integrator_out, y_ss_out] = pi_block(y, setpoint, integrator_in, t, y_ss_in)
 
 % PI controller
 
@@ -21,9 +21,10 @@ function [u, integrator_out, y_ss_out] = pi_block(y, setpoint, integrator_in, ti
 
     %init state of integrator
 
-    if time < 10*60
+    if t < 10*60
         u = 4;
         y_ss_out = y;
+        integrator_out = 0;
     else
         
         y_ss_out = y_ss_in;
@@ -34,11 +35,7 @@ function [u, integrator_out, y_ss_out] = pi_block(y, setpoint, integrator_in, ti
         % PI control law
         e = setpoint - y;
 
-        if time <= 0.1
-            integrator_out = 0;
-        else
-            integrator_out = integrator_in + e * Ts;
-        end
+        integrator_out = integrator_in + e * Ts;
 
         u = Kp * e + Ki * integrator_out;
         u = min(max(u, u_min), u_max);
