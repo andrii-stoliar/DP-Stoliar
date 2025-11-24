@@ -1,0 +1,3 @@
+\babel@toc {slovak}{}\relax 
+\contentsline {section}{Úvod}{7}{Doc-Start}%
+\contentsline {section}{Zoznam literatúry}{8}{Doc-Start}%
