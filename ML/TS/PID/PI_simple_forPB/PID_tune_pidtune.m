@@ -1,7 +1,7 @@
 clc; clear; close all;
-load pb_vent6_spir4_id.mat
+load pb_vent6_spir6_id.mat
 
-Gs = Gs_fmin;
+Gs = Gs_ls
 Ts = 0.1;
 
 Gz = c2d(Gs, Ts, 'tustin');
@@ -16,8 +16,8 @@ Goro = Gs*d2c(Cz, 'tustin')
 
 N  = 300;
 t  = (0:N-1)*Ts;
-ref = 0.35 * ones(1,N);
-K_limit = [-4 6];
+ref = 0.18 * ones(1,N);
+K_limit = [-6 4];
 
 xG = zeros(size(Ad,1),1);   
 xC = zeros(size(Ac,1),1);   
@@ -91,6 +91,6 @@ title('Control Signal (Saturated)');
 ylabel('u');
 xlabel('Time [s]');
 
-T = table(t', ref', u', y', 'VariableNames', {'time','setpoint','vstup','vystup'});
-fname = fullfile('ts_pb_vent6_spir4_pidtune_sim.csv');
-writetable(T, fname);
+% T = table(t', ref', u', y', 'VariableNames', {'time','setpoint','vstup','vystup'});
+% fname = fullfile('ts_pb_vent6_spir4_pidtune_sim.csv');
+% writetable(T, fname);

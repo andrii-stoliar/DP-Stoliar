@@ -34,9 +34,9 @@ hold off;
 
 spir_n = spir - 4;
 
-T = table(time, spir, snimac, spir_n, snimac_n, 'VariableNames', {'time','spir','snimac1','spir_n','snimac1_n'});
-fname = fullfile(save_dir, 'pb_vent6_spir4_raw.csv');
-writetable(T, fname);  
+% T = table(time, spir, snimac, spir_n, snimac_n, 'VariableNames', {'time','spir','snimac1','spir_n','snimac1_n'});
+% fname = fullfile(save_dir, 'pb_vent6_spir4_raw.csv');
+% writetable(T, fname);  
 
 %----------------------------------------------------------------------------------------
 % Average data calculation --------------------------------------------------------------
@@ -53,9 +53,9 @@ plot(time, snimac_n, 'LineWidth', 1.5);
 grid on;
 hold off;
 
-T = table(time, spir_n, snimac_n, 'VariableNames', {'time','spir_n','snimac1_n'});
-fname = fullfile(save_dir, 'pb_vent6_spir4_avg.csv');
-writetable(T, fname);
+% T = table(time, spir_n, snimac_n, 'VariableNames', {'time','spir_n','snimac1_n'});
+% fname = fullfile(save_dir, 'pb_vent6_spir4_avg.csv');
+% writetable(T, fname);
 
 %----------------------------------------------------------------------------------------
 % Identification ------------------------------------------------------------------------
@@ -63,30 +63,30 @@ writetable(T, fname);
 
 Ts = 0.1;
 
-Gs_ls = ls_identify_basic(snimac_n, spir_n, Ts)
+Gs_ls = ls_identify_basic(snimac_n, spir_n, Ts);
 snimac_s_ls = lsim(Gs_ls, spir_n, time);
 
-Gs_fmin = tf_identify_fmin(snimac_n, spir_n, time, Ts)
+Gs_fmin = tf_identify_fmin(snimac_n, spir_n, time, Ts);
 snimac_s_fmin = lsim(Gs_fmin, spir_n, time);
 
 rmse_ls   = sqrt(mean((snimac_n - snimac_s_ls).^2));
 rmse_fmin = sqrt(mean((snimac_n - snimac_s_fmin).^2));
 
-fprintf('\n---------------------------------------------\n');
-fprintf('RMSE (Least Squares): %.6f\n', rmse_ls);
-fprintf('RMSE (fminsearch):    %.6f\n', rmse_fmin);
-fprintf('---------------------------------------------\n\n');
+% fprintf('\n---------------------------------------------\n');
+% fprintf('RMSE (Least Squares): %.6f\n', rmse_ls);
+% fprintf('RMSE (fminsearch):    %.6f\n', rmse_fmin);
+% fprintf('---------------------------------------------\n\n');
 
-figure(3);
-plot(time, snimac_n, 'k', 'LineWidth', 1.5); hold on;
-plot(time, snimac_s_ls, 'r--', 'LineWidth', 1.3);
-plot(time, snimac_s_fmin, 'b-.', 'LineWidth', 1.3);
-grid on;
-hold off;
+% figure(3);
+% plot(time, snimac_n, 'k', 'LineWidth', 1.5); hold on;
+% plot(time, snimac_s_ls, 'r--', 'LineWidth', 1.3);
+% plot(time, snimac_s_fmin, 'b-.', 'LineWidth', 1.3);
+% grid on;
+% hold off;
 
-T = table(time, spir_n, snimac_n, snimac_s_ls, snimac_s_fmin, 'VariableNames', {'time','spir_n','snimac1_n','snimac1_s_ls','snimac1_s_fmin'});
-fname = fullfile(save_dir, 'pb_vent6_spir4_id.csv');
-writetable(T, fname);
+% T = table(time, spir_n, snimac_n, snimac_s_ls, snimac_s_fmin, 'VariableNames', {'time','spir_n','snimac1_n','snimac1_s_ls','snimac1_s_fmin'});
+% fname = fullfile(save_dir, 'pb_vent6_spir4_id.csv');
+% writetable(T, fname);
 
 % Approximation of the identified models 
 
@@ -117,9 +117,9 @@ plot(time, snimac_s_fmin, 'b-.', 'LineWidth', 1.3);
 grid on;
 hold off;
 
-T = table(time, spir_n, snimac_n, snimac_s_ls, snimac_s_fmin, 'VariableNames', {'time','spir_n','snimac1_n','snimac1_s_ls','snimac1_s_fmin'});
-fname = fullfile(save_dir, 'pb_vent6_spir4_id_apprx.csv');
-writetable(T, fname);
+% T = table(time, spir_n, snimac_n, snimac_s_ls, snimac_s_fmin, 'VariableNames', {'time','spir_n','snimac1_n','snimac1_s_ls','snimac1_s_fmin'});
+% fname = fullfile(save_dir, 'pb_vent6_spir4_id_apprx.csv');
+% writetable(T, fname);
 
 save('pb_vent6_spir4_id.mat', 'Gs_fmin', 'Gs_ls');
 

@@ -16,7 +16,12 @@ data_main = pd.read_csv('../dataRepo/ts_pb_vent6_spir4_pidtune_sim.csv', header=
 t  = data_main[:, 0]
 ref = data_main[:, 1]
 u = data_main[:, 2]      
-y = data_main[:, 3]     
+y = data_main[:, 3]   
+
+# t  = data_main[:, 0]
+# ref = data_main[:, 3]
+# u = data_main[:, 1]      
+# y = data_main[:, 2]   
 
 # ===== Panel =====
 figPlotParam = fcnDefaultFigSize(9, 0.17, 0.88, 0.12, 0.40, 13)
@@ -40,10 +45,10 @@ ax0.grid(True, which='both', linestyle='--', linewidth=0.1, color='k')
 ax0.set_xlabel('Čas [s]', ha='left', va='top')
 ax0.xaxis.set_label_coords(1.05, -0.07, transform=ax0.transAxes)
 
-ax0.set_ylabel('Výstup [V]', ha='right', va='bottom', rotation=0)
+ax0.set_ylabel('Výstup [V]', ha='right', va='bottom', rotation=90)
 ax0.yaxis.set_label_coords(-0.07, 1.05, transform=ax0.transAxes)
 
-ax0.set_ylim(0, 0.5)
+ax0.set_ylim(-0.1, 0.6)
 ax0.legend(loc='upper right', fontsize=9)
 
 # --- Lower plot
@@ -57,7 +62,7 @@ ax1.grid(True, which='both', linestyle='--', linewidth=0.1, color='k')
 ax1.set_xlabel('Čas [s]', ha='left', va='top')
 ax1.xaxis.set_label_coords(1.05, -0.07, transform=ax1.transAxes)
 
-ax1.set_ylabel('Vstup [V]', ha='right', va='bottom', rotation=0)
+ax1.set_ylabel('Vstup [V]', ha='right', va='bottom', rotation=90)
 ax1.yaxis.set_label_coords(-0.07, 1.05, transform=ax1.transAxes)
 
 ax1.set_ylim(-4, 6.5)
