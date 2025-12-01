@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1764607572.89006 "c:/MyFiles/Study/DP-Stoliar/TeX/DP.tex" "DP.pdf" "DP" 1764607576.12996 0
+["pdflatex"] 1764608722.0922 "c:/MyFiles/Study/DP-Stoliar/TeX/DP.tex" "DP.pdf" "DP" 1764608725.3448 0
   "../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png" 1764602960 133004 2ca4fada49f6939ed6f0779e92b7d096 ""
   "../PY/fig/ts_pb_vent6_spir4_PI_real.png" 1764604386 153279 21ffdf3d534a11c7b91250be43d9534c ""
   "../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png" 1763036450 289397 fbbc4689653227899b80b9b85e342a0e ""
@@ -21,10 +21,10 @@
   "../SVG/in_progress.png" 1763993830 505410 c1682d2b95a575af18657e4516402fde ""
   "../zadanieDP/zadanieDP.pdf" 1763997547 104063 33f92488344945982c50291e0dd07c97 ""
   "COMMONFILES/preamble.tex" 1763997547 6732 3b3a4be6819bd653336a74c433fdaf3e ""
-  "DP.aux" 1764607575 13165 8c0c9f2a5d4dc8e5ac7d84916dda0412 "pdflatex"
-  "DP.out" 1764607575 3947 ba90d17e7a620369637a6e606c82a3b2 "pdflatex"
+  "DP.aux" 1764608725 13165 8c0c9f2a5d4dc8e5ac7d84916dda0412 "pdflatex"
+  "DP.out" 1764608725 3947 ba90d17e7a620369637a6e606c82a3b2 "pdflatex"
   "DP.tex" 1764604798 4308 582aa5a41223edbc5b0e01c4deee47c9 ""
-  "DP.toc" 1764607575 1905 7916ddc88667d5e1978119288e0cbd6c "pdflatex"
+  "DP.toc" 1764608725 1905 7916ddc88667d5e1978119288e0cbd6c "pdflatex"
   "c:/MyFiles/Study/DP-Stoliar/TeX/DP.tex" 1764604798 4308 582aa5a41223edbc5b0e01c4deee47c9 ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1761651699 2971 def0b6c1f0b107b3b936def894055589 ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1761651699 2900 1537cc8184ad1792082cd229ecc269f4 ""
@@ -201,7 +201,7 @@
   "chapters/abstract.tex" 1763997547 1098 2bc80d5b839f18f07429067fdb68e8e0 ""
   "chapters/anotacia.tex" 1763997547 1111 9d55ab4a8503992eb36cb84198aa8c2d ""
   "chapters/literatura.tex" 1763997547 755 c14123c8e38437e8a2cbab0c99a5a20e ""
-  "chapters/section1.tex" 1764607572 40654 db82227db4d5f85bc9312b697ed0775b ""
+  "chapters/section1.tex" 1764608721 40545 727f5d5202badd3bcd6e995c97eb1c0f ""
   "chapters/uvod.tex" 1763997547 237 e0c6651f117fe269d4ab7c22d758fdba ""
   (generated)
   "DP.aux"
