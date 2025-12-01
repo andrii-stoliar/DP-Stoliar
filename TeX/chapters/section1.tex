@@ -865,4 +865,78 @@ avšak nie je vhodný na prepínanie medzi vzdialenejšími pracovnými bodmi.
 V ďalšej časti práce bude preto implementovaný postup umožňujúci bezpečné a stabilné prepínanie medzi pracovnými bodmi  
 a následne budú jednotlivé regulátory skombinované tak, aby systém disponoval širším využiteľným rozsahom riadenia.
 
+% -------------------------------------------------------------------
+% Subsection 1.4 - Prepínač pracovných bodov
+% -------------------------------------------------------------------
+
+\subsection{Prepínač pracovných bodov}
+
+V tejto časti sa budeme zaoberať návrhom a testovaním prepínača pracovných bodov.  
+Prepínač bude predstavovať pomalý regulátor, ktorého úlohou bude zabezpečiť robustné prechody medzi rôznymi pracovnými bodmi systému TS05.  
+Cieľom je vytvoriť taký spôsob riadenia, ktorý umožní spoľahlivý presun z ľubovoľného pracovného bodu do ľubovoľného iného pracovného bodu bez neželaných dynamických javov, ako je presýtenie akčného zásahu alebo príliš veľké prekmitové správanie.
+
+Okrem samotného prepínača bola v tejto časti rozšírená aj pracovná oblasť regulácie o dva ďalšie pracovné body systému – pre napätia špirály 2~V a 6~V.
+
+
+% -------------------------------------------------------------------
+% Subsubsection 1.4.1 - Opis a schéma prepínača
+% -------------------------------------------------------------------
+
+\subsubsection{Opis a schéma prepínača}
+
+% (Text bude doplnený neskôr podľa požiadaviek, schéma zatiaľ nevložená.)
+
+
+% -------------------------------------------------------------------
+% Subsubsection 1.4.2 - Opis pracovnej oblasti
+% -------------------------------------------------------------------
+
+\subsubsection{Opis pracovnej oblasti}
+
+Ako bolo uvedené, pracovná oblasť systému bola rozšírená o ďalšie dva pracovné body, konkrétne pre napätia špirály 2~V a 6~V.  
+Pre každý z týchto pracovných bodov bol postup opakovaný presne podľa postupu uvedeného v sekcii~\ref{sec:&&},  
+teda boli:
+
+\begin{itemize}
+    \item vykonané merania reakcií systému na jednotkové skoky $\pm 0.5$~V okolo pracovného bodu,
+    \item z nameraných údajov bola identifikovaná prenosová funkcia v danom pracovnom bode,
+    \item pre každý pracovný bod bol navrhnutý PI regulátor s vlastnými parametrami,
+    \item boli určené hodnoty $y_{pb}$ a rozsah výstupu pre $\pm 0.5$~V zmenu vstupu.
+\end{itemize}
+
+Prehľad všetkých troch pracovných bodov je uvedený v tabuľke~\ref{tab:pb_overview},  
+kde sú uvedené identifikované prenosové funkcie, hodnoty pracovného bodu $y_{pb}$ a parametre jednotlivých PI regulátorov.
+
+\begin{table}[h!]
+    \centering
+    \caption{Parametre pracovných bodov, identifikované prenosové funkcie a PI regulátory}
+    \label{tab:pb_overview}
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        \textbf{$u_{pb}$} & \textbf{Prenosová funkcia} & \textbf{$y_{pb}$} & \textbf{$\Delta y_{pb}$ pri $u_{pb}$ $\pm 0.5$~V} & \textbf{PI parametre} \\ \hline
+
+        2~V &
+        $\displaystyle \frac{5.79}{s^2 + 44.21 s + 7.276}$ &
+        5.3939 &
+        $\pm 0.41$ &
+        $K_p = 2.77$, $K_i = 1.48$ \\ \hline
+
+        4~V &
+        $\displaystyle \frac{6.074}{s^2 + 59.01 s + 8.95}$ &
+        7.0779 &
+        $\pm 0.35$ &
+        $K_p = 3.58$, $K_i = 1.84$ \\ \hline
+
+        6~V &
+        $\displaystyle \frac{7.161}{s^2 + 52.87 s + 21.37}$ &
+        8.2015 &
+        $\pm 0.18$ &
+        $K_p = 1.83$, $K_i = 2.20$ \\ \hline
+    \end{tabular}
+\end{table}
+
+Pôvodné statické charakteristiky systému boli merané ešte počas letného obdobia.  
+Keďže v čase realizácie experimentov pre pracovné body 2~V a 6~V už panovali podstatne nižšie teploty,  
+bolo rozhodnuté hodnoty $y_{pb}$ pre tieto experimenty zmerať znova, rovnakým spôsobom ako v sekcii~\ref{sec:&&}.  
+V tabuľke sú preto uvedené aktuálne hodnoty pracovných bodov, ktoré vernejšie reprezentujú stav systému počas meraní v zimnom období.
 
