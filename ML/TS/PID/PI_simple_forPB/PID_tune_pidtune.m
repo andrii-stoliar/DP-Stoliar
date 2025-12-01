@@ -1,5 +1,5 @@
 clc; clear; close all;
-load pb_vent6_spir6_id.mat
+load pb_vent6_spir4_id.mat
 
 Gs = Gs_ls
 Ts = 0.1;
@@ -7,7 +7,8 @@ Ts = 0.1;
 Gz = c2d(Gs, Ts, 'tustin');
 [Ad,Bd,Cd,Dd] = ssdata(Gz);
 
-wc = 0.4;                        
+%0.6
+wc = 0.5;                        
 Cz = pidtune(Gz, 'pi', wc) 
 Goro = Gs*d2c(Cz, 'tustin')
 
@@ -16,8 +17,8 @@ Goro = Gs*d2c(Cz, 'tustin')
 
 N  = 300;
 t  = (0:N-1)*Ts;
-ref = 0.18 * ones(1,N);
-K_limit = [-6 4];
+ref = 0.35 * ones(1,N);
+K_limit = [-4 6];
 
 xG = zeros(size(Ad,1),1);   
 xC = zeros(size(Ac,1),1);   

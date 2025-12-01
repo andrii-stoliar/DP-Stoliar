@@ -571,9 +571,8 @@ Hodnota RMSE sa zhoršila len minimálne, čo je z pohľadu ďalšieho použitia
 \subsection{PI regulátor pre systém TS05}
 
 V tejto časti je realizovaný PI regulátor pre systém TS05.  
-Pre návrh regulácie bola zvolená prenosová funkcia identifikovaná optimalizačnou metódou \texttt{fminsearch}  
-(rovnica~\ref{eq:Gs_fmin_approx}), ktorá vykazovala nižšiu hodnotu strednej kvadratickej chyby  
-(rovnica~\ref{eq:rmse_fmin_approx}).  
+Pre návrh regulácie bola zvolená prenosová funkcia identifikovaná optimalizačnou metódou najmenších štvorcov  
+(rovnica~\ref{eq:Gs_ls_approx}).  
 Regulátor bol naladený, otestovaný v simulačnom prostredí a následne implementovaný vo forme MATLAB funkcie pre použitie s reálnym systémom.
 
 % -------------------------------------------------------------------
@@ -671,7 +670,7 @@ Gz = c2d(Gs, Ts, 'tustin');
 Následne bolo vykonané ladenie PI regulátora:
 
 \begin{lstlisting}[language=Matlab]
-wc = 0.4;
+wc = 0.5;
 Cz = pidtune(Gz, 'pi', wc);
 
 [numC,denC] = tfdata(Cz,'v');
@@ -681,21 +680,21 @@ Cz = pidtune(Gz, 'pi', wc);
 Získané parametre regulátora:
 
 \[
-K_p = 6.76, \qquad K_i = 2.12
+K_p = 3.58, \qquad K_i = 1.84
 \]
 
 Prenosová funkcia uzavretého regulačného obvodu je
 
 \begin{equation}
 	G_{oro}(s) =
-	\frac{5.997 s + 1.908}{s^3 + 18.94 s^2 + 1.291 s}
+	\frac{21.21 s + 11.15}{s^3 + 59.01 s^2 + 8.95 s}
 	\label{eq:oro_tf}
 \end{equation}
 
 Póly uzavretého systému sú:
 
 \begin{equation}
-	0, \quad -18.8736, \quad -0.0684
+	0, \quad -58.855, \quad -0.1521
 	\label{eq:oro_poles}
 \end{equation}
 
@@ -718,17 +717,17 @@ Výsledok simulácie je uvedený na obrázku~\ref{fig:pi_simulation_results}.
 Z výsledkov boli namerané tieto hodnoty:
 
 \begin{align}
-	\text{Čas ustálenia} &= 15.3 \text{ s}
+	\text{Čas ustálenia} &= 11.5 \text{ s}
 	\label{eq:settling_time} \\
-	\text{Prekmit} &= 18.59 \%
+	\text{Prekmit} &= 15.9 \%
 	\label{eq:overshoot} \\
-	\text{MSE} &= 0.005557
+	\text{MSE} &= 0.04369
 	\label{eq:mse_pi}
 \end{align}
 
 Dosiahnutý výsledok možno považovať za vhodný pre riadenie tepelného systému.  
-Cieľom je dosiahnuť čo najrýchlejšiu odozvu bez výrazného prekmitu.  
-Prekmit približne 20 percent je akceptovateľný, keďže riadený skok je malý a tepelná sústava je pomalá, čo prirodzene limituje tvar dynamickej odozvy.
+Cieľom je dosiahnuť čo najrýchlejšiu odozvu.  
+Prekmit približne 16 percent je akceptovateľný, keďže riadený skok je malý a tepelná sústava je pomalá, čo prirodzene limituje tvar dynamickej odozvy.
 
 % -------------------------------------------------------------------
 % Subsubsection - 1.3.3 Realizácia PI regulátora pre riadenie v reálnom čase
@@ -753,8 +752,8 @@ Ts = 0.1;
 u_min = - pb_u;
 u_max = 10 - pb_u;
 
-Kp = 6.76;
-Ki = 2.12;
+Kp = 3.58;
+Ki = 1.84;
 
 % waiting phase for steady-state detection
 if t < 10*60
@@ -833,7 +832,7 @@ Kvalita regulácie bola hodnotená podľa troch kritérií:
 \begin{itemize}
     \item prekmit: žiadaná hodnota bola 0.35~V, maximálna hodnota výstupu dosiahla približne 0.52~V,  
     čo zodpovedá približne 49.0 percentnému prekmitu,
-    \item čas ustálenia: výstup sa ustálil približne po 18 sekundách,
+    \item čas ustálenia: výstup sa ustálil približne po 28 sekundách,
     \item trvalá regulačná odchýlka: prakticky nulová.
 \end{itemize}
 
@@ -844,7 +843,7 @@ Napriek tomu je regulačný čas veľmi priaznivý vzhľadom na to, že ide o po
 Rýchla regulácia bola prioritou, preto možno výsledok považovať za uspokojivý pre riadenie okolo jedného pracovného bodu.
 
 Nasledoval druhý experiment, ktorého cieľom bolo preveriť správanie regulátora pri zmene pracovného bodu.  
-Systém bol najprv ustálený na hodnotu 0.35~V a následne bol žiadaný signál zmenený na 0.8~V.  
+Systém bol najprv ustálený a následne bol žiadaný signál zmenený na 0.9~V.  
 Výsledok je zobrazený na obrázku~\ref{fig:ts_pi_real_big_step}.
 
 \begin{center}

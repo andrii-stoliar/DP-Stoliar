@@ -16,8 +16,8 @@ function [u, integrator_out, y_ss_out] = pi_block(y, setpoint, integrator_in, t,
     Ts = 0.1;  
     u_min = - pb_u;
     u_max = 10 - pb_u;
-    Kp = 6.76;
-    Ki = 2.12;
+    Kp = 3.58;
+    Ki = 1.84;
 
     %init state of integrator
 

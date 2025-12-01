@@ -7,7 +7,7 @@ if ~exist(save_dir,'dir')
     mkdir(save_dir);
 end
 
-load pb_mer/pb_vent6_spir4.mat
+load pb_mer/pb_vent6_spir6.mat
 
 %----------------------------------------------------------------------------------------
 % RAW DATA ------------------------------------------------------------------------------
@@ -32,7 +32,7 @@ snimac_n = my_detrend(snimac, time);
 plot(time, snimac_n, 'LineWidth', 1.5);
 hold off;
 
-spir_n = spir - 4;
+spir_n = spir - 6;
 
 % T = table(time, spir, snimac, spir_n, snimac_n, 'VariableNames', {'time','spir','snimac1','spir_n','snimac1_n'});
 % fname = fullfile(save_dir, 'pb_vent6_spir4_raw.csv');
@@ -121,7 +121,7 @@ hold off;
 % fname = fullfile(save_dir, 'pb_vent6_spir4_id_apprx.csv');
 % writetable(T, fname);
 
-save('pb_vent6_spir4_id.mat', 'Gs_fmin', 'Gs_ls');
+% save('pb_vent6_spir4_id.mat', 'Gs_fmin', 'Gs_ls');
 
 %----------------------------------------------------------------------------------------
 % FUNCTIONS -----------------------------------------------------------------------------

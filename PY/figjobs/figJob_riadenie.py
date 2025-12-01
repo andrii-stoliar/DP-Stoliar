@@ -9,19 +9,19 @@ from figFcns_TeX import *
 figSaveDir = '../fig'
 os.makedirs(figSaveDir, exist_ok=True)
 
-figName = 'ts_pb_vent6_spir4_pidtune_sim'
+figName = 'ts_pb_vent6_spir4_PI_real'
 
 # load CSV
-data_main = pd.read_csv('../dataRepo/ts_pb_vent6_spir4_pidtune_sim.csv', header=None, skiprows=1).values
-t  = data_main[:, 0]
-ref = data_main[:, 1]
-u = data_main[:, 2]      
-y = data_main[:, 3]   
-
+data_main = pd.read_csv('../dataRepo/ts_pb_vent6_spir4_PI_real.csv', header=None, skiprows=1).values
 # t  = data_main[:, 0]
-# ref = data_main[:, 3]
-# u = data_main[:, 1]      
-# y = data_main[:, 2]   
+# ref = data_main[:, 1]
+# u = data_main[:, 2]      
+# y = data_main[:, 3]   
+
+t  = data_main[:, 0]
+ref = data_main[:, 3]
+u = data_main[:, 1]      
+y = data_main[:, 2]   
 
 # ===== Panel =====
 figPlotParam = fcnDefaultFigSize(9, 0.17, 0.88, 0.12, 0.40, 13)
