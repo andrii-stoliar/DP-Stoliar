@@ -6,12 +6,12 @@
 \contentsline {subsubsection}{\numberline {1.1.2}Statické vlastnosti systému}{9}{subsubsection.1.1.2}%
 \contentsline {subsection}{\numberline {1.2}Identifikácia systému TS05}{12}{subsection.1.2}%
 \contentsline {subsubsection}{\numberline {1.2.1}Meranie údajov a ich spracovanie}{12}{subsubsection.1.2.1}%
-\contentsline {subsubsection}{\numberline {1.2.2}Identifikácia pomocou metódy najmenších štvorcov}{14}{subsubsection.1.2.2}%
+\contentsline {subsubsection}{\numberline {1.2.2}Identifikácia pomocou metódy najmenších štvorcov}{15}{subsubsection.1.2.2}%
 \contentsline {subsubsection}{\numberline {1.2.3}Identifikácia parametrov pomocou optimalizácie prenosovej funkcie}{15}{subsubsection.1.2.3}%
-\contentsline {subsubsection}{\numberline {1.2.4}Výsledky identifikácie TS05}{16}{subsubsection.1.2.4}%
-\contentsline {subsubsection}{\numberline {1.2.5}Aproximácia identifikovaných modelov}{17}{subsubsection.1.2.5}%
-\contentsline {subsection}{\numberline {1.3}PI regulátor pre systém TS05}{18}{subsection.1.3}%
-\contentsline {subsubsection}{\numberline {1.3.1}Štruktúra PI regulátora}{18}{subsubsection.1.3.1}%
+\contentsline {subsubsection}{\numberline {1.2.4}Výsledky identifikácie TS05}{17}{subsubsection.1.2.4}%
+\contentsline {subsubsection}{\numberline {1.2.5}Aproximácia identifikovaných modelov}{18}{subsubsection.1.2.5}%
+\contentsline {subsection}{\numberline {1.3}PI regulátor pre systém TS05}{19}{subsection.1.3}%
+\contentsline {subsubsection}{\numberline {1.3.1}Štruktúra PI regulátora}{19}{subsubsection.1.3.1}%
 \contentsline {subsubsection}{\numberline {1.3.2}Ladenie PI regulátora}{19}{subsubsection.1.3.2}%
 \contentsline {subsubsection}{\numberline {1.3.3}Realizácia PI regulátora pre riadenie v reálnom čase}{21}{subsubsection.1.3.3}%
 \contentsline {section}{Zoznam literatúry}{24}{figure.17}%

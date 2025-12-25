@@ -158,7 +158,7 @@ def fcn_setFigStyle_basicTimeSeries(fig, figPlotParam, XYT_labels):
             XYT_labels[1], 
             ha='right', 
             va='bottom', 
-            rotation=0,  
+            rotation=90,  
             )
 
         ax.yaxis.set_label_coords(-0.068, 1.068, transform=ax.transAxes)
