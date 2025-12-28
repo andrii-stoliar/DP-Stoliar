@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.6.29)  28 DEC 2025 20:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.6.29)  28 DEC 2025 20:42
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1158,47 +1158,47 @@ See the caption package documentation for explanation.
 <../PY/fig/ts_pb_vent6_spir4_PI_real.png, id=509, 560.3334pt x 270.2898pt>
 File: ../PY/fig/ts_pb_vent6_spir4_PI_real.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_spir4_PI_real.png>
-Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_PI_real.png  used on input line 830.
+Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_PI_real.png  used on input line 826.
 (pdftex.def)             Requested size: 554.82875pt x 267.64134pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 831.
+(caption)                particular \caption on input line 827.
 See the caption package documentation for explanation.
 
 
 
 [22 <../SVG/TS_pi_scheme.pdf>]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 839.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 835.
  (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 <../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png, id=566, 560.3334pt x 270.2898pt>
 File: ../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png>
-Package pdftex.def Info: ../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png  used on input line 859.
+Package pdftex.def Info: ../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png  used on input line 858.
 (pdftex.def)             Requested size: 554.82875pt x 267.64134pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 860.
+(caption)                particular \caption on input line 859.
 See the caption package documentation for explanation.
 
 
 
 [23{c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc} <../PY/fig/ts_pb_vent6_spir4_PI_real.png>]
 
-LaTeX Warning: Reference `sec:&&' on page 24 undefined on input line 903.
+LaTeX Warning: Reference `sec:&&' on page 24 undefined on input line 902.
 
 
 
 [24 <../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png>]
-Overfull \hbox (14.52347pt too wide) in paragraph at lines 920--942
+Overfull \hbox (14.52347pt too wide) in paragraph at lines 919--941
  [][] 
  []
 
 
-LaTeX Warning: Reference `sec:&&' on page 25 undefined on input line 944.
+LaTeX Warning: Reference `sec:&&' on page 25 undefined on input line 943.
 
 ) (./chapters/literatura.tex
 
@@ -1218,21 +1218,21 @@ L3 programming layer <2025-06-09>
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `DP.out' has not changed.
-(rerunfilecheck)             Checksum: 19B1F290D6BCE510B56B07C926B26F21;4466.
+(rerunfilecheck)             Checksum: D9002EB9407E4AFB0AF13B8AA219BD7C;4466.
  ) 
 Here is how much of TeX's memory you used:
- 20521 strings out of 467888
- 329616 string characters out of 5431467
+ 20522 strings out of 467888
+ 329628 string characters out of 5431467
  1105583 words of memory out of 5000000
  48326 multiletter control sequences out of 15000+600000
  721957 words of font info for 193 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  80i,12n,82p,999b,2648s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt9.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfit0800.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb>
-Output written on DP.pdf (26 pages, 1959954 bytes).
+Output written on DP.pdf (26 pages, 1956274 bytes).
 PDF statistics:
- 732 PDF objects out of 1000 (max. 8388607)
- 600 compressed objects within 6 object streams
- 242 named destinations out of 1000 (max. 500000)
+ 734 PDF objects out of 1000 (max. 8388607)
+ 601 compressed objects within 7 object streams
+ 243 named destinations out of 1000 (max. 500000)
  59145 words of extra memory for PDF output out of 61914 (max. 10000000)
 

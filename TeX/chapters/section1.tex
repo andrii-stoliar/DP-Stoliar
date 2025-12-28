@@ -846,8 +846,9 @@ Rýchla regulácia bola prioritou, preto možno výsledok považovať za uspokoj
 
 \paragraph{Experiment 2: Reakcia na väčší skok}
 
-Nasledoval druhý experiment, ktorého cieľom bolo preveriť správanie regulátora pri .  
-Systém bol najprv ustálený a následne bol žiadaný signál zmenený na 0.9~V.  
+Nasledoval druhý experiment, ktorého cieľom bolo overiť správanie regulátora pri väčšej skokovej zmene žiadanej hodnoty, 
+ktorá má simulovať prechod medzi rôznymi pracovnými bodmi systému.  
+Systém bol najprv ustálený v pracovnom bode s výstupnou hodnotou približne 6.4~V a následne bola žiadaná hodnota skokovo zmenená na 7.5~V. 
 Výsledok je zobrazený na obrázku~\ref{fig:ts_pi_real_big_step}.
 
 \begin{center}
@@ -855,7 +856,7 @@ Výsledok je zobrazený na obrázku~\ref{fig:ts_pi_real_big_step}.
         \makebox[\textwidth][c]{%
             \includegraphics[width=1.5\textwidth]{ts_pb_vent6_pbTopb_real_badToShow.png}
         }
-        \figcaption{Experiment PI regulátora pri zmene pracovného bodu z 0.35~V na 0.8~V}
+        \figcaption{Experiment PI regulátora pri pri skoku z 6.4~V na 7.5~V}
         \label{fig:ts_pi_real_big_step}
     }
 \end{center}
