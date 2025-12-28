@@ -23,12 +23,12 @@
 clc; clear; 
 load pb_vent6_spir4_pbTopb.mat
 
-time = time(2399:end) - time(2399);
-spir = spir(2399:end);
-snimac1 = snimac1(2399:end);
-vent = vent(2399:end);
-setpoint1 = setpoint1(2399:end);
-setpoint1 = setpoint1 + 6.75;
+time = time(1399:end) - time(1399);
+spir = spir(1399:end);
+snimac1 = snimac1(1399:end);
+vent = vent(1399:end);
+setpoint1 = setpoint1(1399:end);
+setpoint1 = setpoint1;
 
 figure(2);
 plot(time, spir)
@@ -38,6 +38,6 @@ hold on
 plot (time, setpoint1)
 hold off
 
-T = table(time, spir, snimac1, setpoint1, vent, 'VariableNames', {'time','spir','snimac1','setpoint','vent'});
-fname = fullfile('ts_pb_vent6_pbTopb_real_badToShow.csv');
-writetable(T, fname); 
+% T = table(time, spir, snimac1, setpoint1, vent, 'VariableNames', {'time','spir','snimac1','setpoint','vent'});
+% fname = fullfile('ts_pb_vent6_pbTopb_real_badToShow.csv');
+% writetable(T, fname); 

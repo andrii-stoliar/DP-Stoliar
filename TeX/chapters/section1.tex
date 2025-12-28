@@ -597,7 +597,7 @@ Bloková schéma regulácie je uvedená na obrázku~\ref{fig:pi_block_scheme}.
 \begin{center}
 	\vbox{
 	\makebox[\textwidth][c]{%
-		\includegraphics[width=1.0\textwidth]{in_progress.png}
+		\includegraphics[width=1.2\textwidth]{TS_uro_block_scheme.pdf}
 	}
 	\figcaption{Bloková schéma uzavretého PI riadenia systému TS05}
 	\label{fig:pi_block_scheme}
@@ -814,7 +814,9 @@ Okrem toho surové merania (obr.~\ref{fig:ts_pb_vent6_spir4_ident_raw}) ukázali
 Z toho dôvodu je ustálený stav zisťovaný automaticky priamo regulátorom ako posledná nameraná hodnota $y$ pred spustením PI riadenia.  
 Tento prístup funguje bez ohľadu na to, či je systém iba málo zahriaty alebo už dosiahol vysokú prevádzkovú teplotu.
 
-Na základe implementácie uvedenej v predchádzajúcej časti bol následne vykonaný experiment v simulačnom prostredí s cieľom overiť kvalitu regulácie.  
+\paragraph{Experiment 1: Regulácia okolo jedného pracovného bodu}
+
+Na základe implementácie uvedenej vyššie bol následne vykonaný experiment v simulačnom prostredí s cieľom overiť kvalitu regulácie.  
 Priebeh regulácie je zobrazený na obrázku~\ref{fig:ts_pi_real_basic}.
 
 \begin{center}
@@ -842,7 +844,9 @@ ktoré sa prejavujú až pri reálnej prevádzke.
 Napriek tomu je regulačný čas veľmi priaznivý vzhľadom na to, že ide o pomalý tepelný systém.  
 Rýchla regulácia bola prioritou, preto možno výsledok považovať za uspokojivý pre riadenie okolo jedného pracovného bodu.
 
-Nasledoval druhý experiment, ktorého cieľom bolo preveriť správanie regulátora pri zmene pracovného bodu.  
+\paragraph{Experiment 2: Reakcia na väčší skok}
+
+Nasledoval druhý experiment, ktorého cieľom bolo preveriť správanie regulátora pri .  
 Systém bol najprv ustálený a následne bol žiadaný signál zmenený na 0.9~V.  
 Výsledok je zobrazený na obrázku~\ref{fig:ts_pi_real_big_step}.
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.6.29)  26 DEC 2025 19:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.6.29)  28 DEC 2025 20:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1084,11 +1084,11 @@ See the caption package documentation for explanation.
 
 
 [17]
-<../SVG/in_progress.png, id=395, 735.49782pt x 414.79968pt>
-File: ../SVG/in_progress.png Graphic file (type png)
-<use ../SVG/in_progress.png>
-Package pdftex.def Info: ../SVG/in_progress.png  used on input line 601.
-(pdftex.def)             Requested size: 369.88583pt x 208.60823pt.
+<../SVG/TS_uro_block_scheme.pdf, id=395, 238.97281pt x 68.1747pt>
+File: ../SVG/TS_uro_block_scheme.pdf Graphic file (type pdf)
+<use ../SVG/TS_uro_block_scheme.pdf>
+Package pdftex.def Info: ../SVG/TS_uro_block_scheme.pdf  used on input line 601.
+(pdftex.def)             Requested size: 443.86186pt x 126.62674pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
@@ -1099,8 +1099,8 @@ See the caption package documentation for explanation.
 
 [18 <../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png>]
 
-[19 <../SVG/in_progress.png>]
-<../PY/fig/ts_pb_vent6_spir4_pidtune_sim.png, id=422, 560.3334pt x 270.2898pt>
+[19 <../SVG/TS_uro_block_scheme.pdf>]
+<../PY/fig/ts_pb_vent6_spir4_pidtune_sim.png, id=434, 560.3334pt x 270.2898pt>
 File: ../PY/fig/ts_pb_vent6_spir4_pidtune_sim.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_spir4_pidtune_sim.png>
 Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_pidtune_sim.png  used on input line 711.
@@ -1142,63 +1142,63 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 785.
 
-
-
-[21]
-<../SVG/TS_pi_scheme.pdf, id=495, 845.1575pt x 597.23125pt>
+<../SVG/TS_pi_scheme.pdf, id=455, 845.1575pt x 597.23125pt>
 File: ../SVG/TS_pi_scheme.pdf Graphic file (type pdf)
 <use ../SVG/TS_pi_scheme.pdf>
 Package pdftex.def Info: ../SVG/TS_pi_scheme.pdf  used on input line 800.
 (pdftex.def)             Requested size: 480.8527pt x 220.96259pt.
 
-
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 801.
 See the caption package documentation for explanation.
 
-<../PY/fig/ts_pb_vent6_spir4_PI_real.png, id=500, 560.3334pt x 270.2898pt>
+
+
+[21]
+<../PY/fig/ts_pb_vent6_spir4_PI_real.png, id=509, 560.3334pt x 270.2898pt>
 File: ../PY/fig/ts_pb_vent6_spir4_PI_real.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_spir4_PI_real.png>
-Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_PI_real.png  used on input line 824.
+Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_PI_real.png  used on input line 830.
 (pdftex.def)             Requested size: 554.82875pt x 267.64134pt.
 
+
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 825.
+(caption)                particular \caption on input line 831.
 See the caption package documentation for explanation.
 
 
 
 [22 <../SVG/TS_pi_scheme.pdf>]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 833.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 839.
  (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-<../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png, id=557, 560.3334pt x 270.2898pt>
+<../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png, id=566, 560.3334pt x 270.2898pt>
 File: ../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png>
-Package pdftex.def Info: ../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png  used on input line 853.
+Package pdftex.def Info: ../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png  used on input line 859.
 (pdftex.def)             Requested size: 554.82875pt x 267.64134pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 854.
+(caption)                particular \caption on input line 860.
 See the caption package documentation for explanation.
 
 
 
 [23{c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc} <../PY/fig/ts_pb_vent6_spir4_PI_real.png>]
 
-LaTeX Warning: Reference `sec:&&' on page 24 undefined on input line 897.
+LaTeX Warning: Reference `sec:&&' on page 24 undefined on input line 903.
 
 
 
 [24 <../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png>]
-Overfull \hbox (14.52347pt too wide) in paragraph at lines 914--936
+Overfull \hbox (14.52347pt too wide) in paragraph at lines 920--942
  [][] 
  []
 
 
-LaTeX Warning: Reference `sec:&&' on page 25 undefined on input line 938.
+LaTeX Warning: Reference `sec:&&' on page 25 undefined on input line 944.
 
 ) (./chapters/literatura.tex
 
@@ -1218,21 +1218,21 @@ L3 programming layer <2025-06-09>
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `DP.out' has not changed.
-(rerunfilecheck)             Checksum: 00C465CC28D921EF8D62EF71A34A91DC;4466.
+(rerunfilecheck)             Checksum: 19B1F290D6BCE510B56B07C926B26F21;4466.
  ) 
 Here is how much of TeX's memory you used:
- 20518 strings out of 467888
- 329474 string characters out of 5431467
+ 20521 strings out of 467888
+ 329616 string characters out of 5431467
  1105583 words of memory out of 5000000
- 48324 multiletter control sequences out of 15000+600000
+ 48326 multiletter control sequences out of 15000+600000
  721957 words of font info for 193 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  80i,12n,82p,999b,2648s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt9.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfit0800.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb>
-Output written on DP.pdf (26 pages, 2398389 bytes).
+Output written on DP.pdf (26 pages, 1959954 bytes).
 PDF statistics:
- 723 PDF objects out of 1000 (max. 8388607)
- 592 compressed objects within 6 object streams
- 241 named destinations out of 1000 (max. 500000)
+ 732 PDF objects out of 1000 (max. 8388607)
+ 600 compressed objects within 6 object streams
+ 242 named destinations out of 1000 (max. 500000)
  59145 words of extra memory for PDF output out of 61914 (max. 10000000)
 
