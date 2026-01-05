@@ -17,6 +17,5 @@
 \contentsline {paragraph}{Experiment 1: Regulácia okolo jedného pracovného bodu}{22}{paragraph*.2}%
 \contentsline {paragraph}{Experiment 2: Reakcia na väčší skok}{23}{paragraph*.3}%
 \contentsline {subsection}{\numberline {1.4}Prepínač pracovných bodov}{24}{subsection.1.4}%
-\contentsline {subsubsection}{\numberline {1.4.1}Opis a schéma prepínača}{24}{subsubsection.1.4.1}%
-\contentsline {subsubsection}{\numberline {1.4.2}Opis pracovnej oblasti}{24}{subsubsection.1.4.2}%
-\contentsline {section}{Zoznam literatúry}{26}{table.caption.4}%
+\contentsline {subsubsection}{\numberline {1.4.1}Opis a schéma riadenia z použitím prepínača}{25}{subsubsection.1.4.1}%
+\contentsline {section}{Zoznam literatúry}{29}{lstnumber.7.6}%
