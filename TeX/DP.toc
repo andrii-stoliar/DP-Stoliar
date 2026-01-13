@@ -1,21 +1,21 @@
 \babel@toc {slovak}{}\relax 
-\contentsline {section}{Úvod}{7}{Doc-Start}%
-\contentsline {section}{\numberline {1}Regulácia tepelného systému}{8}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Popis tepelného systému}{8}{subsection.1.1}%
-\contentsline {subsubsection}{\numberline {1.1.1}Popis laboratórneho fyzikálneho modelu}{8}{subsubsection.1.1.1}%
-\contentsline {subsubsection}{\numberline {1.1.2}Statické vlastnosti tepelného systému}{9}{subsubsection.1.1.2}%
-\contentsline {subsection}{\numberline {1.2}Identifikácia tepelného systému}{12}{subsection.1.2}%
-\contentsline {subsubsection}{\numberline {1.2.1}Meranie údajov a ich spracovanie}{12}{subsubsection.1.2.1}%
-\contentsline {subsubsection}{\numberline {1.2.2}Identifikácia systému pomocou metódy najmenších štvorcov}{14}{subsubsection.1.2.2}%
-\contentsline {subsubsection}{\numberline {1.2.3}Identifikácia systému pomocou optimalizácie prenosovej funkcie}{15}{subsubsection.1.2.3}%
-\contentsline {subsubsection}{\numberline {1.2.4}Výsledky identifikácie tepelného systému}{16}{subsubsection.1.2.4}%
-\contentsline {subsubsection}{\numberline {1.2.5}Aproximácia identifikovaných modelov}{17}{subsubsection.1.2.5}%
-\contentsline {subsection}{\numberline {1.3}PI regulátor pre tepelný systém}{18}{subsection.1.3}%
-\contentsline {subsubsection}{\numberline {1.3.1}Štruktúra PI regulátora}{18}{subsubsection.1.3.1}%
-\contentsline {subsubsection}{\numberline {1.3.2}Nastavenie parametrov PI regulátora}{19}{subsubsection.1.3.2}%
-\contentsline {subsubsection}{\numberline {1.3.3}Implementácia PI regulátora v MATLABe}{21}{subsubsection.1.3.3}%
-\contentsline {paragraph}{Experiment 1: Regulácia okolo jedného pracovného bodu}{22}{paragraph*.2}%
-\contentsline {paragraph}{Experiment 2: Reakcia na väčší skok}{23}{paragraph*.3}%
-\contentsline {subsection}{\numberline {1.4}Prepínač pracovných bodov}{24}{subsection.1.4}%
-\contentsline {subsubsection}{\numberline {1.4.1}Opis a schéma riadenia z použitím prepínača}{25}{subsubsection.1.4.1}%
-\contentsline {section}{Zoznam literatúry}{29}{lstnumber.7.6}%
+\contentsline {section}{Úvod}{4}{Doc-Start}%
+\contentsline {section}{\numberline {1}Regulácia tepelného systému}{5}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Popis tepelného systému}{5}{subsection.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.1}Popis laboratórneho fyzikálneho modelu}{5}{subsubsection.1.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.2}Statické vlastnosti tepelného systému}{6}{subsubsection.1.1.2}%
+\contentsline {subsection}{\numberline {1.2}Identifikácia tepelného systému}{9}{subsection.1.2}%
+\contentsline {subsubsection}{\numberline {1.2.1}Meranie údajov a ich spracovanie}{9}{subsubsection.1.2.1}%
+\contentsline {subsubsection}{\numberline {1.2.2}Identifikácia systému pomocou metódy najmenších štvorcov}{11}{subsubsection.1.2.2}%
+\contentsline {subsubsection}{\numberline {1.2.3}Identifikácia systému pomocou optimalizácie prenosovej funkcie}{12}{subsubsection.1.2.3}%
+\contentsline {subsubsection}{\numberline {1.2.4}Výsledky identifikácie tepelného systému}{13}{subsubsection.1.2.4}%
+\contentsline {subsubsection}{\numberline {1.2.5}Aproximácia identifikovaných modelov}{14}{subsubsection.1.2.5}%
+\contentsline {subsection}{\numberline {1.3}PI regulátor pre tepelný systém}{15}{subsection.1.3}%
+\contentsline {subsubsection}{\numberline {1.3.1}Štruktúra PI regulátora}{15}{subsubsection.1.3.1}%
+\contentsline {subsubsection}{\numberline {1.3.2}Nastavenie parametrov PI regulátora}{16}{subsubsection.1.3.2}%
+\contentsline {subsubsection}{\numberline {1.3.3}Implementácia PI regulátora v MATLABe}{18}{subsubsection.1.3.3}%
+\contentsline {paragraph}{Experiment 1: Regulácia okolo jedného pracovného bodu}{19}{paragraph*.2}%
+\contentsline {paragraph}{Experiment 2: Reakcia na väčší skok}{20}{paragraph*.3}%
+\contentsline {subsection}{\numberline {1.4}Prepínač pracovných bodov}{21}{subsection.1.4}%
+\contentsline {subsubsection}{\numberline {1.4.1}Opis a schéma riadenia z použitím prepínača}{22}{subsubsection.1.4.1}%
+\contentsline {section}{Zoznam literatúry}{26}{lstnumber.7.6}%
