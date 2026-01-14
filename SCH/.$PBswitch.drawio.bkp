@@ -1,0 +1,73 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.2.9 Chrome/140.0.7339.249 Electron/38.7.2 Safari/537.36" version="29.2.9">
+  <diagram name="Page-1" id="owXELV1cqw8-LgIfquiv">
+    <mxGraphModel dx="983" dy="580" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="240" pageHeight="240" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="aBcFJcwpTUwOZdHMKXCV-6" edge="1" parent="1" source="aBcFJcwpTUwOZdHMKXCV-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.438;entryY=-0.046;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="aBcFJcwpTUwOZdHMKXCV-4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="245" y="120" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aBcFJcwpTUwOZdHMKXCV-12" connectable="0" parent="aBcFJcwpTUwOZdHMKXCV-6" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&lt;p&gt;&lt;font face=&quot;Times New Roman&quot; style=&quot;font-size: 14px;&quot;&gt;Áno&lt;/font&gt;&lt;/p&gt;" vertex="1">
+          <mxGeometry relative="1" x="0.6329" y="-1" as="geometry">
+            <mxPoint x="-21" y="6" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aBcFJcwpTUwOZdHMKXCV-10" edge="1" parent="1" source="aBcFJcwpTUwOZdHMKXCV-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="aBcFJcwpTUwOZdHMKXCV-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aBcFJcwpTUwOZdHMKXCV-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;p&gt;&lt;font face=&quot;Times New Roman&quot; style=&quot;font-size: 14px;&quot;&gt;Skok v &lt;i&gt;sp_global&lt;/i&gt;&amp;nbsp;&lt;/font&gt;&lt;/p&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="185" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="aBcFJcwpTUwOZdHMKXCV-11" edge="1" parent="1" source="aBcFJcwpTUwOZdHMKXCV-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="aBcFJcwpTUwOZdHMKXCV-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aBcFJcwpTUwOZdHMKXCV-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;p&gt;&lt;font face=&quot;Times New Roman&quot; style=&quot;font-size: 14px;&quot;&gt;Funguje regulácia v oblasti pracovného bodu &lt;i&gt;pi_block&lt;/i&gt;&lt;/font&gt;&lt;/p&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="305" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="aBcFJcwpTUwOZdHMKXCV-15" edge="1" parent="1" source="aBcFJcwpTUwOZdHMKXCV-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="aBcFJcwpTUwOZdHMKXCV-14" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aBcFJcwpTUwOZdHMKXCV-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;p&gt;&lt;font face=&quot;Times New Roman&quot; style=&quot;font-size: 14px;&quot;&gt;Spustenie časovača na dobu regulácie + 10 sekúnd&lt;/font&gt;&lt;/p&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="65" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="aBcFJcwpTUwOZdHMKXCV-13" connectable="0" parent="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&lt;p&gt;Nie&lt;/p&gt;" vertex="1">
+          <mxGeometry x="380" y="110" as="geometry">
+            <mxPoint x="-1" y="10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aBcFJcwpTUwOZdHMKXCV-16" edge="1" parent="1" source="aBcFJcwpTUwOZdHMKXCV-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" target="aBcFJcwpTUwOZdHMKXCV-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aBcFJcwpTUwOZdHMKXCV-19" edge="1" parent="1" source="aBcFJcwpTUwOZdHMKXCV-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="aBcFJcwpTUwOZdHMKXCV-18" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aBcFJcwpTUwOZdHMKXCV-14" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;p&gt;&lt;font face=&quot;Times New Roman&quot; style=&quot;font-size: 14px;&quot;&gt;Uplynulo čas&lt;/font&gt;&amp;nbsp;&lt;/p&gt;" vertex="1">
+          <mxGeometry height="30" width="120" x="65" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="aBcFJcwpTUwOZdHMKXCV-17" connectable="0" parent="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&lt;p&gt;&lt;font face=&quot;Times New Roman&quot; style=&quot;font-size: 14px;&quot;&gt;Áno&lt;/font&gt;&lt;/p&gt;" vertex="1">
+          <mxGeometry x="40" y="260" as="geometry">
+            <mxPoint x="-21" y="-38" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aBcFJcwpTUwOZdHMKXCV-21" edge="1" parent="1" source="aBcFJcwpTUwOZdHMKXCV-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.991;exitY=0.542;exitDx=0;exitDy=0;exitPerimeter=0;" target="aBcFJcwpTUwOZdHMKXCV-14">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="205" y="392" />
+              <mxPoint x="205" y="245" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aBcFJcwpTUwOZdHMKXCV-18" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;p&gt;&lt;font face=&quot;Times New Roman&quot; style=&quot;font-size: 14px;&quot;&gt;Vyrovnávanie setpointu. Prepínač pracovných bodov &lt;i&gt;pb_switch&lt;/i&gt; funguje. Sledovanie integrátora pre &lt;i&gt;pi_block&lt;/i&gt; v závislosti od aktuálneho pracovného bodu.&lt;/font&gt;&lt;/p&gt;" vertex="1">
+          <mxGeometry height="170" width="120" x="65" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="aBcFJcwpTUwOZdHMKXCV-20" connectable="0" parent="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&lt;p&gt;Nie&lt;/p&gt;" vertex="1">
+          <mxGeometry x="150" y="270" as="geometry">
+            <mxPoint x="-1" y="10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -940,17 +940,40 @@ Zámerom riadenia je pokryť dve odlišné situácie:
 
 Navrhnutá štruktúra je založená na tom, že pri zmene globálnej žiadanej hodnoty má prioritu prechodový režim (prepínač pracovných bodov),
 a až po jeho ukončení sa aktivuje lokálna PI regulácia v okolí aktuálneho pracovného bodu.
-Schéma celého riadenia je uvedená na obr.~\ref{fig:ts_pb_switch_control_scheme}.
+
+Bloková schéma logickej postupnosti operácií navrhnutého algoritmu riadenia je znázornená na obr.~\ref{fig:ts_control_sequence}.
+
+Ako už bolo uvedené, pokiaľ nedôjde ku skokovej zmene globálnej žiadanej hodnoty,
+systém pracuje v režime lokálnej regulácie v okolí aktuálneho pracovného bodu.
+V tomto prípade je aktívny PI regulátor, ktorý zabezpečuje reguláciu nad normalizovanými veličinami
+\[
+y_N = y - y_{pb}, \qquad u_N = u - u_{pb},
+\]
+kde $y_{pb}$ a $u_{pb}$ predstavujú posuny výstupnej a vstupnej veličiny príslušného pracovného bodu.
+
+Informáciu o tom, v ktorom pracovnom bode sa systém nachádza,
+nepretržite poskytuje \textit{solver}.
+Táto informácia slúži lokálnemu regulátoru na výber zodpovedajúcich posunov $y_{pb}$, $u_{pb}$
+a zároveň na nastavenie parametrov PI regulátora $K_p$ a $K_i$.
+
+V prípade, že dôjde ku skokovej zmene globálnej žiadanej hodnoty,
+lokálna PI regulácia je dočasne deaktivovaná
+a riadenie preberá prepínač pracovných bodov.
+Ten zabezpečuje plynulý prechod medzi pracovnými bodmi
+a po jeho ukončení sa riadenie automaticky prepne späť
+do režimu lokálnej regulácie v okolí nového pracovného bodu.
 
 \begin{center}
     \vbox{
         \makebox[\textwidth][c]{%
-            \includegraphics[width=1.3\textwidth, trim=10 220 200 140, clip]{TS_pbSwitch_scheme.pdf}
+            \includegraphics[width=0.85\textwidth]{TS_pbSwitch_block_scheme.pdf}
         }
-        \figcaption{Schéma riadenia systému TS05 s prepínačom pracovných bodov}
-        \label{fig:ts_pb_switch_control_scheme}
+        \figcaption{Bloková schéma logickej postupnosti operácií riadenia systému TS05}
+        \label{fig:ts_control_sequence}
     }
 \end{center}
+
+Schéma celého riadenia je uvedená na obr.~\ref{fig:ts_pb_switch_control_scheme}.
 
 Ako je možné vidieť na schéme, rozhodovacia logika je sústredená v bloku \textit{solver},
 ktorý na základe globálnej žiadanej hodnoty určuje, či sa systém nachádza v režime prechodu medzi pracovnými bodmi,
@@ -962,6 +985,22 @@ Implementácia bloku \textit{solver} je uvedená v~kóde~\ref{lst:solver_switchi
 Základom je výpočet času, počas ktorého má byť aktívny prechodový režim.
 Tento čas sa odvodzuje z veľkosti zmeny globálnej žiadanej hodnoty a z kroku zjemnenia \textit{step\_to\_soft},
 pričom sa uvažuje aj dodatočná časová rezerva \textit{extra\_time}.
+
+\begin{center}
+    \vbox{
+        \makebox[\textwidth][c]{%
+            \includegraphics[
+                width=1.8\textwidth,
+                angle=-90,
+                trim=10 220 200 140,
+                clip
+            ]{TS_pbSwitch_scheme.pdf}
+        }
+        \figcaption{Schéma riadenia systému TS05 s prepínačom pracovných bodov}
+        \label{fig:ts_pb_switch_control_scheme}
+    }
+\end{center}
+
 
 \begin{lstlisting}[language=Matlab,
 caption={MATLAB implementácia rozhodovacej logiky prepínača pracovných bodov (\textit{solver})},
@@ -1009,7 +1048,7 @@ function [active_global, active_local, mode_local, sp_global_prevY, switching_ti
 end
 \end{lstlisting}
 
-Z kódu~\ref{lst:solver_switching_logic} vyplýva, že dĺžka prechodového režimu je určená vzťahom
+Logika kódu~\ref{lst:solver_switching_logic} vyplýva z výrazu
 \begin{equation}
     t_{\mathrm{reg}} =
     \left(\frac{\left|sp_{\mathrm{global}} - sp_{\mathrm{global,prev}}\right|}{\Delta sp}\right) T_s
@@ -1153,5 +1192,69 @@ function u = normalize_input(u_global, u_local)
 end
 \end{lstlisting}
 
+% -------------------------------------------------------------------
+% Subsubsection 1.4.2 - Experiment s prepínaním pracovných bodov
+% -------------------------------------------------------------------
+
+\subsubsection{Experiment s prepínaním pracovných bodov}
+
+V tejto podsekcii bol uskutočnený experiment na reálnom systéme TS05,
+ktorého cieľom bolo overiť správnu funkciu navrhnutého algoritmu riadenia
+pri prepínaní medzi pracovnými bodmi.
+Experiment pozostával z dvoch hlavných fáz.
+Najskôr bol systém regulovaný v okolí pracovného bodu pri napätí špirály 4~V,
+kde bola realizovaná lokálna skoková zmena žiadanej hodnoty.
+Následne došlo k prechodu na pracovný bod 6~V,
+po ktorom bola opäť aplikovaná lokálna skoková zmena referencie.
+
+Priebeh experimentu je znázornený na obr.~\ref{fig:ts_pb_switch_experiment},
+kde sú zobrazené tri podgrafy.
+Prvý podgraf zobrazuje výstupnú veličinu systému spolu so žiadanou hodnotou,
+pričom žiadaná hodnota je v tomto prípade normalizovaná
+za účelom prehľadnejšej vizualizácie priebehu regulácie.
+Skutočné (nenormalizované) hodnoty globálneho a lokálneho setpointu
+sú uvedené v treťom podgrafe.
+
+\begin{center}
+    \vbox{
+        \makebox[\textwidth][c]{%
+            \includegraphics[width=1.5\textwidth]{ts_ml_switch_1st.png}
+        }
+        \figcaption{Experiment s prepínaním pracovných bodov: výstup systému, akčné zásahy a žiadané hodnoty}
+        \label{fig:ts_pb_switch_experiment}
+    }
+\end{center}
+
+Z priebehu akčného zásahu na druhom podgrafe je zrejmé,
+že riadiaci signál počas celého experimentu nenaráža na svoje maximálne obmedzenie,
+čo svedčí o vhodne zvolenej stratégii regulácie.
+Zároveň je možné pozorovať, že v každom okamihu je aktívny iba jeden akčný zásah:
+ak pracuje lokálny PI regulátor, výstup prepínača pracovných bodov je nulový
+a naopak.
+Týmto sa potvrdzuje správna sekvenčná činnosť jednotlivých blokov riadenia,
+presne v súlade s návrhom algoritmu.
+
+Dôležitým pozorovaním je aj správanie systému pri prepnutí z prechodového režimu
+na lokálnu PI reguláciu.
+Po aktivácii lokálneho regulátora nedochádza k náhlemu „výstrelu“ akčného zásahu,
+čo indikuje správnu funkciu sledovania stavu integrátora.
+Integrujúca zložka regulátora je teda pri prepínaní režimov v konzistentnom stave,
+čo výrazne zvyšuje kvalitu prechodu medzi režimami riadenia.
+
+V regulácii sa súčasne využíva lokálny setpoint
+a zjemnený globálny setpoint generovaný prepínačom pracovných bodov.
+
+Napriek celkovo uspokojivému správaniu systému sa počas prepínania pracovných bodov
+objavuje aj jeden nežiaduci jav.
+Keďže pred samotným prepnutím pracuje lokálny PI regulátor,
+po aktivácii prepínača pracovných bodov je akčný zásah prepínača
+v počiatočnom okamihu nulový a následne pomerne rýchlo narastá.
+Tento prechodný jav spôsobí krátkodobý pokles výstupnej veličiny systému,
+ktorý je síce časovo obmedzený, avšak pozorovateľný v nameraných dátach.
+
+V ďalšej fáze práce bude tento nedostatok riešený zavedením oneskorenia
+pri preberaní riadenia prepínačom pracovných bodov,
+čím sa zabezpečí plynulejší prechod medzi režimami
+a eliminácia krátkodobého poklesu výstupu systému.
 
 

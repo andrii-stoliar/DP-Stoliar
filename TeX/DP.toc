@@ -18,4 +18,5 @@
 \contentsline {paragraph}{Experiment 2: Reakcia na väčší skok}{20}{paragraph*.3}%
 \contentsline {subsection}{\numberline {1.4}Prepínač pracovných bodov}{21}{subsection.1.4}%
 \contentsline {subsubsection}{\numberline {1.4.1}Opis a schéma riadenia z použitím prepínača}{22}{subsubsection.1.4.1}%
-\contentsline {section}{Zoznam literatúry}{26}{lstnumber.7.6}%
+\contentsline {subsubsection}{\numberline {1.4.2}Experiment s prepínaním pracovných bodov}{27}{subsubsection.1.4.2}%
+\contentsline {section}{Zoznam literatúry}{30}{figure.22}%
