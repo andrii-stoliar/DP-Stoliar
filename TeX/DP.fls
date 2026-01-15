@@ -349,7 +349,6 @@ INPUT c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc
 INPUT c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc
 INPUT c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc
 INPUT c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc
-INPUT c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc
 INPUT c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/tctt0800.tfm
 INPUT c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/lm/t1lmtt.fd
 INPUT c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/lm/t1lmtt.fd
@@ -363,6 +362,7 @@ INPUT ../PY/fig/ts_pb_vent6_spir4_ident_avg.png
 INPUT ../PY/fig/ts_pb_vent6_spir4_ident_avg.png
 INPUT ../PY/fig/ts_pb_vent6_spir4_ident_avg.png
 INPUT ../PY/fig/ts_pb_vent6_spir4_ident_avg.png
+INPUT c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc
 INPUT c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 INPUT c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/tfm/public/lm/ec-lmtt10.tfm
 INPUT c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/tfm/public/lm/rm-lmbx10.tfm
