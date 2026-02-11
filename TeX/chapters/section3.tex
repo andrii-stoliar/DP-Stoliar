@@ -1,0 +1,374 @@
+% ===================================================================
+% Section 3: PI regulátor 
+% ===================================================================
+
+\section{PI regulátor pre systém TS05}
+\label{sec:pi_controller}
+
+V tejto kapitole je riešený návrh a implementácia PI regulátora
+ako základného nástroja pre reguláciu tepelnej sústavy.
+Najskôr je stručne zhrnutá teoretická štruktúra PI regulátora
+a jeho zapojenie v uzavretom regulačnom obvode,
+následne je tento prístup aplikovaný na systém TS05
+vrátane ladenia parametrov a realizácie v reálnom čase.
+
+% -------------------------------------------------------------------
+% Subsection 3.1 - Štruktúra PI regulátora
+% -------------------------------------------------------------------
+\subsection{Štruktúra PI regulátora}
+
+PI regulátor predstavuje zjednodušenú formu PID regulátora,
+v ktorej je derivačná zložka vynechaná.
+Pre systémy s pomalou dynamikou, ako sú tepelné sústavy,
+derivačný člen spravidla neprináša zlepšenie regulácie
+a naopak môže zosilňovať merací šum.
+
+Paralelná forma PI regulátora je definovaná prenosovou funkciou
+\begin{equation}
+	C(s) = K_p + \frac{K_i}{s},
+	\label{eq:pi_parallel}
+\end{equation}
+kde $K_p$ je proporcionálny zisk a $K_i$ integračný zisk regulátora.
+
+Regulátor je zapojený v štandardnej uzavretej spätnej väzbe
+so zápornou spätnou väzbou.
+Bloková schéma uzavretého regulačného obvodu je znázornená
+na obr.~\ref{fig:pi_block_scheme}.
+
+\begin{center}
+	\vbox{
+	\makebox[\textwidth][c]{%
+		\includegraphics[width=1.2\textwidth]{TS_uro_block_scheme.pdf}
+	}
+	\figcaption{Bloková schéma uzavretého regulačného obvodu s PI regulátorom}
+	\label{fig:pi_block_scheme}
+	}
+\end{center}
+
+\paragraph{Prenosy regulačného obvodu}
+
+Nech $G_s(s)$ označuje prenos regulovaného procesu
+a $C(s)$ prenos regulátora.
+Prenos otvoreného regulačného obvodu je potom daný vzťahom
+\begin{equation}
+	G_{\mathrm{ORO}}(s) = C(s)\,G_s(s),
+	\label{eq:pi_oro_general}
+\end{equation}
+pričom prenos uzavretého regulačného obvodu má tvar
+\begin{equation}
+	G_{\mathrm{URO}}(s) =
+	\frac{C(s)\,G_s(s)}{1 + C(s)\,G_s(s)}.
+	\label{eq:pi_uro_general}
+\end{equation}
+
+Stabilita uzavretého regulačného obvodu je daná koreňmi
+charakteristickej rovnice
+\begin{equation}
+	1 + C(s)\,G_s(s) = 0.
+	\label{eq:pi_char_eq}
+\end{equation}
+Pre spojité systémy je podmienkou stability,
+aby všetky póly uzavretého obvodu mali zápornú reálnu časť.
+
+\paragraph{Zákon riadenia}
+
+V časovej oblasti možno PI regulátor zapísať v tvare
+\begin{equation}
+	u(t) = K_p\,e(t) + K_i \int_0^t e(\tau)\,d\tau,
+	\label{eq:pi_control_law}
+\end{equation}
+kde $e(t) = w(t) - y(t)$ predstavuje regulačnú odchýlku,
+$w(t)$ žiadanú hodnotu a $y(t)$ výstup systému.
+
+Pre diskrétnu realizáciu s periódou vzorkovania $T_s$
+je integračný člen aproximovaný rekurentným vzťahom
+\begin{align}
+	e(k) &= w(k) - y(k), \\
+	I(k) &= I(k-1) + T_s\,e(k), \\
+	u(k) &= K_p\,e(k) + K_i\,I(k).
+\end{align}
+
+Z dôvodu fyzikálnych obmedzení akčného zásahu
+je v praxi uplatnená saturácia riadiaceho signálu.
+
+\paragraph{Pseudokód PI regulátora}
+
+\begin{lstlisting}[language=Matlab]
+% Inputs: w (setpoint), y (output), Ts
+% States: I (integrator state)
+% Params: Kp, Ki, u_min, u_max
+
+e = w - y;
+
+% Integrator update
+I = I + Ts * e;
+
+% PID law
+u = Kp * e + Ki * I;
+
+% Saturation
+u = min(max(u, u_min), u_max);
+
+\end{lstlisting}
+
+% -------------------------------------------------------------------
+% Subsubsection 3.2 Ladenie PI regulátora
+% -------------------------------------------------------------------
+
+\subsection{Nastavenie parametrov PI regulátora pre systém TS05}
+
+Pre získanie parametrov regulátora bola využitá funkcia \texttt{pidtune} v prostredí MATLAB, ktorá vykonáva automatizované ladenie regulátora.  
+Tento postup bol zvolený preto, že viaceré analytické metódy ladenia nie je možné na systém TS05 aplikovať.
+
+Charakteristický polynóm uzavretého regulačného obvodu pre PI regulátor má po dosadení tvar
+
+\begin{equation}
+	s^3 
+	+ \frac{b_1}{b_2} s^2 
+	+ \left( \frac{b_0}{b_2} + \frac{a_0 K_p}{b_2} \right) s 
+	+ \frac{a_0 K_i}{b_2} 
+	= 0
+	\label{eq:cl_poly_real}
+\end{equation}
+
+Ak by sme chceli použiť metódu umiestnenia pólov pomocou rozšíreného želaného polynómu tretieho rádu, jeho všeobecný tvar je
+
+\begin{equation}
+	s^3 + (p + 2 k \omega_0) s^2 + (2 k \omega_0 p + \omega_0^2) s + \omega_0^2 p = 0
+	\label{eq:desired_poly}
+\end{equation}
+
+Porovnaním koeficientov polynómov \eqref{eq:cl_poly_real} a \eqref{eq:desired_poly} dostaneme sústavu rovníc:
+
+\begin{align}
+	1 &= 1
+	\label{eq:compare1} \\
+	p + 2 k \omega_0 &= \frac{b_1}{b_2}
+	\label{eq:compare2} \\
+	2 k \omega_0 p + \omega_0^2 &= \frac{b_0}{b_2} + \frac{a_0 K_p}{b_2}
+	\label{eq:compare3} \\
+	\omega_0^2 p &= \frac{a_0 K_i}{b_2}
+	\label{eq:compare4}
+\end{align}
+
+Táto sústava nemá realizovateľné riešenie pre parametre $K_p$ a $K_i$.  
+Dôvodom je, že členy závislé od $K_p$ a $K_i$ sa vyskytujú iba v dvoch rovniciach, zatiaľ čo parametre želaného dynamického správania $k$, $\omega_0$, $p$ ovplyvňujú tri rovnice.  
+Sústava je preto pre fyzikálne konzistentné riešenie preurčená a neexistuje v nej žiadna kombinácia parametrov, ktorá by spĺňala všetky rovnice súčasne.
+
+Rovnako nie je možné použiť metódu Ziegler–Nichols, keďže námi identifikovaný model (\ref{eq:Gs_ls_approx}) nemá kritický bod, ktorý je pre túto metódu potrebný.
+
+Keďže návrh PI regulátora nie je hlavnou témou práce, bol zvolený numerický nástroj \texttt{pidtune}.  
+Jeho princíp spočíva v tom, že pre zvolenú požadovanú šírku pásma uzavretého systému vypočíta optimálne hodnoty parametrov PI regulátora tak, aby bola zabezpečená dobrá dynamická odozva a primeraná robustnosť.
+
+Najskôr bol systém prevedený do diskrétnej podoby:
+
+\begin{lstlisting}[language=Matlab]
+Gs = Gs_fmin;
+Ts = 0.1;
+
+Gz = c2d(Gs, Ts, 'tustin');
+[Ad,Bd,Cd,Dd] = ssdata(Gz);
+\end{lstlisting}
+
+Následne bolo vykonané ladenie PI regulátora:
+
+\begin{lstlisting}[language=Matlab]
+wc = 0.5;
+Cz = pidtune(Gz, 'pi', wc);
+
+[numC,denC] = tfdata(Cz,'v');
+[Ac,Bc,Cc,Dc] = tf2ss(numC,denC);
+\end{lstlisting}
+
+Získané parametre regulátora:
+
+\[
+K_p = 3.58, \qquad K_i = 1.84
+\]
+
+Prenosová funkcia otvoreného regulačného obvodu je
+
+\begin{equation}
+	G_{oro}(s) =
+	\frac{21.21 s + 11.15}{s^3 + 59.01 s^2 + 8.95 s}
+	\label{eq:oro_tf}
+\end{equation}
+
+Póly otvoreného systému sú:
+
+\begin{equation}
+	s_{1} = 0, \quad s_{2} = -58.855, \quad s_{3} = -0.1521
+	\label{eq:oro_poles}
+\end{equation}
+
+Znakom stability je prítomnosť pólov s negatívnou reálnou časťou, čo je splnené.
+
+Simulácia bola vykonaná s obmedzením akčného zásahu na interval \([-4, 6]\),  
+čo zodpovedá pracovnému bodu 4 V.  
+Výsledok simulácie je uvedený na obrázku~\ref{fig:pi_simulation_results}.
+
+\begin{center}
+	\vbox{
+		\makebox[\textwidth][c]{%
+			\includegraphics[width=1.5\textwidth]{ts_pb_vent6_spir4_pidtune_sim.png}
+		}
+		\figcaption{Simulačný výsledok uzavretého PI riadenia systému TS05}
+		\label{fig:pi_simulation_results}
+	}
+\end{center}
+
+Z výsledkov boli namerané tieto hodnoty:
+
+\begin{align}
+	\text{Čas ustálenia} &= 11.5 \text{ s}
+	\label{eq:settling_time} \\
+	\text{Prekmit} &= 15.9 \%
+	\label{eq:overshoot} \\
+	\text{MSE} &= 0.04369
+	\label{eq:mse_pi}
+\end{align}
+
+Dosiahnutý výsledok možno považovať za vhodný pre riadenie tepelného systému.  
+Cieľom je dosiahnuť čo najrýchlejšiu odozvu.  
+Prekmit približne 16 percent je akceptovateľný, keďže riadený skok je malý a tepelná sústava je pomalá, čo prirodzene limituje tvar dynamickej odozvy.
+
+% -------------------------------------------------------------------
+% Subsubsection 3.3 Realizácia PI regulátora pre riadenie v reálnom čase
+% -------------------------------------------------------------------
+
+\subsection{Implementácia PI regulátora v MATLABe}
+
+Ako je uvedené v zadaní, cieľom práce je implementácia riadiacich algoritmov na rôznych hardvérových a softvérových platformách.  
+Preto bol PI regulátor implementovaný tak, aby mohol pracovať v reálnom čase bez použitia hotových Simulink blokov určených na riadenie.  
+Celá logika riadenia bola zapísaná priamo do bloku MATLAB Function, ktorý sa vykonáva raz za každý riadiaci cyklus s periódou vzorkovania 0.1 sekundy.
+
+Implementácia regulátora je nasledovná:
+
+\begin{lstlisting}[language=Matlab]
+function [u, integrator_out, y_ss_out] = ...
+         pi_block(y, setpoint, integrator_in, t, y_ss_in)
+
+% PI controller
+
+pb_u = 4;
+Ts = 0.1;
+u_min = - pb_u;
+u_max = 10 - pb_u;
+
+Kp = 3.58;
+Ki = 1.84;
+
+% waiting phase for steady-state detection
+if t < 10*60
+    u = 4;
+    y_ss_out = y;
+    integrator_out = 0;
+
+else
+    y_ss_out = y_ss_in;
+    pb_y = y_ss_in;
+
+    % output normalization
+    y = y - pb_y;
+
+    % control error
+    e = setpoint - y;
+
+    % integrator
+    integrator_out = integrator_in + e * Ts;
+
+    % PI control law
+    u = Kp * e + Ki * integrator_out;
+    u = min(max(u, u_min), u_max);
+
+    % input normalization
+    u = u + pb_u;
+
+end
+end
+\end{lstlisting}
+  
+Tento blok však na rozdiel od štandardných Simulinkových riadiacich blokov neobsahuje vlastnú vnútornú pamäť, preto je potrebné stavové premenné prenášať medzi jednotlivými volaniami bloku explicitne.
+
+Z tohto dôvodu sú hodnoty integrátora a odhad ustáleného stavu odosielané na výstup PI bloku a v nasledujúcom kroku sú privádzané späť na vstup.  
+Týmto spôsobom sa zabezpečí, že regulátor si zachováva svoje vnútorné stavy z jedného riadiaceho kroku do druhého.
+
+Logika zapojenia bloku MATLAB Function je zobrazená na obrázku~\ref{fig:pi_rt_scheme},  
+ktorý ukazuje vstupy, výstupy a spätnú väzbu stavových premenných potrebných pre správnu činnosť regulátora.
+
+\begin{center}
+    \vbox{
+        \makebox[\textwidth][c]{%
+            \includegraphics[width=1.3\textwidth, trim=100 150 100 150, clip]{TS_pi_scheme.pdf}
+        }
+        \figcaption{Zapojenie PI regulátora v bloku MATLAB Function so spätnou väzbou stavov}
+        \label{fig:pi_rt_scheme}
+    }
+\end{center}
+
+Pred samotným začiatkom regulácie bol zavedený časový úsek, počas ktorého regulátor nevykonáva žiadny zásah.  
+Počas prvých desiatich minút sa na výstupe drží hodnota pracovného bodu a zároveň sa sleduje teplota na výstupe systému.  
+Cieľom je získať reálnu hodnotu ustáleného stavu priamo z aktuálnych podmienok experimentu.
+
+Použitie hodnôt zosadených zo statických charakteristík (obr.~\ref{fig:ts_static_sensors6}) nie je vhodné.  
+Tepelný systém je citlivý na teplotu v miestnosti a experimenty nebolo možné realizovať v rovnakých podmienkach.  
+Okrem toho surové merania (obr.~\ref{fig:ts_pb_vent6_spir4_ident_raw}) ukázali, že teplota narastá veľmi pomaly aj počas dlhého experimentu, čo znamená, že systém nemá pevnú, opakovateľnú hodnotu ustáleného stavu.
+
+Z toho dôvodu je ustálený stav zisťovaný automaticky priamo regulátorom ako posledná nameraná hodnota $y$ pred spustením PI riadenia.  
+Tento prístup funguje bez ohľadu na to, či je systém iba málo zahriaty alebo už dosiahol vysokú prevádzkovú teplotu.
+
+\paragraph{Experiment 1: Regulácia okolo jedného pracovného bodu}
+
+Na základe implementácie uvedenej vyššie bol následne vykonaný experiment v simulačnom prostredí s cieľom overiť kvalitu regulácie.  
+Priebeh regulácie je zobrazený na obrázku~\ref{fig:ts_pi_real_basic}.
+
+\begin{center}
+    \vbox{
+        \makebox[\textwidth][c]{%
+            \includegraphics[width=1.5\textwidth]{ts_pb_vent6_spir4_PI_real.png}
+        }
+        \figcaption{Simulačný experiment s PI regulátorom pri skokovej zmene žiadanej hodnoty}
+        \label{fig:ts_pi_real_basic}
+    }
+\end{center}
+
+Kvalita regulácie bola hodnotená podľa troch kritérií:
+
+\begin{itemize}
+    \item prekmit: žiadaná hodnota bola 0.35~V, maximálna hodnota výstupu dosiahla približne 0.52~V,  
+    čo zodpovedá približne 49.0 percentnému prekmitu,
+    \item čas ustálenia: výstup sa ustálil približne po 28 sekundách,
+    \item trvalá regulačná odchýlka: prakticky nulová.
+\end{itemize}
+
+Pri porovnaní so simuláciou uvedenou v predchádzajúcich kapitolách možno vidieť, že prekmit je výrazne vyšší.  
+Dôvodom je skutočnosť, že identifikované modely nedokázali zachytiť celú dynamiku systému TS05 a viacero pomalých javov,  
+ktoré sa prejavujú až pri reálnej prevádzke.  
+Napriek tomu je regulačný čas veľmi priaznivý vzhľadom na to, že ide o pomalý tepelný systém.  
+Rýchla regulácia bola prioritou, preto možno výsledok považovať za uspokojivý pre riadenie okolo jedného pracovného bodu.
+
+\paragraph{Experiment 2: Reakcia na väčší skok}
+
+Nasledoval druhý experiment, ktorého cieľom bolo overiť správanie regulátora pri väčšej skokovej zmene žiadanej hodnoty, 
+ktorá má simulovať prechod medzi rôznymi pracovnými bodmi systému.  
+Systém bol najprv ustálený v pracovnom bode s výstupnou hodnotou približne 6.4~V a následne bola žiadaná hodnota skokovo zmenená na 7.5~V. 
+Výsledok je zobrazený na obrázku~\ref{fig:ts_pi_real_big_step}.
+
+\begin{center}
+    \vbox{
+        \makebox[\textwidth][c]{%
+            \includegraphics[width=1.5\textwidth]{ts_pb_vent6_pbTopb_real_badToShow.png}
+        }
+        \figcaption{Experiment PI regulátora pri pri skoku z 6.4~V na 7.5~V}
+        \label{fig:ts_pi_real_big_step}
+    }
+\end{center}
+
+Z grafu je zrejmé, že počas regulácie došlo k výraznému presýteniu akčného zásahu.  
+Ovládací signál dosiahol svoj limit a počas určitého času na ňom zotrval.  
+Aj keď bola požadovaná hodnota dosiahnutá, takéto správanie je z pohľadu bezpečnosti a kvality regulácie nevyhovujúce.
+
+Z tohto dôvodu možno konštatovať, že navrhnutý PI regulátor je vhodný na riadenie v blízkosti jedného pracovného bodu,  
+avšak nie je vhodný na prepínanie medzi vzdialenejšími pracovnými bodmi.  
+V ďalšej časti práce bude preto implementovaný postup umožňujúci bezpečné a stabilné prepínanie medzi pracovnými bodmi  
+a následne budú jednotlivé regulátory skombinované tak, aby systém disponoval širším využiteľným rozsahom riadenia.

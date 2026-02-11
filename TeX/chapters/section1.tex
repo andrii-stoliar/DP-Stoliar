@@ -1,1262 +1,177 @@
-% -------------------------------------------------------------------
-% Section 1 - Tepelný systém
-% -------------------------------------------------------------------
+% ===================================================================
+% Section: Vstupný príklad regulácie
+% ===================================================================
 
-\section{Regulácia tepelného systému}
+\section{Vstupný príklad regulácie}
+\label{sec:intro_example_control}
 
-V tejto kapitole sa budeme zaoberať laboratórnym modelom, ktorý bol poskytnutý pre potreby tejto diplomovej práce – tepelným systémom TS05.  
-Cieľom kapitoly je podrobne opísať túto experimentálnu zostavu, vykonať jej identifikáciu a navrhnúť viaceré riešenia riadenia, a to ako klasické, tak aj pokročilejšie metódy.
-
-Súčasťou práce je tiež implementácia vybraných riadiacich algoritmov na rôznych hardvérových platformách.  
-Táto časť má umožniť porovnanie prístupov k implementácii riadenia v simulačnom prostredí MATLAB/Simulink a na vybranom mikrokontroléri, čím sa vytvorí priestor pre analýzu rozdielov v správaní systému a v samotnej realizácii algoritmov.
-
-% -------------------------------------------------------------------
-% Subsection 1.1 - Tepelný systém TS05
-% -------------------------------------------------------------------
-
-\subsection{Popis tepelného systému}
-
-Táto kapitola sa zaoberá popisom laboratórneho modelu TS05 a jeho základnými statickými vlastnosťami.  
-Model predstavuje fyzický systém určený na výučbu a experimentálne overovanie princípov riadenia v oblasti automatizácie a mechatroniky.
+Začatie tejto práce bolo zvolené formou opisného úvodného príkladu regulácie,
+konkrétne štandardného a všeobecne známeho PID regulátora.
+Predpokladajme, že máme k dispozícii identifikovaný model systému,
+prípadne uvažujeme priamu implementáciu algoritmu na reálnom systéme.
+V oboch prípadoch budeme riadený objekt ďalej označovať ako $G_s(s)$.
 
 % -------------------------------------------------------------------
-% Subsubsection 1.1.1 - Popis systému
+% Subsection: PID regulácia v uzavretej spätnej väzbe 
 % -------------------------------------------------------------------
+\subsection{PID regulácia v uzavretej spätnej väzbe}
 
-\subsubsection{Popis laboratórneho fyzikálneho modelu}
-
-Laboratórny model TS05 predstavuje MIMO systém (Multiple Input – Multiple Output) so dvomi vstupmi a dvomi výstupmi, ktorého zapojenie je uvedené v tabuľke~\ref{tab:io_ts05}.  
-Vstupné veličiny tvoria napätia riadiace ventilátor a vykurovaciu špirálu (v rozsahu 0–10~V), zatiaľ čo výstupy sú merané pomocou Senzora~1 a Senzora~2 (tiež v rozsahu 0–10~V).
-
-\begin{table}[h!]
-    \centering
-    \caption{Vstupy a výstupy systému TS05}
-    \label{tab:io_ts05}
-    \begin{tabular}{|c|c|c|}
-        \hline
-        \textbf{Typ signálu} & \textbf{Označenie} & \textbf{Rozsah} \\ \hline
-        Vstup & Ventilátor & 0–10~V \\ \hline
-        Vstup & Výkon špirály & 0–10~V \\ \hline
-        Výstup & Senzor~1 (teplota 1) & 0–10~V \\ \hline
-        Výstup & Senzor~2 (teplota 2) & 0–10~V \\ \hline
-    \end{tabular}
-\end{table}
-
-Vizuálny vzhľad systému je znázornený na obrázku~\ref{fig:TS_sch3_foto}.
-
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=1.1\textwidth]{TS_sch3_foto.pdf}
-}
-\figcaption{Laboratórny model TS05 – reálna zostava~\cite{kut015}}
-\label{fig:TS_sch3_foto}
-}
-\end{center}
-
-Systém komunikuje s počítačom prostredníctvom meracej a komunikačnej karty \textit{Humusoft},  
-ktorá je určená na prepojenie reálnych systémov so simulačným prostredím MATLAB/Simulink.  
-Táto karta umožňuje obojsmerný prenos analógových signálov – prijíma merané veličiny zo systému a zároveň vysiela riadiace signály na jeho vstupy.
-
-Samotná komunikácia a spracovanie signálov prebieha v prostredí Simulink,  
-v rámci vopred pripravenej schémy (obr.~\ref{fig:TS_simulink_scheme}),  
-ktorá bola vytvorená ako súčasť projektu KUT – Krátke výučbové materiály.  
-Táto schéma slúži aj ako podklad pre predmet \textit{Modelovanie a riadenie systémov}~\cite{kut015}.
-
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=1.3\textwidth, trim=100 200 100 200, clip]{TS_simulink_scheme.pdf}
-}
-\figcaption{Simulinková schéma pre komunikáciu so systémom TS05}
-\label{fig:TS_simulink_scheme}
-}
-\end{center}
-
-% -------------------------------------------------------------------
-% Subsubsection 1.1.2 - Statické vlastnosti systému
-% -------------------------------------------------------------------
-
-\subsubsection{Statické vlastnosti tepelného systému}
-\label{sec:staticke_vlastnosti}
-
-Na lepšie pochopenie správania systému boli experimentálne namerané jeho statické charakteristiky.  
-Počas meraní boli skúmané tri pracovné body ventilátora – 3~V, 6~V a 9~V – pričom v každom prípade bola hodnota napätia ventilátora udržiavaná konštantná.  
-Napätie na vykurovacej špirále sa menilo lineárne od 0~V do 10~V počas celého merania, keďže špirála má výraznejší vplyv na teplotu ako ventilátor.  
-Priebeh signálu špirály počas experimentov je zobrazený na obrázku~\ref{fig:ts_prevodova_spirala}.
-
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=1.5\textwidth]{ts_prevodova_spirala.png}
-}
-\figcaption{Priebeh napätia na špirále počas všetkých troch experimentov}
-\label{fig:ts_prevodova_spirala}
-}
-\end{center}
-
-Výsledkom meraní sú šesť grafov, ktoré zobrazujú odozvu systému na zmenu vstupných veličín.  
-Každý graf obsahuje výstupy zo Senzora~1 a Senzora~2 ako funkcie času pre jednotlivé pracovné body ventilátora.
-
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=1.5\textwidth]{ts_prevodova_sensors3.png}
-}
-\figcaption{Odozva systému TS05 pre pracovný bod ventilátora 3~V}
-\label{fig:ts_prevodova_sensors3}
-}
-\end{center}
-
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=1.5\textwidth]{ts_prevodova_sensors6.png}
-}
-\figcaption{Odozva systému TS05 pre pracovný bod ventilátora 6~V}
-\label{fig:ts_prevodova_sensors6}
-}
-\end{center}
-
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=1.5\textwidth]{ts_prevodova_sensors9.png}
-}
-\figcaption{Odozva systému TS05 pre pracovný bod ventilátora 9~V}
-\label{fig:ts_prevodova_sensors9}
-}
-\end{center}
-
-Z tých istých meraní boli zostavené aj prevodové (statické) charakteristiky,  
-ktoré opisujú závislosť výstupných veličín od vstupného napätia špirály pre jednotlivé pracovné body ventilátora.
-
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=1.5\textwidth]{ts_static_sensors3.png}
-}
-\figcaption{Prevodová charakteristika systému TS05 pre pracovný bod ventilátora 3~V}
-\label{fig:ts_static_sensors3}
-}
-\end{center}
-
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=1.5\textwidth]{ts_static_sensors6.png}
-}
-\figcaption{Prevodová charakteristika systému TS05 pre pracovný bod ventilátora 6~V}
-\label{fig:ts_static_sensors6}
-}
-\end{center}
-
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=1.5\textwidth]{ts_static_sensors9.png}
-}
-\figcaption{Prevodová charakteristika systému TS05 pre pracovný bod ventilátora 9~V}
-\label{fig:ts_static_sensors9}
-}
-\end{center}
-
-% -------------------------------------------------------------------
-% Subsection 1.2 - Identifikácia systému TS05
-% -------------------------------------------------------------------
-
-\subsection{Identifikácia tepelného systému}
-\label{sec:identifikacia}
-
-V tejto časti sa pokúsime identifikovať tepelný systém TS05 rôznymi metódami a porovnať ich výsledky.  
-Cieľom je určiť, ktoré prístupy poskytujú presnejšie modely a na aké faktory je potrebné dávať pozor počas procesu identifikácie.
-
-% -------------------------------------------------------------------
-% Subsubsection 1.2.1 - Meranie údajov a ich spracovanie
-% -------------------------------------------------------------------
-
-\subsubsection{Meranie údajov a ich spracovanie}
-
-Na účely identifikácie systému akoukoľvek \textit{off-line} metódou je najprv potrebné získať reakciu systému na jednotkové skoky v okolí pracovného bodu.  
-V našom prípade bol pracovný bod zvolený ako vstupné napätia špirály~4~V a ventilátora~6~V.  
-
-Na obrázku~\ref{fig:ts_pb_vent6_spir4_ident_raw} je zobrazený vstupný signál špirály a odpoveď systému na výstupe zo senzora~1.
-
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=1.5\textwidth]{ts_pb_vent6_spir4_ident_raw.png}
-}
-\figcaption{Vstupný signál špirály a výstup senzora~1 pri skokovej zmene}
-\label{fig:ts_pb_vent6_spir4_ident_raw}
-}
-\end{center}
-
-Z grafu možno pozorovať zreteľný lineárny trend, teda postupné zvyšovanie výstupnej teploty počas celého merania.  
-Tento jav je spôsobený pomalým nahrievaním špirály a tiež prirodzenými zmenami teploty v miestnosti, ktoré neboli v rámci experimentu kontrolované.  
-Teplota prostredia sa však počas meraní pohybovala v rozsahu bežnej izbovej teploty, takže systém bol v stabilných podmienkach.
-
-Aby bolo možné získať z nameraných údajov vhodné parametre pre identifikáciu, bolo potrebné odstrániť tento trend aplikovaním odstránenia lineárneho trendu.  
-Metodika výpočtu je založená na lineárnej regresii, kde sa určuje priamka trendu v tvare
-
+Prenosová funkcia PID regulátora v paralelnej forme je definovaná ako
 \begin{equation}
-    \hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x
-    \label{eq:linear_trend}
+    C(s) = K_p + \frac{K_i}{s} + K_d s,
+    \label{eq:intro_pid_parallel}
+\end{equation}
+kde $K_p$ predstavuje proporcionálny zisk, $K_i$ integračný zisk
+a $K_d$ derivačný zisk regulátora.
+
+Na reguláciu budeme uvažovať štandardnú zápornú spätnú väzbu.
+Regulačná odchýlka vzniká ako rozdiel medzi požadovanou hodnotou a výstupom systému,
+\begin{equation}
+    e(t) = w(t) - y(t),
+    \label{eq:intro_error_cont}
+\end{equation}
+pričom $w(t)$ je žiadaná hodnota (setpoint) a $y(t)$ je výstup regulovanej sústavy.
+Výstup regulátora predstavuje akčný zásah $u(t)$, ktorý vstupuje do systému $G_s(s)$.
+
+Pre diskrétnu implementáciu s periódou vzorkovania $T_s$ budeme používať zápis
+\begin{equation}
+    e(k) = w(k) - y(k),
+    \label{eq:intro_error_disc}
+\end{equation}
+kde index $k$ označuje diskrétny časový krok.
+
+Bloková schéma uzavretého regulačného obvodu má nasledujúci tvar:
+\begin{center}
+\vbox{
+\makebox[\textwidth][c]{%
+    \includegraphics[width=1.15\textwidth]{in_progress.png}
+}
+\figcaption{Bloková schéma uzavretého regulačného obvodu so zápornou spätnou väzbou a PID regulátorom}
+\label{fig:uro_pid_block_scheme}
+}
+\end{center}
+
+% -------------------------------------------------------------------
+% Subsection: Prenosové funkcie ORO/URO a zákon regulácie 
+% -------------------------------------------------------------------
+\subsection{Prenosové funkcie ORO a URO a zákon regulácie}
+
+Predpokladajme, že regulovaný systém má prenosovú funkciu s čitateľom nultého rádu a menovateľom druhého rádu,
+\begin{equation}
+    G_s(s) = \frac{b_0}{s^2 + a_1 s + a_0}.
+    \label{eq:intro_plant_2nd_order}
 \end{equation}
 
-pričom koeficienty sa počítajú podľa vzťahov~\cite{montgomery}:
-
+Prenosová funkcia otvoreného regulačného obvodu (ORO) je daná súčinom systému a regulátora,
 \begin{equation}
-    \hat{\beta}_1 = \frac{n\sum x_i y_i - \sum x_i \sum y_i}{n\sum x_i^2 - (\sum x_i)^2},
-    \qquad
-    \hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x}
-    \label{eq:beta_coefficients}
+    G_{\mathrm{ORO}}(s) = G_s(s)\,C(s).
+    \label{eq:intro_oro_def}
 \end{equation}
 
-Takto určený trend je následne odčítaný od pôvodného signálu:
-
-\begin{equation}
-    y_{\text{detr}} = y - (\hat{\beta}_0 + \hat{\beta}_1 x)
-    \label{eq:detrended_signal}
-\end{equation}
-
-
-Uvedený postup bol implementovaný v prostredí \textit{MATLAB} pomocou vlastnej funkcie:
-
-\begin{lstlisting}[language=Matlab, 
-caption={MATLAB implementácia detrendácie signálu pomocou lineárnej regresie},
-label={lst:my_detrend}]
-function y_detr = my_detrend(y, x)
-    y = y(:);
-    x = x(:);
-    n = length(y);
-
-    Sx  = sum(x);
-    Sy  = sum(y);
-    Sxx = sum(x.^2);
-    Sxy = sum(x .* y);
-
-    b1 = (n*Sxy - Sx*Sy) / (n*Sxx - Sx^2);  
-    b0 = mean(y) - b1 * mean(x);            
-
-    y_detr = y - (b0 + b1*x);
-end
-\end{lstlisting}
-
-Po odstránení lineárneho trendu bol signál zároveň normalizovaný pre potreby ďalšej identifikácie.  
-Výsledné priebehy normalizovaných a detrendovaných údajov sú zobrazené na obrázku~\ref{fig:ts_pb_vent6_spir4_ident_raw_normalized}.
-
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=1.5\textwidth]{ts_pb_vent6_spir4_ident_raw_normalized.png}
-}
-\figcaption{Normalizované a detrendované priebehy vstupného a výstupného signálu}
-\label{fig:ts_pb_vent6_spir4_ident_raw_normalized}
-}
-\end{center}
-
-Z grafov možno vidieť, že jednotlivé skokové odozvy sa mierne líšia svojím priebehom,  
-čo poukazuje na citlivosť systému TS05 na vonkajšie podmienky a fluktuácie prostredia.  
-Preto boli vykonané tri nezávislé experimenty s rovnakým vstupným signálom,  
-ktorých priebehy sú zobrazené na obrázku~\ref{fig:ts_pb_vent6_spir4_ident_raw_normalized}.  
-Po detrendácii a normalizácii boli tieto dáta spriemerované bod po bode,  
-aby sa eliminoval vplyv náhodných rušení a získala reprezentatívna odozva systému.  
-
-Výsledný stredný priebeh, znázornený na obrázku~\ref{fig:ts_pb_vent6_spir4_ident_avg},  
-predstavuje typickú reakciu systému TS05 v okolí pracovného bodu 4~V s rozsahom~$\pm 0{,}5$~V  
-a slúži ako podklad pre ďalšiu identifikáciu modelu.
-
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=1.5\textwidth]{ts_pb_vent6_spir4_ident_avg.png}
-}
-\figcaption{Priemerná odozva systému TS05 v pracovnom bode 4~V}
-\label{fig:ts_pb_vent6_spir4_ident_avg}
-}
-\end{center}
-
-% -------------------------------------------------------------------
-% Subsubsection 1.2.2 - Identifikácia pomocou metódy najmenších štvorcov
-% -------------------------------------------------------------------
-
-\subsubsection{Identifikácia systému pomocou metódy najmenších štvorcov}
-
-V tejto časti bola uskutočnená identifikácia systému TS05 na základe priemernej odozvy získanej z troch experimentálnych meraní popísaných v predchádzajúcej kapitole.  
-Tento priemerný priebeh reprezentuje typickú reakciu systému v okolí pracovného bodu 4~V a slúži ako základ pre odhad parametrov modelu.  
-Cieľom bolo získať lineárny model druhého rádu, ktorý dostatočne presne opisuje dynamické správanie systému v tejto oblasti.
-
-Identifikácia bola realizovaná pomocou metódy najmenších štvorcov~\cite{fikar},  
-ktorá umožňuje odhad parametrov diskrétneho modelu systému na základe meraných vstupov a výstupov.  
-Pre odhad parametrov bola vytvorená regresná matica $H(k,:)$ a vektor výstupov $Y$, pričom výsledný odhad parametrov $\hat{\theta}$ bol určený podľa rovníc:
-
-\begin{equation}
-    H(k,:) = [-y(k-1), -y(k-2), u(k-1), u(k-2)]
-    \label{eq:phi_matrix}
-\end{equation}
-
-\begin{equation}
-    \hat{\theta} = (H^\mathrm{T}H)^{-1}H^\mathrm{T}Y
-    \label{eq:theta_estimation}
-\end{equation}
-
-Na základe týchto odhadov boli vypočítané koeficienty diskrétneho modelu druhého rádu,  
-ktorý následne predstavuje prenosovú funkciu $G_d(z)$.  
-Pre účely simulácie a ďalšieho návrhu riadenia bol tento model prevedený na spojitú formu $G(s)$ pomocou Tustinovej aproximácie.
-
-V prostredí MATLAB bola implementovaná funkcia, ktorá realizuje uvedené výpočty a vytvára identifikovaný model systému.  
-Implementácia tejto funkcie je uvedená nižšie:
-
-\begin{lstlisting}[language=Matlab, 
-caption={MATLAB implementácia identifikácie metódou najmenších štvorcov},
-label={lst:ls_identify_basic}]
-function G = ls_identify_basic(y, u, Ts)
-    
-    y = y(:);
-    u = u(:);
-    N = length(y);
-    na = 2; nb = 2;
-    
-    H = zeros(N-2, na+nb);
-    for k = 3:N
-        H(k-2,:) = [-y(k-1), -y(k-2), u(k-1), u(k-2)];
-    end
-    Y = y(3:N);
-    
-    theta = pinv(H) * Y;  
-    
-    a1 = theta(1); 
-    a2 = theta(2);
-    b1 = theta(3); 
-    b2 = theta(4);
-    
-    num = [b1 b2];
-    den = [1 a1 a2];
-    Gd = tf(num, den, Ts);
-    
-    G = d2c(Gd, 'tustin');
-
-end
-
-\end{lstlisting}
-
-% -------------------------------------------------------------------
-% Subsubsection 1.2.3 - Identifikácia parametrov pomocou optimalizácie 
-% -------------------------------------------------------------------
-
-\subsubsection{Identifikácia systému pomocou optimalizácie prenosovej funkcie}
-
-V tejto časti bol zvolený menej akademický, skôr prakticky orientovaný prístup k identifikácii systému TS05.  
-Namiesto priameho odhadu parametrov modelu metódou najmenších štvorcov bola použitá optimalizácia parametrov prenosovej funkcie tak,  
-aby sa minimalizovala chyba medzi simulovanou odozvou modelu a reálnou priemernou odozvou systému, získanou z experimentov.
-
-Ako nástroj optimalizácie bola použitá funkcia \texttt{fminsearch} z prostredia MATLAB,  
-ktorá implementuje Nelderovu–Meadovu simplexovú metódu.  
-Ide o bezderivačnú lokálnu optimalizačnú metódu, ktorá na základe hodnotenia účelovej funkcie v niekoľkých bodoch parametrov iteratívne posúva simplex (mnohouholník v priestore parametrov) tak, aby sa znižovala hodnota účelovej funkcie.  
-V našom prípade je účelová funkcia definovaná ako koreň zo strednej kvadratickej chyby (RMSE) medzi nameranou odozvou systému a simulovaným výstupom modelu:
-
-\begin{equation}
-    J(\mathbf{p}) = 
-    \sqrt{
-        \frac{1}{N} 
-        \sum_{k=1}^{N} 
-        \bigl(y(k) - y_{\text{sim}}(k,\mathbf{p})\bigr)^2
-    }
-    \label{eq:rmse_function}
-\end{equation}
-
-kde $y(k)$ je nameraný výstup, $y_{\text{sim}}(k,\mathbf{p})$ je výstup simulovaný modelom s parametrami $\mathbf{p}$  
-a $N$ je počet vzoriek merania.
-
-Optimalizácia prebieha nad parametrami diskrétneho modelu druhého rádu, ktoré sú následne prevedené na spojitú prenosovú funkciu pomocou Tustinovej aproximácie.  
-Implementácia použitej funkcie v prostredí MATLAB je uvedená nižšie:
-
-\begin{lstlisting}[language=Matlab,
-caption={MATLAB implementácia identifikácie pomocou optimalizácie prenosovej funkcie},
-label={lst:tf_identify_fmin}]
-function G = tf_identify_fmin(y, u, time, Ts)
-
-    y = y(:);
-    u = u(:);
-    time = time(:);
-
-    p0 = [0 0 0 0];
-
-    cost_fun = @(p) rmse_cost_stable(p, u, y, time, Ts);
-
-    opts = optimset('Display', 'off', 'TolX', 1e-8, 'TolFun', 1e-8);
-    p_opt = fminsearch(cost_fun, p0, opts);
-
-    p_opt = 50 * tanh(p_opt);
-    a1 = p_opt(1); a2 = p_opt(2); b1 = p_opt(3); b2 = p_opt(4);
-
-    Gd = tf([b1 b2], [1 a1 a2], Ts);
-    G  = d2c(Gd, 'tustin');
-
-end
-
-function err = rmse_cost_stable(p, u, y, t, Ts)
-
-    p = 50 * tanh(p);
-    a1 = p(1); a2 = p(2); b1 = p(3); b2 = p(4);
-
-    try
-
-        Gd = tf([b1 b2], [1 a1 a2], Ts);
-
-        poles = pole(Gd);
-        if any(abs(poles) >= 1)
-            err = 1e6;
-            return;
-        end
-
-        G = d2c(Gd, 'tustin');
-        y_sim = lsim(G, u, t);
-
-        err = sqrt(mean((y - y_sim).^2));
-
-    catch
-        err = 1e6;
-    end
-end
-
-\end{lstlisting}
-
-Pri tomto prístupe je dôležité upozorniť na jeden podstatný problém.  
-Ak nie sú parametre prenosovej funkcie počas optimalizácie vhodne obmedzené,  
-algoritmus môže nájsť také hodnoty parametrov, ktoré síce veľmi dobre aproximujú konkrétnu meranú odozvu,  
-ale vedú k nerealistickému alebo nestabilnému správaniu modelu pri iných vstupoch.  
-V predchádzajúcich pokusoch viedlo práve toto k prenosovým funkciám s „nezdravými“ parametrami,  
-ktoré boli použiteľné iba pre konkrétny fitovaný experiment.
-
-Z tohto dôvodu sú v uvedenej implementácii parametre počas optimalizácie mapované pomocou transformácie
-
-\begin{equation}
-	p_i^\ast = 50 \tanh(p_i)
-	\label{eq:param_transform_extended}
-\end{equation}
-
-čím sú efektívne udržiavané v konečnom rozsahu a znižuje sa riziko vzniku numericky extrémnych alebo fyzikálne nezmyselných modelov.  
-Okrem toho bola do optimalizácie pridaná aj dodatočná penalizácia, ktorá výrazne zvyšuje hodnotu účelovej funkcie v prípade,  
-že identifikovaná prenosová funkcia vykazuje známky nestability.  
-Týmto spôsobom algoritmus uprednostňuje iba stabilné riešenia a zabraňuje vzniku modelov so „zdravotne“ nevhodnými pólmi.
-
-
-% -------------------------------------------------------------------
-% Subsubsection 1.2.4 - Výsledky identifikácie TS05
-% -------------------------------------------------------------------
-
-\subsubsection{Výsledky identifikácie tepelného systému}
-
-Po identifikácii systému v pracovnom bode pomocou dvoch rôznych metód  
-(metódy najmenších štvorcov a optimalizácie prenosovej funkcie)  
-boli získané nasledujúce výsledky.
-
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=1.5\textwidth]{ts_pb_vent6_spir4_ident_comparison.png}
-}
-\figcaption{Porovnanie skokovej odozvy reálneho systému TS05 a identifikovaných modelov}
-\label{fig:ts_pb_vent6_spir4_ident_comparison}
-}
-\end{center}
-
-Porovnanie priemernej skokovej odozvy reálneho systému a odoziev oboch identifikovaných modelov  
-je zobrazené na obrázku~\ref{fig:ts_pb_vent6_spir4_ident_comparison}.
-
-Identifikovaný model získaný metódou najmenších štvorcov má tvar
-
-\begin{equation}
-    G_{s,\mathrm{LS}}(s) = 
-    \frac{0.00171\,s^2 - 0.3379\,s + 6.074}
-         {s^2 + 59.01\,s + 8.95}
-    \label{eq:Gs_ls}
-\end{equation}
-
-zatým čo model identifikovaný pomocou optimalizácie parametrov prenosovej funkcie metódou \textit{fminsearch} je
-
-\begin{equation}
-    G_{s,\mathrm{fmin}}(s) = 
-    \frac{0.0007181\,s^2 - 0.05942\,s + 0.9012}
-         {s^2 + 18.94\,s + 1.291}
-    \label{eq:Gs_fmin}
-\end{equation}
-
-Kvalita zhody medzi modelmi a experimentálnymi dátami bola hodnotená pomocou ukazovateľa RMSE:
-
+Po dosadení \eqref{eq:intro_pid_parallel} a \eqref{eq:intro_plant_2nd_order} dostaneme
 \begin{align}
-    \mathrm{RMSE}_{\mathrm{LS}} &= 0.036792,
-    \label{eq:rmse_ls} \\
-    \mathrm{RMSE}_{\mathrm{fmin}} &= 0.026996
-    \label{eq:rmse_fmin}
+    G_{\mathrm{ORO}}(s)
+    &= \frac{b_0}{s^2 + a_1 s + a_0}
+       \left(K_p + \frac{K_i}{s} + K_d s\right) \nonumber \\
+    &= \frac{b_0\left(K_d s^2 + K_p s + K_i\right)}{s\left(s^2 + a_1 s + a_0\right)}.
+    \label{eq:intro_oro_result}
 \end{align}
 
-Ako je vidieť, oba modely poskytujú veľmi uspokojivú aproximáciu dynamiky systému v okolí zvoleného pracovného bodu,  
-pričom model získaný metódou \textit{fminsearch} dosahuje o niečo menšiu hodnotu RMSE.  
-Treba však zdôrazniť, že oba identifikované modely sú len druhého rádu,  
-čo predstavuje rozumný kompromis medzi jednoduchosťou a presnosťou pre následný návrh regulácie.
-
-% -------------------------------------------------------------------
-% Subsubsection 1.2.5 - Aproximácia identifikovaných modelov
-% -------------------------------------------------------------------
-
-\subsubsection{Aproximácia identifikovaných modelov}
-
-Na základe získaných prenosových funkcií možno pozorovať, že ich čitatele obsahujú veľmi malé koeficienty pri prvom a druhom rade.  
-Prítomnosť týchto členov je s veľkou pravdepodobnosťou len výsledkom numerických „artefaktov“ vzniknutých pri prevode z diskrétnej prenosovej funkcie na spojitú formu.  
-Zahrnutie týchto vyšších rádov v čitateli by výrazne komplikovalo niektoré analytické metódy návrhu regulátorov, napríklad metódu umiestnenia pólov.
-
-Pre účely ďalšej práce sme sa preto rozhodli tieto prenosové funkcie aproximovať jednoduchšou formou.  
-Najzrejmejší prístup spočíva v tom, že malé koeficienty pri $s$ a $s^2$ v čitateli zanedbáme a overíme vplyv tejto úpravy pomocou simulácie.
-
-Výsledkom tejto aproximácie sú nasledujúce prenosové funkcie:
-
+Prenosová funkcia uzavretého regulačného obvodu (URO) pri jednotkovej spätnej väzbe je
 \begin{equation}
-	G_{s,\mathrm{LS,approx}}(s) =
-	\frac{6.074}{s^2 + 59.01s + 8.95}
-	\label{eq:Gs_ls_approx}
+    G_{\mathrm{URO}}(s) = \frac{G_{\mathrm{ORO}}(s)}{1 + G_{\mathrm{ORO}}(s)}.
+    \label{eq:intro_uro_def}
 \end{equation}
 
-póly:
+Po dosadení \eqref{eq:intro_oro_result} platí
 \begin{equation}
-	s_{1} = -58.8550, \quad s_{2} = -0.1521
-	\label{eq:poles_ls_approx}
+    G_{\mathrm{URO}}(s)
+    =
+    \frac{b_0\left(K_d s^2 + K_p s + K_i\right)}
+    {s\left(s^2 + a_1 s + a_0\right) + b_0\left(K_d s^2 + K_p s + K_i\right)}.
+    \label{eq:intro_uro_result}
 \end{equation}
 
-a
-
+Póly ORO sú dané koreňmi menovateľa prenosu $G_{\mathrm{ORO}}(s)$, t.\,j.
 \begin{equation}
-	G_{s,\mathrm{fmin,approx}}(s) =
-	\frac{0.9012}{s^2 + 18.94s + 1.291}
-	\label{eq:Gs_fmin_approx}
+    s\left(s^2 + a_1 s + a_0\right) = 0,
+    \label{eq:intro_oro_poles_eq}
+\end{equation}
+odkiaľ priamo vyplýva jeden pól v $s_1 = 0$ a zvyšné dva póly sú koreňmi kvadratickej rovnice
+\begin{equation}
+    s^2 + a_1 s + a_0 = 0.
+    \label{eq:intro_plant_poles_eq}
 \end{equation}
 
-póly:
+Póly URO sú určené koreňmi charakteristického polynómu (menovateľa) uzavretého obvodu,
 \begin{equation}
-	s_{1} = -18.8736, \quad s_{2} = -0.0684
-	\label{eq:poles_fmin_approx}
+    s\left(s^2 + a_1 s + a_0\right) + b_0\left(K_d s^2 + K_p s + K_i\right) = 0,
+    \label{eq:intro_uro_poles_eq}
+\end{equation}
+pričom po roznásobení dostaneme explicitný tvar tretieho rádu
+\begin{equation}
+    s^3 + \left(a_1 + b_0 K_d\right)s^2 + \left(a_0 + b_0 K_p\right)s + b_0 K_i = 0.
+    \label{eq:intro_uro_char_poly}
 \end{equation}
 
-Z uvedených hodnôt pólov je zrejmé, že obidva modely majú póly s negatívnymi reálnymi časťami, teda ide o stabilné systémy.
+Stabilita je v oboch prípadoch kľúčová, avšak význam sa líši. V prípade ORO sa stabilita posudzuje najmä z hľadiska robustnosti a bezpečnosti návrhu regulátora. V prípade URO je stabilita nevyhnutná podmienka správnej funkcie regulácie. Pre spojité systémy stabilita znamená, že všetky póly $G_{\mathrm{URO}}(s)$ majú zápornú reálnu časť. V opačnom prípade výstup $y(t)$ diverguje, regulačná odchýlka neklesá a systém môže byť v reálnej prevádzke nebezpečný.
 
-Následne bola uskutočnená simulácia odozvy systému analogická tej, ktorá bola uvedená na obrázku~\ref{fig:ts_pb_vent6_spir4_ident_comparison}.  
-Porovnanie reálnej odozvy systému TS05 s oboma aproximovanými modelmi je zobrazené na obrázku~\ref{fig:ts_pb_vent6_spir4_ident_approximated_comparison}.
 
-\begin{center}
-	\vbox{
-		\makebox[\textwidth][c]{%
-			\includegraphics[width=1.5\textwidth]{ts_pb_vent6_spir4_ident_approximated_comparison.png}
-		}
-		\figcaption{Porovnanie skokovej odozvy reálneho systému TS05 a aproximovaných modelov}
-		\label{fig:ts_pb_vent6_spir4_ident_approximated_comparison}
-	}
-\end{center}
+% -----------------------------
+% Control law and discretization
+% -----------------------------
+\paragraph{Zákon riadenia}
 
-Výsledné hodnoty strednej kvadratickej chyby (RMSE) medzi reálnym systémom a simulovanými odozvami boli:
+V časovej oblasti je PID zákon regulácie možné zapísať ako
+\begin{equation}
+    u(t) = K_p e(t) + K_i \int_0^t e(\tau)\,d\tau + K_d \frac{d e(t)}{dt}.
+    \label{eq:intro_pid_law_cont}
+\end{equation}
 
+Pre praktickú implementáciu v diskrétnom čase budeme uvažovať základnú aproximáciu:
 \begin{align}
-	\mathrm{RMSE}_{\mathrm{LS,approx}} &= 0.036951,
-	\label{eq:rmse_ls_approx} \\
-	\mathrm{RMSE}_{\mathrm{fmin,approx}} &= 0.026998
-	\label{eq:rmse_fmin_approx}
+    I(k) &= I(k-1) + T_s\,e(k), \label{eq:intro_int_update} \\
+    D(k) &= \frac{e(k) - e(k-1)}{T_s}, \label{eq:intro_der_update} \\
+    u(k) &= K_p e(k) + K_i I(k) + K_d D(k).
+    \label{eq:intro_pid_law_disc}
 \end{align}
 
-Z výsledkov, ako aj z priebehov simulácií, je zrejmé, že rozdiel medzi pôvodnými a aproximovanými modelmi je zanedbateľný.  
-Hodnota RMSE sa zhoršila len minimálne, čo je z pohľadu ďalšieho použitia modelov úplne prijateľné, najmä vzhľadom na zjednodušenie analytického spracovania, ktoré táto aproximácia prináša.
-
-% -------------------------------------------------------------------
-% Subsection 1.3 - PI regulátor pre systém TS05
-% -------------------------------------------------------------------
-
-\subsection{PI regulátor pre tepelný systém}
-
-V tejto časti je realizovaný PI regulátor pre systém TS05.  
-Pre návrh regulácie bola zvolená prenosová funkcia identifikovaná optimalizačnou metódou najmenších štvorcov  
-(\ref{eq:Gs_ls_approx}).  
-Regulátor bol naladený, otestovaný v simulačnom prostredí a následne implementovaný vo forme MATLAB funkcie pre použitie s reálnym systémom.
-
-% -------------------------------------------------------------------
-% Subsubsection 1.3.1 - Štruktúra PI regulátora
-% -------------------------------------------------------------------
-
-\subsubsection{Štruktúra PI regulátora}
-
-Pre systém TS05 bol zvolený PI regulátor, pretože nie je potrebné použitie derivačnej časti.  
-D-člen v tepelných systémoch zvyčajne neprináša zlepšenie riadenia, keďže derivácia výrazne zosilňuje merací šum a tepelná dynamika je pomalá, čo robí deriváciu prakticky neefektívnou.
-
-Paralelná forma PI regulátora je
-
+Z dôvodu fyzikálnych obmedzení akčného zásahu sa v praxi uplatňuje saturácia
 \begin{equation}
-	C(s) = K_p + \frac{K_i}{s}
-	\label{eq:pi_parallel}
+    u(k) = \min\bigl(\max(u(k),u_{\min}),u_{\max}\bigr).
+    \label{eq:intro_saturation}
 \end{equation}
 
-Regulátor je zapojený v štandardnej uzavretej spätnej väzbe so zápornou spätnou väzbou.  
-Bloková schéma regulácie je uvedená na obrázku~\ref{fig:pi_block_scheme}.
+% -----------------------------
+% Pseudocode
+% -----------------------------
 
-\begin{center}
-	\vbox{
-	\makebox[\textwidth][c]{%
-		\includegraphics[width=1.2\textwidth]{TS_uro_block_scheme.pdf}
-	}
-	\figcaption{Bloková schéma uzavretého PI riadenia systému TS05}
-	\label{fig:pi_block_scheme}
-	}
-\end{center}
+\paragraph{Pseudokód PID regulátora}
 
-Tento prístup bol zvolený ako prvý variant implementácie riadenia v reálnom čase,  
-pretože PI regulátor je robustný, ľahko nastaviteľný a jeho výpočetná náročnosť je nízka, čo je výhodné pre implementáciu na mikrokontroléri.
-
-% -------------------------------------------------------------------
-% Subsubsection - 1.3.2 Ladenie PI regulátora
-% -------------------------------------------------------------------
-
-\subsubsection{Nastavenie parametrov PI regulátora}
-
-Pre získanie parametrov regulátora bola využitá funkcia \texttt{pidtune} v prostredí MATLAB, ktorá vykonáva automatizované ladenie regulátora.  
-Tento postup bol zvolený preto, že viaceré analytické metódy ladenia nie je možné na systém TS05 aplikovať.
-
-Charakteristický polynóm uzavretého regulačného obvodu pre PI regulátor má po dosadení tvar
-
-\begin{equation}
-	s^3 
-	+ \frac{b_1}{b_2} s^2 
-	+ \left( \frac{b_0}{b_2} + \frac{a_0 K_p}{b_2} \right) s 
-	+ \frac{a_0 K_i}{b_2} 
-	= 0
-	\label{eq:cl_poly_real}
-\end{equation}
-
-Ak by sme chceli použiť metódu umiestnenia pólov pomocou rozšíreného želaného polynómu tretieho rádu, jeho všeobecný tvar je
-
-\begin{equation}
-	s^3 + (p + 2 k \omega_0) s^2 + (2 k \omega_0 p + \omega_0^2) s + \omega_0^2 p = 0
-	\label{eq:desired_poly}
-\end{equation}
-
-Porovnaním koeficientov polynómov \eqref{eq:cl_poly_real} a \eqref{eq:desired_poly} dostaneme sústavu rovníc:
-
-\begin{align}
-	1 &= 1
-	\label{eq:compare1} \\
-	p + 2 k \omega_0 &= \frac{b_1}{b_2}
-	\label{eq:compare2} \\
-	2 k \omega_0 p + \omega_0^2 &= \frac{b_0}{b_2} + \frac{a_0 K_p}{b_2}
-	\label{eq:compare3} \\
-	\omega_0^2 p &= \frac{a_0 K_i}{b_2}
-	\label{eq:compare4}
-\end{align}
-
-Táto sústava nemá realizovateľné riešenie pre parametre $K_p$ a $K_i$.  
-Dôvodom je, že členy závislé od $K_p$ a $K_i$ sa vyskytujú iba v dvoch rovniciach, zatiaľ čo parametre želaného dynamického správania $k$, $\omega_0$, $p$ ovplyvňujú tri rovnice.  
-Sústava je preto pre fyzikálne konzistentné riešenie preurčená a neexistuje v nej žiadna kombinácia parametrov, ktorá by spĺňala všetky rovnice súčasne.
-
-Rovnako nie je možné použiť metódu Ziegler–Nichols, keďže námi identifikovaný model (\ref{eq:Gs_ls_approx}) nemá kritický bod, ktorý je pre túto metódu potrebný.
-
-Keďže návrh PI regulátora nie je hlavnou témou práce, bol zvolený numerický nástroj \texttt{pidtune}.  
-Jeho princíp spočíva v tom, že pre zvolenú požadovanú šírku pásma uzavretého systému vypočíta optimálne hodnoty parametrov PI regulátora tak, aby bola zabezpečená dobrá dynamická odozva a primeraná robustnosť.
-
-
-Najskôr bol systém prevedený do diskrétnej podoby:
-
-\begin{lstlisting}[language=Matlab]
-Gs = Gs_fmin;
-Ts = 0.1;
-
-Gz = c2d(Gs, Ts, 'tustin');
-[Ad,Bd,Cd,Dd] = ssdata(Gz);
-\end{lstlisting}
-
-Následne bolo vykonané ladenie PI regulátora:
-
-\begin{lstlisting}[language=Matlab]
-wc = 0.5;
-Cz = pidtune(Gz, 'pi', wc);
-
-[numC,denC] = tfdata(Cz,'v');
-[Ac,Bc,Cc,Dc] = tf2ss(numC,denC);
-\end{lstlisting}
-
-Získané parametre regulátora:
-
-\[
-K_p = 3.58, \qquad K_i = 1.84
-\]
-
-Prenosová funkcia otvoreného regulačného obvodu je
-
-\begin{equation}
-	G_{oro}(s) =
-	\frac{21.21 s + 11.15}{s^3 + 59.01 s^2 + 8.95 s}
-	\label{eq:oro_tf}
-\end{equation}
-
-Póly otvoreného systému sú:
-
-\begin{equation}
-	s_{1} = 0, \quad s_{2} = -58.855, \quad s_{3} = -0.1521
-	\label{eq:oro_poles}
-\end{equation}
-
-Znakom stability je prítomnosť pólov s negatívnou reálnou časťou, čo je splnené.
-
-Simulácia bola vykonaná s obmedzením akčného zásahu na interval \([-4, 6]\),  
-čo zodpovedá pracovnému bodu 4 V.  
-Výsledok simulácie je uvedený na obrázku~\ref{fig:pi_simulation_results}.
-
-\begin{center}
-	\vbox{
-		\makebox[\textwidth][c]{%
-			\includegraphics[width=1.5\textwidth]{ts_pb_vent6_spir4_pidtune_sim.png}
-		}
-		\figcaption{Simulačný výsledok uzavretého PI riadenia systému TS05}
-		\label{fig:pi_simulation_results}
-	}
-\end{center}
-
-Z výsledkov boli namerané tieto hodnoty:
-
-\begin{align}
-	\text{Čas ustálenia} &= 11.5 \text{ s}
-	\label{eq:settling_time} \\
-	\text{Prekmit} &= 15.9 \%
-	\label{eq:overshoot} \\
-	\text{MSE} &= 0.04369
-	\label{eq:mse_pi}
-\end{align}
-
-Dosiahnutý výsledok možno považovať za vhodný pre riadenie tepelného systému.  
-Cieľom je dosiahnuť čo najrýchlejšiu odozvu.  
-Prekmit približne 16 percent je akceptovateľný, keďže riadený skok je malý a tepelná sústava je pomalá, čo prirodzene limituje tvar dynamickej odozvy.
-
-% -------------------------------------------------------------------
-% Subsubsection - 1.3.3 Realizácia PI regulátora pre riadenie v reálnom čase
-% -------------------------------------------------------------------
-
-\subsubsection{Implementácia PI regulátora v MATLABe}
-
-Ako je uvedené v zadaní, cieľom práce je implementácia riadiacich algoritmov na rôznych hardvérových a softvérových platformách.  
-Preto bol PI regulátor implementovaný tak, aby mohol pracovať v reálnom čase bez použitia hotových Simulink blokov určených na riadenie.  
-Celá logika riadenia bola zapísaná priamo do bloku MATLAB Function, ktorý sa vykonáva raz za každý riadiaci cyklus s periódou vzorkovania 0.1 sekundy.
-
-Implementácia regulátora je nasledovná:
-
-\begin{lstlisting}[language=Matlab]
-function [u, integrator_out, y_ss_out] = ...
-         pi_block(y, setpoint, integrator_in, t, y_ss_in)
-
-% PI controller
-
-pb_u = 4;
-Ts = 0.1;
-u_min = - pb_u;
-u_max = 10 - pb_u;
-
-Kp = 3.58;
-Ki = 1.84;
-
-% waiting phase for steady-state detection
-if t < 10*60
-    u = 4;
-    y_ss_out = y;
-    integrator_out = 0;
-
-else
-    y_ss_out = y_ss_in;
-    pb_y = y_ss_in;
-
-    % output normalization
-    y = y - pb_y;
-
-    % control error
-    e = setpoint - y;
-
-    % integrator
-    integrator_out = integrator_in + e * Ts;
-
-    % PI control law
-    u = Kp * e + Ki * integrator_out;
-    u = min(max(u, u_min), u_max);
-
-    % input normalization
-    u = u + pb_u;
-
-end
-end
-\end{lstlisting}
-  
-Tento blok však na rozdiel od štandardných Simulinkových riadiacich blokov neobsahuje vlastnú vnútornú pamäť, preto je potrebné stavové premenné prenášať medzi jednotlivými volaniami bloku explicitne.
-
-Z tohto dôvodu sú hodnoty integrátora a odhad ustáleného stavu odosielané na výstup PI bloku a v nasledujúcom kroku sú privádzané späť na vstup.  
-Týmto spôsobom sa zabezpečí, že regulátor si zachováva svoje vnútorné stavy z jedného riadiaceho kroku do druhého.
-
-Logika zapojenia bloku MATLAB Function je zobrazená na obrázku~\ref{fig:pi_rt_scheme},  
-ktorý ukazuje vstupy, výstupy a spätnú väzbu stavových premenných potrebných pre správnu činnosť regulátora.
-
-\begin{center}
-    \vbox{
-        \makebox[\textwidth][c]{%
-            \includegraphics[width=1.3\textwidth, trim=100 150 100 150, clip]{TS_pi_scheme.pdf}
-        }
-        \figcaption{Zapojenie PI regulátora v bloku MATLAB Function so spätnou väzbou stavov}
-        \label{fig:pi_rt_scheme}
-    }
-\end{center}
-
-Pred samotným začiatkom regulácie bol zavedený časový úsek, počas ktorého regulátor nevykonáva žiadny zásah.  
-Počas prvých desiatich minút sa na výstupe drží hodnota pracovného bodu a zároveň sa sleduje teplota na výstupe systému.  
-Cieľom je získať reálnu hodnotu ustáleného stavu priamo z aktuálnych podmienok experimentu.
-
-Použitie hodnôt zosadených zo statických charakteristík (obr.~\ref{fig:ts_static_sensors6}) nie je vhodné.  
-Tepelný systém je citlivý na teplotu v miestnosti a experimenty nebolo možné realizovať v rovnakých podmienkach.  
-Okrem toho surové merania (obr.~\ref{fig:ts_pb_vent6_spir4_ident_raw}) ukázali, že teplota narastá veľmi pomaly aj počas dlhého experimentu, čo znamená, že systém nemá pevnú, opakovateľnú hodnotu ustáleného stavu.
-
-Z toho dôvodu je ustálený stav zisťovaný automaticky priamo regulátorom ako posledná nameraná hodnota $y$ pred spustením PI riadenia.  
-Tento prístup funguje bez ohľadu na to, či je systém iba málo zahriaty alebo už dosiahol vysokú prevádzkovú teplotu.
-
-\paragraph{Experiment 1: Regulácia okolo jedného pracovného bodu}
-
-Na základe implementácie uvedenej vyššie bol následne vykonaný experiment v simulačnom prostredí s cieľom overiť kvalitu regulácie.  
-Priebeh regulácie je zobrazený na obrázku~\ref{fig:ts_pi_real_basic}.
-
-\begin{center}
-    \vbox{
-        \makebox[\textwidth][c]{%
-            \includegraphics[width=1.5\textwidth]{ts_pb_vent6_spir4_PI_real.png}
-        }
-        \figcaption{Simulačný experiment s PI regulátorom pri skokovej zmene žiadanej hodnoty}
-        \label{fig:ts_pi_real_basic}
-    }
-\end{center}
-
-Kvalita regulácie bola hodnotená podľa troch kritérií:
-
-\begin{itemize}
-    \item prekmit: žiadaná hodnota bola 0.35~V, maximálna hodnota výstupu dosiahla približne 0.52~V,  
-    čo zodpovedá približne 49.0 percentnému prekmitu,
-    \item čas ustálenia: výstup sa ustálil približne po 28 sekundách,
-    \item trvalá regulačná odchýlka: prakticky nulová.
-\end{itemize}
-
-Pri porovnaní so simuláciou uvedenou v predchádzajúcich kapitolách možno vidieť, že prekmit je výrazne vyšší.  
-Dôvodom je skutočnosť, že identifikované modely nedokázali zachytiť celú dynamiku systému TS05 a viacero pomalých javov,  
-ktoré sa prejavujú až pri reálnej prevádzke.  
-Napriek tomu je regulačný čas veľmi priaznivý vzhľadom na to, že ide o pomalý tepelný systém.  
-Rýchla regulácia bola prioritou, preto možno výsledok považovať za uspokojivý pre riadenie okolo jedného pracovného bodu.
-
-\paragraph{Experiment 2: Reakcia na väčší skok}
-
-Nasledoval druhý experiment, ktorého cieľom bolo overiť správanie regulátora pri väčšej skokovej zmene žiadanej hodnoty, 
-ktorá má simulovať prechod medzi rôznymi pracovnými bodmi systému.  
-Systém bol najprv ustálený v pracovnom bode s výstupnou hodnotou približne 6.4~V a následne bola žiadaná hodnota skokovo zmenená na 7.5~V. 
-Výsledok je zobrazený na obrázku~\ref{fig:ts_pi_real_big_step}.
-
-\begin{center}
-    \vbox{
-        \makebox[\textwidth][c]{%
-            \includegraphics[width=1.5\textwidth]{ts_pb_vent6_pbTopb_real_badToShow.png}
-        }
-        \figcaption{Experiment PI regulátora pri pri skoku z 6.4~V na 7.5~V}
-        \label{fig:ts_pi_real_big_step}
-    }
-\end{center}
-
-Z grafu je zrejmé, že počas regulácie došlo k výraznému presýteniu akčného zásahu.  
-Ovládací signál dosiahol svoj limit a počas určitého času na ňom zotrval.  
-Aj keď bola požadovaná hodnota dosiahnutá, takéto správanie je z pohľadu bezpečnosti a kvality regulácie nevyhovujúce.
-
-Z tohto dôvodu možno konštatovať, že navrhnutý PI regulátor je vhodný na riadenie v blízkosti jedného pracovného bodu,  
-avšak nie je vhodný na prepínanie medzi vzdialenejšími pracovnými bodmi.  
-V ďalšej časti práce bude preto implementovaný postup umožňujúci bezpečné a stabilné prepínanie medzi pracovnými bodmi  
-a následne budú jednotlivé regulátory skombinované tak, aby systém disponoval širším využiteľným rozsahom riadenia.
-
-% -------------------------------------------------------------------
-% Subsection 1.4 - Prepínač pracovných bodov
-% -------------------------------------------------------------------
-
-\subsection{Prepínač pracovných bodov}
-
-V tejto časti sa budeme zaoberať návrhom a testovaním prepínača pracovných bodov.  
-Prepínač bude predstavovať pomalý regulátor, ktorého úlohou bude zabezpečiť robustné prechody medzi rôznymi pracovnými bodmi systému TS05.  
-Cieľom je vytvoriť taký spôsob riadenia, ktorý umožní spoľahlivý presun z ľubovoľného pracovného bodu do ľubovoľného iného pracovného bodu bez neželaných dynamických javov, ako je presýtenie akčného zásahu alebo príliš veľké prekmitové správanie.
-
-Okrem samotného prepínača bola v tejto časti rozšírená aj pracovná oblasť regulácie o dva ďalšie pracovné body systému – pre napätia špirály 2~V a 6~V. Pre každý z týchto pracovných bodov bol postup opakovaný presne podľa postupu uvedeného v sekcii~\ref{sec:identifikacia},  
-teda boli:
-
-\begin{itemize}
-    \item vykonané merania reakcií systému na jednotkové skoky $\pm 0.5$~V okolo pracovného bodu,
-    \item z nameraných údajov bola identifikovaná prenosová funkcia v danom pracovnom bode,
-    \item pre každý pracovný bod bol navrhnutý PI regulátor s vlastnými parametrami,
-    \item boli určené hodnoty $y_{pb}$ a rozsah výstupu pre $\pm 0.5$~V zmenu vstupu.
-\end{itemize}
-
-Prehľad všetkých troch pracovných bodov je uvedený v tabuľke~\ref{tab:pb_overview},  
-kde sú uvedené identifikované prenosové funkcie, hodnoty pracovného bodu $y_{pb}$ a parametre jednotlivých PI regulátorov.
-
-\begin{table}[h!]
-    \centering
-    \caption{Parametre pracovných bodov, identifikované prenosové funkcie a PI regulátory}
-    \label{tab:pb_overview}
-    \begin{tabular}{|c|c|c|c|c|}
-        \hline
-        \textbf{$u_{pb}$} & \textbf{Prenosová funkcia} & \textbf{$y_{pb}$} & \textbf{$\Delta y_{pb}$ pri $u_{pb}$ $\pm 0.5$~V} & \textbf{PI parametre} \\ \hline
-
-        2~V &
-        $\displaystyle \frac{5.79}{s^2 + 44.21 s + 7.276}$ &
-        4.4884 &
-        $\pm 0.41$ &
-        $K_p = 2.77$, $K_i = 1.48$ \\ \hline
-
-        4~V &
-        $\displaystyle \frac{6.074}{s^2 + 59.01 s + 8.95}$ &
-        6.3412 &
-        $\pm 0.35$ &
-        $K_p = 3.58$, $K_i = 1.84$ \\ \hline
-
-        6~V &
-        $\displaystyle \frac{7.161}{s^2 + 52.87 s + 21.37}$ &
-        7.7441 &
-        $\pm 0.18$ &
-        $K_p = 1.83$, $K_i = 2.20$ \\ \hline
-    \end{tabular}
-\end{table}
-
-Keďže pôvodné statické charakteristiky systému boli merané ešte počas letného obdobia, bolo rozhodnuté hodnoty $y_{pb}$ pre tieto experimenty zmerať znova, rovnakým spôsobom ako v sekcii~\ref{sec:staticke_vlastnosti}.  
-V tabuľke sú preto uvedené aktuálne hodnoty pracovných bodov, ktoré vernejšie reprezentujú stav systému počas meraní v zimnom období.
-
-
-% -------------------------------------------------------------------
-% Subsubsection 1.4.1 - Opis a schéma riadenia z použitím prepínača
-% -------------------------------------------------------------------
-
-\subsubsection{Opis a schéma riadenia z použitím prepínača}
-
-V tejto časti sa prezentuje návrh riadenia systému TS05 s využitím prepínača pracovných bodov.
-Zámerom riadenia je pokryť dve odlišné situácie:
-\begin{itemize}
-    \item reguláciu v okolí zvoleného pracovného bodu.
-    \item bezpečný prechod medzi pracovnými bodmi bez neželaných javov, ako je dlhodobé presýtenie akčného zásahu alebo príliš agresívna dynamika.
-\end{itemize}
-
-Navrhnutá štruktúra je založená na tom, že pri zmene globálnej žiadanej hodnoty má prioritu prechodový režim (prepínač pracovných bodov),
-a až po jeho ukončení sa aktivuje lokálna PI regulácia v okolí aktuálneho pracovného bodu.
-
-Bloková schéma logickej postupnosti operácií navrhnutého algoritmu riadenia je znázornená na obr.~\ref{fig:ts_control_sequence}.
-
-Ako už bolo uvedené, pokiaľ nedôjde ku skokovej zmene globálnej žiadanej hodnoty,
-systém pracuje v režime lokálnej regulácie v okolí aktuálneho pracovného bodu.
-V tomto prípade je aktívny PI regulátor, ktorý zabezpečuje reguláciu nad normalizovanými veličinami
-\[
-y_N = y - y_{pb}, \qquad u_N = u - u_{pb},
-\]
-kde $y_{pb}$ a $u_{pb}$ predstavujú posuny výstupnej a vstupnej veličiny príslušného pracovného bodu.
-
-Informáciu o tom, v ktorom pracovnom bode sa systém nachádza,
-nepretržite poskytuje \textit{solver}.
-Táto informácia slúži lokálnemu regulátoru na výber zodpovedajúcich posunov $y_{pb}$, $u_{pb}$
-a zároveň na nastavenie parametrov PI regulátora $K_p$ a $K_i$.
-
-V prípade, že dôjde ku skokovej zmene globálnej žiadanej hodnoty,
-lokálna PI regulácia je dočasne deaktivovaná
-a riadenie preberá prepínač pracovných bodov.
-Ten zabezpečuje plynulý prechod medzi pracovnými bodmi
-a po jeho ukončení sa riadenie automaticky prepne späť
-do režimu lokálnej regulácie v okolí nového pracovného bodu.
-
-\begin{center}
-    \vbox{
-        \makebox[\textwidth][c]{%
-            \includegraphics[width=0.85\textwidth]{TS_pbSwitch_block_scheme.pdf}
-        }
-        \figcaption{Bloková schéma logickej postupnosti operácií riadenia systému TS05}
-        \label{fig:ts_control_sequence}
-    }
-\end{center}
-
-Schéma celého riadenia je uvedená na obr.~\ref{fig:ts_pb_switch_control_scheme}.
-
-Ako je možné vidieť na schéme, rozhodovacia logika je sústredená v bloku \textit{solver},
-ktorý na základe globálnej žiadanej hodnoty určuje, či sa systém nachádza v režime prechodu medzi pracovnými bodmi,
-alebo už môže prebiehať lokálna regulácia okolo pracovného bodu.
-Okrem toho blok \textit{solver} nepretržite určuje aj aktuálny režim \textit{mode\_local},
-t.\,j. informáciu o tom, ku ktorému z pracovných bodov (2~V, 4~V alebo 6~V na špirále) má byť priradená lokálna regulácia.
-
-Implementácia bloku \textit{solver} je uvedená v~kóde~\ref{lst:solver_switching_logic}.
-Základom je výpočet času, počas ktorého má byť aktívny prechodový režim.
-Tento čas sa odvodzuje z veľkosti zmeny globálnej žiadanej hodnoty a z kroku zjemnenia \textit{step\_to\_soft},
-pričom sa uvažuje aj dodatočná časová rezerva \textit{extra\_time}.
-
-\begin{center}
-    \vbox{
-        \makebox[\textwidth][c]{%
-            \includegraphics[
-                width=1.8\textwidth,
-                angle=-270,
-                trim=10 220 200 140,
-                clip
-            ]{TS_pbSwitch_scheme.pdf}
-        }
-        \figcaption{Schéma riadenia systému TS05 s prepínačom pracovných bodov}
-        \label{fig:ts_pb_switch_control_scheme}
-    }
-\end{center}
-
+Nižšie je uvedený ilustračný pseudokód výpočtu PID regulátora v diskrétnom čase
+s vnútornými stavmi integrátora a pamäťou predchádzajúcej chyby.
 
 \begin{lstlisting}[language=Matlab,
-caption={MATLAB implementácia rozhodovacej logiky prepínača pracovných bodov (\textit{solver})},
-label={lst:solver_switching_logic}]
-function [active_global, active_local, mode_local, sp_global_prevY, switching_time_endY] = solver(time, sp_global, sp_global_prevU, switching_time_endU)
+caption={Pseudokód diskrétnej implementácie PID regulátora (ilustračný príklad)},
+label={lst:intro_pid_pseudocode}]
+% Inputs: w (setpoint), y (output), Ts
+% States: I (integrator state), e_prev (previous error)
+% Params: Kp, Ki, Kd, u_min, u_max
 
-    %Constants
-    step_to_soft = 0.005;
-    Ts = 0.1;
-    extra_time = 10;
-    eps = 1e-5;
+e = w - y;
 
-    active_global = 0;
-    active_local = 0;
+% Integrator update
+I = I + Ts * e;
 
-    %Time of switch working
-    if abs(sp_global - sp_global_prevU) > eps
-        reg_time = (abs(sp_global - sp_global_prevU) / step_to_soft) * Ts + extra_time;
-        reg_time = max(reg_time, extra_time);
-        switching_time_endY = time + reg_time;
-    else
-        switching_time_endY = switching_time_endU;
-    end
+% Derivative term
+D = (e - e_prev) / Ts;
 
-    %Activators of PI and switch
-    if time < switching_time_endY
-        active_global = 1;
-        active_local = 0;
-    else
-        active_global = 0;
-        active_local = 1;
-    end
+% PID law
+u = Kp * e + Ki * I + Kd * D;
 
-    if sp_global > 7.6
-        mode_local = 6;
-    elseif sp_global > 6.2
-        mode_local = 4;
-    else
-        mode_local = 2;
-    end
+% Saturation
+u = min(max(u, u_min), u_max);
 
-    %memory
-    sp_global_prevY = sp_global;
-
-end
+% Memory update
+e_prev = e;
 \end{lstlisting}
-
-Logika kódu~\ref{lst:solver_switching_logic} vyplýva z výrazu
-\begin{equation}
-    t_{\mathrm{reg}} =
-    \left(\frac{\left|sp_{\mathrm{global}} - sp_{\mathrm{global,prev}}\right|}{\Delta sp}\right) T_s
-    + t_{\mathrm{extra}},
-    \qquad
-    t_{\mathrm{end}} = t + t_{\mathrm{reg}},
-    \label{eq:switching_time_rule}
-\end{equation}
-kde $\Delta sp$ predstavuje krok zjemnenia (\textit{step\_to\_soft}), $T_s$ je vzorkovací čas a $t_{\mathrm{extra}}$ je časová rezerva.
-Prechodový režim má v navrhnutej štruktúre prioritu, t.\,j. počas jeho trvania je lokálna PI regulácia zablokovaná.
-
-Po rozhodnutí o režime nasledujú samotné regulátory.
-V ľubovoľnom časovom okamihu je aktívny vždy iba jeden z nich:
-buď prechodový regulátor (prepínač pracovných bodov), alebo lokálny PI regulátor.
-Prepínač pracovných bodov \textit{pb\_switch} realizuje zjemnenie žiadanej hodnoty tak, aby namiesto skoku vznikla rampa,
-čo výrazne znižuje riziko presýtenia akčného zásahu pri veľkých zmenách referencie.
-Zjemnenie prebieha s krokom $\Delta sp = 0.005$ na jednu iteráciu, t.\,j. požadovaná hodnota sa mení postupne,
-kým nedosiahne cieľovú globálnu hodnotu.
-Zjemnený setpoint je následne použitý v jednoduchom P regulátore.
-
-Kód bloku \textit{pb\_switch} je uvedený v~kóde~\ref{lst:pb_switch_code}.
-
-\begin{lstlisting}[language=Matlab,
-caption={MATLAB implementácia prepínača pracovných bodov (\textit{pb\_switch})},
-label={lst:pb_switch_code}]
-function [u, sp] = pb_switch(y, active, sp_global, sp_prev)
-
-    %Constants
-    Kp = 4;
-    Ts = 0.1;
-    step_to_soft = 0.005;
-
-    %Logic
-    if active
-
-        if abs(sp_global - sp_prev) > step_to_soft
-            delta = sign(sp_global - sp_prev) * step_to_soft;
-        else
-            delta = sp_global - sp_prev;
-        end
-
-        sp = sp_prev + delta;
-        u = Kp * (sp - y);
-
-    else
-
-        sp = sp_global;
-        u = 0;
-
-    end
-
-    u = min(max(u,0), 10);
-
-end
-\end{lstlisting}
-
-Čas, počas ktorého je \textit{pb\_switch} aktívny, je priamo viazaný na veľkosť zmeny globálneho setpointu,
-čo bolo definované v bloku \textit{solver} vzťahom~\eqref{eq:switching_time_rule}.
-Po uplynutí tejto doby sa aktivuje lokálny PI regulátor, ktorý zabezpečuje presné sledovanie žiadanej hodnoty v okolí pracovného bodu.
-
-Lokálna PI regulácia je realizovaná blokom \textit{pi\_block}, ktorý obsahuje dve dôležité úpravy:
-\begin{itemize}
-    \item ziskové plánovanie (gain scheduling) podľa aktuálne zvoleného pracovného bodu,
-    \item sledovanie integrátora aj v neaktívnom stave (tzv. bumpless transfer), aby po opätovnej aktivácii nevznikol neželaný skok akčného zásahu.
-\end{itemize}
-
-Ziskové plánovanie spočíva v tom, že podľa signálu \textit{mode\_local} (určeného v \textit{solver}) sa zvolia príslušné parametre
-$K_p$, $K_i$ a hodnoty pracovného bodu $(u_{pb}, y_{pb})$.
-Normalizácia prebieha odčítaním $y_{pb}$ od meraného výstupu a akčný zásah je limitovaný v rozsahu okolo $u_{pb}$.
-
-Implementácia \textit{pi\_block} je uvedená v~kóde~\ref{lst:pi_block_gs}.
-\begin{lstlisting}[language=Matlab,
-caption={MATLAB implementácia lokálnej PI regulácie so ziskovým plánovaním a sledovaním integrátora (\textit{pi\_block})},
-label={lst:pi_block_gs}]
-function [u, integratorY] = pi_block(y, active_local, mode_local, sp_local, u_active, integratorU)
-
-    Ts = 0.1;
-
-    %Gain scheduling
-    if mode_local == 2
-        pb_u = 2; pb_y = 4.4884;
-        Kp = 2.77; Ki = 1.48;
-    elseif mode_local == 4
-        pb_u = 4; pb_y = 6.3412;
-        Kp = 3.58; Ki = 1.84;
-    else
-        pb_u = 6; pb_y = 7.7441;
-        Kp = 1.83; Ki = 2.20;
-    end
-
-    u_min = 0 - pb_u;
-    u_max = 10 - pb_u;
-
-    yN = y - pb_y;
-    e = sp_local - yN;
-
-    if active_local == 0
-        uN = u_active - pb_u;
-        uN = min(max(uN, u_min), u_max);
-        integratorY = (uN - Kp*e) / Ki;
-        u = 0;
-    else
-        integratorY = integratorU + e*Ts;
-        uN = Kp*e + Ki*integratorY;
-        uN = min(max(uN, u_min), u_max);
-        u = uN + pb_u;
-    end
-
-end
-\end{lstlisting}
-
-Sledovanie integrátora v neaktívnom stave je realizované tak,
-že sa z rovnice PI regulátora v normalizovanom tvare
-\begin{equation}
-    u_N = K_p e + K_i I
-    \label{eq:pi_law_normalized}
-\end{equation}
-vyjadrí stav integrátora
-\begin{equation}
-    I = \frac{u_N - K_p e}{K_i}.
-    \label{eq:integrator_tracking}
-\end{equation}
-Týmto spôsobom je zabezpečené, že pri prepnutí režimu nedôjde k náhlej zmene vnútornej integrujúcej zložky,
-a teda ani k nežiadanému skoku na výstupe regulátora.
-
-Výstupy prechodového regulátora a lokálneho PI regulátora sa následne kombinujú v bloku \textit{normalize\_input},
-kde sa vykoná súčet a finálne obmedzenie signálu do rozsahu 0--10~V.
-Keďže v každom okamihu je aktívny iba jeden regulátor (druhý dáva nulový výstup),
-je táto forma kombinácie v danej štruktúre prípustná a nevedie k nejednoznačnosti riadenia.
-
-Kód bloku \textit{normalize\_input} je uvedený v~kóde~\ref{lst:normalize_input_code}.
-
-\begin{lstlisting}[language=Matlab,
-caption={MATLAB implementácia finálnej normalizácie a obmedzenia akčného zásahu (\textit{normalize\_input})},
-label={lst:normalize_input_code}]
-function u = normalize_input(u_global, u_local)
-
-    u_sum = u_global + u_local;
-    u = min(max(u_sum, 0), 10);
-
-end
-\end{lstlisting}
-
-% -------------------------------------------------------------------
-% Subsubsection 1.4.2 - Experiment s prepínaním pracovných bodov
-% -------------------------------------------------------------------
-
-\subsubsection{Experiment s prepínaním pracovných bodov}
-
-V tejto podsekcii bol uskutočnený experiment na reálnom systéme TS05,
-ktorého cieľom bolo overiť správnu funkciu navrhnutého algoritmu riadenia
-pri prepínaní medzi pracovnými bodmi.
-Experiment pozostával z dvoch hlavných fáz.
-Najskôr bol systém regulovaný v okolí pracovného bodu pri napätí špirály 4~V,
-kde bola realizovaná lokálna skoková zmena žiadanej hodnoty.
-Následne došlo k prechodu na pracovný bod 6~V,
-po ktorom bola opäť aplikovaná lokálna skoková zmena referencie.
-
-Priebeh experimentu je znázornený na obr.~\ref{fig:ts_pb_switch_experiment},
-kde sú zobrazené tri podgrafy.
-Prvý podgraf zobrazuje výstupnú veličinu systému spolu so žiadanou hodnotou,
-pričom žiadaná hodnota je v tomto prípade normalizovaná
-za účelom prehľadnejšej vizualizácie priebehu regulácie.
-Skutočné (nenormalizované) hodnoty globálneho a lokálneho setpointu
-sú uvedené v treťom podgrafe.
-
-\begin{center}
-    \vbox{
-        \makebox[\textwidth][c]{%
-            \includegraphics[width=1.5\textwidth]{ts_ml_switch_1st.png}
-        }
-        \figcaption{Experiment s prepínaním pracovných bodov: výstup systému, akčné zásahy a žiadané hodnoty}
-        \label{fig:ts_pb_switch_experiment}
-    }
-\end{center}
-
-Z priebehu akčného zásahu na druhom podgrafe je zrejmé,
-že riadiaci signál počas celého experimentu nenaráža na svoje maximálne obmedzenie,
-čo svedčí o vhodne zvolenej stratégii regulácie.
-Zároveň je možné pozorovať, že v každom okamihu je aktívny iba jeden akčný zásah:
-ak pracuje lokálny PI regulátor, výstup prepínača pracovných bodov je nulový
-a naopak.
-Týmto sa potvrdzuje správna sekvenčná činnosť jednotlivých blokov riadenia,
-presne v súlade s návrhom algoritmu.
-
-Dôležitým pozorovaním je aj správanie systému pri prepnutí z prechodového režimu
-na lokálnu PI reguláciu.
-Po aktivácii lokálneho regulátora nedochádza k náhlemu „výstrelu“ akčného zásahu,
-čo indikuje správnu funkciu sledovania stavu integrátora.
-Integrujúca zložka regulátora je teda pri prepínaní režimov v konzistentnom stave,
-čo výrazne zvyšuje kvalitu prechodu medzi režimami riadenia.
-
-V regulácii sa súčasne využíva lokálny setpoint
-a zjemnený globálny setpoint generovaný prepínačom pracovných bodov.
-
-Napriek celkovo uspokojivému správaniu systému sa počas prepínania pracovných bodov
-objavuje aj jeden nežiaduci jav.
-Keďže pred samotným prepnutím pracuje lokálny PI regulátor,
-po aktivácii prepínača pracovných bodov je akčný zásah prepínača
-v počiatočnom okamihu nulový a následne pomerne rýchlo narastá.
-Tento prechodný jav spôsobí krátkodobý pokles výstupnej veličiny systému,
-ktorý je síce časovo obmedzený, avšak pozorovateľný v nameraných dátach. Zároveň je možné pozorovať, že keďže prepínač pracovných bodov je realizovaný
-vo forme P regulátora, v jeho činnosti sa vyskytuje malá trvalá regulačná odchýlka.
-Tento nedostatok by bolo možné v budúcnosti odstrániť
-rozšírením regulátora o integračnú zložku.
-
-V ďalšej fáze práce budú tieto problémy riešené
-a navrhnutý algoritmus riadenia bude implementovaný na ďalších platformách.
-

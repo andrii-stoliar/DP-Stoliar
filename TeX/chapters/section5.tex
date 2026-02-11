@@ -1,0 +1,182 @@
+% ===================================================================
+% Section 5: MRAC 
+% ===================================================================
+
+\section{MRAC regulácia – gradientná metóda}
+\label{sec:mrac_gradient}
+
+V tejto kapitole je riešená adaptívna regulácia typu
+MRAC (Model Reference Adaptive Control),
+ktorá umožňuje automatické prispôsobovanie parametrov regulátora
+pri nepresne známej dynamike riadeného systému.
+Na rozdiel od klasických regulátorov s pevnými parametrami
+MRAC využíva referenčný model,
+ktorý definuje požadované správanie uzavretého regulačného obvodu,
+a adaptačný mechanizmus,
+ktorý zabezpečuje sledovanie tohto správania v čase.
+
+V ďalšej časti je popísaný samotný algoritmus gradientnej MRAC regulácie,
+vrátane voľby referenčného modelu,
+štruktúry zákona riadenia
+a adaptačného zákona založeného na gradientnej metóde.
+
+% -------------------------------------------------------------------
+% Subsection - Popis algoritmu
+% -------------------------------------------------------------------
+\subsection{Popis algoritmu}
+\label{sec:mrac_gradient_algorithm}
+
+Gradientná MRAC regulácia je založená na myšlienke,
+že dynamika riadeného systému má byť v čase prispôsobovaná tak,
+aby výstup systému sledoval výstup zvoleného referenčného modelu.
+Návrh algoritmu pozostáva z troch základných častí:
+voľba referenčného modelu,
+návrh zákona riadenia
+a odvodenie adaptačného zákona.
+
+\paragraph{Model riadeného systému}
+
+Uvažujme lineárny spojitý systém druhého rádu
+\begin{equation}
+	G_s(s) = \frac{b_0}{s^2 + a_1 s + a_0},
+	\label{eq:mrac_plant}
+\end{equation}
+kde $a_0$, $a_1$, $b_0$ sú neznáme konštanty.
+Predpokladá sa znalosť znamienka parametra $b_0$.
+
+\paragraph{Referenčný model a statické zosilnenie}
+
+Pri voľbe referenčného modelu je potrebné zabezpečiť,
+aby jeho statické zosilnenie bolo rovné jednej,
+t.\,j.
+\[
+K = 1,
+\]
+aby nedochádzalo k nechcenému zosilňovaniu referenčného signálu.
+
+Pre systém druhého rádu zvolíme referenčný model
+\begin{equation}
+	\frac{y_m(s)}{r(s)} =
+	\frac{b_{0m}}{s^2 + a_{1m}s + a_{0m}},
+	\label{eq:mrac_ref_model}
+\end{equation}
+pričom sa volí
+\begin{equation}
+	b_{0m} = a_{0m},
+\end{equation}
+čím sa zabezpečí jednotkové statické zosilnenie modelu.
+
+\paragraph{Zákon riadenia}
+
+Všeobecný tvar zákona riadenia pri splnenej podmienke zhody je
+\begin{equation}
+	u(t) = \Theta^T(t)\,\omega(t),
+	\label{eq:mrac_general_control}
+\end{equation}
+kde regresný vektor obsahuje merateľné signály.
+
+Pre systém druhého rádu zvolíme
+\begin{equation}
+	\omega(t) =
+	\begin{bmatrix}
+		y(t) \\
+		\dot{y}(t) \\
+		r(t)
+	\end{bmatrix}.
+\end{equation}
+
+Zákon riadenia potom nadobúda tvar
+\begin{equation}
+	u(t) = \Theta_1 y(t) + \Theta_2 \dot{y}(t) + \Theta_3 r(t).
+	\label{eq:mrac_control_law}
+\end{equation}
+
+\paragraph{Podmienka zhody a ideálne parametre}
+
+Po dosadení \eqref{eq:mrac_control_law} do systému
+\eqref{eq:mrac_plant} dostávame podmienku zhody
+
+\begin{equation}
+	y(s)\left(
+	s^2 + (a_1 - b_0\Theta_2)s + a_0 - b_0\Theta_1
+	\right)
+	=
+	b_0\Theta_3 r(s).
+\end{equation}
+
+Prenos uzavretého regulačného obvodu je
+\begin{equation}
+	\frac{y(s)}{r(s)} =
+	\frac{b_0\Theta_3}
+	{s^2 + (a_1 - b_0\Theta_2)s + (a_0 - b_0\Theta_1)}.
+\end{equation}
+
+Porovnaním s referenčným modelom získame ideálny vektor parametrov
+
+\begin{align}
+	\Theta_1^\ast &= \frac{a_0 - a_{0m}}{b_0}, \\
+	\Theta_2^\ast &= \frac{a_1 - a_{1m}}{b_0}, \\
+	\Theta_3^\ast &= \frac{b_{0m}}{b_0}.
+\end{align}
+
+\paragraph{Adaptačná odchýlka}
+
+Adaptačná odchýlka je definovaná ako
+\begin{equation}
+	e(t) = y(t) - y_m(t),
+\end{equation}
+pričom cieľom regulácie je dosiahnuť
+\begin{equation}
+	\lim_{t \to \infty} e(t) = 0.
+\end{equation}
+
+\paragraph{Účelová funkcia a MIT pravidlo}
+
+Minimalizovaná je účelová funkcia
+\begin{equation}
+	J(\Theta) = \frac{1}{2} e^2(t).
+\end{equation}
+
+MIT pravidlo je formulované ako
+\begin{equation}
+	\frac{d\Theta}{dt}
+	=
+	-\alpha \frac{\partial J}{\partial \Theta}
+	=
+	-\alpha e \frac{\partial e}{\partial \Theta}.
+\end{equation}
+
+Keďže $y_m$ nezávisí od $\Theta$, platí
+\begin{equation}
+	\frac{d\Theta}{dt}
+	=
+	-\alpha e \frac{\partial y}{\partial \Theta}.
+\end{equation}
+
+\paragraph{Zákon adaptácie pre systém druhého rádu}
+
+Pre systém druhého rádu sú adaptačné zákony dané vzťahmi
+
+\begin{align}
+	\dot{\Theta}_1
+	&=
+	-\alpha_1 e \,
+	\mathrm{sign}(b_0)
+	\frac{1}{s^2 + a_{1m}s + a_{0m}}\,y,
+	\\
+	\dot{\Theta}_2
+	&=
+	-\alpha_2 e \,
+	\mathrm{sign}(b_0)
+	\frac{s}{s^2 + a_{1m}s + a_{0m}}\,y,
+	\\
+	\dot{\Theta}_3
+	&=
+	-\alpha_3 e \,
+	\mathrm{sign}(b_0)
+	\frac{1}{s^2 + a_{1m}s + a_{0m}}\,r.
+\end{align}
+
+Člen $s$ v adaptačnom zákone pre parameter $\Theta_2$
+zohľadňuje dynamický vplyv derivácie výstupu
+v zákone riadenia.
