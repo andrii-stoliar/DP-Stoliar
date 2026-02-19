@@ -437,6 +437,10 @@ INPUT ../PY/fig/ts_ml_switch_1st.png
 INPUT ./chapters/section5.tex
 INPUT ./chapters/section5.tex
 INPUT ./chapters/section5.tex
+INPUT ../SVG/TS_mrac_simulink_scheme.pdf
+INPUT ../SVG/TS_mrac_simulink_scheme.pdf
+INPUT ../SVG/TS_mrac_simulink_scheme.pdf
+INPUT ../SVG/TS_mrac_simulink_scheme.pdf
 INPUT ./chapters/literatura.tex
 INPUT ./chapters/literatura.tex
 INPUT ./chapters/literatura.tex
@@ -447,6 +451,7 @@ INPUT c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx10.pfb
 INPUT c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb
 INPUT c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmex10.pfb
 INPUT c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi10.pfb
+INPUT c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi5.pfb
 INPUT c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi7.pfb
 INPUT c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb
 INPUT c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr12.pfb
@@ -457,5 +462,6 @@ INPUT c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb
 INPUT c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy7.pfb
 INPUT c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt10.pfb
 INPUT c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt9.pfb
+INPUT c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb
 INPUT c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfit0800.pfb
 INPUT c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb
