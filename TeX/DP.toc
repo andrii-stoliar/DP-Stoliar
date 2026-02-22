@@ -38,11 +38,5 @@
 \contentsline {paragraph}{Účelová funkcia a MIT pravidlo}{38}{paragraph*.15}%
 \contentsline {paragraph}{Zákon adaptácie pre systém druhého rádu}{38}{paragraph*.16}%
 \contentsline {subsubsection}{\numberline {5.1.1}Diskrétna realizácia (real-time implementácia)}{39}{subsubsection.5.1.1}%
-\contentsline {paragraph}{Stavové premenné}{39}{paragraph*.17}%
-\contentsline {paragraph}{Systémové matice}{39}{paragraph*.18}%
-\contentsline {paragraph}{Referenčný model v stavovom tvare}{39}{paragraph*.19}%
-\contentsline {paragraph}{Filtračný člen $\frac {1}{D_m(s)}y$}{40}{paragraph*.20}%
-\contentsline {paragraph}{Filtračný člen $\frac {1}{D_m(s)}r$}{40}{paragraph*.21}%
-\contentsline {paragraph}{Pseudokód jedného regulačného kroku}{40}{paragraph*.22}%
-\contentsline {subsection}{\numberline {5.2}Implementácia MRAC v prostredí MATLAB}{41}{subsection.5.2}%
-\contentsline {section}{Zoznam literatúry}{44}{lstnumber.10.58}%
+\contentsline {subsection}{\numberline {5.2}Implementácia MRAC v prostredí MATLAB}{39}{subsection.5.2}%
+\contentsline {section}{Zoznam literatúry}{42}{lstnumber.9.58}%
