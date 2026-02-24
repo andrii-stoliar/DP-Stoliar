@@ -163,18 +163,21 @@ Pre systém druhého rádu sú adaptačné zákony dané vzťahmi
 	-\alpha_1 e \,
 	\mathrm{sign}(b_0)
 	\frac{1}{s^2 + a_{1m}s + a_{0m}}\,y,
+	\label{eq:mrac_theta1_adapt}
 	\\
 	\dot{\Theta}_2
 	&=
 	-\alpha_2 e \,
 	\mathrm{sign}(b_0)
 	\frac{s}{s^2 + a_{1m}s + a_{0m}}\,y,
+	\label{eq:mrac_theta2_adapt}
 	\\
 	\dot{\Theta}_3
 	&=
 	-\alpha_3 e \,
 	\mathrm{sign}(b_0)
 	\frac{1}{s^2 + a_{1m}s + a_{0m}}\,r.
+	\label{eq:mrac_theta3_adapt}
 \end{align}
 
 Člen $s$ v adaptačnom zákone pre parameter $\Theta_2$
@@ -184,27 +187,694 @@ v zákone riadenia.
 % -------------------------------------------------------------------
 % Subsubsection - Diskrétna realizácia steady-state
 % -------------------------------------------------------------------
-\subsubsection{Diskrétna realizácia (real-time implementácia)}
+\subsubsection{Prevod systému do stavového priestoru}
 \label{sec:mrac_gradient_discrete}
 
-Pre praktickú implementáciu gradientnej MRAC regulácie v reálnom čase
-je potrebné previesť spojitý algoritmus do diskrétneho tvaru tak,
-aby v každom vzorkovacom kroku boli použité iba aktuálne merané veličiny
-a stavové premenné uložené z predchádzajúceho kroku.
+Pre potreby diskrétnej implementácie je vhodné
+preniesť opis riadeného systému z tvaru prenosovej funkcie
+do tvaru stavového modelu.
 
-Predpokladá sa, že zo systému je dostupný iba výstup $y(k)$,
-pričom jeho derivácia je aproximovaná numericky pomocou spätnej diferencie
+Uvažujme všeobecný lineárny systém druhého rádu
 
 \begin{equation}
+	G_s(s) = \frac{Y(s)}{U(s)}
+	=
+	\frac{b_1 s + b_0}{s^2 + a_1 s + a_0}.
+	\label{eq:general_second_order_tf}
+\end{equation}
+
+Tento prenos je možné interpretovať ako kaskádové spojenie
+dvoch čiastkových prenosov zavedením pomocnej premennej $Z(s)$
+
+\begin{align}
+	\frac{Z(s)}{U(s)}
+	&=
+	\frac{1}{s^2 + a_1 s + a_0},
+	\label{eq:z_over_u}
+	\\
+	\frac{Y(s)}{Z(s)}
+	&=
+	b_1 s + b_0.
+	\label{eq:y_over_z}
+\end{align}
+
+Platí teda
+
+\begin{equation}
+	\frac{Y(s)}{U(s)}
+	=
+	\frac{Y(s)}{Z(s)}
+	\frac{Z(s)}{U(s)}.
+\end{equation}
+
+Prvý z uvedených prenosov
+\eqref{eq:z_over_u}
+možno zapísať v časovej oblasti ako diferenciálnu rovnicu
+
+\begin{equation}
+	\ddot{z}(t) + a_1 \dot{z}(t) + a_0 z(t) = u(t).
+	\label{eq:z_diff_eq}
+\end{equation}
+
+Táto rovnica je druhého rádu a je možné ju previesť
+na sústavu diferenciálnych rovníc prvého rádu
+vhodnou voľbou stavových veličín.
+
+Zaveďme prvú stavovú veličinu
+
+\begin{equation}
+	x_1(t) = z(t),
+\end{equation}
+
+z čoho vyplýva
+
+\begin{equation}
+	\dot{x}_1(t) = \dot{z}(t).
+\end{equation}
+
+Ako druhú stavovú veličinu zvolíme
+
+\begin{equation}
+	x_2(t) = \dot{z}(t),
+\end{equation}
+
+a teda
+
+\begin{equation}
+	\dot{x}_2(t) = \ddot{z}(t).
+\end{equation}
+
+Z rovnice \eqref{eq:z_diff_eq} je možné vyjadriť druhú deriváciu
+
+\begin{equation}
+	\ddot{z}(t)
+	=
+	- a_1 \dot{z}(t)
+	- a_0 z(t)
+	+ u(t),
+\end{equation}
+
+čo po dosadení za stavové premenné vedie k
+
+\begin{equation}
+	\dot{x}_2(t)
+	=
+	- a_1 x_2(t)
+	- a_0 x_1(t)
+	+ u(t).
+\end{equation}
+
+Sústava diferenciálnych rovníc prvého rádu má teda tvar
+
+\begin{align}
+	\dot{x}_1(t) &= x_2(t),
+	\\
+	\dot{x}_2(t) &= - a_1 x_2(t) - a_0 x_1(t) + u(t).
+\end{align}
+
+V maticovom zápise možno systém vyjadriť ako
+
+\begin{equation}
+	\dot{x}(t)
+	=
+	\begin{bmatrix}
+		0 & 1 \\
+		- a_0 & - a_1
+	\end{bmatrix}
+	x(t)
+	+
+	\begin{bmatrix}
+		0 \\
+		1
+	\end{bmatrix}
+	u(t),
+	\label{eq:state_matrix_form}
+\end{equation}
+
+kde stavový vektor je definovaný ako
+
+\begin{equation}
+	x(t)
+	=
+	\begin{bmatrix}
+		x_1(t) \\
+		x_2(t)
+	\end{bmatrix}.
+\end{equation}
+
+Výstupná rovnica vyplýva z prenosu \eqref{eq:y_over_z}.
+V časovej oblasti platí
+
+\begin{equation}
+	y(t)
+	=
+	b_1 \dot{z}(t)
+	+
+	b_0 z(t).
+\end{equation}
+
+Po vyjadrení pomocou stavových veličín dostávame
+
+\begin{equation}
+	y(t)
+	=
+	b_1 x_2(t)
+	+
+	b_0 x_1(t),
+\end{equation}
+
+resp. v maticovom tvare
+
+\begin{equation}
+	y(t)
+	=
+	\begin{bmatrix}
+		b_0 & b_1
+	\end{bmatrix}
+	x(t).
+\end{equation}
+
+Celý systém je teda v štandardnom stavovom tvare
+
+\begin{align}
+	\dot{x}(t) &= A x(t) + b u(t),
+	\\
+	y(t) &= c^{T} x(t),
+\end{align}
+
+Celý systém je teda v štandardnom stavovom tvare
+
+\begin{align}
+	\dot{x}(t) &= A x(t) + b u(t),
+	\\
+	y(t) &= c^{T} x(t),
+\end{align}
+
+kde jednotlivé matice majú tvar
+
+\begin{equation}
+	A =
+	\begin{bmatrix}
+		0 & 1 \\
+		- a_0 & - a_1
+	\end{bmatrix},
+	\qquad
+	b =
+	\begin{bmatrix}
+		0 \\
+		1
+	\end{bmatrix},
+	\qquad
+	c =
+	\begin{bmatrix}
+		b_0 \\
+		b_1
+	\end{bmatrix}.
+\end{equation}
+
+Zavedená pomocná premenná $z(t)$ predstavuje interný stav systému,
+ktorý bol použitý na rozklad prenosovej funkcie do kaskádového tvaru.
+Pri zvolenej realizácii však výstup systému vzniká priamo
+ako lineárna kombinácia premenných $z(t)$ a $\dot{z}(t)$.
+
+Z tohto dôvodu možno bez straty všeobecnosti
+interpretovať stavový vektor ako
+
+\begin{equation}
+	x(t)
+	=
+	\begin{bmatrix}
+		y(t) \\
+		\dot{y}(t)
+	\end{bmatrix},
+\end{equation}
+
+keďže prvá stavová veličina reprezentuje samotný výstup systému
+a druhá jeho časovú deriváciu.
+Táto voľba je prirodzená pre systém druhého rádu
+a priamo nadväzuje na štruktúru diferenciálnej rovnice.
+
+\paragraph{Stavový opis referenčného modelu}
+
+Referenčný model definovaný prenosom
+\eqref{eq:mrac_ref_model}
+je potrebné previesť do stavového tvaru.
+
+Zvolíme stavový vektor
+
+\begin{equation}
+	x_{ym}(t)
+	=
+	\begin{bmatrix}
+		y_m(t) \\
+		\dot{y}_m(t)
+	\end{bmatrix}.
+\end{equation}
+
+Na základe všeobecného tvaru odvodeného v predchádzajúcej časti
+má referenčný model podobu
+
+\begin{align}
+	\dot{x}_{ym}(t)
+	&=
+	A_{ym} x_{ym}(t)
+	+
+	b_{ym} r(t),
+	\\
+	y_m(t)
+	&=
+	c_{ym}^{T} x_{ym}(t),
+\end{align}
+
+kde
+
+\begin{equation}
+	A_{ym}
+	=
+	\begin{bmatrix}
+		0 & 1 \\
+		- a_{0m} & - a_{1m}
+	\end{bmatrix},
+	\qquad
+	b_{ym}
+	=
+	\begin{bmatrix}
+		0 \\
+		1
+	\end{bmatrix},
+	\qquad
+	c_{ym}
+	=
+	\begin{bmatrix}
+		b_{0m} \\
+		0
+	\end{bmatrix}.
+\end{equation}
+
+
+\paragraph{Stavový opis filtra výstupu}
+
+Filtračný člen použitý v adaptačnom zákone
+pre parameter $\Theta_1$
+\eqref{eq:mrac_theta1_adapt}
+je daný prenosom
+
+\begin{equation}
+	\frac{y_f(s)}{y(s)}
+	=
+	\frac{1}{s^2 + a_{1m}s + a_{0m}}.
+\end{equation}
+
+Zvolíme stavový vektor
+
+\begin{equation}
+	x_{yf}(t)
+	=
+	\begin{bmatrix}
+		y_f(t) \\
+		\dot{y}_f(t)
+	\end{bmatrix}.
+\end{equation}
+
+Stavový opis má tvar
+
+\begin{align}
+	\dot{x}_{yf}(t)
+	&=
+	A_{yf} x_{yf}(t)
+	+
+	b_{yf} y(t),
+	\\
+	y_f(t)
+	&=
+	c_{yf}^{T} x_{yf}(t),
+\end{align}
+
+kde
+
+\begin{equation}
+	A_{yf}
+	=
+	\begin{bmatrix}
+		0 & 1 \\
+		- a_{0m} & - a_{1m}
+	\end{bmatrix},
+	\qquad
+	b_{yf}
+	=
+	\begin{bmatrix}
+		0 \\
+		1
+	\end{bmatrix},
+	\qquad
+	c_{yf}
+	=
+	\begin{bmatrix}
+		1 \\
+		0
+	\end{bmatrix}.
+\end{equation}
+
+
+\paragraph{Stavový opis filtra derivácie výstupu}
+
+V adaptačnom zákone pre parameter $\Theta_2$
+\eqref{eq:mrac_theta2_adapt}
+sa nachádza člen
+
+\begin{equation}
+	\frac{\dot{y}_f(s)}{y(s)}
+	=
+	\frac{s}{s^2 + a_{1m}s + a_{0m}},
+\end{equation}
+
+ktorý zodpovedá derivácii výstupu predchádzajúceho filtra.
+
+Použijeme rovnaký stavový vektor $x_{yf}(t)$,
+pričom výstupná rovnica reprezentuje druhú stavovú veličinu
+
+\begin{align}
+	\dot{x}_{yf}(t)
+	&=
+	A_{ydf} x_{yf}(t)
+	+
+	b_{ydf} y(t),
+	\\
+	\dot{y}_f(t)
+	&=
+	c_{ydf}^{T} x_{yf}(t),
+\end{align}
+
+kde
+
+\begin{equation}
+	A_{ydf}
+	=
+	\begin{bmatrix}
+		0 & 1 \\
+		- a_{0m} & - a_{1m}
+	\end{bmatrix},
+	\qquad
+	b_{ydf}
+	=
+	\begin{bmatrix}
+		0 \\
+		1
+	\end{bmatrix},
+	\qquad
+	c_{ydf}
+	=
+	\begin{bmatrix}
+		0 \\
+		1
+	\end{bmatrix}.
+\end{equation}
+
+
+\paragraph{Stavový opis filtra referencie}
+
+Filtračný člen použitý v adaptačnom zákone
+pre parameter $\Theta_3$
+\eqref{eq:mrac_theta3_adapt}
+je daný prenosom
+
+\begin{equation}
+	\frac{r_f(s)}{r(s)}
+	=
+	\frac{1}{s^2 + a_{1m}s + a_{0m}}.
+\end{equation}
+Zvolíme stavový vektor
+
+\begin{equation}
+	x_{rf}(t)
+	=
+	\begin{bmatrix}
+		r_f(t) \\
+		\dot{r}_f(t)
+	\end{bmatrix}.
+\end{equation}
+
+Stavový opis má tvar
+
+\begin{align}
+	\dot{x}_{rf}(t)
+	&=
+	A_{rf} x_{rf}(t)
+	+
+	b_{rf} r(t),
+	\\
+	r_f(t)
+	&=
+	c_{rf}^{T} x_{rf}(t),
+\end{align}
+
+kde
+
+\begin{equation}
+	A_{rf}
+	=
+	\begin{bmatrix}
+		0 & 1 \\
+		- a_{0m} & - a_{1m}
+	\end{bmatrix},
+	\qquad
+	b_{rf}
+	=
+	\begin{bmatrix}
+		0 \\
+		1
+	\end{bmatrix},
+	\qquad
+	c_{rf}
+	=
+	\begin{bmatrix}
+		1 \\
+		0
+	\end{bmatrix}.
+\end{equation}
+
+
+\paragraph{Zhrnutie štruktúry dynamických blokov}
+
+Zo získaných stavových opisov vyplýva, že všetky dynamické bloky
+využívajú rovnakú menovateľovú dynamiku, teda
+
+\begin{equation}
+	A_{ym} = A_{yf} = A_{ydf} = A_{rf}
+	=
+	\begin{bmatrix}
+		0 & 1 \\
+		- a_{0m} & - a_{1m}
+	\end{bmatrix},
+\end{equation}
+
+a rovnako
+
+\begin{equation}
+	b_{ym} = b_{yf} = b_{ydf} = b_{rf}
+	=
+	\begin{bmatrix}
+		0 \\
+		1
+	\end{bmatrix}.
+\end{equation}
+
+Jednotlivé bloky sa odlišujú iba výstupnou maticou $c$.
+
+Pre filter výstupu a jeho derivácie možno zapísať
+spoločnú výstupnú rovnicu v maticovom tvare
+
+\begin{equation}
+	\begin{bmatrix}
+		y_f(t) \\
+		\dot{y}_f(t)
+	\end{bmatrix}
+	=
+	C_{yf}
+	x_{yf}(t),
+\end{equation}
+
+kde
+
+\begin{equation}
+	C_{yf}
+	=
+	\begin{bmatrix}
+		1 & 0 \\
+		0 & 1
+	\end{bmatrix}.
+\end{equation}
+
+Pre filter referencie platí
+
+\begin{equation}
+	r_f(t)
+	=
+	\begin{bmatrix}
+		1 & 0
+	\end{bmatrix}
+	x_{rf}(t).
+\end{equation}
+
+Referenčný model je realizovaný samostatne
+so stavovým vektorom $x_{ym}(t)$, pričom jeho výstup je
+
+\begin{equation}
+	y_m(t)
+	=
+	\begin{bmatrix}
+		b_{0m} & 0
+	\end{bmatrix}
+	x_{ym}(t).
+\end{equation}
+
+% -------------------------------------------------------------------
+% Subsubsection - Pseudokód gradientnej MRAC regulácie
+% -------------------------------------------------------------------
+\subsubsection{Pseudokód gradientnej MRAC regulácie (diskrétna realizácia)}
+\label{sec:mrac_gradient_pseudocode}
+
+Diskrétna realizácia gradientnej MRAC regulácie
+je vykonávaná v pevnom vzorkovacom intervale $T_s$.
+V každom vzorkovacom kroku sú k dispozícii
+aktuálne merané veličiny a stavové premenné
+uložené z predchádzajúceho kroku.
+
+Zo systému je dostupný iba výstup $y(k)$.
+Keďže regulačný zákon využíva aj jeho časovú deriváciu,
+je potrebné túto veličinu numericky aproximovať.
+V diskrétnom čase je derivácia výstupu určená
+pomocou spätnej diferencie
+
+\[
 \dot{y}(k)
 =
 \frac{y(k)-y(k-1)}{T_s},
-\label{eq:mrac_dy_discrete}
-\end{equation}
+\]
 
-kde $T_s$ je vzorkovací čas.
+kde $y(k-1)$ predstavuje hodnotu výstupu
+z predchádzajúceho vzorkovacieho kroku.
 
+Na základe regresného vektora
+\(
+\omega(k) = [\, y(k),\ \dot{y}(k),\ r(k) \,]^T
+\)
+a aktuálneho vektora parametrov $\Theta(k)$
+je vypočítaný regulačný zásah $u(k)$.
+Následne je určená chyba sledovania
+\(
+e(k) = y(k) - y_m(k),
+\)
+kde $y_m(k)$ je výstup referenčného modelu.
 
+Adaptačný zákon MIT pravidla je realizovaný
+v diskrétnom tvare pomocou Eulerovej integrácie
+
+\[
+\Theta(k+1)
+=
+\Theta(k)
++
+T_s \dot{\Theta}(k),
+\]
+
+pričom $\dot{\Theta}(k)$ vyplýva zo vzťahov
+\eqref{eq:mrac_theta1_adapt} -- \eqref{eq:mrac_theta3_adapt}
+a obsahuje filtrované veličiny
+$y_f(k)$, $\dot{y}_f(k)$ a $r_f(k)$.
+
+Stavové rovnice referenčného modelu
+a jednotlivých filtračných blokov
+sú integrované rovnakým spôsobom v tvare
+
+\[
+x(k+1)
+=
+x(k)
++
+T_s \big( A x(k) + b v(k) \big),
+\]
+
+kde vstup $v(k)$ predstavuje referenciu $r(k)$
+alebo výstup systému $y(k)$
+v závislosti od konkrétneho bloku.
+
+Po vykonaní všetkých aktualizácií
+je hodnota $y(k)$ uložená
+pre použitie v nasledujúcom kroku
+pri výpočte numerickej derivácie.
+
+Pseudokód diskretizovanej realizácie algoritmu je uvedený nižšie.
+
+\begin{lstlisting}[language=Matlab,
+caption={Pseudokód diskrétnej implementácie gradientného MRAC regulátora},
+label={lst:mrac_gradient_realtime}]
+
+% Inputs: 
+% r(k) - reference signal
+% y(k) - plant output
+%
+% States:
+% x_ym(2x1) - [ym; ym_dot]
+% x_yf(2x1) - [yf; ydot_f]
+% x_rf - [rf; rf_dot]
+% Theta - [Theta1; Theta2; Theta3]
+% y_prev - y(k-1)
+%
+% Parameters:
+% a0m, a1m, b0m
+% alpha1, alpha2, alpha3
+% sign_b0
+% Ts
+
+% Common dynamics
+A = [ 0,     1;
+     -a0m, -a1m ];
+
+b = [ 0;
+      1 ];
+
+c_yf = [ 1, 0;
+         0, 1 ];
+
+c_rf = [ 1, 0 ];
+
+c_ym = [ b0m, 0 ];
+
+% Differentiation 
+ydot = ( y - y_prev ) / Ts;
+
+% Outputs from current states
+ym      = c_ym * x_ym;        % ym(k)
+yf_vec  = c_yf * x_yf;        % [yf(k); ydot_f(k)]
+yf      = yf_vec(1);
+ydot_f  = yf_vec(2);
+rf      = c_rf * x_rf;        % rf(k)
+
+% Tracking error
+e = y - ym;
+
+% Control law 
+omega = [ y; ydot; r ];
+u = Theta.' * omega;
+
+% MIT adaptation 
+dTheta = -sign_b0 * e * ...
+         [ alpha1 * yf;
+           alpha2 * ydot_f;
+           alpha3 * rf ];
+
+Theta_next = Theta + Ts * dTheta;
+
+% State updates 
+x_ym_next = x_ym + Ts * ( A * x_ym + [0; b0m] * r );
+x_yf_next = x_yf + Ts * ( A * x_yf + b * y );
+x_rf_next = x_rf + Ts * ( A * x_rf + b * r );
+
+% Memory update
+y_prev_next = y;
+
+\end{lstlisting}
 
 % -------------------------------------------------------------------
 % Subsection - Implementácia MRAC v prostredí MATLAB

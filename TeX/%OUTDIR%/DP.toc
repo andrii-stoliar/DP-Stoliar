@@ -37,6 +37,12 @@
 \contentsline {paragraph}{Adaptačná odchýlka}{38}{paragraph*.14}%
 \contentsline {paragraph}{Účelová funkcia a MIT pravidlo}{38}{paragraph*.15}%
 \contentsline {paragraph}{Zákon adaptácie pre systém druhého rádu}{38}{paragraph*.16}%
-\contentsline {subsubsection}{\numberline {5.1.1}Diskrétna realizácia (real-time implementácia)}{39}{subsubsection.5.1.1}%
-\contentsline {subsection}{\numberline {5.2}Implementácia MRAC v prostredí MATLAB}{39}{subsection.5.2}%
-\contentsline {section}{Zoznam literatúry}{42}{lstnumber.9.58}%
+\contentsline {subsubsection}{\numberline {5.1.1}Prevod systému do stavového priestoru}{39}{subsubsection.5.1.1}%
+\contentsline {paragraph}{Stavový opis referenčného modelu}{40}{paragraph*.17}%
+\contentsline {paragraph}{Stavový opis filtra výstupu}{41}{paragraph*.18}%
+\contentsline {paragraph}{Stavový opis filtra derivácie výstupu}{41}{paragraph*.19}%
+\contentsline {paragraph}{Stavový opis filtra referencie}{41}{paragraph*.20}%
+\contentsline {paragraph}{Zhrnutie štruktúry dynamických blokov}{42}{paragraph*.21}%
+\contentsline {subsubsection}{\numberline {5.1.2}Pseudokód gradientnej MRAC regulácie (diskrétna realizácia)}{42}{subsubsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.2}Implementácia MRAC v prostredí MATLAB}{44}{subsection.5.2}%
+\contentsline {section}{Zoznam literatúry}{46}{lstnumber.10.58}%
