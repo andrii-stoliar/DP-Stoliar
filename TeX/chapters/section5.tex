@@ -114,9 +114,12 @@ Prenos uzavretého regulačného obvodu je
 Porovnaním s referenčným modelom získame ideálny vektor parametrov
 
 \begin{align}
-	\Theta_1^\ast &= \frac{a_0 - a_{0m}}{b_0}, \\
-	\Theta_2^\ast &= \frac{a_1 - a_{1m}}{b_0}, \\
+	\Theta_1^\ast &= \frac{a_0 - a_{0m}}{b_0}, 
+	\label{eq:mrac_idelal_parameters_theta_1} \\
+	\Theta_2^\ast &= \frac{a_1 - a_{1m}}{b_0}, 
+	\label{eq:mrac_idelal_parameters_theta_2} \\
 	\Theta_3^\ast &= \frac{b_{0m}}{b_0}.
+	\label{eq:mrac_idelal_parameters_theta_3}
 \end{align}
 
 \paragraph{Adaptačná odchýlka}
@@ -867,7 +870,7 @@ dTheta = -sign_b0 * e * ...
 Theta_next = Theta + Ts * dTheta;
 
 % State updates 
-x_ym_next = x_ym + Ts * ( A * x_ym + [0; b0m] * r );
+x_ym_next = x_ym + Ts * ( A * x_ym + b * r );
 x_yf_next = x_yf + Ts * ( A * x_yf + b * y );
 x_rf_next = x_rf + Ts * ( A * x_rf + b * r );
 
@@ -883,104 +886,68 @@ y_prev_next = y;
 \label{sec:mrac_matlab_implementation}
 
 Cieľom tejto časti bolo implementovať navrhnutý gradientný MRAC algoritmus
-v prostredí MATLAB/Simulink bez využitia štandardných blokov riadenia,
-preddefinovaných adaptívnych štruktúr alebo iných pokročilých nástrojov
-Simulinku. Celý algoritmus je realizovaný výlučne v rámci jedného bloku
-MATLAB Function, pričom všetky výpočty – riadiaci zákon,
-referenčný model, filtračné členy aj adaptačný mechanizmus –
-sú explicitne implementované v zdrojovom kóde.
+v prostredí MATLAB/Simulink bez využitia štandardných blokov adaptívneho riadenia
+a bez preddefinovaných riadiacich štruktúr. Celý regulátor je realizovaný
+v rámci jedného bloku \texttt{MATLAB Function}, pričom regulačný zákon,
+referenčný model, filtračné členy aj adaptačný mechanizmus sú explicitne
+implementované priamo v zdrojovom kóde.
 
-Použitý blok MATLAB Function nemá vnútornú pamäť medzi
-jednotlivými vzorkovacími krokmi. Z tohto dôvodu je potrebné zabezpečiť,
-aby všetky stavové premenné, ktoré musia byť prenesené do nasledujúceho
-diskrétneho kroku, boli vedené ako vstupno-výstupné premenné bloku.
-Konkrétne ide o:
+Referenčný model bol zvolený v tvare
+\[
+\frac{y_m(s)}{r(s)}=\frac{1}{s^2+5s+1},
+\]
+keďže takáto dynamika zodpovedá požadovanému priebehu prechodovej odozvy
+v uvažovanom rozsahu prevádzky.
 
-\begin{itemize}
-    \item stav referenčného modelu $x_m$,
-    \item stav filtra výstupu $x_{yf}$,
-    \item stav filtra referencie $x_{rf}$,
-    \item adaptačný vektor parametrov $\Theta$,
-    \item predchádzajúcu hodnotu výstupu systému $y_{prev}$.
-\end{itemize}
+\paragraph{Inicializácia parametrov regulátora}
 
-Tieto veličiny sú na výstupe bloku aktualizované a následne spätne
-privedené na jeho vstup, čím sa zabezpečí diskrétna dynamická realizácia
-celého algoritmu.
+V predchádzajúcich kapitolách bola identifikovaná prenosová funkcia riadeného systému
+v zvolenom pracovnom bode (\eqref{eq:Gs_ls_approx}). Na základe tejto aproximácie
+je možné vypočítať ideálne parametre $\Theta^\ast$ pre daný lineárny model
+a použiť ich ako počiatočný odhad $\Theta(0)$.
 
-Schéma prepojenia blokov v prostredí Simulink je znázornená nižšie.
+Aj keď takto určené hodnoty nepredstavujú ideálne parametre pre celý systém
+(z dôvodu nelinearity a závislosti parametrov od pracovného bodu),
+v praxi poskytujú vhodnejší počiatočný odhad než nulová inicializácia,
+čím sa zlepšujú počiatočné prechodové deje a skracuje adaptačná fáza regulátora.
 
-\begin{center}
-    \vbox{
-        \makebox[\textwidth][c]{%
-            \includegraphics[width=1.3\textwidth, trim=100 50 100 50, clip]{TS_mrac_simulink_scheme.pdf}
-        }
-        \figcaption{Zapojenie MRAC regulátora v bloku MATLAB Function so spätnou väzbou stavov}
-        \label{fig:mrac_simulink_scheme}
-    }
-\end{center}
+Pre identifikovaný model v pracovnom bode uvažujme parametre $a_0$, $a_1$, $b_0$
+získané z \eqref{eq:Gs_ls_approx}.
+Po dosadení do vzťahov pre ideálne parametre (\eqref{eq:mrac_idelal_parameters_theta_1} -- \eqref{eq:mrac_idelal_parameters_theta_3})
+a pri voľbe parametrov referenčného modelu
+$a_{0m}=1$, $a_{1m}=5$, $b_{0m}=1$
+získame počiatočné hodnoty parametrov regulátora
 
-Implementačný kód použitý v bloku MATLAB Function má nasledujúci tvar:
+\begin{equation}
+\Theta(0) =
+\begin{bmatrix}
+\Theta_1(0)\\
+\Theta_2(0)\\
+\Theta_3(0)
+\end{bmatrix}
+=
+\begin{bmatrix}
+\frac{8.95-1}{6.074}\\
+\frac{59.01-5}{6.074}\\
+\frac{1}{6.074}
+\end{bmatrix}
+\approx
+\begin{bmatrix}
+1.309\\
+8.892\\
+0.165
+\end{bmatrix}.
+\end{equation}
 
-\begin{lstlisting}[language=Matlab,
-caption={Implementácia diskrétneho MRAC regulátora v MATLAB Function bloku},
-label={lst:mrac_matlab_function}]
+\paragraph{Implementačné poznámky}
 
-function [u, ym, Theta_next, ref_x_next, yf_x_next, rf_x_next, y_prev_next] ...
-    = mrac_block(r, y, Theta, ref_x, yf_x, rf_x, y_prev)
+Použitý blok \texttt{MATLAB Function} pracuje v diskrétnom čase.
+Stavové rovnice referenčného modelu a filtračných blokov sú integrované
+Eulerovou metódou a adaptačný zákon je realizovaný rovnakým spôsobom.
+Keďže regulačný zákon využíva aj $\dot{y}(k)$, derivácia výstupu je určená
+numericky pomocou spätnej diferencie.
 
-% constant parameters
-a0m = 1;
-a1m = 5;
-b0m = 1;
+Vzhľadom na požiadavku na plne autonómnu realizáciu je inicializácia parametrov
+$\Theta(0)$ implementovaná priamo v kóde bloku a vykoná sa iba pri prvom volaní.
+Implementačný kód bloku \texttt{MATLAB Function} má nasledujúci tvar:
 
-alpha1 = 0.6;
-alpha2 = 0.001;
-alpha3 = 0.005;
-
-sign_b0 = 1;
-Ts = 0.1;
-
-A = [0, 1;
-    -a0m, -a1m];
-
-B_ref = [0;
-         b0m];
-
-B_f = [0;
-       1];
-
-% derivative approximation
-ydot = (y - y_prev) / Ts;
-
-% outputs from current states
-ym   = ref_x(1);
-yf   = yf_x(1);
-yf_s = yf_x(2);
-rf   = rf_x(1);
-
-% tracking error
-e = y - ym;
-
-% control law
-omega = [y; ydot; r];
-u = Theta.' * omega;
-
-% MIT adaptation law
-dTheta = -sign_b0 * e * ...
-         [alpha1 * yf;
-          alpha2 * yf_s;
-          alpha3 * rf];
-
-Theta_next = Theta + Ts * dTheta;
-
-% state updates (Euler method)
-ref_x_next = ref_x + Ts * (A * ref_x + B_ref * r);
-yf_x_next  = yf_x  + Ts * (A * yf_x  + B_f   * y);
-rf_x_next  = rf_x  + Ts * (A * rf_x  + B_f   * r);
-
-% memory update
-y_prev_next = y;
-
-end
-\end{lstlisting}
