@@ -27,24 +27,23 @@
 \contentsline {section}{\numberline {4}PI regulácia s prepínaním pracovných bodov}{29}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Prepínač pracovných bodov}{29}{subsection.4.1}%
 \contentsline {subsubsection}{\numberline {4.1.1}Opis a schéma riadenia z použitím prepínača}{29}{subsubsection.4.1.1}%
-\contentsline {subsubsection}{\numberline {4.1.2}Experiment s prepínaním pracovných bodov}{34}{subsubsection.4.1.2}%
-\contentsline {section}{\numberline {5}MRAC regulácia – gradientná metóda}{37}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Popis algoritmu}{37}{subsection.5.1}%
-\contentsline {paragraph}{Model riadeného systému}{37}{paragraph*.10}%
-\contentsline {paragraph}{Referenčný model a statické zosilnenie}{37}{paragraph*.11}%
-\contentsline {paragraph}{Zákon riadenia}{37}{paragraph*.12}%
-\contentsline {paragraph}{Podmienka zhody a ideálne parametre}{38}{paragraph*.13}%
-\contentsline {paragraph}{Adaptačná odchýlka}{38}{paragraph*.14}%
-\contentsline {paragraph}{Účelová funkcia a MIT pravidlo}{38}{paragraph*.15}%
-\contentsline {paragraph}{Zákon adaptácie pre systém druhého rádu}{38}{paragraph*.16}%
-\contentsline {subsubsection}{\numberline {5.1.1}Prevod systému do stavového priestoru}{39}{subsubsection.5.1.1}%
-\contentsline {paragraph}{Stavový opis referenčného modelu}{40}{paragraph*.17}%
-\contentsline {paragraph}{Stavový opis filtra výstupu}{41}{paragraph*.18}%
-\contentsline {paragraph}{Stavový opis filtra derivácie výstupu}{41}{paragraph*.19}%
-\contentsline {paragraph}{Stavový opis filtra referencie}{41}{paragraph*.20}%
-\contentsline {paragraph}{Zhrnutie štruktúry dynamických blokov}{42}{paragraph*.21}%
-\contentsline {subsubsection}{\numberline {5.1.2}Pseudokód gradientnej MRAC regulácie (diskrétna realizácia)}{42}{subsubsection.5.1.2}%
-\contentsline {subsection}{\numberline {5.2}Implementácia MRAC v prostredí MATLAB}{44}{subsection.5.2}%
-\contentsline {subsubsection}{\numberline {5.2.1}Simulácia}{46}{subsubsection.5.2.1}%
-\contentsline {subsubsection}{\numberline {5.2.2}Experiment na tepelnej sústave}{47}{subsubsection.5.2.2}%
-\contentsline {section}{Zoznam literatúry}{48}{figure.26}%
+\contentsline {section}{\numberline {5}MRAC regulácia – gradientná metóda}{31}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Popis algoritmu}{31}{subsection.5.1}%
+\contentsline {paragraph}{Model riadeného systému}{31}{paragraph*.10}%
+\contentsline {paragraph}{Referenčný model a statické zosilnenie}{31}{paragraph*.11}%
+\contentsline {paragraph}{Zákon riadenia}{31}{paragraph*.12}%
+\contentsline {paragraph}{Podmienka zhody a ideálne parametre}{32}{paragraph*.13}%
+\contentsline {paragraph}{Adaptačná odchýlka}{32}{paragraph*.14}%
+\contentsline {paragraph}{Účelová funkcia a MIT pravidlo}{32}{paragraph*.15}%
+\contentsline {paragraph}{Zákon adaptácie pre systém druhého rádu}{32}{paragraph*.16}%
+\contentsline {subsubsection}{\numberline {5.1.1}Prevod systému do stavového priestoru}{33}{subsubsection.5.1.1}%
+\contentsline {paragraph}{Stavový opis referenčného modelu}{34}{paragraph*.17}%
+\contentsline {paragraph}{Stavový opis filtra výstupu}{35}{paragraph*.18}%
+\contentsline {paragraph}{Stavový opis filtra derivácie výstupu}{35}{paragraph*.19}%
+\contentsline {paragraph}{Stavový opis filtra referencie}{35}{paragraph*.20}%
+\contentsline {paragraph}{Zhrnutie štruktúry dynamických blokov}{36}{paragraph*.21}%
+\contentsline {subsubsection}{\numberline {5.1.2}Pseudokód gradientnej MRAC regulácie (diskrétna realizácia)}{36}{subsubsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.2}Implementácia MRAC v prostredí MATLAB}{38}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.1}Simulácia}{40}{subsubsection.5.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.2}Experiment na tepelnej sústave}{41}{subsubsection.5.2.2}%
+\contentsline {section}{Zoznam literatúry}{42}{figure.23}%
