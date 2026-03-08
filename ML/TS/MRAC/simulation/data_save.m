@@ -1,2 +1,2 @@
 T = table(t, r, y, ym, u, theta1, theta2, theta3);
-writetable(T, 'mrac_simulation.csv');
+writetable(T, 'ts_ml_mrac_simulation.csv');

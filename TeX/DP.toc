@@ -45,6 +45,6 @@
 \contentsline {paragraph}{Zhrnutie štruktúry dynamických blokov}{42}{paragraph*.21}%
 \contentsline {subsubsection}{\numberline {5.1.2}Pseudokód gradientnej MRAC regulácie (diskrétna realizácia)}{42}{subsubsection.5.1.2}%
 \contentsline {subsection}{\numberline {5.2}Implementácia MRAC v prostredí MATLAB}{44}{subsection.5.2}%
-\contentsline {paragraph}{Inicializácia parametrov regulátora}{44}{paragraph*.22}%
-\contentsline {paragraph}{Implementačné poznámky}{44}{paragraph*.23}%
-\contentsline {section}{Zoznam literatúry}{45}{paragraph*.23}%
+\contentsline {subsubsection}{\numberline {5.2.1}Simulácia}{46}{subsubsection.5.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.2}Experiment na tepelnej sústave}{47}{subsubsection.5.2.2}%
+\contentsline {section}{Zoznam literatúry}{48}{figure.26}%

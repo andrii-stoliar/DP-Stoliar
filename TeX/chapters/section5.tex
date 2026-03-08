@@ -887,67 +887,246 @@ y_prev_next = y;
 
 Cieľom tejto časti bolo implementovať navrhnutý gradientný MRAC algoritmus
 v prostredí MATLAB/Simulink bez využitia štandardných blokov adaptívneho riadenia
-a bez preddefinovaných riadiacich štruktúr. Celý regulátor je realizovaný
-v rámci jedného bloku \texttt{MATLAB Function}, pričom regulačný zákon,
-referenčný model, filtračné členy aj adaptačný mechanizmus sú explicitne
-implementované priamo v zdrojovom kóde.
+a bez preddefinovaných riadiacich štruktúr.
+Celý regulátor je realizovaný v rámci jedného bloku \texttt{MATLAB Function},
+pričom regulačný zákon, referenčný model, filtračné členy
+aj adaptačný mechanizmus sú explicitne implementované priamo
+v zdrojovom kóde.
 
-Referenčný model bol zvolený v tvare
-\[
-\frac{y_m(s)}{r(s)}=\frac{1}{s^2+5s+1},
-\]
-keďže takáto dynamika zodpovedá požadovanému priebehu prechodovej odozvy
-v uvažovanom rozsahu prevádzky.
-
-\paragraph{Inicializácia parametrov regulátora}
-
-V predchádzajúcich kapitolách bola identifikovaná prenosová funkcia riadeného systému
-v zvolenom pracovnom bode (\eqref{eq:Gs_ls_approx}). Na základe tejto aproximácie
-je možné vypočítať ideálne parametre $\Theta^\ast$ pre daný lineárny model
-a použiť ich ako počiatočný odhad $\Theta(0)$.
-
-Aj keď takto určené hodnoty nepredstavujú ideálne parametre pre celý systém
-(z dôvodu nelinearity a závislosti parametrov od pracovného bodu),
-v praxi poskytujú vhodnejší počiatočný odhad než nulová inicializácia,
-čím sa zlepšujú počiatočné prechodové deje a skracuje adaptačná fáza regulátora.
-
-Pre identifikovaný model v pracovnom bode uvažujme parametre $a_0$, $a_1$, $b_0$
-získané z \eqref{eq:Gs_ls_approx}.
-Po dosadení do vzťahov pre ideálne parametre (\eqref{eq:mrac_idelal_parameters_theta_1} -- \eqref{eq:mrac_idelal_parameters_theta_3})
-a pri voľbe parametrov referenčného modelu
-$a_{0m}=1$, $a_{1m}=5$, $b_{0m}=1$
-získame počiatočné hodnoty parametrov regulátora
+Referenčný model použitý pri implementácii regulátora má tvar
 
 \begin{equation}
-\Theta(0) =
-\begin{bmatrix}
-\Theta_1(0)\\
-\Theta_2(0)\\
-\Theta_3(0)
-\end{bmatrix}
-=
-\begin{bmatrix}
-\frac{8.95-1}{6.074}\\
-\frac{59.01-5}{6.074}\\
-\frac{1}{6.074}
-\end{bmatrix}
-\approx
-\begin{bmatrix}
-1.309\\
-8.892\\
-0.165
-\end{bmatrix}.
+\frac{y_m(s)}{r(s)}=\frac{1}{s^2+20s+1}.
+\label{eq:mrac_ref_model_matlab}
 \end{equation}
 
-\paragraph{Implementačné poznámky}
+Diskrétna implementácia regulátora je realizovaná
+so vzorkovacou periódou
 
-Použitý blok \texttt{MATLAB Function} pracuje v diskrétnom čase.
-Stavové rovnice referenčného modelu a filtračných blokov sú integrované
-Eulerovou metódou a adaptačný zákon je realizovaný rovnakým spôsobom.
-Keďže regulačný zákon využíva aj $\dot{y}(k)$, derivácia výstupu je určená
-numericky pomocou spätnej diferencie.
+\begin{equation}
+T_s = 0.1~\mathrm{s}.
+\label{eq:mrac_sampling_time}
+\end{equation}
 
-Vzhľadom na požiadavku na plne autonómnu realizáciu je inicializácia parametrov
-$\Theta(0)$ implementovaná priamo v kóde bloku a vykoná sa iba pri prvom volaní.
-Implementačný kód bloku \texttt{MATLAB Function} má nasledujúci tvar:
+Riadiaci zásah je v každom vzorkovacom kroku
+vypočítaný zo vzťahu
+
+\begin{equation}
+u(k)=\Theta^T(k)\omega(k),
+\label{eq:mrac_control_law_discrete}
+\end{equation}
+
+kde regresný vektor má tvar
+
+\begin{equation}
+\omega(k)=
+\begin{bmatrix}
+y(k)\\
+\dot{y}(k)\\
+r(k)
+\end{bmatrix}.
+\label{eq:mrac_regressor_vector}
+\end{equation}
+
+V implementácii je zároveň použitá saturácia
+riadiaceho zásahu,
+aby bol vstup systému obmedzený
+na fyzikálne realizovateľný rozsah.
+Hodnota riadiaceho signálu je preto limitovaná
+na interval $\langle 0,10\rangle$.
+
+Implementácia regulátora v bloku \texttt{MATLAB Function}
+má nasledujúcu podobu.
+
+\begin{lstlisting}[language=Matlab,
+caption={Implementácia gradientného MRAC regulátora v bloku MATLAB Function},
+label={lst:mrac_matlab_function}]
+function [u, ym, Theta_used, Theta_next, x_ym_next, x_yf_next, ...
+          x_rf_next, y_prev_next] = ...
+          mrac_block(r, y, Theta_in, x_ym, x_yf, x_rf, y_prev)
+
+% Constant parameters
+a0m = 1;
+a1m = 20;
+b0m = 1;
+
+alpha1 = 14 * 0.0001;
+alpha2 = 30 * 0.0001;
+alpha3 = 14 * 0.0001;
+
+sign_b0 = 1;
+Ts = 0.1;
+
+Theta = Theta_in;
+
+Theta_used = Theta;
+
+A = [0,    1;
+    -a0m, -a1m];
+
+b = [0;
+     1];
+
+C_yf = [1, 0;
+        0, 1];
+
+C_rf = [1, 0];
+
+C_ym = [b0m, 0];
+
+ydot = (y - y_prev)/Ts;
+
+ym      = C_ym * x_ym;
+yf_full = C_yf * x_yf;
+yf      = yf_full(1);
+ydot_f  = yf_full(2);
+rf      = C_rf * x_rf;
+
+e = y - ym;
+
+omega = [y; ydot; r];
+u = Theta.' * omega;
+u = max(min(u, 10), 0);
+
+dTheta = -sign_b0 * e * [alpha1 * yf;
+                         alpha2 * ydot_f;
+                         alpha3 * rf];
+
+Theta_next = Theta + dTheta * Ts;
+
+x_ym_next = x_ym + Ts * (A * x_ym + b * r);
+x_yf_next = x_yf + Ts * (A * x_yf + b * y);
+x_rf_next = x_rf + Ts * (A * x_rf + b * r);
+
+y_prev_next = y;
+
+end
+\end{lstlisting}
+
+Schéma implementovaného bloku \texttt{MATLAB Function}
+v prostredí Simulink spolu s jeho vstupmi a výstupmi
+je znázornená na obr.~\ref{fig:mrac_matlab_block}.
+
+\begin{center}
+    \vbox{
+        \makebox[\textwidth][c]{%
+            \includegraphics[
+                width=1.8\textwidth,
+                angle=0,
+                trim=10 60 10 80,
+                clip
+            ]{TS_mrac_simulink_scheme.pdf}
+        }
+        \figcaption{Blok \texttt{MATLAB Function} implementujúci gradientný MRAC regulátor v prostredí Simulink}
+        \label{fig:mrac_matlab_block}
+    }
+\end{center}
+
+% -------------------------------------------------------------------
+% Subsubsection - Simulácia
+% -------------------------------------------------------------------
+\subsubsection{Simulácia}
+\label{sec:mrac_matlab_simulation}
+
+V prvej fáze overovania bola realizovaná simulácia navrhnutého regulátora
+na systéme identifikovanom v časti
+\ref{sec:system_ident_ts05},
+konkrétne na modeli \eqref{eq:Gs_ls_approx}.
+Cieľom simulácie bolo overiť,
+či navrhnutý adaptačný mechanizmus vedie
+k postupnej úprave parametrov regulátora
+a či systém dokáže sledovať výstup referenčného modelu.
+
+V prípade simulácie nehrala presná voľba adaptačných parametrov
+$\alpha_1$, $\alpha_2$, $\alpha_3$
+zásadnú úlohu.
+Dôraz bol kladený najmä na samotné overenie funkčnosti algoritmu.
+Počiatočné hodnoty parametrov boli zvolené nulové
+
+\[
+\Theta(0)=
+\begin{bmatrix}
+0\\
+0\\
+0
+\end{bmatrix},
+\]
+
+aby bolo možné priamo sledovať proces adaptácie.
+
+Výsledok simulácie je uvedený na obr.~\ref{fig:mrac_simulation_results}.
+Na obrázku sú zobrazené priebehy výstupu systému $y(t)$,
+výstupu referenčného modelu $y_m(t)$
+a referenčného signálu $r(t)$,
+ďalej riadiaci zásah $u(t)$
+a vývoj parametrov $\Theta_1$, $\Theta_2$, $\Theta_3$.
+
+\begin{center}
+    \vbox{
+        \makebox[\textwidth][c]{%
+            \includegraphics[width=1.5\textwidth]{ts_ml_mrac_simulation.png}
+        }
+        \figcaption{Simulačné výsledky gradientného MRAC regulátora}
+        \label{fig:mrac_simulation_results}
+    }
+\end{center}
+
+Zo získaných priebehov možno konštatovať,
+že algoritmus vykonáva adaptáciu parametrov regulátora
+a hodnoty parametrov sa v čase menia v súlade
+s minimalizáciou chyby sledovania.
+Výstup systému zároveň sleduje výstup referenčného modelu,
+čo potvrdzuje funkčnosť implementovaného gradientného MRAC algoritmu.
+
+% -------------------------------------------------------------------
+% Subsubsection - Experiment na tepelnej sústave
+% -------------------------------------------------------------------
+\subsubsection{Experiment na tepelnej sústave}
+\label{sec:mrac_matlab_experiment}
+
+Po simulačnom overení bol regulátor aplikovaný
+na reálnu sústavu,
+konkrétne na tepelný systém.
+
+Hodnoty adaptačných parametrov
+boli zvolené empiricky,
+teda na základe experimentálneho pozorovania správania systému.
+Počas ladenia boli jednotlivé koeficienty menené
+a následne bol vyhodnotený výsledok regulácie.
+Ako vhodná voľba sa ukázali hodnoty
+
+\[
+[\alpha_1,\alpha_2,\alpha_3]
+=
+[14,30,14]\cdot10^{-4}.
+\]
+
+Aj v tomto prípade boli počiatočné hodnoty parametrov zvolené nulové.
+
+Výsledok experimentu je uvedený na obr.~\ref{fig:mrac_real_results}.
+Na obrázku sú opäť zobrazené priebehy výstupu systému,
+referenčného modelu a referenčného signálu,
+ďalej riadiaci zásah
+a vývoj parametrov regulátora.
+
+\begin{center}
+    \vbox{
+        \makebox[\textwidth][c]{%
+            \includegraphics[width=1.5\textwidth]{ts_ml_mrac_real.png}
+        }
+        \figcaption{Experimentálne výsledky gradientného MRAC regulátora na tepelnej sústave}
+        \label{fig:mrac_real_results}
+    }
+\end{center}
+
+Z experimentálnych výsledkov možno pozorovať,
+že adaptácia parametrov $\Theta$
+prebieha očakávaným spôsobom.
+Výstup systému sleduje výstup referenčného modelu
+s uspokojivou presnosťou,
+pričom je možné pozorovať mierne zaostávanie
+za referenčným priebehom.
+Tento jav je spôsobený
+pomalšou dynamikou reálnej tepelnej sústavy
+v porovnaní s ideálnym modelom použitým pri simulácii.
 
