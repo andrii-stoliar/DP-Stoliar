@@ -59,41 +59,630 @@ kde sú uvedené identifikované prenosové funkcie, hodnoty pracovného bodu $y
 Keďže pôvodné statické charakteristiky systému boli merané ešte počas letného obdobia, bolo rozhodnuté hodnoty $y_{pb}$ pre tieto experimenty zmerať znova, rovnakým spôsobom ako v sekcii~\ref{sec:staticke_vlastnosti}.  
 V tabuľke sú preto uvedené aktuálne hodnoty pracovných bodov, ktoré vernejšie reprezentujú stav systému počas meraní v zimnom období.
 
+
 % -------------------------------------------------------------------
-% Subsubsection 4.1.1 - Opis a schéma riadenia z použitím prepínača
+% Subsubsection 4.1.1 - Opis a schéma riadenia s použitím prepínača
 % -------------------------------------------------------------------
 
-\subsubsection{Opis a schéma riadenia z použitím prepínača}
+\subsubsection{Opis a schéma riadenia s použitím prepínača}
 
-V tejto časti sa prezentuje návrh riadenia systému TS05 s využitím prepínača pracovných bodov.
-Zámerom riadenia je pokryť dve odlišné situácie:
-\begin{itemize}
-    \item reguláciu v okolí zvoleného pracovného bodu.
-    \item bezpečný prechod medzi pracovnými bodmi bez neželaných javov, ako je dlhodobé presýtenie akčného zásahu alebo príliš agresívna dynamika.
-\end{itemize}
+V tejto časti je uvažovaná riadiaca štruktúra,
+ktorá pozostáva z dvoch PI regulátorov.
+Prvý z nich predstavuje globálny PI regulátor,
+ktorý pracuje s absolútnymi veličinami systému.
+Druhý predstavuje lokálny PI regulátor,
+ktorý pracuje s normalizovanými veličinami
+v okolí aktuálneho pracovného bodu.
 
-Navrhnutá štruktúra je založená na tom, že pri zmene globálnej žiadanej hodnoty má prioritu prechodový režim (prepínač pracovných bodov),
-a až po jeho ukončení sa aktivuje lokálna PI regulácia v okolí aktuálneho pracovného bodu.
+Lokálny regulátor využíva normalizované premenné
 
-Bloková schéma logickej postupnosti operácií navrhnutého algoritmu riadenia je znázornená na obr.~\ref{fig:ts_control_sequence}.
+\begin{equation}
+y_N = y - y_{pb},
+\qquad
+u_N = u - u_{pb},
+\label{eq:pi_switch_normalized_variables}
+\end{equation}
 
-Ako už bolo uvedené, pokiaľ nedôjde ku skokovej zmene globálnej žiadanej hodnoty,
-systém pracuje v režime lokálnej regulácie v okolí aktuálneho pracovného bodu.
-V tomto prípade je aktívny PI regulátor, ktorý zabezpečuje reguláciu nad normalizovanými veličinami
-\[
-y_N = y - y_{pb}, \qquad u_N = u - u_{pb},
-\]
-kde $y_{pb}$ a $u_{pb}$ predstavujú posuny výstupnej a vstupnej veličiny príslušného pracovného bodu.
+kde $y_{pb}$ a $u_{pb}$
+predstavujú výstupnú a vstupnú hodnotu príslušného pracovného bodu.
+Parametre lokálneho PI regulátora
+sú volené pomocou princípu gain scheduling,
+pričom sa používajú hodnoty uvedené v tabuľke~\ref{tab:pb_overview}.
 
-Informáciu o tom, v ktorom pracovnom bode sa systém nachádza,
-nepretržite poskytuje \textit{solver}.
-Táto informácia slúži lokálnemu regulátoru na výber zodpovedajúcich posunov $y_{pb}$, $u_{pb}$
-a zároveň na nastavenie parametrov PI regulátora $K_p$ a $K_i$.
+Globálny regulátor pracuje s absolútnou žiadanou hodnotou.
+Aby prechod medzi pracovnými bodmi neprebiehal príliš prudko,
+globálna žiadaná hodnota je pred vstupom do regulátora filtrovaná
+prenosom druhého rádu v tvare
 
-V prípade, že dôjde ku skokovej zmene globálnej žiadanej hodnoty,
-lokálna PI regulácia je dočasne deaktivovaná
-a riadenie preberá prepínač pracovných bodov.
-Ten zabezpečuje plynulý prechod medzi pracovnými bodmi
-a po jeho ukončení sa riadenie automaticky prepne späť
-do režimu lokálnej regulácie v okolí nového pracovného bodu.
+\begin{equation}
+G_f(s)=\frac{1}{(10s+1)^2}.
+\label{eq:pi_switch_global_filter_tf}
+\end{equation}
 
+Takto zvolený filter zabezpečuje dostatočne plynulý priebeh
+globálnej žiadanej hodnoty,
+v dôsledku čoho prechod medzi pracovnými bodmi
+prebieha pomalšie a s menším rizikom vzniku neželaných prechodových javov.
+
+O tom, ktorý PI regulátor bude v danom okamihu aktívny,
+rozhoduje blok logiky prepínača.
+Jeho úloha je dvojitá.
+Po prvé určuje,
+či má byť aktívny globálny alebo lokálny regulátor.
+Po druhé spracúva globálnu žiadanú hodnotu
+a vytvára jej filtrovanú verziu pre globálnu reguláciu.
+
+Navrhnutá bloková schéma algoritmu
+je znázornená na obr.~\ref{fig:pi_switch_logic_scheme}.
+
+\begin{center}
+    \vbox{
+        \makebox[\textwidth][c]{%
+            \includegraphics[width=1.2\textwidth]{SWITCH_block_logic_scheme.jpg}
+        }
+        \figcaption{Bloková schéma riadenia s globálnym a lokálnym PI regulátorom}
+        \label{fig:pi_switch_logic_scheme}
+    }
+\end{center}
+
+Logika prepínania je založená na nasledujúcom princípe.
+Ak je detegovaná skoková zmena globálnej žiadanej hodnoty,
+aktivuje sa globálny PI regulátor,
+ktorý zabezpečuje prechod medzi pracovnými bodmi.
+Ak globálna regulácia nie je aktívna,
+systém sa automaticky prepne do režimu lokálnej regulácie,
+v ktorom sa používa PI regulátor
+naladený pre aktuálny pracovný bod.
+
+V ďalšej časti budú predstavené dve konkrétne realizácie tejto logiky.
+Budú sa líšiť predovšetkým spôsobom rozhodovania o tom,
+kedy sa globálna regulácia ukončí
+a kedy sa aktivuje lokálna regulácia.
+
+\paragraph{Sledovanie integrátora}
+
+Dôležitou požiadavkou navrhnutej štruktúry
+je zabezpečenie plynulého prepínania medzi globálnym
+a lokálnym PI regulátorom.
+Ak by sa po deaktivácii jedného regulátora
+jeho integračná zložka nechala bez aktualizácie,
+po opätovnom aktivovaní by mohla mať hodnotu,
+ktorá nezodpovedá aktuálne realizovanému akčnému zásahu systému.
+To by viedlo ku skokovej zmene riadenia
+a k neželanej dynamike pri prepnutí.
+
+Z tohto dôvodu je pri neaktívnom regulátore
+použitý jednoduchý sledovací mechanizmus integrátora.
+Jeho úlohou je priebežne nastavovať integračný stav tak,
+aby po aktivovaní regulátora nedošlo
+k skokovej zmene jeho výstupu.
+V prípade lokálneho regulátora sa pri tomto výpočte
+využíva aj hodnota $u_{pb}$,
+ktorá je počas globálnej regulácie zvolená
+podľa aktuálne uvažovaného pracovného bodu
+z tabuľky~\ref{tab:pb_overview}.
+Takto sa dosiahne plynulé prepnutie medzi oboma regulačnými vetvami.
+
+\paragraph{Zákon riadenia}
+
+Označme binárne aktivačné signály lokálneho a globálneho regulátora ako
+$a_l$ a $a_g$, pričom platí
+
+\begin{equation}
+a_l, a_g \in \{0,1\},
+\qquad
+a_l + a_g = 1.
+\label{eq:pi_switch_activity_condition}
+\end{equation}
+
+Chyba lokálneho regulátora je definovaná vzťahom
+
+\begin{equation}
+e_l = r_l - \left( y - y_{pb} \right),
+\label{eq:pi_switch_local_error}
+\end{equation}
+
+kde $r_l$ predstavuje lokálnu žiadanú hodnotu.
+
+Filtrovaná globálna žiadaná hodnota je označená ako $r_{g,f}$,
+pričom chyba globálneho regulátora je
+
+\begin{equation}
+e_g = r_{g,f} - y.
+\label{eq:pi_switch_global_error}
+\end{equation}
+
+Lokálny PI regulátor má tvar
+
+\begin{equation}
+u_l = \left( u_{pb} + K_{p,l} e_l + K_{i,l} I_l \right) a_l,
+\label{eq:pi_switch_local_control}
+\end{equation}
+
+a globálny PI regulátor je definovaný vzťahom
+
+\begin{equation}
+u_g = \left( K_{p,g} e_g + K_{i,g} I_g \right) a_g.
+\label{eq:pi_switch_global_control}
+\end{equation}
+
+Celkový akčný zásah je daný súčtom oboch vetiev
+
+\begin{equation}
+u = u_l + u_g.
+\label{eq:pi_switch_total_control}
+\end{equation}
+
+Po dosadení \eqref{eq:pi_switch_local_control}
+a \eqref{eq:pi_switch_global_control}
+do \eqref{eq:pi_switch_total_control}
+dostávame rozvinutý tvar zákona riadenia
+
+\begin{equation}
+u =
+\left( u_{pb} + K_{p,l} e_l + K_{i,l} I_l \right) a_l
++
+\left( K_{p,g} e_g + K_{i,g} I_g \right) a_g.
+\label{eq:pi_switch_total_control_expanded}
+\end{equation}
+
+Keďže v každom okamihu je aktívna práve jedna regulačná vetva,
+možno zákon riadenia zapísať aj v tvare
+
+\begin{equation}
+u =
+\begin{cases}
+u_{pb} + K_{p,l} e_l + K_{i,l} I_l, & a_l = 1,\; a_g = 0, \\[1mm]
+K_{p,g} e_g + K_{i,g} I_g, & a_l = 0,\; a_g = 1.
+\end{cases}
+\label{eq:pi_switch_total_control_cases}
+\end{equation}
+
+Pri aktívnom regulátore sa integračný stav aktualizuje štandardne
+na základe regulačnej chyby.
+Pri neaktívnom regulátore sa integrátor priamo dopočíta
+z aktuálneho akčného zásahu,
+aby bol pripravený na plynulé prevzatie riadenia.
+
+Pre lokálny regulátor sa pri neaktívnom stave používa vzťah
+
+\begin{equation}
+I_l = \frac{(u-u_{pb}) - K_{p,l} e_l}{K_{i,l}},
+\qquad a_l = 0,
+\label{eq:pi_switch_local_tracking}
+\end{equation}
+
+a pre globálny regulátor analogicky
+
+\begin{equation}
+I_g = \frac{u - K_{p,g} e_g}{K_{i,g}},
+\qquad a_g = 0.
+\label{eq:pi_switch_global_tracking}
+\end{equation}
+
+Takto definovaný spôsob sledovania integrátora
+zabezpečuje,
+že pri prepnutí medzi lokálnou a globálnou regulačnou vetvou
+nedochádza k skokovej zmene akčného zásahu.
+
+% -------------------------------------------------------------------
+% Subsubsection 4.1.2 - Globálna regulácia po určitý čas
+% -------------------------------------------------------------------
+
+\subsubsection{Globálna regulácia po určitý čas}
+\label{sec:pi_switch_timer_based}
+
+Prvou uvažovanou realizáciou prepínacej logiky
+je regulácia založená na pevne zvolenom čase pôsobenia globálneho PI regulátora.
+Predpokladá sa pritom,
+že na prechod z jedného pracovného bodu do druhého
+postačuje približne konštantný čas.
+Na základe experimentálnych pozorovaní
+bol tento čas určený ako
+
+\begin{equation}
+T_{sw} = 80~\mathrm{s}.
+\label{eq:pi_switch_timer}
+\end{equation}
+
+Pri skokovej zmene globálnej žiadanej hodnoty
+sa teda aktivuje globálny PI regulátor,
+ktorý zostáva aktívny počas intervalu $T_{sw}$.
+Po uplynutí tohto času sa globálna vetva deaktivuje
+a riadenie automaticky preberá lokálny PI regulátor.
+Pri lokálnej regulácii sa používajú hodnoty
+$u_{pb}$, $y_{pb}$ a parametre PI regulátora
+z tabuľky~\ref{tab:pb_overview}.
+
+Filter globálnej žiadanej hodnoty
+z rovnice~\eqref{eq:pi_switch_global_filter_tf}
+je pre potreby diskrétnej implementácie
+vhodné previesť do stavového priestoru.
+Pre prenos
+
+\begin{equation}
+G_f(s)=\frac{R_{g,f}(s)}{R_g(s)}
+=
+\frac{1}{(10s+1)^2}
+=
+\frac{0.01}{s^2 + 0.2s + 0.01}
+\label{eq:pi_switch_filter_tf_repeat}
+\end{equation}
+
+zvolíme stavový vektor
+
+\begin{equation}
+x_f(t)=
+\begin{bmatrix}
+x_{f1}(t)\\
+x_{f2}(t)
+\end{bmatrix}.
+\label{eq:pi_switch_filter_state_vector}
+\end{equation}
+
+V kanonickom tvare má filter podobu
+
+\begin{align}
+\dot{x}_f(t) &= A_f x_f(t) + b_f r_g(t),
+\label{eq:pi_switch_filter_state_model}
+\\
+r_{g,f}(t) &= c_f^T x_f(t),
+\label{eq:pi_switch_filter_output_model}
+\end{align}
+
+kde
+
+\begin{equation}
+A_f =
+\begin{bmatrix}
+0 & 1\\
+-0.01 & -0.2
+\end{bmatrix},
+\qquad
+b_f =
+\begin{bmatrix}
+0\\
+1
+\end{bmatrix},
+\qquad
+c_f =
+\begin{bmatrix}
+0.01\\
+0
+\end{bmatrix}.
+\label{eq:pi_switch_filter_matrices}
+\end{equation}
+
+Pri Eulerovej diskretizácii so vzorkovacou periódou $T_s$
+má stavová rovnica tvar
+
+\begin{equation}
+x_f(k+1)=x_f(k)+T_s\left(A_f x_f(k)+b_f r_g(k)\right),
+\label{eq:pi_switch_filter_discrete_state}
+\end{equation}
+
+a výstup filtra je určený vzťahom
+
+\begin{equation}
+r_{g,f}(k)=c_f^T x_f(k).
+\label{eq:pi_switch_filter_discrete_output}
+\end{equation}
+
+Z implementačného hľadiska je preto potrebné
+prenášať medzi jednotlivými krokmi
+stav filtra globálnej žiadanej hodnoty,
+integračné stavy oboch PI regulátorov,
+predchádzajúcu hodnotu globálnej žiadanej hodnoty
+a v prípade časovo riadeného prepínania aj hodnotu časovača.
+Okrem toho je potrebné mať k dispozícii tabuľkové hodnoty
+pracovných bodov $y_{pb}$, $u_{pb}$
+a príslušné parametre lokálnych PI regulátorov,
+keďže lokálna regulačná vetva je realizovaná
+s využitím gain scheduling.
+
+Pseudokód tejto realizácie je uvedený nižšie.
+
+\begin{lstlisting}[language=Matlab,
+caption={Pseudokód prepínania s globálnou reguláciou po určitý čas},
+label={lst:pi_switch_timer_based}]
+% Inputs:
+% r_g(k) - global reference
+% r_l(k) - local reference
+% y(k)   - plant output
+%
+% States:
+% x_f(2x1)    - state of global reference filter
+% I_l         - integral state of local PI controller
+% I_g         - integral state of global PI controller
+% timer_g     - elapsed time of global mode
+% r_g_prev    - previous global reference
+% active_g    - activity flag of global controller
+%
+% Parameters:
+% Ts, T_sw
+% Kp_g, Ki_g  - global PI parameters
+%
+% Tables:
+% y_pb_table, u_pb_table
+% Kp_l_table, Ki_l_table
+
+% Filter matrices
+A_f = [ 0,    1;
+       -0.01, -0.2 ];
+
+b_f = [ 0;
+        1 ];
+
+c_f = [ 0.01, 0 ];
+
+% ------------------------------------------------------------------
+% 1. Detect step change of global reference
+% ------------------------------------------------------------------
+if r_g ~= r_g_prev
+    active_g = 1;
+    timer_g = 0;
+end
+
+% ------------------------------------------------------------------
+% 2. Filter global reference
+% ------------------------------------------------------------------
+r_gf = c_f * x_f;
+x_f_next = x_f + Ts * ( A_f * x_f + b_f * r_g );
+
+% ------------------------------------------------------------------
+% 3. Select local operating point and PI parameters from table
+% ------------------------------------------------------------------
+select y_pb, u_pb, Kp_l, Ki_l from table according to current operating point
+
+% ------------------------------------------------------------------
+% 4. Switching logic
+% ------------------------------------------------------------------
+if active_g == 1
+    timer_g = timer_g + Ts;
+    if timer_g >= T_sw
+        active_g = 0;
+    end
+end
+
+active_l = 1 - active_g;
+
+% ------------------------------------------------------------------
+% 5. Control errors
+% ------------------------------------------------------------------
+e_l = r_l - ( y - y_pb );
+e_g = r_gf - y;
+
+% ------------------------------------------------------------------
+% 6. Control law
+% ------------------------------------------------------------------
+u_l = active_l * ( u_pb + Kp_l * e_l + Ki_l * I_l );
+u_g = active_g * ( Kp_g * e_g + Ki_g * I_g );
+u = u_l + u_g;
+
+% ------------------------------------------------------------------
+% 7. Integral states update
+% ------------------------------------------------------------------
+if active_l == 1
+    I_l_next = I_l + Ts * e_l;
+else
+    I_l_next = ( (u - u_pb) - Kp_l * e_l ) / Ki_l;
+end
+
+if active_g == 1
+    I_g_next = I_g + Ts * e_g;
+else
+    I_g_next = ( u - Kp_g * e_g ) / Ki_g;
+end
+
+% ------------------------------------------------------------------
+% 8. Memory update
+% ------------------------------------------------------------------
+r_g_prev_next = r_g;
+timer_g_next = timer_g;
+\end{lstlisting}
+
+Uvedený spôsob prepínania je založený na predpoklade,
+že globálny PI regulátor potrebuje na presun systému
+do nového pracovného bodu približne konštantný čas.
+Takýto prístup je implementačne jednoduchý,
+avšak jeho nevýhodou je,
+že dynamika systému nie je v reálnych podmienkach úplne konštantná.
+Mení sa okrem iného aj v závislosti od aktuálnych podmienok okolia,
+napríklad od teploty v miestnosti.
+To znamená,
+že hodnoty $u_{pb}$ a $y_{pb}$ uvedené v tabuľke~\ref{tab:pb_overview}
+nemusia v danom experimente presne zodpovedať skutočnému ustálenému stavu systému.
+
+Rovnako nie je zaručené,
+že za pevne stanovený čas $80$~s
+sa systém vždy ustáli dostatočne blízko požadovaného pracovného bodu.
+Z tohto dôvodu bol navrhnutý aj druhý spôsob prepínania,
+ktorý je založený priamo na detekcii ustálenia.
+
+% -------------------------------------------------------------------
+% Subsubsection 4.1.3 - Prepínanie na základe detekcie ustálenia
+% -------------------------------------------------------------------
+
+\subsubsection{Prepínanie na základe detekcie ustálenia}
+\label{sec:pi_switch_settling_detection}
+
+Druhá uvažovaná realizácia prepínacej logiky
+nie je založená na predpoklade,
+že ustálenie nastane po vopred známom čase.
+Namiesto toho sa globálna regulácia ukončí až vtedy,
+keď sa na základe meraných údajov zistí,
+že systém sa skutočne ustálil.
+
+V tejto štruktúre má globálny PI regulátor úlohu
+pomalého a robustného regulátora,
+ktorý zabezpečuje prechod medzi pracovnými bodmi
+v rámci celého pracovného rozsahu systému.
+Lokálny PI regulátor má naopak za úlohu
+presnú reguláciu v okolí aktuálneho pracovného bodu,
+teda v oblasti približne
+$u_{pb} \pm 0.5$~V.
+Z tohto dôvodu pracuje s normalizovanými veličinami
+a jeho parametre sa volia pomocou gain scheduling
+na základe tabuľkových hodnôt pracovných bodov.
+
+Pri tejto metóde sa okrem stavu filtra,
+integračných stavov a predchádzajúcej hodnoty globálnej žiadanej hodnoty
+uchováva aj posledných $30$ hodnôt výstupu $y$
+a posledných $30$ hodnôt vstupu $u$.
+Globálna regulácia sa opäť aktivuje pri skoku globálnej žiadanej hodnoty,
+avšak jej deaktivácia nastane až po splnení podmienky ustálenia.
+
+Za ustálený stav sa v tomto prípade považuje situácia,
+keď sa aspoň $25$ z posledných $30$ hodnôt výstupu
+nachádza v intervale
+
+\begin{equation}
+\left\langle r_g - 0.07\,r_g,\; r_g + 0.07\,r_g \right\rangle.
+\label{eq:pi_switch_settling_band}
+\end{equation}
+
+Po splnení tejto podmienky
+sa ako aktuálna hodnota pracovného bodu určí aritmetický priemer
+posledných $30$ hodnôt výstupu a vstupu, teda
+
+\begin{equation}
+y_{pb}^{\ast} = \frac{1}{30}\sum_{i=1}^{30} y_i,
+\qquad
+u_{pb}^{\ast} = \frac{1}{30}\sum_{i=1}^{30} u_i.
+\label{eq:pi_switch_estimated_operating_point}
+\end{equation}
+
+Takto získané hodnoty reprezentujú odhad skutočného pracovného bodu,
+ktorý bol dosiahnutý globálnou reguláciou.
+Následne sa vyberú parametre lokálneho PI regulátora
+podľa toho,
+ku ktorému pracovnému bodu z tabuľky~\ref{tab:pb_overview}
+je hodnota $y_{pb}^{\ast}$ najbližšia.
+
+Pseudokód tejto realizácie je uvedený nižšie.
+
+\begin{lstlisting}[language=Matlab,
+caption={Pseudokód prepínania na základe detekcie ustálenia},
+label={lst:pi_switch_settling_based}]
+% Inputs:
+% r_g(k) - global reference
+% r_l(k) - local reference
+% y(k)   - plant output
+%
+% States:
+% x_f(2x1)    - state of global reference filter
+% I_l         - integral state of local PI controller
+% I_g         - integral state of global PI controller
+% y_hist(30)  - history of output values
+% u_hist(30)  - history of input values
+% r_g_prev    - previous global reference
+% active_g    - activity flag of global controller
+%
+% Parameters:
+% Ts
+% Kp_g, Ki_g  - global PI parameters
+%
+% Tables:
+% y_pb_table, u_pb_table
+% Kp_l_table, Ki_l_table
+
+% Filter matrices
+A_f = [ 0,    1;
+       -0.01, -0.2 ];
+
+b_f = [ 0;
+        1 ];
+
+c_f = [ 0.01, 0 ];
+
+% ------------------------------------------------------------------
+% 1. Detect step change of global reference
+% ------------------------------------------------------------------
+if r_g ~= r_g_prev
+    active_g = 1;
+end
+
+% ------------------------------------------------------------------
+% 2. Filter global reference
+% ------------------------------------------------------------------
+r_gf = c_f * x_f;
+x_f_next = x_f + Ts * ( A_f * x_f + b_f * r_g );
+
+% ------------------------------------------------------------------
+% 3. Update histories
+% ------------------------------------------------------------------
+shift y_hist and append y(k)
+shift u_hist and append u(k)
+
+% ------------------------------------------------------------------
+% 4. Select local operating point and PI parameters from table
+% ------------------------------------------------------------------
+select y_pb, u_pb, Kp_l, Ki_l from table according to current operating point
+
+% ------------------------------------------------------------------
+% 5. Control errors
+% ------------------------------------------------------------------
+e_l = r_l - ( y - y_pb );
+e_g = r_gf - y;
+
+% ------------------------------------------------------------------
+% 6. Control law
+% ------------------------------------------------------------------
+u_l = (1 - active_g) * ( u_pb + Kp_l * e_l + Ki_l * I_l );
+u_g = active_g * ( Kp_g * e_g + Ki_g * I_g );
+u = u_l + u_g;
+
+% ------------------------------------------------------------------
+% 7. Settling detection
+% ------------------------------------------------------------------
+count_ok = number of elements in y_hist within r_g +/- 7%
+
+if active_g == 1 && count_ok >= 25
+    y_pb_est = mean( y_hist );
+    u_pb_est = mean( u_hist );
+
+    select local PI parameters corresponding to nearest tabulated y_pb
+    set y_pb = y_pb_est;
+    set u_pb = u_pb_est;
+
+    active_g = 0;
+end
+
+active_l = 1 - active_g;
+
+% ------------------------------------------------------------------
+% 8. Integral states update
+% ------------------------------------------------------------------
+if active_l == 1
+    I_l_next = I_l + Ts * e_l;
+else
+    I_l_next = ( (u - u_pb) - Kp_l * e_l ) / Ki_l;
+end
+
+if active_g == 1
+    I_g_next = I_g + Ts * e_g;
+else
+    I_g_next = ( u - Kp_g * e_g ) / Ki_g;
+end
+
+% ------------------------------------------------------------------
+% 9. Memory update
+% ------------------------------------------------------------------
+r_g_prev_next = r_g;
+\end{lstlisting}
+
+Táto metóda je z výpočtového hľadiska zložitejšia,
+pretože vyžaduje uchovávanie histórie signálov
+a priebežné vyhodnocovanie podmienky ustálenia.
+Na druhej strane je však podstatne robustnejšia,
+pretože nepredpokladá fixný čas ustálenia,
+ale vychádza zo skutočného správania systému.
+
+Keďže perióda regulácie je $T_s = 0.1$~s,
+čo predstavuje z pohľadu použitého hardvéru
+dostatočne veľký čas na vykonanie potrebných výpočtov,
+bolo rozhodnuté implementovať práve tento prístup.
+V porovnaní s časovo riadeným prepínaním
+poskytuje spoľahlivejšie ukončenie globálnej regulácie
+a lepšie zohľadňuje zmeny dynamiky systému
+spôsobené reálnymi prevádzkovými podmienkami.

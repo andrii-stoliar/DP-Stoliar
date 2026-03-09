@@ -422,6 +422,10 @@ INPUT c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc
 INPUT ./chapters/section4.tex
 INPUT ./chapters/section4.tex
 INPUT ./chapters/section4.tex
+INPUT ../SVG/SWITCH_block_logic_scheme.jpg
+INPUT ../SVG/SWITCH_block_logic_scheme.jpg
+INPUT ../SVG/SWITCH_block_logic_scheme.jpg
+INPUT ../SVG/SWITCH_block_logic_scheme.jpg
 INPUT ./chapters/section5.tex
 INPUT ./chapters/section5.tex
 INPUT ./chapters/section5.tex
