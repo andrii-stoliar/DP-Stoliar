@@ -5,11 +5,6 @@
 \section{PI regulácia s prepínaním pracovných bodov}
 \label{sec:pi_switching}
 
-% -------------------------------------------------------------------
-% Subsection 4.1 - Prepínač pracovných bodov
-% -------------------------------------------------------------------
-
-\subsection{Prepínač pracovných bodov}
 
 V tejto časti sa budeme zaoberať návrhom a testovaním prepínača pracovných bodov.  
 Prepínač bude predstavovať pomalý regulátor, ktorého úlohou bude zabezpečiť robustné prechody medzi rôznymi pracovnými bodmi systému TS05.  
@@ -61,10 +56,10 @@ V tabuľke sú preto uvedené aktuálne hodnoty pracovných bodov, ktoré vernej
 
 
 % -------------------------------------------------------------------
-% Subsubsection 4.1.1 - Opis a schéma riadenia s použitím prepínača
+% Subsection 4.1 - Opis a schéma riadenia s použitím prepínača
 % -------------------------------------------------------------------
 
-\subsubsection{Opis a schéma riadenia s použitím prepínača}
+\subsection{Opis a schéma riadenia s použitím prepínača}
 
 V tejto časti je uvažovaná riadiaca štruktúra,
 ktorá pozostáva z dvoch PI regulátorov.
@@ -266,7 +261,7 @@ zabezpečuje,
 nedochádza k skokovej zmene akčného zásahu.
 
 % -------------------------------------------------------------------
-% Subsubsection 4.1.2 - Globálna regulácia po určitý čas
+% Subsubsection 4.1.1 - Globálna regulácia po určitý čas
 % -------------------------------------------------------------------
 
 \subsubsection{Globálna regulácia po určitý čas}
@@ -371,9 +366,11 @@ r_{g,f}(k)=c_f^T x_f(k).
 Z implementačného hľadiska je preto potrebné
 prenášať medzi jednotlivými krokmi
 stav filtra globálnej žiadanej hodnoty,
-integračné stavy oboch PI regulátorov,
-predchádzajúcu hodnotu globálnej žiadanej hodnoty
-a v prípade časovo riadeného prepínania aj hodnotu časovača.
+integračné stavy oboch PI regulátorov
+a predchádzajúcu hodnotu globálnej žiadanej hodnoty.
+V prípade časovo riadeného prepínania
+je zároveň potrebné poznať čas aktivácie globálnej regulačnej vetvy,
+pričom aktuálny čas je dostupný ako vstup algoritmu.
 Okrem toho je potrebné mať k dispozícii tabuľkové hodnoty
 pracovných bodov $y_{pb}$, $u_{pb}$
 a príslušné parametre lokálnych PI regulátorov,
@@ -386,17 +383,18 @@ Pseudokód tejto realizácie je uvedený nižšie.
 caption={Pseudokód prepínania s globálnou reguláciou po určitý čas},
 label={lst:pi_switch_timer_based}]
 % Inputs:
+% t(k)   - current time
 % r_g(k) - global reference
 % r_l(k) - local reference
 % y(k)   - plant output
 %
 % States:
-% x_f(2x1)    - state of global reference filter
-% I_l         - integral state of local PI controller
-% I_g         - integral state of global PI controller
-% timer_g     - elapsed time of global mode
-% r_g_prev    - previous global reference
-% active_g    - activity flag of global controller
+% x_f(2x1)      - state of global reference filter
+% I_l           - integral state of local PI controller
+% I_g           - integral state of global PI controller
+% t_g_start     - activation time of global mode
+% r_g_prev      - previous global reference
+% active_g      - activity flag of global controller
 %
 % Parameters:
 % Ts, T_sw
@@ -420,7 +418,7 @@ c_f = [ 0.01, 0 ];
 % ------------------------------------------------------------------
 if r_g ~= r_g_prev
     active_g = 1;
-    timer_g = 0;
+    t_g_start = t;
 end
 
 % ------------------------------------------------------------------
@@ -438,8 +436,7 @@ select y_pb, u_pb, Kp_l, Ki_l from table according to current operating point
 % 4. Switching logic
 % ------------------------------------------------------------------
 if active_g == 1
-    timer_g = timer_g + Ts;
-    if timer_g >= T_sw
+    if ( t - t_g_start ) >= T_sw
         active_g = 0;
     end
 end
@@ -478,7 +475,7 @@ end
 % 8. Memory update
 % ------------------------------------------------------------------
 r_g_prev_next = r_g;
-timer_g_next = timer_g;
+t_g_start_next = t_g_start;
 \end{lstlisting}
 
 Uvedený spôsob prepínania je založený na predpoklade,
@@ -565,6 +562,7 @@ Pseudokód tejto realizácie je uvedený nižšie.
 caption={Pseudokód prepínania na základe detekcie ustálenia},
 label={lst:pi_switch_settling_based}]
 % Inputs:
+% t(k)   - current time
 % r_g(k) - global reference
 % r_l(k) - local reference
 % y(k)   - plant output
