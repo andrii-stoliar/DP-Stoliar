@@ -48,5 +48,5 @@
 \contentsline {subsubsection}{\numberline {5.1.2}Pseudokód gradientnej MRAC regulácie (diskrétna realizácia)}{42}{subsubsection.5.1.2}%
 \contentsline {subsection}{\numberline {5.2}Implementácia MRAC v prostredí MATLAB}{45}{subsection.5.2}%
 \contentsline {subsubsection}{\numberline {5.2.1}Simulácia}{47}{subsubsection.5.2.1}%
-\contentsline {subsubsection}{\numberline {5.2.2}Experiment na tepelnej sústave}{48}{subsubsection.5.2.2}%
-\contentsline {section}{Zoznam literatúry}{49}{figure.24}%
+\contentsline {subsubsection}{\numberline {5.2.2}Experiment na tepelnej sústave}{49}{subsubsection.5.2.2}%
+\contentsline {section}{Zoznam literatúry}{50}{figure.24}%
