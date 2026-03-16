@@ -743,65 +743,114 @@ V každom vzorkovacom kroku sú k dispozícii
 aktuálne merané veličiny a stavové premenné
 uložené z predchádzajúceho kroku.
 
+Keďže regulátor MRAC je navrhnutý
+pre linearizovaný model v okolí pracovného bodu,
+samotnej adaptácii predchádza fáza ustálenia.
+Počas tejto fázy je na vstup systému privádzaný
+konštantný riadiaci zásah $u_0$
+po dobu $T_{\mathrm{settle}}$,
+aby sa systém dostal do okolia zvoleného pracovného bodu.
+Po ukončení tejto fázy sú uložené ustálené hodnoty
+výstupu $y_0$ a referencie $r_0$
+a ďalšia činnosť regulátora prebieha
+s normalizovanými veličinami definovanými vzhľadom na pracovný bod
+
+\begin{equation}
+	\tilde{y}(k) = y(k) - y_0,
+	\qquad
+	\tilde{r}(k) = r(k) - r_0,
+	\qquad
+	\tilde{u}(k) = u(k) - u_0.
+\end{equation}
+
 Zo systému je dostupný iba výstup $y(k)$.
 Keďže regulačný zákon využíva aj jeho časovú deriváciu,
 je potrebné túto veličinu numericky aproximovať.
-V diskrétnom čase je derivácia výstupu určená
+V diskrétnom čase je derivácia normalizovaného výstupu určená
 pomocou spätnej diferencie
 
-\[
-\dot{y}(k)
+\begin{equation}
+\dot{\tilde{y}}(k)
 =
-\frac{y(k)-y(k-1)}{T_s},
-\]
+\frac{\tilde{y}(k)-\tilde{y}(k-1)}{T_s},
+\end{equation}
 
-kde $y(k-1)$ predstavuje hodnotu výstupu
+kde $\tilde{y}(k-1)$ predstavuje hodnotu
+normalizovaného výstupu
 z predchádzajúceho vzorkovacieho kroku.
 
 Na základe regresného vektora
-\(
-\omega(k) = [\, y(k),\ \dot{y}(k),\ r(k) \,]^T
-\)
+
+\begin{equation}
+\tilde{\omega}(k)
+=
+\begin{bmatrix}
+\tilde{y}(k)\\
+\dot{\tilde{y}}(k)\\
+\tilde{r}(k)
+\end{bmatrix}
+\end{equation}
+
 a aktuálneho vektora parametrov $\Theta(k)$
-je vypočítaný regulačný zásah $u(k)$.
+je po skončení fázy ustálenia
+vypočítaná adaptívna zložka riadiaceho zásahu
+
+\begin{equation}
+\tilde{u}(k)=\Theta^T(k)\tilde{\omega}(k).
+\end{equation}
+
+Celkový riadiaci zásah má potom tvar
+
+\begin{equation}
+u(k)=u_0+\tilde{u}(k).
+\end{equation}
+
 Následne je určená chyba sledovania
-\(
-e(k) = y(k) - y_m(k),
-\)
-kde $y_m(k)$ je výstup referenčného modelu.
+
+\begin{equation}
+e(k)=\tilde{y}(k)-y_m(k),
+\end{equation}
+
+kde $y_m(k)$ je výstup referenčného modelu
+budeného normalizovanou referenciou $\tilde{r}(k)$.
 
 Adaptačný zákon MIT pravidla je realizovaný
 v diskrétnom tvare pomocou Eulerovej integrácie
 
-\[
+\begin{equation}
 \Theta(k+1)
 =
 \Theta(k)
 +
 T_s \dot{\Theta}(k),
-\]
+\end{equation}
 
 pričom $\dot{\Theta}(k)$ vyplýva zo vzťahov
 \eqref{eq:mrac_theta1_adapt} -- \eqref{eq:mrac_theta3_adapt}
 a obsahuje filtrované veličiny
-$y_f(k)$, $\dot{y}_f(k)$ a $r_f(k)$.
+$y_f(k)$, $\dot{y}_f(k)$ a $r_f(k)$
+získané z normalizovaných signálov.
 
 Stavové rovnice referenčného modelu
 a jednotlivých filtračných blokov
 sú integrované rovnakým spôsobom v tvare
 
-\[
+\begin{equation}
 x(k+1)
 =
 x(k)
 +
 T_s \big( A x(k) + b v(k) \big),
-\]
+\end{equation}
 
-kde vstup $v(k)$ predstavuje referenciu $r(k)$
-alebo výstup systému $y(k)$
+kde vstup $v(k)$ predstavuje
+normalizovanú referenciu $\tilde{r}(k)$
+alebo normalizovaný výstup $\tilde{y}(k)$
 v závislosti od konkrétneho bloku.
 
+Počas fázy ustálenia sa adaptácia nevykonáva
+a stavy referenčného modelu aj filtračných blokov
+zostávajú nezmenené.
 Po vykonaní všetkých aktualizácií
 je hodnota $y(k)$ uložená
 pre použitie v nasledujúcom kroku
@@ -810,25 +859,31 @@ pri výpočte numerickej derivácie.
 Pseudokód diskretizovanej realizácie algoritmu je uvedený nižšie.
 
 \begin{lstlisting}[language=Matlab,
-caption={Pseudokód diskrétnej implementácie gradientného MRAC regulátora},
+caption={Pseudokód diskrétnej implementácie gradientného MRAC regulátora s fázou ustálenia},
 label={lst:mrac_gradient_realtime}]
 
-% Inputs: 
+% Inputs:
 % r(k) - reference signal
 % y(k) - plant output
+% t(k) - current time
 %
 % States:
-% x_ym(2x1) - [ym; ym_dot]
-% x_yf(2x1) - [yf; ydot_f]
-% x_rf - [rf; rf_dot]
-% Theta - [Theta1; Theta2; Theta3]
-% y_prev - y(k-1)
+% x_ym(2x1) - states of reference model
+% x_yf(2x1) - states of output filter
+% x_rf(2x1) - states of reference filter
+% Theta(3x1) - [Theta1; Theta2; Theta3]
+% y_prev - previous plant output
+% y0 - stored operating-point output
+% r0 - stored operating-point reference
+% sw - switching flag
 %
 % Parameters:
 % a0m, a1m, b0m
 % alpha1, alpha2, alpha3
 % sign_b0
 % Ts
+% u0
+% T_settle
 
 % Common dynamics
 A = [ 0,     1;
@@ -844,38 +899,74 @@ c_rf = [ 1, 0 ];
 
 c_ym = [ b0m, 0 ];
 
-% Differentiation 
-ydot = ( y - y_prev ) / Ts;
+% Default memory update
+y_prev_next = y;
+y0_next = y0;
+r0_next = r0;
+sw_next = sw;
 
-% Outputs from current states
-ym      = c_ym * x_ym;        % ym(k)
-yf_vec  = c_yf * x_yf;        % [yf(k); ydot_f(k)]
-yf      = yf_vec(1);
-ydot_f  = yf_vec(2);
-rf      = c_rf * x_rf;        % rf(k)
+if t(k) < T_settle
 
-% Tracking error
-e = y - ym;
+    % Settling phase
+    u(k) = u0;
 
-% Control law 
-omega = [ y; ydot; r ];
-u = Theta.' * omega;
+    % Freeze adaptation and dynamic blocks
+    Theta_next = Theta;
+    x_ym_next = x_ym;
+    x_yf_next = x_yf;
+    x_rf_next = x_rf;
 
-% MIT adaptation 
-dTheta = -sign_b0 * e * ...
-         [ alpha1 * yf;
-           alpha2 * ydot_f;
-           alpha3 * rf ];
+    ym(k) = c_ym * x_ym;
 
-Theta_next = Theta + Ts * dTheta;
+else
 
-% State updates 
-x_ym_next = x_ym + Ts * ( A * x_ym + b * r );
-x_yf_next = x_yf + Ts * ( A * x_yf + b * y );
-x_rf_next = x_rf + Ts * ( A * x_rf + b * r );
+    % Store operating point only once
+    if sw < 0.5
+        y0_next = y(k);
+        r0_next = r(k);
+        sw_next = 1;
+    end
+
+    % Normalized signals
+    y_tilde = y(k) - y0_next;
+    r_tilde = r(k) - r0_next;
+    y_prev_tilde = y_prev - y0_next;
+
+    % Differentiation
+    ydot_tilde = ( y_tilde - y_prev_tilde ) / Ts;
+
+    % Outputs from current states
+    ym      = c_ym * x_ym;
+    yf_vec  = c_yf * x_yf;
+    yf      = yf_vec(1);
+    ydot_f  = yf_vec(2);
+    rf      = c_rf * x_rf;
+
+    % Tracking error
+    e = y_tilde - ym;
+
+    % Control law
+    omega = [ y_tilde; ydot_tilde; r_tilde ];
+    u_tilde = Theta.' * omega;
+    u = u0 + u_tilde;
+
+    % MIT adaptation
+    dTheta = -sign_b0 * e * ...
+             [ alpha1 * yf;
+               alpha2 * ydot_f;
+               alpha3 * rf ];
+
+    Theta_next = Theta + Ts * dTheta;
+
+    % State updates
+    x_ym_next = x_ym + Ts * ( A * x_ym + b * r_tilde );
+    x_yf_next = x_yf + Ts * ( A * x_yf + b * y_tilde );
+    x_rf_next = x_rf + Ts * ( A * x_rf + b * r_tilde );
+
+end
 
 % Memory update
-y_prev_next = y;
+y_prev_next = y(k);
 
 \end{lstlisting}
 
