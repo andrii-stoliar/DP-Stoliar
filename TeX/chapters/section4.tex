@@ -76,7 +76,7 @@ y_N = y - y_{pb},
 \qquad
 u_N = u - u_{pb},
 \label{eq:pi_switch_normalized_variables}
-\end{equation}
+\end{equation}    %% N to delta change
 
 kde $y_{pb}$ a $u_{pb}$
 predstavujú výstupnú a vstupnú hodnotu príslušného pracovného bodu.
@@ -134,7 +134,7 @@ Budú sa líšiť predovšetkým spôsobom rozhodovania o tom,
 kedy sa globálna regulácia ukončí
 a kedy sa aktivuje lokálna regulácia.
 
-\paragraph{Sledovanie integrátora}
+\paragraph{Sledovanie integrátora}    %%zmenit na zaciatocna podmienka integracnej zlozky
 
 Dôležitou požiadavkou navrhnutej štruktúry
 je zabezpečenie plynulého prepínania medzi globálnym
@@ -192,21 +192,21 @@ Lokálny PI regulátor má tvar
 \begin{equation}
 u_l = \left( u_{pb} + K_{p,l} e_l + K_{i,l} I_l \right) a_l,
 \label{eq:pi_switch_local_control}
-\end{equation}
+\end{equation} %%delete
 
 a globálny PI regulátor je definovaný vzťahom
 
 \begin{equation}
 u_g = \left( K_{p,g} e_g + K_{i,g} I_g \right) a_g.
 \label{eq:pi_switch_global_control}
-\end{equation}
+\end{equation}  %%delete
 
 Celkový akčný zásah je daný súčtom oboch vetiev
 
 \begin{equation}
 u = u_l + u_g.
 \label{eq:pi_switch_total_control}
-\end{equation}
+\end{equation}   %%delete
 
 Po dosadení \eqref{eq:pi_switch_local_control}
 a \eqref{eq:pi_switch_global_control}
