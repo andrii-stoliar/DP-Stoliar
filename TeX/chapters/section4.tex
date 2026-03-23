@@ -66,17 +66,17 @@ ktorá pozostáva z dvoch PI regulátorov.
 Prvý z nich predstavuje globálny PI regulátor,
 ktorý pracuje s absolútnymi veličinami systému.
 Druhý predstavuje lokálny PI regulátor,
-ktorý pracuje s normalizovanými veličinami
+ktorý pracuje s odchýlkami veličín
 v okolí aktuálneho pracovného bodu.
 
-Lokálny regulátor využíva normalizované premenné
+Lokálny regulátor pracuje s odchýlkami veličín od pracovného bodu
 
 \begin{equation}
-y_N = y - y_{pb},
+\Delta y = y - y_{pb},
 \qquad
-u_N = u - u_{pb},
-\label{eq:pi_switch_normalized_variables}
-\end{equation}    %% N to delta change
+\Delta u = u - u_{pb},
+\label{eq:pi_switch_delta_variables}
+\end{equation}
 
 kde $y_{pb}$ a $u_{pb}$
 predstavujú výstupnú a vstupnú hodnotu príslušného pracovného bodu.
@@ -164,16 +164,14 @@ Označme binárne aktivačné signály lokálneho a globálneho regulátora ako
 $a_l$ a $a_g$, pričom platí
 
 \begin{equation}
-a_l, a_g \in \{0,1\},
-\qquad
-a_l + a_g = 1.
+a_l, a_g \in \{0,1\}.
 \label{eq:pi_switch_activity_condition}
 \end{equation}
 
 Chyba lokálneho regulátora je definovaná vzťahom
 
 \begin{equation}
-e_l = r_l - \left( y - y_{pb} \right),
+e_l = r_l - \left( y - y_{pb} \right) = r_l - \Delta y,
 \label{eq:pi_switch_local_error}
 \end{equation}
 
@@ -190,39 +188,19 @@ e_g = r_{g,f} - y.
 Lokálny PI regulátor má tvar
 
 \begin{equation}
-u_l = \left( u_{pb} + K_{p,l} e_l + K_{i,l} I_l \right) a_l,
+u_l = u_{pb} + K_{p,l} e_l + K_{i,l} I_l,
 \label{eq:pi_switch_local_control}
-\end{equation} %%delete
+\end{equation} 
 
 a globálny PI regulátor je definovaný vzťahom
 
 \begin{equation}
-u_g = \left( K_{p,g} e_g + K_{i,g} I_g \right) a_g.
+u_g = K_{p,g} e_g + K_{i,g} I_g.
 \label{eq:pi_switch_global_control}
-\end{equation}  %%delete
-
-Celkový akčný zásah je daný súčtom oboch vetiev
-
-\begin{equation}
-u = u_l + u_g.
-\label{eq:pi_switch_total_control}
-\end{equation}   %%delete
-
-Po dosadení \eqref{eq:pi_switch_local_control}
-a \eqref{eq:pi_switch_global_control}
-do \eqref{eq:pi_switch_total_control}
-dostávame rozvinutý tvar zákona riadenia
-
-\begin{equation}
-u =
-\left( u_{pb} + K_{p,l} e_l + K_{i,l} I_l \right) a_l
-+
-\left( K_{p,g} e_g + K_{i,g} I_g \right) a_g.
-\label{eq:pi_switch_total_control_expanded}
-\end{equation}
+\end{equation} 
 
 Keďže v každom okamihu je aktívna práve jedna regulačná vetva,
-možno zákon riadenia zapísať aj v tvare
+možno zákon riadenia zapísať v tvare
 
 \begin{equation}
 u =
@@ -518,7 +496,7 @@ Lokálny PI regulátor má naopak za úlohu
 presnú reguláciu v okolí aktuálneho pracovného bodu,
 teda v oblasti približne
 $u_{pb} \pm 0.5$~V.
-Z tohto dôvodu pracuje s normalizovanými veličinami
+Z tohto dôvodu pracuje s odchýlkami veličín od pracovného bodu
 a jeho parametre sa volia pomocou gain scheduling
 na základe tabuľkových hodnôt pracovných bodov.
 
@@ -534,7 +512,7 @@ keď sa aspoň $25$ z posledných $30$ hodnôt výstupu
 nachádza v intervale
 
 \begin{equation}
-\left\langle r_g - 0.07\,r_g,\; r_g + 0.07\,r_g \right\rangle.
+\left\langle r_g - 0.03\,r_g,\; r_g + 0.03\,r_g \right\rangle.
 \label{eq:pi_switch_settling_band}
 \end{equation}
 
@@ -633,16 +611,14 @@ u = u_l + u_g;
 % ------------------------------------------------------------------
 % 7. Settling detection
 % ------------------------------------------------------------------
-count_ok = number of elements in y_hist within r_g +/- 7%
+count_ok = number of elements in y_hist within r_g +/- 3%
 
 if active_g == 1 && count_ok >= 25
     y_pb_est = mean( y_hist );
     u_pb_est = mean( u_hist );
-
     select local PI parameters corresponding to nearest tabulated y_pb
     set y_pb = y_pb_est;
     set u_pb = u_pb_est;
-
     active_g = 0;
 end
 
@@ -684,3 +660,291 @@ V porovnaní s časovo riadeným prepínaním
 poskytuje spoľahlivejšie ukončenie globálnej regulácie
 a lepšie zohľadňuje zmeny dynamiky systému
 spôsobené reálnymi prevádzkovými podmienkami.
+
+% -------------------------------------------------------------------
+% Subsection 4.2 - Realizácia algoritmu v prostredí Matlab Simulink
+% -------------------------------------------------------------------
+
+\subsection{Realizácia algoritmu v prostredí Matlab Simulink}
+\label{sec:pi_switch_matlab_implementation}
+
+Navrhnutý algoritmus prepínania pracovných bodov
+bol implementovaný v prostredí Matlab Simulink
+pomocou bloku \texttt{Matlab Function}.
+Celá regulačná logika bola realizovaná explicitne vo forme vlastného kódu,
+bez použitia preddefinovaných blokov.
+
+Keďže blok \texttt{Matlab Function} neuchováva automaticky vnútorné stavy,
+všetky potrebné premenné
+(stav filtra, integračné stavy, príznak aktivity,
+história signálov a predchádzajúca hodnota žiadanej veličiny)
+boli prenášané medzi krokmi ako vstupno-výstupné signály.
+
+Schéma implementácie je uvedená na obr.~\ref{fig:pi_switch_simulink_scheme}.
+
+\begin{center}
+    \vbox{
+        \makebox[\textwidth][c]{%
+            \includegraphics[width=1.35\textwidth, trim=2.2cm 0cm 2.2cm 0cm, clip]{TS_prep_simulink_scheme.pdf}
+        }
+        \figcaption{Implementácia prepínacej logiky v prostredí Matlab Simulink}
+        \label{fig:pi_switch_simulink_scheme}
+    }
+\end{center}
+
+Implementovaný kód je uvedený v nasledujúcom výpise.
+
+\begin{lstlisting}[language=Matlab,
+caption={Implementácia prepínacej logiky v bloku Matlab Function},
+label={lst:pi_switch_matlab_code}]
+function [u, x_f_new, I_l_new, I_g_new, y_hist_new, u_hist_new, ...
+          r_g_prev_new, active_g_new, y_pb_new, u_pb_new, r_gf, Kp_l, Ki_l, u_l, u_g] = ...
+    pi_switch(r_g, r_l, y, x_f, I_l, I_g, y_hist, u_hist, ...
+              r_g_prev, active_g, y_pb, u_pb)
+
+Ts = 0.1;
+
+% Global PI
+Kp_g = 4;
+Ki_g = 0.7;
+
+% Gain scheduling table
+y_pb_table = [4.4884; 6.3412; 7.7441];
+u_pb_table = [2; 4; 6];
+Kp_l_table = [2.77; 3.58; 1.83];
+Ki_l_table = [1.48; 1.84; 2.2];
+
+% Filter matrices
+A_f = [0,    1;
+      -0.01, -0.2];
+
+b_f = [0;
+       1];
+
+c_f = [0.01, 0];
+
+% 1 Detect step change
+if r_g ~= r_g_prev
+    active_g = 1;
+end
+
+% 2 Filter global reference
+r_gf = c_f * x_f;
+x_f_new = x_f + (A_f * x_f + b_f * r_g) * Ts;
+
+% 3 Select local points PI params
+dist_pb = abs(y_pb_table - y_pb);
+[~, idx_pb] = min(dist_pb);
+
+Kp_l = Kp_l_table(idx_pb);
+Ki_l = Ki_l_table(idx_pb);
+
+% 4 Control errors
+e_l = r_l - (y - y_pb);
+e_g = r_gf - y;
+
+% 5 Control law
+u_l = (1 - active_g) * (u_pb + Kp_l * e_l + Ki_l * I_l);
+u_g = active_g * (Kp_g * e_g + Ki_g * I_g);
+u = u_l + u_g;
+u = max(min(u, 10), 0);
+
+% 6 Update histories
+y_hist_new = [y_hist(2:end); y];
+u_hist_new = [u_hist(2:end); u];
+
+% 7 Settling detection
+lower_bound = r_g - 0.03 * r_g;
+upper_bound = r_g + 0.03 * r_g;
+
+count_ok = 0;
+for i = 1:30
+    if (y_hist_new(i) >= lower_bound) && (y_hist_new(i) <= upper_bound)
+        count_ok = count_ok + 1;
+    end
+end
+
+y_pb_new = y_pb;
+u_pb_new = u_pb;
+active_g_new = active_g;
+
+if active_g == 1 && count_ok >= 25
+    y_pb_est = mean(y_hist_new);
+    u_pb_est = mean(u_hist_new);
+
+    y_pb_new = y_pb_est;
+    u_pb_new = u_pb_est;
+
+    active_g_new = 0;
+end
+
+active_l = 1 - active_g;
+active_l_new = 1 - active_g_new;
+
+% 8 Integral states update
+if active_l == 1
+    I_l_new = I_l + e_l * Ts;
+else
+    I_l_new = 0;
+end
+
+if active_g == 1
+    I_g_new = I_g + e_g * Ts;
+else
+    I_g_new = (u - Kp_g * e_g) / Ki_g;
+end
+
+% 10 Memory update
+r_g_prev_new = r_g;
+\end{lstlisting}
+
+Pri prepnutí z globálnej na lokálnu reguláciu
+bola integračná zložka lokálneho PI regulátora vynulovaná.
+Za predpokladu $u_{pb} \approx u$ a $e_l \approx 0$
+to predstavuje vhodnú počiatočnú podmienku
+a zároveň zjednodušuje implementáciu.
+
+% -------------------------------------------------------------------
+% Subsubsection 4.2.1 - Simulácia algoritmu
+% -------------------------------------------------------------------
+
+\subsubsection{Simulácia algoritmu}
+\label{sec:pi_switch_simulation}
+
+Funkčnosť navrhnutého algoritmu bola overená simuláciou
+na modeli systému identifikovanom v predchádzajúcich častiach,
+konkrétne na prenose \eqref{eq:Gs_ls_approx}.
+
+V simulácii boli realizované dva prechody medzi pracovnými bodmi,
+pričom v každom z nich bola následne vykonaná aj zmena lokálnej žiadanej hodnoty.
+Cieľom bolo overiť správanie algoritmu
+pri prechode medzi pracovnými bodmi
+a zároveň jeho presnosť v lokálnom režime.
+
+Na obr.~\ref{fig:pi_switch_simulation} sú zobrazené priebehy jednotlivých veličín.
+
+Na prvom grafe sú znázornené výstup systému $y$,
+hodnota pracovného bodu $y_{pb}$
+a celková žiadaná hodnota $r_{g,f} + r_l$.
+Je možné pozorovať mierny offset výstupu voči žiadanej hodnote,
+ktorý je spôsobený toleranciou $3\,\%$
+použitou pri detekcii ustálenia.
+Po ustálení sa však výstup presne viaže na hodnotu $y_{pb}$.
+
+Druhý graf zobrazuje priebehy $r_l$, $r_g$ a $r_{g,f}$.
+Je zrejmé, že globálna žiadaná hodnota je filtrovaná,
+čo vedie k plynulejšiemu priebehu prechodov.
+Zároveň je vidieť,
+že lokálna žiadaná hodnota začína od nulovej hodnoty,
+keďže je definovaná ako odchýlka od pracovného bodu.
+
+Na treťom grafe je znázornený celkový akčný zásah $u$.
+
+Štvrtý graf obsahuje jednotlivé zložky $u_g$, $u_l$ a $u_{pb}$.
+V aktívnych fázach regulácie je viditeľné,
+že príslušná regulačná vetva generuje rovnaký priebeh ako výsledný signál $u$.
+Zároveň možno pozorovať,
+že po ukončení globálnej regulácie
+a pred vznikom odchýlky v lokálnej žiadanej hodnote
+sú všetky tri priebehy zhodné,
+čo zodpovedá princípu navrhnutého algoritmu.
+
+Na piatom grafe sú zobrazené parametre lokálneho PI regulátora,
+čím je demonštrovaná funkčnosť princípu gain scheduling.
+
+Posledný graf zobrazuje aktivačný signál globálneho regulátora.
+Hodnota $1$ znamená aktívnu globálnu reguláciu,
+zatiaľ čo hodnota $0$ zodpovedá lokálnej regulácii.
+
+\begin{center}
+    \vbox{
+        \makebox[\textwidth][c]{%
+            \includegraphics[width=1.5\textwidth]{ts_ml_prep_simulation.png}
+        }
+        \figcaption{Simulácia prepínania pracovných bodov a správanie regulačných veličín}
+        \label{fig:pi_switch_simulation}
+    }
+\end{center}
+
+% -------------------------------------------------------------------
+% Subsubsection 4.2.2 - Experimentálne overenie na reálnom systéme
+% -------------------------------------------------------------------
+
+\subsubsection{Experimentálne overenie na reálnom systéme}
+\label{sec:pi_switch_real_system}
+
+Navrhnutý algoritmus bol následne overený aj na reálnom systéme TS05.
+Výsledky experimentu sú uvedené na obr.~\ref{fig:pi_switch_real}.
+
+\begin{center}
+    \vbox{
+        \makebox[\textwidth][c]{%
+            \includegraphics[width=1.5\textwidth]{ts_ml_prep_real.png}
+        }
+        \figcaption{Experimentálne overenie prepínania pracovných bodov na systéme TS05}
+        \label{fig:pi_switch_real}
+    }
+\end{center}
+
+Správanie systému je kvalitatívne veľmi podobné výsledkom získaným simuláciou.
+Aj v tomto prípade je možné pozorovať mierny offset výstupu
+voči celkovej žiadanej hodnote,
+ktorý je spôsobený použitou toleranciou $3\,\%$ pri detekcii ustálenia.
+
+Na priebehoch akčného zásahu je viditeľné,
+že jednotlivé zložky $u_g$ a $u_l$
+v aktívnych fázach regulácie reprodukujú výsledný signál $u$,
+čo potvrdzuje správnu funkciu prepínacej logiky.
+
+Na rozdiel od simulácie je však zrejmé,
+že aj po ustálení systému v pracovnom bode
+nie je akčný zásah konštantný.
+Dôvodom sú vonkajšie vplyvy,
+najmä malé zmeny teploty v okolí systému.
+Aj v ustálenom stave je preto potrebné
+neustále jemne upravovať akčný zásah,
+aby bol pracovný bod udržiavaný.
+
+Zvyšné priebehy a dynamika systému
+sú veľmi podobné simulovanému prípadu,
+čo potvrdzuje správnosť navrhnutého algoritmu.
+
+Pre detailnejšie posúdenie správania systému
+po ukončení globálnej regulácie
+je na obr.~\ref{fig:pi_switch_real_zoom}
+zobrazený detail priebehov výstupu.
+
+\begin{center}
+    \vbox{
+        \makebox[\textwidth][c]{%
+            \includegraphics[width=1.5\textwidth]{ts_ml_prep_real_zoom.png}
+        }
+        \figcaption{Detail regulácie v okolí pracovného bodu po ukončení globálnej regulácie}
+        \label{fig:pi_switch_real_zoom}
+    }
+\end{center}
+
+Z detailu je zrejmé,
+že výstup systému $y$
+sa presnejšie viaže na hodnotu $y_{pb} + r_l$
+ako na globálnu žiadanú hodnotu.
+To znamená,
+že systém interpretuje $y_{pb}$
+ako referenčný pracovný bod,
+okolo ktorého prebieha lokálna regulácia.
+
+Zelenou oblasťou je na grafe vyznačený interval
+$r_g \pm 3\,\%$,
+ktorý predstavuje podmienku ustálenia.
+Je viditeľné,
+že hodnota $y_{pb}$
+sa nachádza práve v tomto intervale,
+čo potvrdzuje,
+že určenie pracovného bodu nie je náhodné,
+ale priamo vyplýva z definovanej detekcie ustálenia.
+
+Výsledky experimentu tak potvrdzujú,
+že navrhnutý algoritmus dokáže spoľahlivo realizovať
+prechody medzi pracovnými bodmi
+a následne zabezpečiť presnú lokálnu reguláciu
+aj v podmienkach reálneho systému.
