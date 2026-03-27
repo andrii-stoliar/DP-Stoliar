@@ -1,6 +1,6 @@
 \babel@toc {slovak}{}\relax 
 \contentsline {section}{Úvod}{7}{Doc-Start}%
-\contentsline {section}{\numberline {1}Vstupný príklad regulácie}{8}{section.1}%
+\contentsline {section}{\numberline {1}Priklad navrhu implementacie}{8}{section.1}%
 \contentsline {subsection}{\numberline {1.1}PID regulácia v uzavretej spätnej väzbe}{8}{subsection.1.1}%
 \contentsline {subsection}{\numberline {1.2}Prenosové funkcie ORO a URO a zákon regulácie}{8}{subsection.1.2}%
 \contentsline {paragraph}{Zákon riadenia}{9}{paragraph*.1}%
