@@ -1,4 +1,0 @@
-ts_prevodovaN.csv' - [time, vent, spir, snimac1, snimac2]
-
-ts_staticN.csv' - [in', static1', static2']
-

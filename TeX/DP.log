@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.6.29)  23 MAR 2026 01:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.6.29)  28 MAR 2026 21:42
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -718,7 +718,7 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<../zadanieDP/zadanieDP.pdf, id=143, 597.51233pt x 845.0471pt>
+<../zadanieDP/zadanieDP.pdf, id=139, 597.51233pt x 845.0471pt>
 File: ../zadanieDP/zadanieDP.pdf Graphic file (type pdf)
 <use ../zadanieDP/zadanieDP.pdf>
 Package pdftex.def Info: ../zadanieDP/zadanieDP.pdf  used on input line 97.
@@ -760,7 +760,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 [6] (./chapters/uvod.tex)
 
 [7] (./chapters/section1.tex
-<../SVG/in_progress.png, id=226, 735.49782pt x 414.79968pt>
+<../SVG/in_progress.png, id=221, 735.49782pt x 414.79968pt>
 File: ../SVG/in_progress.png Graphic file (type png)
 <use ../SVG/in_progress.png>
 Package pdftex.def Info: ../SVG/in_progress.png  used on input line 48.
@@ -808,7 +808,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 )
 
 [10{c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] (./chapters/section2.tex
-<../SVG/TS_sch3_foto.pdf, id=298, 455.2441pt x 241.84843pt>
+<../SVG/TS_sch3_foto.pdf, id=293, 455.2441pt x 241.84843pt>
 File: ../SVG/TS_sch3_foto.pdf Graphic file (type pdf)
 <use ../SVG/TS_sch3_foto.pdf>
 Package pdftex.def Info: ../SVG/TS_sch3_foto.pdf  used on input line 52.
@@ -822,7 +822,7 @@ See the caption package documentation for explanation.
 
 
 [11 <../SVG/TS_sch3_foto.pdf>]
-<../SVG/TS_simulink_scheme.pdf, id=315, 794.97pt x 614.295pt>
+<../SVG/TS_simulink_scheme.pdf, id=310, 794.97pt x 614.295pt>
 File: ../SVG/TS_simulink_scheme.pdf Graphic file (type pdf)
 <use ../SVG/TS_simulink_scheme.pdf>
 Package pdftex.def Info: ../SVG/TS_simulink_scheme.pdf  used on input line 71.
@@ -833,17 +833,17 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 72.
 See the caption package documentation for explanation.
 
-<../PY/fig/ts_prevodova_spirala.png, id=318, 560.3334pt x 170.5572pt>
+<../PY/fig/ts_prevodova_spirala.png, id=313, 560.3334pt x 170.67764pt>
 File: ../PY/fig/ts_prevodova_spirala.png Graphic file (type png)
 <use ../PY/fig/ts_prevodova_spirala.png>
 Package pdftex.def Info: ../PY/fig/ts_prevodova_spirala.png  used on input line 93.
-(pdftex.def)             Requested size: 554.82875pt x 168.88597pt.
+(pdftex.def)             Requested size: 554.82875pt x 169.00522pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 94.
 See the caption package documentation for explanation.
 
-<../PY/fig/ts_prevodova_sensors3.png, id=319, 560.3334pt x 204.765pt>
+<../PY/fig/ts_prevodova_sensors3.png, id=314, 560.3334pt x 204.765pt>
 File: ../PY/fig/ts_prevodova_sensors3.png Graphic file (type png)
 <use ../PY/fig/ts_prevodova_sensors3.png>
 Package pdftex.def Info: ../PY/fig/ts_prevodova_sensors3.png  used on input line 106.
@@ -856,7 +856,7 @@ See the caption package documentation for explanation.
 
 
 [12 <../PY/fig/ts_prevodova_spirala.png> <../SVG/TS_simulink_scheme.pdf>]
-<../PY/fig/ts_prevodova_sensors6.png, id=339, 560.3334pt x 204.765pt>
+<../PY/fig/ts_prevodova_sensors6.png, id=334, 560.3334pt x 204.765pt>
 File: ../PY/fig/ts_prevodova_sensors6.png Graphic file (type png)
 <use ../PY/fig/ts_prevodova_sensors6.png>
 Package pdftex.def Info: ../PY/fig/ts_prevodova_sensors6.png  used on input line 116.
@@ -867,7 +867,7 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 117.
 See the caption package documentation for explanation.
 
-<../PY/fig/ts_prevodova_sensors9.png, id=340, 560.3334pt x 204.765pt>
+<../PY/fig/ts_prevodova_sensors9.png, id=335, 560.3334pt x 204.765pt>
 File: ../PY/fig/ts_prevodova_sensors9.png Graphic file (type png)
 <use ../PY/fig/ts_prevodova_sensors9.png>
 Package pdftex.def Info: ../PY/fig/ts_prevodova_sensors9.png  used on input line 126.
@@ -880,32 +880,32 @@ See the caption package documentation for explanation.
 
 
 [13 <../PY/fig/ts_prevodova_sensors3.png> <../PY/fig/ts_prevodova_sensors6.png> <../PY/fig/ts_prevodova_sensors9.png>]
-<../PY/fig/ts_static_sensors3.png, id=352, 560.3334pt x 184.7703pt>
+<../PY/fig/ts_static_sensors3.png, id=347, 560.3334pt x 184.89075pt>
 File: ../PY/fig/ts_static_sensors3.png Graphic file (type png)
 <use ../PY/fig/ts_static_sensors3.png>
 Package pdftex.def Info: ../PY/fig/ts_static_sensors3.png  used on input line 139.
-(pdftex.def)             Requested size: 554.82875pt x 182.9598pt.
+(pdftex.def)             Requested size: 554.82875pt x 183.07906pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 140.
 See the caption package documentation for explanation.
 
-<../PY/fig/ts_static_sensors6.png, id=353, 560.3334pt x 184.7703pt>
+<../PY/fig/ts_static_sensors6.png, id=348, 560.3334pt x 184.89075pt>
 File: ../PY/fig/ts_static_sensors6.png Graphic file (type png)
 <use ../PY/fig/ts_static_sensors6.png>
 Package pdftex.def Info: ../PY/fig/ts_static_sensors6.png  used on input line 149.
-(pdftex.def)             Requested size: 554.82875pt x 182.9598pt.
+(pdftex.def)             Requested size: 554.82875pt x 183.07906pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 150.
 See the caption package documentation for explanation.
 
-<../PY/fig/ts_static_sensors9.png, id=354, 560.3334pt x 184.7703pt>
+<../PY/fig/ts_static_sensors9.png, id=349, 560.3334pt x 184.89075pt>
 File: ../PY/fig/ts_static_sensors9.png Graphic file (type png)
 <use ../PY/fig/ts_static_sensors9.png>
 Package pdftex.def Info: ../PY/fig/ts_static_sensors9.png  used on input line 159.
-(pdftex.def)             Requested size: 554.82875pt x 182.9598pt.
+(pdftex.def)             Requested size: 554.82875pt x 183.07906pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 160.
@@ -914,11 +914,11 @@ See the caption package documentation for explanation.
 
 
 [14 <../PY/fig/ts_static_sensors3.png> <../PY/fig/ts_static_sensors6.png> <../PY/fig/ts_static_sensors9.png>]
-<../PY/fig/ts_pb_vent6_spir4_ident_raw.png, id=366, 560.3334pt x 227.4096pt>
+<../PY/fig/ts_pb_vent6_spir4_ident_raw.png, id=361, 560.3334pt x 227.53004pt>
 File: ../PY/fig/ts_pb_vent6_spir4_ident_raw.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_spir4_ident_raw.png>
 Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_ident_raw.png  used on input line 190.
-(pdftex.def)             Requested size: 554.82875pt x 225.1813pt.
+(pdftex.def)             Requested size: 554.82875pt x 225.30057pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
@@ -964,7 +964,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 243.
 
-<../PY/fig/ts_pb_vent6_spir4_ident_raw_normalized.png, id=379, 560.3334pt x 284.5029pt>
+<../PY/fig/ts_pb_vent6_spir4_ident_raw_normalized.png, id=374, 560.3334pt x 284.5029pt>
 File: ../PY/fig/ts_pb_vent6_spir4_ident_raw_normalized.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_spir4_ident_raw_normalized.png>
 Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_ident_raw_normalized.png  used on input line 253.
@@ -974,11 +974,11 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 254.
 See the caption package documentation for explanation.
 
-<../PY/fig/ts_pb_vent6_spir4_ident_avg.png, id=382, 560.3334pt x 198.9834pt>
+<../PY/fig/ts_pb_vent6_spir4_ident_avg.png, id=377, 560.3334pt x 199.10385pt>
 File: ../PY/fig/ts_pb_vent6_spir4_ident_avg.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_spir4_ident_avg.png>
 Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_ident_avg.png  used on input line 274.
-(pdftex.def)             Requested size: 554.82875pt x 197.03363pt.
+(pdftex.def)             Requested size: 554.82875pt x 197.1529pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 275.
@@ -1085,7 +1085,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 421.
 
-<../PY/fig/ts_pb_vent6_spir4_ident_comparison.png, id=482, 560.3334pt x 170.67764pt>
+<../PY/fig/ts_pb_vent6_spir4_ident_comparison.png, id=477, 560.3334pt x 170.67764pt>
 File: ../PY/fig/ts_pb_vent6_spir4_ident_comparison.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_spir4_ident_comparison.png>
 Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_ident_comparison.png  used on input line 457.
@@ -1098,7 +1098,7 @@ See the caption package documentation for explanation.
 
 
 [19 <../PY/fig/ts_pb_vent6_spir4_ident_comparison.png>]
-<../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png, id=510, 560.3334pt x 170.67764pt>
+<../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png, id=505, 560.3334pt x 170.67764pt>
 File: ../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png>
 Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png  used on input line 548.
@@ -1114,7 +1114,7 @@ See the caption package documentation for explanation.
 [20])
 
 [21 <../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png>] (./chapters/section3.tex
-<../SVG/TS_uro_block_scheme.pdf, id=532, 238.97281pt x 68.1747pt>
+<../SVG/TS_uro_block_scheme.pdf, id=527, 238.97281pt x 68.1747pt>
 File: ../SVG/TS_uro_block_scheme.pdf Graphic file (type pdf)
 <use ../SVG/TS_uro_block_scheme.pdf>
 Package pdftex.def Info: ../SVG/TS_uro_block_scheme.pdf  used on input line 42.
@@ -1139,7 +1139,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 
 
 [23]
-<../PY/fig/ts_pb_vent6_spir4_pidtune_sim.png, id=588, 560.3334pt x 270.2898pt>
+<../PY/fig/ts_pb_vent6_spir4_pidtune_sim.png, id=583, 560.3334pt x 270.2898pt>
 File: ../PY/fig/ts_pb_vent6_spir4_pidtune_sim.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_spir4_pidtune_sim.png>
 Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_pidtune_sim.png  used on input line 214.
@@ -1184,7 +1184,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 
 
 [25]
-<../SVG/TS_pi_scheme.pdf, id=662, 845.1575pt x 597.23125pt>
+<../SVG/TS_pi_scheme.pdf, id=657, 845.1575pt x 597.23125pt>
 File: ../SVG/TS_pi_scheme.pdf Graphic file (type pdf)
 <use ../SVG/TS_pi_scheme.pdf>
 Package pdftex.def Info: ../SVG/TS_pi_scheme.pdf  used on input line 303.
@@ -1195,7 +1195,7 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 304.
 See the caption package documentation for explanation.
 
-<../PY/fig/ts_pb_vent6_spir4_PI_real.png, id=667, 560.3334pt x 270.2898pt>
+<../PY/fig/ts_pb_vent6_spir4_PI_real.png, id=662, 560.3334pt x 270.2898pt>
 File: ../PY/fig/ts_pb_vent6_spir4_PI_real.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_spir4_PI_real.png>
 Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_PI_real.png  used on input line 329.
@@ -1212,7 +1212,7 @@ LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 33
  (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-<../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png, id=724, 560.3334pt x 270.2898pt>
+<../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png, id=719, 560.3334pt x 270.2898pt>
 File: ../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png>
 Package pdftex.def Info: ../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png  used on input line 361.
@@ -1235,7 +1235,7 @@ Overfull \hbox (14.52347pt too wide) in paragraph at lines 30--52
 
 
 [29]
-<../SVG/SWITCH_block_logic_scheme.jpg, id=749, 1284.8pt x 484.81125pt>
+<../SVG/SWITCH_block_logic_scheme.jpg, id=744, 1284.8pt x 484.81125pt>
 File: ../SVG/SWITCH_block_logic_scheme.jpg Graphic file (type jpg)
 <use ../SVG/SWITCH_block_logic_scheme.jpg>
 Package pdftex.def Info: ../SVG/SWITCH_block_logic_scheme.jpg  used on input line 117.
@@ -1367,7 +1367,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 
 
 [35]
-<../SVG/TS_prep_simulink_scheme.pdf, id=1006, 845.1575pt x 597.23125pt>
+<../SVG/TS_prep_simulink_scheme.pdf, id=1001, 845.1575pt x 597.23125pt>
 File: ../SVG/TS_prep_simulink_scheme.pdf Graphic file (type pdf)
 <use ../SVG/TS_prep_simulink_scheme.pdf>
 Package pdftex.def Info: ../SVG/TS_prep_simulink_scheme.pdf  used on input line 689.
@@ -1476,7 +1476,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 795.
 
-<../PY/fig/ts_ml_prep_simulation.png, id=1144, 560.3334pt x 625.8582pt>
+<../PY/fig/ts_ml_prep_simulation.png, id=1139, 560.3334pt x 625.8582pt>
 File: ../PY/fig/ts_ml_prep_simulation.png Graphic file (type png)
 <use ../PY/fig/ts_ml_prep_simulation.png>
 Package pdftex.def Info: ../PY/fig/ts_ml_prep_simulation.png  used on input line 863.
@@ -1491,7 +1491,7 @@ See the caption package documentation for explanation.
 [38]
 
 [39 <../PY/fig/ts_ml_prep_simulation.png>]
-<../PY/fig/ts_ml_prep_real.png, id=1185, 560.3334pt x 625.8582pt>
+<../PY/fig/ts_ml_prep_real.png, id=1180, 560.3334pt x 625.8582pt>
 File: ../PY/fig/ts_ml_prep_real.png Graphic file (type png)
 <use ../PY/fig/ts_ml_prep_real.png>
 Package pdftex.def Info: ../PY/fig/ts_ml_prep_real.png  used on input line 883.
@@ -1505,7 +1505,7 @@ See the caption package documentation for explanation.
 
 
 [40 <../PY/fig/ts_ml_prep_real.png>]
-<../PY/fig/ts_ml_prep_real_zoom.png, id=1193, 560.3334pt x 341.3553pt>
+<../PY/fig/ts_ml_prep_real_zoom.png, id=1188, 560.3334pt x 341.3553pt>
 File: ../PY/fig/ts_ml_prep_real_zoom.png Graphic file (type png)
 <use ../PY/fig/ts_ml_prep_real_zoom.png>
 Package pdftex.def Info: ../PY/fig/ts_ml_prep_real_zoom.png  used on input line 921.
@@ -1614,7 +1614,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 1207.
 
-<../SVG/TS_mrac_simulink_scheme.pdf, id=1552, 845.1575pt x 597.23125pt>
+<../SVG/TS_mrac_simulink_scheme.pdf, id=1547, 845.1575pt x 597.23125pt>
 File: ../SVG/TS_mrac_simulink_scheme.pdf Graphic file (type pdf)
 <use ../SVG/TS_mrac_simulink_scheme.pdf>
 Package pdftex.def Info: ../SVG/TS_mrac_simulink_scheme.pdf  used on input line 1230.
@@ -1627,66 +1627,38 @@ See the caption package documentation for explanation.
 
 
 [52]
-<../PY/fig/ts_ml_mrac_simulation_raw.png, id=1617, 560.3334pt x 398.32816pt>
-File: ../PY/fig/ts_ml_mrac_simulation_raw.png Graphic file (type png)
-<use ../PY/fig/ts_ml_mrac_simulation_raw.png>
-Package pdftex.def Info: ../PY/fig/ts_ml_mrac_simulation_raw.png  used on input line 1275.
+<../PY/fig/ts_ml_mrac_real_raw.png, id=1612, 560.3334pt x 398.32816pt>
+File: ../PY/fig/ts_ml_mrac_real_raw.png Graphic file (type png)
+<use ../PY/fig/ts_ml_mrac_real_raw.png>
+Package pdftex.def Info: ../PY/fig/ts_ml_mrac_real_raw.png  used on input line 1280.
 (pdftex.def)             Requested size: 554.82875pt x 394.4251pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1276.
+(caption)                particular \caption on input line 1281.
 See the caption package documentation for explanation.
 
 
 
 [53 <../SVG/TS_mrac_simulink_scheme.pdf>]
-<../PY/fig/ts_ml_mrac_simulation.png, id=1681, 560.3334pt x 398.32816pt>
-File: ../PY/fig/ts_ml_mrac_simulation.png Graphic file (type png)
-<use ../PY/fig/ts_ml_mrac_simulation.png>
-Package pdftex.def Info: ../PY/fig/ts_ml_mrac_simulation.png  used on input line 1299.
-(pdftex.def)             Requested size: 554.82875pt x 394.4251pt.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1300.
-See the caption package documentation for explanation.
-
-
-
-[54 <../PY/fig/ts_ml_mrac_simulation_raw.png>]
-<../PY/fig/ts_ml_mrac_real_raw.png, id=1689, 560.3334pt x 398.32816pt>
-File: ../PY/fig/ts_ml_mrac_real_raw.png Graphic file (type png)
-<use ../PY/fig/ts_ml_mrac_real_raw.png>
-Package pdftex.def Info: ../PY/fig/ts_ml_mrac_real_raw.png  used on input line 1337.
-(pdftex.def)             Requested size: 554.82875pt x 394.4251pt.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1338.
-See the caption package documentation for explanation.
-
-
-
-[55 <../PY/fig/ts_ml_mrac_simulation.png>]
-<../PY/fig/ts_ml_mrac_real.png, id=1699, 560.3334pt x 398.32816pt>
+<../PY/fig/ts_ml_mrac_real.png, id=1677, 560.3334pt x 398.32816pt>
 File: ../PY/fig/ts_ml_mrac_real.png Graphic file (type png)
 <use ../PY/fig/ts_ml_mrac_real.png>
-Package pdftex.def Info: ../PY/fig/ts_ml_mrac_real.png  used on input line 1362.
+Package pdftex.def Info: ../PY/fig/ts_ml_mrac_real.png  used on input line 1312.
 (pdftex.def)             Requested size: 554.82875pt x 394.4251pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1363.
+(caption)                particular \caption on input line 1313.
 See the caption package documentation for explanation.
 
 
 
-[56 <../PY/fig/ts_ml_mrac_real_raw.png>])
+[54 <../PY/fig/ts_ml_mrac_real_raw.png>])
 
-[57 <../PY/fig/ts_ml_mrac_real.png>] (./chapters/literatura.tex)
+[55 <../PY/fig/ts_ml_mrac_real.png>] (./chapters/literatura.tex)
 
-[58
+[56
 
 ] 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
@@ -1696,21 +1668,21 @@ LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-06-09>
  ***********
 Package rerunfilecheck Info: File `DP.out' has not changed.
-(rerunfilecheck)             Checksum: ECEBE25E822F13EA92D232213C6F4F6A;8341.
+(rerunfilecheck)             Checksum: 74B448B6824733608DE1E36C6CBFA8DE;8225.
  ) 
 Here is how much of TeX's memory you used:
- 21853 strings out of 467888
- 350595 string characters out of 5431467
+ 21826 strings out of 467888
+ 349687 string characters out of 5431467
  1177583 words of memory out of 5000000
- 48831 multiletter control sequences out of 15000+600000
+ 48809 multiletter control sequences out of 15000+600000
  722787 words of font info for 203 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  80i,12n,82p,999b,2650s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt9.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfit0800.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb>
-Output written on DP.pdf (58 pages, 6337659 bytes).
+Output written on DP.pdf (56 pages, 7636736 bytes).
 PDF statistics:
- 2018 PDF objects out of 2073 (max. 8388607)
- 1797 compressed objects within 18 object streams
- 1037 named destinations out of 1200 (max. 500000)
- 59324 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 1996 PDF objects out of 2073 (max. 8388607)
+ 1781 compressed objects within 18 object streams
+ 1032 named destinations out of 1200 (max. 500000)
+ 59306 words of extra memory for PDF output out of 61914 (max. 10000000)
 

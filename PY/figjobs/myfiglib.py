@@ -139,7 +139,7 @@ TOP_MARGIN_CM = 0.20
 BOTTOM_MARGIN_CM = 0.60
 
 # Axis label positions (relative to axes)
-X_LABEL_COORDS = (1.05, -0.09)
+X_LABEL_COORDS = (1.05, -0.00)
 Y_LABEL_COORDS = (-0.07, 1.03)
 
 # Title position
@@ -309,13 +309,34 @@ class StackedFigure:
 
     # ----------------------------------------------------------------------
 
-    def line(self, i, x, y, ls="-", lw=0.6, color="k", label=None):
+    def line(
+        self,
+        i,
+        x,
+        y,
+        ls="-",
+        lw=0.6,
+        color="k",
+        label=None,
+        marker=None,
+        ms=None
+    ):
         ax = self.axes[i]
 
-        kwargs = dict(linestyle=ls, linewidth=lw, color=color)
+        kwargs = dict(
+            linestyle=ls,
+            linewidth=lw,
+            color=color
+        )
 
         if label is not None:
             kwargs["label"] = label
+
+        if marker is not None:
+            kwargs["marker"] = marker
+
+        if ms is not None:
+            kwargs["markersize"] = ms
 
         ax.plot(x, y, **kwargs)
 

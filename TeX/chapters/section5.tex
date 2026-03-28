@@ -1236,22 +1236,26 @@ je znázornená na obr.~\ref{fig:mrac_matlab_block}.
 % -------------------------------------------------------------------
 % Subsubsection - Simulácia
 % -------------------------------------------------------------------
-\subsubsection{Simulácia}
-\label{sec:mrac_matlab_simulation}
+\subsubsection{Experiment na tepelnej sústave}
+\label{sec:mrac_matlab_experiment}
 
-V prvej fáze overovania bola realizovaná simulácia
-gradientného MRAC regulátora
-na modeli sústavy získanom identifikáciou,
-konkrétne na prenosovej funkcii
-\eqref{eq:Gs_ls_approx}.
+Navrhnutý gradientný MRAC regulátor bol aplikovaný
+na reálnu tepelnú sústavu,
+pričom jeho vlastnosti boli overené
+na modeli získanom identifikáciou
+(\eqref{eq:Gs_ls_approx}),
+ako aj následne v reálnych podmienkach.
+
 Cieľom bolo overiť,
 či implementovaný adaptačný mechanizmus
-zabezpečuje sledovanie výstupu referenčného modelu.
+zabezpečuje sledovanie výstupu referenčného modelu
+pri súčasnej adaptácii parametrov regulátora.
 
-Na obr.~\ref{fig:mrac_simulation_results_raw}
-sú uvedené priebehy v absolútnych veličinách.
+Na obr.~\ref{fig:mrac_real_results_raw}
+sú priebehy v absolútnych veličinách.
 V hornom grafe sú zobrazené priebehy
 $y(t)$, $y_m(t)$ a $r(t)$.
+
 Počas prvých $400~\mathrm{s}$
 prebieha fáza ustálenia pri konštantnom riadiacom zásahu,
 pričom systém nereaguje na zmeny referencie
@@ -1266,69 +1270,8 @@ a riadiaci zásah sa začne meniť.
 V treťom grafe sú priebehy parametrov
 $\Theta_1$, $\Theta_2$ a $\Theta_3$.
 Počas ustálenia sú konštantné,
-po prepnutí dochádza k ich adaptácii.
-
-\begin{center}
-    \vbox{
-        \makebox[\textwidth][c]{%
-            \includegraphics[width=1.5\textwidth]{ts_ml_mrac_simulation_raw.png}
-        }
-        \figcaption{Simulačné výsledky gradientného MRAC regulátora v absolútnych veličinách}
-        \label{fig:mrac_simulation_results_raw}
-    }
-\end{center}
-
-Detail adaptačnej fázy je uvedený
-na obr.~\ref{fig:mrac_simulation_results},
-kde sú priebehy vyjadrené ako odchýlky od pracovného bodu
-a fáza ustálenia nie je zobrazená.
-V hornom grafe sú veličiny
-$\Delta y(t)$, $\Delta y_m(t)$ a $\Delta r(t)$,
-v druhom $\Delta u(t)$
-a v treťom priebehy parametrov $\Theta$.
-
-Z priebehov je zrejmé,
-že výstup systému sleduje výstup referenčného modelu
-bez výrazných oscilácií
-a parametre regulátora sa počas deja prispôsobujú.
-
-\begin{center}
-    \vbox{
-        \makebox[\textwidth][c]{%
-            \includegraphics[width=1.5\textwidth]{ts_ml_mrac_simulation.png}
-        }
-        \figcaption{Simulačné výsledky gradientného MRAC regulátora po prechode do súradníc pracovného bodu}
-        \label{fig:mrac_simulation_results}
-    }
-\end{center}
-
-Na základe simulácie možno konštatovať,
-že regulátor zabezpečuje sledovanie referenčného modelu
-pri súčasnej adaptácii parametrov.
-
-% -------------------------------------------------------------------
-% Subsubsection - Experiment na tepelnej sústave
-% -------------------------------------------------------------------
-\subsubsection{Experiment na tepelnej sústave}
-\label{sec:mrac_matlab_experiment}
-
-Navrhnutý regulátor bol následne aplikovaný
-na reálnu tepelnú sústavu,
-s cieľom overiť jeho funkčnosť
-v reálnych podmienkach.
-
-Na obr.~\ref{fig:mrac_real_results_raw}
-sú priebehy v absolútnych veličinách.
-Počas úvodnej fázy ustálenia
-je systém riadený konštantným zásahom
-a veličiny sa ustália v okolí pracovného bodu.
-Po jej ukončení sa aktivuje adaptačný režim.
-
-Riadiaci zásah je počas prvých $400~\mathrm{s}$
-konštantný,
-následne sa mení podľa adaptačného zákona.
-Vývoj parametrov $\Theta_1$, $\Theta_2$ a $\Theta_3$
-potvrdzuje činnosť adaptácie.
+po prepnutí dochádza k ich adaptácii,
+čo potvrdzuje činnosť adaptačného mechanizmu.
 
 \begin{center}
     \vbox{
@@ -1342,18 +1285,25 @@ potvrdzuje činnosť adaptácie.
 
 Detail adaptačnej fázy je uvedený
 na obr.~\ref{fig:mrac_real_results},
-kde sú priebehy vyjadrené ako odchýlky od pracovného bodu.
+kde sú priebehy vyjadrené ako odchýlky od pracovného bodu
+a fáza ustálenia nie je zobrazená.
+
+V hornom grafe sú veličiny
+$\Delta y(t)$, $\Delta y_m(t)$ a $\Delta r(t)$,
+v druhom $\Delta u(t)$
+a v treťom priebehy parametrov $\Theta$.
+
+Z priebehov je zrejmé,
+že výstup systému sleduje výstup referenčného modelu
+bez výrazných oscilácií
+a parametre regulátora sa počas deja prispôsobujú.
 
 Adaptačné koeficienty boli zvolené experimentálne
 na základe správania reálnej sústavy
-(\eqref{eq:mrac_adaptation_gains}).
-Táto voľba umožnila dosiahnuť
+(\eqref{eq:mrac_adaptation_gains}),
+čo umožnilo dosiahnuť
 s uspokojivou presnosťou sledovanie
 výstupu referenčného modelu.
-V porovnaní so simulačným prípadom
-je kvalita regulácie mierne lepšia,
-keďže adaptačné koeficienty
-boli naladené priamo pre reálnu sústavu.
 
 \begin{center}
     \vbox{
@@ -1365,6 +1315,8 @@ boli naladené priamo pre reálnu sústavu.
     }
 \end{center}
 
-Výsledky experimentu potvrdzujú,
-že regulátor je funkčný aj na reálnej sústave
-a zachováva adaptačný charakter riadenia.
+Na základe experimentu možno konštatovať,
+že regulátor zabezpečuje sledovanie referenčného modelu
+pri súčasnej adaptácii parametrov
+a zachováva adaptačný charakter riadenia
+aj pri aplikácii na reálnu sústavu.
