@@ -93,7 +93,7 @@ je v praxi uplatnená saturácia riadiaceho signálu.
 
 \paragraph{Pseudokód PI regulátora}
 
-\begin{lstlisting}[language=Matlab]
+\begin{lstlisting}[style=pseudocode]
 % Inputs: w (setpoint), y (output), Ts
 % States: I (integrator state)
 % Params: Kp, Ki, u_min, u_max
@@ -242,47 +242,74 @@ Ako je uvedené v zadaní, cieľom práce je implementácia riadiacich algoritmo
 Preto bol PI regulátor implementovaný tak, aby mohol pracovať v reálnom čase bez použitia hotových Simulink blokov určených na riadenie.  
 Celá logika riadenia bola zapísaná priamo do bloku MATLAB Function, ktorý sa vykonáva raz za každý riadiaci cyklus s periódou vzorkovania 0.1 sekundy.
 
+Pri implementácii regulátora bol zavedený prístup založený na regulácii odchýlok od pracovného bodu.  
+Namiesto práce s absolútnymi hodnotami veličín sa regulácia vykonáva v inkrementálnom tvare.
+
+Výstupná veličina je vyjadrená ako odchýlka od pracovného bodu:
+
+\[
+\Delta y = y - y_{pb}
+\]
+
+kde $y_{pb}$ predstavuje odhad ustáleného stavu systému (pracovného bodu).
+
+Podobne aj riadiaci zásah je počítaný ako odchýlka od pracovného bodu:
+
+\[
+\Delta u = u - u_{pb}
+\]
+
+pričom výsledný akčný zásah je následne získaný ako:
+
+\[
+u = \Delta u + u_{pb}
+\]
+
+Referenčná hodnota (setpoint) je taktiež definovaná vzhľadom na pracovný bod, čo znamená, že regulátor riadi systém v okolí pracovného bodu, nie v absolútnych hodnotách.
+
+Tento prístup umožňuje efektívnejšie riadenie nelineárneho systému a zvyšuje robustnosť regulátora voči zmenám prevádzkových podmienok.
+
 Implementácia regulátora je nasledovná:
 
 \begin{lstlisting}[language=Matlab]
 function [u, integrator_out, y_ss_out] = ...
-         pi_block(y, setpoint, integrator_in, t, y_ss_in)
+         pi_block(y, setpoint_pb, integrator_in, t, y_ss_in)
 
 % PI controller
 
-pb_u = 4;
+u_pb = 4;
 Ts = 0.1;
-u_min = - pb_u;
-u_max = 10 - pb_u;
+u_pb_min = - u_pb;
+u_pb_max = 10 - u_pb;
 
 Kp = 3.58;
 Ki = 1.84;
 
 % waiting phase for steady-state detection
 if t < 10*60
-    u = 4;
-    y_ss_out = y;
+    u = u_pb;
+    y_pb_out = y;
     integrator_out = 0;
 
 else
-    y_ss_out = y_ss_in;
-    pb_y = y_ss_in;
+    y_pb_out = y_pb_in;
+    y_pb = y_pb_in;
 
     % output normalization
-    y = y - pb_y;
+    dy = y - y_pb;
 
     % control error
-    e = setpoint - y;
+    e = setpoint_pb - dy;
 
     % integrator
     integrator_out = integrator_in + e * Ts;
 
     % PI control law
-    u = Kp * e + Ki * integrator_out;
-    u = min(max(u, u_min), u_max);
+    du = Kp * e + Ki * integrator_out;
+    du = min(max(du, u_pb_min), u_pb_max);
 
     % input normalization
-    u = u + pb_u;
+    u = du + u_pb;
 
 end
 end
@@ -372,3 +399,81 @@ Z tohto dôvodu možno konštatovať, že navrhnutý PI regulátor je vhodný na
 avšak nie je vhodný na prepínanie medzi vzdialenejšími pracovnými bodmi.  
 V ďalšej časti práce bude preto implementovaný postup umožňujúci bezpečné a stabilné prepínanie medzi pracovnými bodmi  
 a následne budú jednotlivé regulátory skombinované tak, aby systém disponoval širším využiteľným rozsahom riadenia.
+
+\subsection{Implementácia PI regulátora v jazyku C++}
+
+Na základe algoritmu uvedeného v prostredí MATLAB bola následne zrealizovaná aj implementácia PI regulátora v jazyku C++.  
+Táto implementácia bola začlenená do hlavného programu uvedeného v prílohe \ref{lst:main_cpp_appendix}, kde zabezpečuje výpočet akčného zásahu pre vykurovaciu špirálu v reálnom čase.
+
+Použitá logika regulácie zostala z hľadiska riadiaceho princípu rovnaká ako pri implementácii v prostredí MATLAB.  
+Aj v tomto prípade je regulácia realizovaná vzhľadom na pracovný bod, pričom sa využíva odchýlka výstupu od odhadnutého ustáleného stavu a následne sa vypočíta odchýlkový akčný zásah.  
+Rovnako ostali zachované aj parametre regulátora, hodnota pracovného bodu, saturácia riadiaceho signálu a úvodná čakacia fáza v trvaní desiatich minút, počas ktorej sa systém ustáli a zároveň sa určí hodnota $y_{pb}$.
+
+Najskôr sú v programe inicializované základné parametre regulátora, pracovného bodu a pomocných premenných:
+
+\begin{lstlisting}[style=cppstyle]
+float u_pb = 4.0f;
+float u_pb_min = -u_pb;
+float u_pb_max = 10 - u_pb;
+float Kp = 3.58f;
+float Ki = 1.84;
+float vent = 6.0f;
+float u = 0.0f;
+float y_pb = 0.0f;
+float integrator = 0.0f;
+float e = 0.0f;
+float setpoint_pb = 0.35f;
+float dy = 0.0f;
+float du = 0.0f;
+\end{lstlisting}
+
+Samotná regulačná logika je následne realizovaná priamo v hlavnom cykle programu:
+
+\begin{lstlisting}[style=cppstyle]
+if (globalTime < 10 * 60) {
+    u = u_pb;
+    y_pb = snimac1;
+    integrator = 0.0f;
+} else {
+    dy = snimac1 - y_pb;
+    e = setpoint_pb - dy;
+
+    integrator += e * timeTickPeriod;
+
+    du = Kp * e + Ki * integrator;
+    du = clampFloat(du, u_pb_min, u_pb_max);
+
+    u = u_pb + du;
+}
+
+float spirala = u;
+\end{lstlisting}
+
+Oproti implementácii v MATLAB Function bloku je však realizácia v jazyku C++ odlišná najmä spôsobom práce so stavmi regulátora.  
+Kým v prostredí Simulink bolo potrebné prenášať stav integrátora a hodnotu pracovného bodu cez vstupy a výstupy bloku explicitne, v programe C++ sú tieto hodnoty uchovávané priamo vo vnútri programu ako interné premenné.  
+Implementácia tak prirodzene disponuje vlastnou vnútornou pamäťou, čo zjednodušuje štruktúru programu a znižuje potrebu vytvárania pomocných spätných väzieb medzi blokmi.
+
+Ďalším rozdielom je spôsob vykonávania algoritmu.  
+V Simulinku je beh regulátora naviazaný na simulačný model a jeho blokovú štruktúru, zatiaľ čo v jazyku C++ je regulačný algoritmus súčasťou hlavného cyklu programu, v ktorom sa postupne vykonáva komunikácia so systémom, čítanie meraných veličín, výpočet regulácie a zápis akčných zásahov na výstupy.  
+Z tohto dôvodu je pri implementácii v C++ potrebné venovať zvýšenú pozornosť správnemu časovaniu výpočtu, dodržaniu periódy vzorkovania a stabilite komunikácie s hardvérom.
+
+Z numerického hľadiska zostáva princíp výpočtu nezmenený.  
+Integrátor sa aj v tejto implementácii aktualizuje diskrétne pomocou periódy vzorkovania a výsledný zásah je následne obmedzený saturáciou.  
+
+Na základe tejto implementácie bol vykonaný experiment na reálnom systéme, ktorého výsledok je uvedený na obrázku~\ref{fig:ts_cpp_pi_real}.
+
+\begin{center}
+    \vbox{
+        \makebox[\textwidth][c]{%
+            \includegraphics[width=1.5\textwidth]{ts_cpp_pi_real.png}
+        }
+        \figcaption{Experimentálna odozva PI regulátora implementovaného v jazyku C++}
+        \label{fig:ts_cpp_pi_real}
+    }
+\end{center}
+
+Z priebehu regulácie je zrejmé, že výsledná odozva je veľmi podobná priebehu získanému pri implementácii v prostredí MATLAB, uvedenom na obrázku~\ref{fig:ts_pi_real_basic}.  
+Tvar regulačnej odozvy, rýchlosť nábehu aj charakter ustálenia zostali vo všeobecnosti zachované.  
+Možno však pozorovať menšie rozdiely v detailoch priebehu, ktoré možno vysvetliť odlišnými vonkajšími podmienkami počas experimentu.  
+Jednotlivé merania boli realizované pri rozdielnej teplote v miestnosti, pričom tepelný systém TS05 je na zmeny okolitej teploty citlivý.  
+Preto možno konštatovať, že implementácia v jazyku C++ potvrdila správnosť navrhnutého algoritmu aj mimo prostredia MATLAB/Simulink a zároveň ukázala, že regulátor si zachováva porovnateľné vlastnosti aj pri nasadení na odlišnej softvérovej platforme.

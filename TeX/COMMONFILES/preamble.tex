@@ -282,3 +282,62 @@
 
 % ------------------------------
 
+\lstdefinestyle{pseudocode}{
+    backgroundcolor=\color{white},
+    basicstyle=\ttfamily\small,
+    keywordstyle=\bfseries,
+    commentstyle=\itshape\color{gray},
+    stringstyle=\color{black},
+    numbers=none,
+    frame=single,
+    rulecolor=\color{black!20},
+    breaklines=true,
+    tabsize=2,
+    captionpos=b,
+    columns=fullflexible,
+    keepspaces=true,
+    showstringspaces=false,
+    morekeywords={INPUT,OUTPUT,IF,THEN,ELSE,WHILE,FOR,RETURN,END},
+    morecomment=[l]{\%}
+}
+
+% Cool cpp style------------------------------
+
+\usepackage{xcolor}
+\usepackage{listings}
+
+\definecolor{codebg}{RGB}{30,32,34}
+\definecolor{codeframe}{RGB}{70,70,70}
+\definecolor{codekw}{RGB}{86,156,214}
+\definecolor{codestr}{RGB}{214,157,133}
+\definecolor{codecom}{RGB}{106,153,85}
+\definecolor{codenum}{RGB}{120,120,120}
+\definecolor{codeid}{RGB}{220,220,220}
+\definecolor{codeemph}{RGB}{78,201,176}
+
+\lstdefinestyle{cppstyle}{
+    language=C++,
+    backgroundcolor=\color{codebg},
+    basicstyle=\ttfamily\footnotesize\color{codeid},
+    keywordstyle=\color{codekw}\bfseries,
+    stringstyle=\color{codestr},
+    commentstyle=\color{codecom}\itshape,
+    identifierstyle=\color{codeid},
+    emphstyle=\color{codeemph}\bfseries,
+    numbers=left,
+    numberstyle=\scriptsize\color{codenum},
+    stepnumber=1,
+    numbersep=8pt,
+    frame=none,
+    breaklines=true,
+    breakatwhitespace=false,
+    tabsize=4,
+    captionpos=b,
+    columns=fixed,
+    keepspaces=true,
+    showstringspaces=false,
+    xleftmargin=0pt,
+    xrightmargin=0pt,
+    aboveskip=4pt,
+    belowskip=4pt
+}

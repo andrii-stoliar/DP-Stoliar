@@ -562,3 +562,342 @@ Výsledné hodnoty strednej kvadratickej chyby (RMSE) medzi reálnym systémom a
 
 Z výsledkov, ako aj z priebehov simulácií, je zrejmé, že rozdiel medzi pôvodnými a aproximovanými modelmi je zanedbateľný.  
 Hodnota RMSE sa zhoršila len minimálne, čo je z pohľadu ďalšieho použitia modelov úplne prijateľné, najmä vzhľadom na zjednodušenie analytického spracovania, ktoré táto aproximácia prináša.
+
+% -------------------------------------------------------------------
+% Subsection - Komunikácia s TS05
+% -------------------------------------------------------------------
+
+\subsection{Komunikácia so systémom TS05}
+\label{sec:komunikacia_ts05}
+
+V tejto časti je opísaný spôsob komunikácie laboratórneho tepelného systému TS05
+s jednotlivými hardvérovými a softvérovými platformami použitými v práci.
+Cieľom bolo zabezpečiť jednotný a funkčný prístup k vstupom a výstupom systému
+nielen v prostredí \textit{MATLAB/Simulink}, ale aj pri implementácii na platforme
+\textit{Arduino UNO} v jazyku C++ a na priemyselnom PLC systéme \textit{Siemens}.
+
+Osobitná pozornosť bola venovaná najmä tomu, aby bolo možné realizovať experimenty
+aj mimo pôvodného simulačného prostredia, vytvárať nové riadiace algoritmy
+a zároveň spoľahlivo zaznamenávať namerané údaje pre ďalšie spracovanie.
+
+% -------------------------------------------------------------------
+% Subsubsection - MATLAB
+% -------------------------------------------------------------------
+
+\subsubsection{Komunikácia s MATLAB}
+\label{sec:komunikacia_matlab}
+
+Táto časť bude doplnená v nasledujúcej verzii práce.
+
+% -------------------------------------------------------------------
+% Subsubsection - C++
+% -------------------------------------------------------------------
+
+\subsubsection{Komunikácia v jazyku C++}
+\label{sec:komunikacia_cpp}
+
+Keďže systém TS05 bol pôvodne používaný predovšetkým v prostredí
+\textit{MATLAB/Simulink} a k dispozícii nebola podrobná technická dokumentácia
+popisujúca jednotlivé vodiče a signály, bolo najprv potrebné experimentálne určiť,
+ktorý kontakt konektora zodpovedá jednotlivým vstupom a výstupom systému.
+Súčasne bolo potrebné vytvoriť nový prepojovací kábel a navrhnúť fyzické zapojenie,
+ktoré by umožnilo komunikáciu systému TS05 s platformou \textit{Arduino UNO}.
+
+Zo zariadenia TS05 je vyvedený kruhový 8-pinový konektor.
+Pomocou multimetra boli identifikované jednotlivé kontakty, pričom výsledné
+priradenie je uvedené v tabuľke~\ref{tab:ts05_pinout}.
+
+\begin{table}[h!]
+    \centering
+    \caption{Identifikované kontakty konektora systému TS05}
+    \label{tab:ts05_pinout}
+    \begin{tabular}{|c|l|}
+        \hline
+        \textbf{Pin} & \textbf{Funkcia} \\ \hline
+        1 & Snímač 1 \\ \hline
+        2 & Snímač 2 \\ \hline
+        6 & Ventilátor \\ \hline
+        7 & Špirála \\ \hline
+        8 & GND \\ \hline
+    \end{tabular}
+\end{table}
+
+Po identifikácii pinov bol zhotovený nový kábel, ktorý umožnil priamy prístup
+k meraným aj akčným signálom systému TS05. Následne bola zostavená riadiaca
+a meracia reťaz založená na mikrokontroléri \textit{Arduino UNO}.
+
+Akčné veličiny systému, teda ventilátor a vykurovacia špirála, boli z platformy
+\textit{Arduino} generované pomocou PWM signálu s rozsahom 0 až 255.
+Keďže samotný systém TS05 pracuje s analógovými vstupmi v rozsahu 0 až 10~V,
+bolo potrebné použiť prevodník PWM/0--10~V.
+Tento prevodník vyžaduje externé napájanie minimálne 12~V a 0,1~A.
+Takýmto spôsobom bolo možné z digitálnych PWM výstupov \textit{Arduino}
+vytvoriť analógové riadiace signály použiteľné pre systém TS05.
+
+Na druhej strane, výstupné signály snímačov systému TS05 sú analógové napätia
+v rozsahu 0 až 10~V.
+Keďže analógové vstupy platformy \textit{Arduino UNO} pracujú iba v rozsahu
+0 až 5~V, bolo potrebné tieto signály vhodne upraviť.
+Na tento účel boli použité napäťové deliče, pričom každý delič bol zostavený
+z dvoch rezistorov s hodnotou 90~k$\Omega$.
+Výstupné napätie deliča je dané vzťahom
+
+\begin{equation}
+    U_{\mathrm{out}} = U_{\mathrm{in}} \frac{R_2}{R_1 + R_2}
+    \label{eq:voltage_divider}
+\end{equation}
+
+pričom pre $R_1 = R_2 = 90~\mathrm{k}\Omega$ dostaneme
+
+\begin{equation}
+    U_{\mathrm{out}} = \frac{U_{\mathrm{in}}}{2}
+    \label{eq:voltage_divider_half}
+\end{equation}
+
+Z toho vyplýva, že signál 0 až 10~V zo snímača je po delení prevedený približne
+na rozsah 0 až 5~V, čo už zodpovedá možnostiam analógových vstupov
+mikrokontroléra. Samotný prevod v \textit{Arduino} je následne reprezentovaný
+hodnotou A/D prevodníka v rozsahu 0 až 1023.
+
+Mapovanie vstupov a výstupov medzi systémom TS05 a platformou \textit{Arduino UNO}
+je uvedené v tabuľke~\ref{tab:arduino_mapping_ts05}.
+
+\begin{table}[h!]
+    \centering
+    \caption{Mapovanie vstupov a výstupov medzi TS05 a Arduino UNO}
+    \label{tab:arduino_mapping_ts05}
+    \begin{tabular}{|c|l|c|c|}
+        \hline
+        \textbf{Port Arduino} & \textbf{Signál} & \textbf{Reálny rozsah} & \textbf{Digitálny rozsah} \\ \hline
+        A1   & Snímač 1    & 0--10~V & 0--1023 \\ \hline
+        A2   & Snímač 2    & 0--10~V & 0--1023 \\ \hline
+        PWM5 & Ventilátor  & 0--10~V & 0--255  \\ \hline
+        PWM6 & Špirála     & 0--10~V & 0--255  \\ \hline
+    \end{tabular}
+\end{table}
+
+Celkové fyzické zapojenie systému je znázornené na obrázku~\ref{fig:arduino_ts05_connection}.
+
+\begin{center}
+\vbox{
+\makebox[\textwidth][c]{%
+    \includegraphics[width=1.2\textwidth]{in_progress.png}
+}
+\figcaption{Schéma prepojenia systému TS05 s platformou Arduino UNO}
+\label{fig:arduino_ts05_connection}
+}
+\end{center}
+
+Po vytvorení hardvérovej časti bolo potrebné vyriešiť aj interpretáciu vstupných
+a výstupných hodnôt.
+Najjednoduchším riešením by bolo použiť lineárny prevod medzi digitálnymi rozsahmi
+0 až 255, resp. 0 až 1023 a fyzikálnym rozsahom 0 až 10~V.
+Experimentálne merania však ukázali, že hoci je správanie systému približne lineárne,
+nejde o ideálne lineárny prevod.
+
+Odchýlky sú spôsobené viacerými faktormi.
+V prípade napäťových deličov zohráva úlohu tolerancia použitých rezistorov,
+ktorá spôsobuje, že reálny deliaci pomer sa mierne odlišuje od ideálnej hodnoty.
+Pri PWM/0--10~V prevodníku sa zasa prejavilo, že pri minimálnom použitom napájaní
+12~V dochádza k miernemu podhodnocovaniu výstupného napätia.
+Z tohto dôvodu boli pre všetky štyri signálové cesty vykonané experimentálne merania,
+v ktorých sa porovnávali hodnoty generované alebo čítané mikrokontrolérom
+s hodnotami nameranými multimetrom.
+
+Pre každý vstup a výstup bolo realizovaných šesť meraní.
+Výsledky pre jednotlivé kanály sú uvedené v tabuľkách~\ref{tab:pwm5_vent},
+\ref{tab:pwm6_spirala}, \ref{tab:a1_snimac1} a \ref{tab:a2_snimac2}.
+
+\begin{table}[h!]
+    \centering
+    \caption{Kalibračné merania pre výstup PWM5 -- ventilátor}
+    \label{tab:pwm5_vent}
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{PWM5} & \textbf{Namerané napätie [V]} \\ \hline
+        0   & 0.00 \\ \hline
+        50  & 2.19 \\ \hline
+        100 & 4.13 \\ \hline
+        150 & 6.03 \\ \hline
+        200 & 7.91 \\ \hline
+        250 & 9.32 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[h!]
+    \centering
+    \caption{Kalibračné merania pre výstup PWM6 -- špirála}
+    \label{tab:pwm6_spirala}
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{PWM6} & \textbf{Namerané napätie [V]} \\ \hline
+        0   & 0.00 \\ \hline
+        50  & 2.36 \\ \hline
+        100 & 4.34 \\ \hline
+        150 & 6.24 \\ \hline
+        200 & 8.07 \\ \hline
+        250 & 9.30 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[h!]
+    \centering
+    \caption{Kalibračné merania pre vstup A1 -- snímač 1}
+    \label{tab:a1_snimac1}
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Hodnota A1} & \textbf{Namerané napätie [V]} \\ \hline
+        0   & 0.00 \\ \hline
+        365 & 3.68 \\ \hline
+        390 & 3.90 \\ \hline
+        739 & 7.34 \\ \hline
+        904 & 8.95 \\ \hline
+        972 & 9.64 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[h!]
+    \centering
+    \caption{Kalibračné merania pre vstup A2 -- snímač 2}
+    \label{tab:a2_snimac2}
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Hodnota A2} & \textbf{Namerané napätie [V]} \\ \hline
+        0   & 0.00 \\ \hline
+        383 & 3.83 \\ \hline
+        406 & 4.06 \\ \hline
+        655 & 6.55 \\ \hline
+        755 & 7.47 \\ \hline
+        769 & 7.68 \\ \hline
+    \end{tabular}
+\end{table}
+
+Z uvedených hodnôt je zrejmé, že priebehy sú síce blízke lineárnemu správaniu,
+avšak nie natoľko, aby bolo možné bezvýhradne použiť jednoduchú lineárnu kalibráciu.
+Preto bolo rozhodnuté overiť viacero typov aproximačných funkcií.
+Pre každý kanál bolo testovaných päť modelov:
+lineárny, kvadratický, kubický, mocninový a exponenciálny.
+Kvalita aproximácie bola hodnotená pomocou ukazovateľa RMSE.
+
+Výsledky ukázali, že vo všetkých štyroch prípadoch dosiahla najnižšiu chybu
+kubická funkcia.
+Z tohto dôvodu bola pre prevod medzi digitálnymi a fyzikálnymi veličinami
+zvolená práve kubická aproximácia.
+Jej všeobecný tvar možno zapísať ako
+
+\begin{equation}
+    y = ax^3 + bx^2 + cx + d
+    \label{eq:cubic_calibration}
+\end{equation}
+
+kde $x$ predstavuje vstupnú hodnotu a $y$ kalibrovaný výstup.
+
+Pre jednotlivé kanály boli použité nasledujúce kalibračné funkcie:
+
+\begin{equation}
+    \mathrm{PWM5}_{\mathrm{vent}}(u) =
+    0.05938291u^3 - 0.27988543u^2 + 24.20478979u - 0.52522611
+    \label{eq:cal_pwm5}
+\end{equation}
+
+\begin{equation}
+    \mathrm{PWM6}_{\mathrm{spir}}(u) =
+    0.08732906u^3 - 0.39322033u^2 + 22.8496962u - 0.61564759
+    \label{eq:cal_pwm6}
+\end{equation}
+
+\begin{equation}
+    U_{\mathrm{sn1}}(A1) =
+    4.64044633 \times 10^{-10} A1^3
+    - 8.44254606 \times 10^{-7} A1^2
+    + 1.02946107 \times 10^{-2} A1
+    + 5.87859135 \times 10^{-5}
+    \label{eq:cal_a1}
+\end{equation}
+
+\begin{equation}
+    U_{\mathrm{sn2}}(A2) =
+    -9.09109415 \times 10^{-10} A2^3
+    + 8.99002333 \times 10^{-7} A2^2
+    + 9.78867803 \times 10^{-3} A2
+    - 9.65193864 \times 10^{-5}
+    \label{eq:cal_a2}
+\end{equation}
+
+Aj keď sa neskôr experimentálne ukázalo, že ani táto aproximácia nie je úplne ideálna,
+pre potreby tejto práce bola dosiahnutá presnosť dostatočná.
+Jedným z možných spôsobov ďalšieho zlepšenia by bolo vykonanie väčšieho počtu
+kalibračných meraní a následná identifikácia presnejšej prevodovej charakteristiky.
+
+Softvérová implementácia na platforme \textit{Arduino UNO} bola realizovaná
+v jazyku C++ s využitím rozšírenia \textit{PlatformIO} v prostredí \textit{Visual Studio Code}.
+Samotný program bol rozdelený na niekoľko logických častí.
+Najprv boli definované hardvérové piny, čas vzorkovania a dĺžka experimentu.
+Následne boli implementované pomocné funkcie pre výpočet kubickej kalibrácie
+a orezávanie hodnôt do povolených rozsahov.
+
+Dôležitou časťou programu bola realizácia periodického vykonávania riadiacej logiky.
+Keďže mikrokontrolér neumožňuje garantovať úplne presné spúšťanie výpočtu
+v pevne daných časových okamihoch bez ďalších mechanizmov, bola implementovaná
+takzvaná \uv{tick} logika.
+Program priebežne sleduje čas od posledného vykonania riadiaceho kroku
+a ďalší výpočet sa vykoná až vtedy, keď uplynie požadovaný interval
+$T_s = 0{,}1~\mathrm{s}$.
+Tým sa zabezpečí, že hlavná riadiaca časť programu beží iba raz za každú periódu
+vzorkovania a nie pri každom priechode funkciou \texttt{loop()}.
+
+V každom kroku sa najprv načítajú analógové vstupy A1 a A2,
+následne sa pomocou kubických funkcií prevedú na fyzikálne veličiny snímačov.
+Po vykonaní samotnej riadiacej logiky sa požadované hodnoty ventilátora a špirály
+opäť prevedú pomocou kalibračných funkcií na PWM rozsah 0 až 255,
+zaokrúhlia sa a odošlú na výstupné piny mikrokontroléra.
+
+Súčasťou programu boli aj pomocné funkcie,
+ktoré slúžia na algebraické spracovanie údajov a zjednodušenie samotnej implementácie.
+Konkrétne išlo najmä o funkcie na výpočet kubických aproximačných polynómov
+a o funkcie zabezpečujúce obmedzenie vypočítaných hodnôt do povolených rozsahov.
+Takéto riešenie umožnilo oddeliť samotnú riadiacu logiku od pomocných výpočtov,
+čím sa zvýšila prehľadnosť a zároveň aj jednoduchosť ďalších úprav programu.
+
+Z praktického hľadiska bolo potrebné vyriešiť aj automatický záznam experimentálnych dát.
+Priame zapisovanie do súboru z prostredia \textit{Arduino IDE} alebo \textit{PlatformIO}
+nie je možné, preto bol použitý sériový port ako komunikačný kanál medzi
+mikrokontrolérom a počítačom.
+Na strane \textit{Arduino} bola implementovaná jednoduchá stavová komunikácia.
+Po zapnutí zariadenia odošle mikrokontrolér cez sériový port správu \texttt{READY}.
+Následne externý \textit{Python} skript začne počúvať sériový port a po prijatí
+tejto správy odošle príkaz \texttt{START}.
+Tým sa spustí samotný experiment aj priebežné odosielanie dát v CSV formáte.
+Po uplynutí definovaného času experimentu mikrokontrolér odošle správu \texttt{DONE},
+čím sa záznam ukončí a logger uzavrie výstupný \texttt{.csv} súbor.
+
+Dôležitou vlastnosťou implementácie je aj samotná štruktúra súboru \texttt{main.cpp},
+ktorá bola navrhnutá tak, aby bolo možné v ďalších experimentoch veľmi jednoducho
+meniť iba tú časť programu, ktorá súvisí s konkrétnym riadiacim algoritmom.
+V praktickom použití to znamená, že na určenom mieste programu, približne na riadku 102,
+sa inicializujú príslušné premenné algoritmu,
+zatiaľ čo približne na riadku 154 sa zapisuje samotná riadiaca logika.
+Všetky ostatné časti programu, ako napríklad obsluha komunikácie,
+časovanie experimentu, prevody veličín a základná štruktúra vykonávania,
+môžu zostať nezmenené.
+Úpravy sú zvyčajne potrebné iba v prípade,
+že sa mení množina premenných odosielaných na logovanie
+alebo hlavička zapisovaného CSV súboru.
+
+Týmto spôsobom bola zabezpečená nielen samotná komunikácia medzi systémom TS05
+a platformou \textit{Arduino UNO}, ale aj externé spúšťanie experimentov
+a automatizované logovanie nameraných údajov.
+Takto navrhnutá architektúra sa ukázala ako dostatočne flexibilná
+pre implementáciu a testovanie viacerých riadiacich algoritmov.
+Úplné zdrojové kódy hlavného programu pre \textit{Arduino UNO}
+a externého skriptu pre logovanie dát sú uvedené v prílohách
+\ref{lst:main_cpp_appendix} a \ref{lst:logger_py_appendix}.
+
+% -------------------------------------------------------------------
+% Subsubsection - Siemens PLC
+% -------------------------------------------------------------------
+
+\subsubsection{Komunikácia s PLC Siemens}
+\label{sec:komunikacia_siemens}
+
+Táto časť bude doplnená v nasledujúcej verzii práce.
