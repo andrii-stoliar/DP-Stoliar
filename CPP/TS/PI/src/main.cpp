@@ -23,6 +23,8 @@ bool experimentRunning = false;
 uint32_t experimentStartUs = 0;
 uint32_t lastControlTickUs = 0;
 
+// HELPER FUNCTIONS ////////////////////////////////////////////////////////////////
+
 // Cubic polynomial evaluation
 float cubic(float x, float a, float b, float c, float d) {
     return a * x * x * x + b * x * x + c * x + d;
@@ -49,6 +51,8 @@ int clampInt(int value, int minValue, int maxValue) {
     }
     return value;
 }
+
+// SERIAL COMMANDS //////////////////////////////////////////////////////////////////////////
 
 // Stop all outputs
 void stopOutputs() {
@@ -99,13 +103,15 @@ void setup() {
     Serial.println("READY");
 }
 
-//start param init
+// INIT control variables ///////////////////////////////////////////////////////////////
+
+float vent = 6.0f;
+float spirala = 0.0f;
 float u_pb = 4.0f;
 float u_pb_min = -u_pb;
 float u_pb_max = 10 - u_pb;
 float Kp = 3.58f;
 float Ki = 1.84;
-float vent = 6.0f;
 float u = 0.0f;
 float y_pb = 0.0f;
 float integrator = 0.0f;
@@ -115,7 +121,8 @@ float dy = 0.0f;
 float du = 0.0f;
 
 
-// Main loop
+// MAIN CONTROL LOOP ///////////////////////////////////////////////////////////////////////
+
 void loop() {
     handleSerialCommands();
 
@@ -126,7 +133,7 @@ void loop() {
     uint32_t nowUs = micros();
     uint32_t elapsedSinceLastTickUs = nowUs - lastControlTickUs;
 
-    // Secondary loop executes only when real elapsed time reached Ts
+    // Loop executes only when real elapsed time reached Ts
     if (elapsedSinceLastTickUs < TS_US) {
         return;
     }
@@ -137,60 +144,7 @@ void loop() {
     // Update tick timestamp only when control loop actually runs
     lastControlTickUs = nowUs;
 
-    // Read raw ADC values
-    int a1 = analogRead(ANALOG_IN_1);
-    int a2 = analogRead(ANALOG_IN_2);
-
-    // Convert ADC -> snimac values using cubic calibration
-    float snimac1 = cubic(
-        static_cast<float>(a1),
-        4.64044633e-10f,
-        -8.44254606e-07f,
-        1.02946107e-02f,
-        5.87859135e-05f
-    );
-
-    float snimac2 = cubic(
-        static_cast<float>(a2),
-        -9.09109415e-10f,
-        8.99002333e-07f,
-        9.78867803e-03f,
-        -9.65193864e-05f
-    );
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Secondary control loop area starts here (Here is logic, all before and after inside main loop is 
-    //just plumbing)
-
-    if (globalTime < 10 * 60) {
-        u = u_pb;
-        y_pb = snimac1;
-        integrator = 0.0f;
-    } else {
-        dy = snimac1 - y_pb;
-        e = setpoint_pb - dy;
-
-        integrator += e * timeTickPeriod;
-
-        du = Kp * e + Ki * integrator;
-        du = clampFloat(du, u_pb_min, u_pb_max);
-
-        u = u_pb + du;
-    }
-
-    float spirala = u;
-    // Secondary control loop area ends here
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
-
-
-    // After experiment duration expires, force control inputs to zero
-    bool experimentFinished = false;
-    if (globalTime >= EXPERIMENT_DURATION_S) {
-        vent = 0.0f;
-        spirala = 0.0f;
-        experimentFinished = true;
-    }
+    // OUTPUT control variables (vent, spirala) ///////////////////////////////////////////////////
 
     // Limit control variables to 0..10
     vent = clampFloat(vent, 0.0f, 10.0f);
@@ -222,8 +176,66 @@ void loop() {
     analogWrite(PWM_OUT_VENT, pwm5);
     analogWrite(PWM_OUT_SPIR, pwm6);
 
+    // INPUT processing ///////////////////////////////////////////////////////////////////////////////////////////////
+
+    // Read raw ADC values
+    int a1 = analogRead(ANALOG_IN_1);
+    int a2 = analogRead(ANALOG_IN_2);
+
+    // Convert ADC -> snimac values using cubic calibration
+    float snimac1 = cubic(
+        static_cast<float>(a1),
+        4.64044633e-10f,
+        -8.44254606e-07f,
+        1.02946107e-02f,
+        5.87859135e-05f
+    );
+
+    float snimac2 = cubic(
+        static_cast<float>(a2),
+        -9.09109415e-10f,
+        8.99002333e-07f,
+        9.78867803e-03f,
+        -9.65193864e-05f
+    );
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Control law area - update control variables (vent, spirala) based on snimac1, snimac2, globalTime, etc.
+
+    if (globalTime < 10 * 60) {
+        u = u_pb;
+        y_pb = snimac1;
+        integrator = 0.0f;
+    } else {
+        dy = snimac1 - y_pb;
+        e = setpoint_pb - dy;
+
+        integrator += e * timeTickPeriod;
+
+        du = Kp * e + Ki * integrator;
+        du = clampFloat(du, u_pb_min, u_pb_max);
+
+        u = u_pb + du;
+    }
+
+    spirala = u;
+    // 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // End experiment after duration expires ///////////////////////////////////////////////////////////////////////
+
+    // After experiment duration expires, force control inputs to zero
+    bool experimentFinished = false;
+    if (globalTime >= EXPERIMENT_DURATION_S) {
+        vent = 0.0f;
+        spirala = 0.0f;
+        experimentFinished = true;
+    }
+
     // Warning flag for too-large real period
     int warnTs = (timeTickPeriod > TS_WARNING_S) ? 1 : 0;
+
+    // Print CSV line with all relevant data for logging and analysis ///////////////////////////////////////////////
 
     // CSV output to Serial
     Serial.print(globalTime, 6);
