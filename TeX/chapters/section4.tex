@@ -948,3 +948,420 @@ Výsledky experimentu tak potvrdzujú,
 prechody medzi pracovnými bodmi
 a následne zabezpečiť presnú lokálnu reguláciu
 aj v podmienkach reálneho systému.
+
+% -------------------------------------------------------------------
+% Subsection 4.2.2 - Realizácia algoritmu v jazyku C++
+% -------------------------------------------------------------------
+
+\subsection{Realizácia algoritmu v jazyku C++}
+\label{sec:pi_switch_cpp_implementation}
+
+Po overení funkčnosti navrhnutého algoritmu
+v prostredí Matlab Simulink
+bola rovnaká prepínacia logika implementovaná aj
+v jazyku C++ pre mikrokontrolérovú platformu Arduino.
+Všeobecný princíp pripojenia mikrokontroléra,
+spôsob komunikácie so systémom TS05
+a základná štruktúra programu
+boli opísané už v sekcii~\ref{sec:komunikacia_cpp}.
+V tejto časti sa preto pozornosť sústreďuje už
+na samotnú realizáciu algoritmu prepínania pracovných bodov.
+
+Z hľadiska implementácie nebolo potrebné meniť
+celkovú štruktúru programu.
+Bolo potrebné iba doplniť pomocné funkcie
+na výpočty súvisiace so stavovým modelom filtra
+a s manipuláciou s históriou signálov,
+následne inicializovať všetky stavové premenné algoritmu
+a nakoniec implementovať samotnú prepínaciu logiku
+do hlavnej časti regulačného cyklu.
+
+Keďže implementácia prebiehala v jazyku C++,
+nebolo už potrebné prenášať vnútorné stavy algoritmu
+medzi jednotlivými krokmi výpočtu
+rovnakým spôsobom ako v bloku \texttt{Matlab Function}.
+Stavové premenné programu totiž prirodzene uchovávajú svoju hodnotu
+medzi jednotlivými iteráciami cyklu \texttt{loop()}.
+Z tohto dôvodu bolo možné pracovať priamo
+s integračnými stavmi regulátorov,
+so stavom filtra,
+s históriou výstupu a vstupu
+a s odhadnutými hodnotami pracovného bodu
+bez potreby zavádzať samostatné výstupné premenné
+typu \texttt{\_new}
+pre každý stav algoritmu.
+Takýto prístup zjednodušil implementáciu
+a zároveň zachoval rovnakú logiku riadenia
+ako v simulácii.
+
+Pre potreby implementácie bolo najprv potrebné doplniť
+niekoľko pomocných funkcií.
+Prvá skupina z nich zabezpečuje základné operácie
+s maticami a vektormi stavového modelu filtra.
+Druhá skupina slúži na aktualizáciu histórie signálov
+a na výpočet aritmetického priemeru posledných $30$ vzoriek,
+ktorý sa využíva pri odhade nového pracovného bodu.
+Tieto pomocné funkcie sú uvedené vo výpise~\ref{lst:pi_switch_cpp_helpers}.
+
+\begin{lstlisting}[language=C++, caption={Pomocné funkcie použité pri implementácii algoritmu v jazyku C++}, label={lst:pi_switch_cpp_helpers}]
+// 2x2 matrix times 2x1 vector
+void mat2x2Vec2Mul(const float A[2][2], const float x[2], float result[2]) {
+    result[0] = A[0][0] * x[0] + A[0][1] * x[1];
+    result[1] = A[1][0] * x[0] + A[1][1] * x[1];
+}
+
+// 2x1 vector times scalar
+void vec2ScalarMul(const float v[2], float scalar, float result[2]) {
+    result[0] = v[0] * scalar;
+    result[1] = v[1] * scalar;
+}
+
+// 2x1 vector plus 2x1 vector
+void vec2Add(const float a[2], const float b[2], float result[2]) {
+    result[0] = a[0] + b[0];
+    result[1] = a[1] + b[1];
+}
+
+// Dot product of 1x2 and 2x1
+float rowVec2ColVec2Mul(const float c[2], const float x[2]) {
+    return c[0] * x[0] + c[1] * x[1];
+}
+
+// Shift history left and append new value
+void shiftAppend30(float hist[30], float newValue) {
+    for (int i = 0; i < 29; ++i) {
+        hist[i] = hist[i + 1];
+    }
+    hist[29] = newValue;
+}
+
+// Mean of 30 samples
+float mean30(const float hist[30]) {
+    float sum = 0.0f;
+    for (int i = 0; i < 30; ++i) {
+        sum += hist[i];
+    }
+    return sum / 30.0f;
+}
+\end{lstlisting}
+
+Po definovaní pomocných funkcií
+bolo potrebné inicializovať všetky premenné,
+ktoré reprezentujú vnútorný stav algoritmu.
+Ide najmä o globálnu a lokálnu žiadanú hodnotu,
+predchádzajúcu hodnotu globálnej referencie,
+príznaky aktivity regulačných vetiev,
+integračné stavy regulátorov,
+stav filtra,
+históriu vstupu a výstupu,
+tabuľkové hodnoty pracovných bodov
+a parametre jednotlivých PI regulátorov.
+Táto inicializácia je uvedená vo výpise~\ref{lst:pi_switch_cpp_init}.
+
+\begin{lstlisting}[language=C++, caption={Inicializácia stavových premenných algoritmu v jazyku C++}, label={lst:pi_switch_cpp_init}]
+float vent = 6.0f;
+float spirala = 0.0f;
+
+// References
+float r_g = 0.0f;
+float r_l = 0.0f;
+float r_g_prev = 0.0f;
+float r_gf = 0.0f;
+
+// Controller activity
+int active_g = 0;
+int active_l = 1;
+
+// Operating point
+float y_pb = 0.0f;
+float u_pb = 0.0f;
+
+// Controller states
+float I_l = 0.0f;
+float I_g = 0.0f;
+
+// Filter state
+float x_f[2] = {0.0f, 0.0f};
+
+// Filter matrices
+const float A_f[2][2] = {
+    {0.0f, 1.0f},
+    {-0.01f, -0.2f}
+};
+
+const float b_f[2] = {0.0f, 1.0f};
+const float c_f[2] = {0.01f, 0.0f};
+
+// Histories
+float y_hist[30] = {0.0f};
+float u_hist[30] = {0.0f};
+
+// Gain scheduling table
+const float y_pb_table[3] = {4.4884f, 6.3412f, 7.7441f};
+const float u_pb_table[3] = {2.0f, 4.0f, 6.0f};
+const float Kp_l_table[3] = {2.77f, 3.58f, 1.83f};
+const float Ki_l_table[3] = {1.48f, 1.84f, 2.20f};
+
+// Global PI
+const float Kp_g = 4.0f;
+const float Ki_g = 0.7f;
+
+// Active local PI gains
+float Kp_l = 0.0f;
+float Ki_l = 0.0f;
+
+// Errors and control components
+float e_l = 0.0f;
+float e_g = 0.0f;
+float u_l = 0.0f;
+float u_g = 0.0f;
+float u = 0.0f;
+
+// Settling detection
+float lower_bound = 0.0f;
+float upper_bound = 0.0f;
+int count_ok = 0;
+\end{lstlisting}
+
+Samotná regulačná logika bola následne vložená
+do hlavného riadiaceho cyklu programu.
+V jej úvode sa najprv generujú priebehy globálnej
+a lokálnej žiadanej hodnoty.
+Globálna referencia zabezpečuje prechod
+medzi pracovnými bodmi systému,
+zatiaľ čo lokálna referencia predstavuje odchýlku
+od aktuálneho pracovného bodu.
+Následne sa vykoná detekcia skokovej zmeny
+globálnej žiadanej hodnoty,
+výpočet filtrovanej referencie,
+voľba parametrov lokálneho PI regulátora
+na základe princípu gain scheduling,
+výpočet akčného zásahu,
+aktualizácia histórie signálov
+a vyhodnotenie podmienky ustálenia.
+
+Ak je splnená podmienka ustálenia,
+z posledných $30$ hodnôt výstupu a vstupu
+sa odhadnú nové hodnoty $y_{pb}$ a $u_{pb}$.
+Tieto hodnoty sa však nezačnú používať okamžite
+v tom istom vzorkovacom kroku.
+Najprv sa iba pripravia nové hodnoty pracovného bodu
+a nový stav aktivity globálneho regulátora,
+pričom samotné prepnutie sa prejaví až
+v nasledujúcom kroku výpočtu.
+Tým sa zachová diskrétny charakter algoritmu
+a zabráni sa tomu,
+aby sa regulačný zákon menil dvakrát
+v rámci jednej periódy vzorkovania.
+
+Implementovaný kód hlavnej regulačnej logiky
+je uvedený vo výpise~\ref{lst:pi_switch_cpp_code}.
+
+\begin{lstlisting}[language=C++, caption={Implementácia prepínacej logiky v hlavnom regulačnom cykle programu}, label={lst:pi_switch_cpp_code}]
+// Reference generation //////////////////////////////////////////////////////////////////
+
+// Global reference
+if (globalTime < 1.0f) {
+    r_g = 0.0f;
+} else if (globalTime < 401.0f) {
+    r_g = 6.3412f;
+} else if (globalTime < 801.0f) {
+    r_g = 4.4884f;
+} else {
+    r_g = 4.4884f;
+}
+
+// Local reference
+if (globalTime < 201.0f) {
+    r_l = 0.0f;
+} else if (globalTime < 301.0f) {
+    r_l = -0.35f;
+} else if (globalTime < 601.0f) {
+    r_l = 0.0f;
+} else if (globalTime < 701.0f) {
+    r_l = 0.41f;
+} else if (globalTime < 801.0f) {
+    r_l = 0.0f;
+} else {
+    r_l = 0.0f;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Control law area - PI switching logic
+
+// 1 Detect step change
+if (r_g != r_g_prev) {
+    active_g = 1;
+}
+
+// 2 Filter global reference
+r_gf = rowVec2ColVec2Mul(c_f, x_f);
+
+float Afx[2];
+float bfr[2];
+float filterSum[2];
+
+mat2x2Vec2Mul(A_f, x_f, Afx);
+vec2ScalarMul(b_f, r_g, bfr);
+vec2Add(Afx, bfr, filterSum);
+
+x_f[0] += filterSum[0] * timeTickPeriod;
+x_f[1] += filterSum[1] * timeTickPeriod;
+
+// 3 Select local points PI params
+float dist_pb = fabs(y_pb_table[0] - y_pb);
+int idx_pb = 0;
+
+for (int i = 1; i < 3; ++i) {
+    float dist_i = fabs(y_pb_table[i] - y_pb);
+    if (dist_i < dist_pb) {
+        dist_pb = dist_i;
+        idx_pb = i;
+    }
+}
+
+Kp_l = Kp_l_table[idx_pb];
+Ki_l = Ki_l_table[idx_pb];
+
+// 4 Control errors
+e_l = r_l - (snimac1 - y_pb);
+e_g = r_gf - snimac1;
+
+// 5 Control law
+u_l = (1 - active_g) * (u_pb + Kp_l * e_l + Ki_l * I_l);
+u_g = active_g * (Kp_g * e_g + Ki_g * I_g);
+
+u = u_l + u_g;
+u = clampFloat(u, 0.0f, 10.0f);
+
+// 6 Update histories
+shiftAppend30(y_hist, snimac1);
+shiftAppend30(u_hist, u);
+
+// 7 Settling detection
+lower_bound = r_g - 0.03f * r_g;
+upper_bound = r_g + 0.03f * r_g;
+
+count_ok = 0;
+for (int i = 0; i < 30; ++i) {
+    if (y_hist[i] >= lower_bound && y_hist[i] <= upper_bound) {
+        count_ok++;
+    }
+}
+
+// Two-level switching logic
+float y_pb_new = y_pb;
+float u_pb_new = u_pb;
+int active_g_new = active_g;
+
+if (active_g == 1 && count_ok >= 25) {
+    y_pb_new = mean30(y_hist);
+    u_pb_new = mean30(u_hist);
+    active_g_new = 0;
+}
+
+active_l = 1 - active_g;
+
+// 8 Integral states update
+if (active_l == 1) {
+    I_l += e_l * timeTickPeriod;
+} else {
+    I_l = 0.0f;
+}
+
+if (active_g == 1) {
+    I_g += e_g * timeTickPeriod;
+} else {
+    I_g = (u - Kp_g * e_g) / Ki_g;
+}
+
+// 9 Memory update
+r_g_prev = r_g;
+y_pb = y_pb_new;
+u_pb = u_pb_new;
+active_g = active_g_new;
+
+// Final output
+spirala = u;
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+\end{lstlisting}
+
+Z hľadiska samotného algoritmu
+zostala implementácia v jazyku C++
+veľmi blízka verzii použitej v Matlab Simulink.
+Najdôležitejším rozdielom je skutočnosť,
+že pri aktualizácii stavov filtra
+a integračných stavov regulátorov
+nebola použitá konštantná hodnota
+vzorkovacej periódy $T_s = 0.1$~s,
+ale reálne nameraná dĺžka aktuálnej iterácie cyklu,
+označená v programe ako \texttt{timeTickPeriod}.
+Tým sa dosiahlo,
+že algoritmus zohľadňuje malé odchýlky
+skutočnej periódy vykonávania kódu
+od nominálnej hodnoty.
+
+Ďalším rozdielom oproti implementácii
+v bloku \texttt{Matlab Function} je spôsob práce
+so stavovými premennými.
+V prostredí Matlab bolo potrebné všetky vnútorné stavy
+explicitne prenášať medzi jednotlivými krokmi výpočtu
+vo forme vstupných a výstupných signálov.
+V jazyku C++ sú však tieto veličiny
+uchovávané priamo v pamäti programu,
+a preto nebolo potrebné zavádzať
+samostatné pomocné premenné
+pre každý aktualizovaný stav.
+Napriek tomu zostal princíp výpočtu nezmenený
+a poradie jednotlivých krokov algoritmu
+bolo zachované.
+
+Výsledky experimentálneho overenia
+implementácie v jazyku C++
+sú uvedené na obr.~\ref{fig:pi_switch_cpp_real}.
+Z porovnania s experimentálnymi výsledkami
+získanými pri realizácii algoritmu
+v prostredí Matlab Simulink
+na obr.~\ref{fig:pi_switch_real}
+je zrejmé,
+že správanie systému je veľmi podobné.
+Aj v tomto prípade možno pozorovať,
+že globálna regulácia zabezpečuje plynulý prechod
+do nového pracovného bodu
+a po jej ukončení preberá riadenie
+lokálny PI regulátor.
+
+\begin{center}
+    \vbox{
+        \makebox[\textwidth][c]{%
+            \includegraphics[width=1.5\textwidth]{ts_cpp_prep_real.png}
+        }
+        \figcaption{Experimentálne overenie prepínania pracovných bodov pri implementácii algoritmu v jazyku C++}
+        \label{fig:pi_switch_cpp_real}
+    }
+\end{center}
+
+Pre detailnejšie posúdenie správania systému
+po ukončení globálnej regulácie
+je na obr.~\ref{fig:pi_switch_cpp_real_zoom}
+zobrazený zväčšený detail priebehov výstupu.
+Aj v tomto prípade je viditeľné,
+že algoritmus pracuje v súlade s navrhnutým princípom.
+Po prepnutí do lokálneho režimu
+sa výstup systému viaže na hodnotu $y_{pb} + r_l$,
+pričom odhadnutý pracovný bod
+zostáva v intervale definovanom podmienkou ustálenia.
+Takéto správanie je veľmi podobné výsledkom,
+ktoré boli pozorované už na obr.~\ref{fig:pi_switch_real_zoom},
+čo potvrdzuje správnosť implementácie algoritmu
+aj na mikrokontrolérovej platforme.
+
+\begin{center}
+    \vbox{
+        \makebox[\textwidth][c]{%
+            \includegraphics[width=1.5\textwidth]{ts_cpp_prep_real_zoom.png}
+        }
+        \figcaption{Detail regulácie v okolí pracovného bodu pri implementácii algoritmu v jazyku C++}
+        \label{fig:pi_switch_cpp_real_zoom}
+    }
+\end{center}

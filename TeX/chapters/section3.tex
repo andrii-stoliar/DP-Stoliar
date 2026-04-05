@@ -411,13 +411,14 @@ Rovnako ostali zachované aj parametre regulátora, hodnota pracovného bodu, sa
 
 Najskôr sú v programe inicializované základné parametre regulátora, pracovného bodu a pomocných premenných:
 
-\begin{lstlisting}[style=cppstyle]
+\begin{lstlisting}[language = C++]
+float vent = 6.0f;
+float spirala = 0.0f;
 float u_pb = 4.0f;
 float u_pb_min = -u_pb;
 float u_pb_max = 10 - u_pb;
 float Kp = 3.58f;
 float Ki = 1.84;
-float vent = 6.0f;
 float u = 0.0f;
 float y_pb = 0.0f;
 float integrator = 0.0f;
@@ -429,7 +430,7 @@ float du = 0.0f;
 
 Samotná regulačná logika je následne realizovaná priamo v hlavnom cykle programu:
 
-\begin{lstlisting}[style=cppstyle]
+\begin{lstlisting}[language = C++]
 if (globalTime < 10 * 60) {
     u = u_pb;
     y_pb = snimac1;
@@ -446,7 +447,7 @@ if (globalTime < 10 * 60) {
     u = u_pb + du;
 }
 
-float spirala = u;
+spirala = u;
 \end{lstlisting}
 
 Oproti implementácii v MATLAB Function bloku je však realizácia v jazyku C++ odlišná najmä spôsobom práce so stavmi regulátora.  

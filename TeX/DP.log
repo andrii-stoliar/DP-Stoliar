@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.6.29)  30 MAR 2026 01:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.6.29)  5 APR 2026 16:30
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -718,7 +718,7 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<../zadanieDP/zadanieDP.pdf, id=163, 597.51233pt x 845.0471pt>
+<../zadanieDP/zadanieDP.pdf, id=167, 597.51233pt x 845.0471pt>
 File: ../zadanieDP/zadanieDP.pdf Graphic file (type pdf)
 <use ../zadanieDP/zadanieDP.pdf>
 Package pdftex.def Info: ../zadanieDP/zadanieDP.pdf  used on input line 97.
@@ -760,7 +760,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 [6] (./chapters/uvod.tex)
 
 [7] (./chapters/section1.tex
-<../SVG/in_progress.png, id=251, 735.49782pt x 414.79968pt>
+<../SVG/in_progress.png, id=256, 735.49782pt x 414.79968pt>
 File: ../SVG/in_progress.png Graphic file (type png)
 <use ../SVG/in_progress.png>
 Package pdftex.def Info: ../SVG/in_progress.png  used on input line 48.
@@ -808,7 +808,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 )
 
 [10{c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] (./chapters/section2.tex
-<../SVG/TS_sch3_foto.pdf, id=324, 455.2441pt x 241.84843pt>
+<../SVG/TS_sch3_foto.pdf, id=329, 455.2441pt x 241.84843pt>
 File: ../SVG/TS_sch3_foto.pdf Graphic file (type pdf)
 <use ../SVG/TS_sch3_foto.pdf>
 Package pdftex.def Info: ../SVG/TS_sch3_foto.pdf  used on input line 52.
@@ -822,7 +822,7 @@ See the caption package documentation for explanation.
 
 
 [11 <../SVG/TS_sch3_foto.pdf>]
-<../SVG/TS_simulink_scheme.pdf, id=340, 794.97pt x 614.295pt>
+<../SVG/TS_simulink_scheme.pdf, id=345, 794.97pt x 614.295pt>
 File: ../SVG/TS_simulink_scheme.pdf Graphic file (type pdf)
 <use ../SVG/TS_simulink_scheme.pdf>
 Package pdftex.def Info: ../SVG/TS_simulink_scheme.pdf  used on input line 71.
@@ -833,7 +833,7 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 72.
 See the caption package documentation for explanation.
 
-<../PY/fig/ts_prevodova_spirala.png, id=343, 560.3334pt x 170.67764pt>
+<../PY/fig/ts_prevodova_spirala.png, id=348, 560.3334pt x 170.67764pt>
 File: ../PY/fig/ts_prevodova_spirala.png Graphic file (type png)
 <use ../PY/fig/ts_prevodova_spirala.png>
 Package pdftex.def Info: ../PY/fig/ts_prevodova_spirala.png  used on input line 93.
@@ -843,7 +843,7 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 94.
 See the caption package documentation for explanation.
 
-<../PY/fig/ts_prevodova_sensors3.png, id=344, 560.3334pt x 204.765pt>
+<../PY/fig/ts_prevodova_sensors3.png, id=349, 560.3334pt x 204.765pt>
 File: ../PY/fig/ts_prevodova_sensors3.png Graphic file (type png)
 <use ../PY/fig/ts_prevodova_sensors3.png>
 Package pdftex.def Info: ../PY/fig/ts_prevodova_sensors3.png  used on input line 106.
@@ -856,7 +856,7 @@ See the caption package documentation for explanation.
 
 
 [12 <../PY/fig/ts_prevodova_spirala.png> <../SVG/TS_simulink_scheme.pdf>]
-<../PY/fig/ts_prevodova_sensors6.png, id=364, 560.3334pt x 204.765pt>
+<../PY/fig/ts_prevodova_sensors6.png, id=369, 560.3334pt x 204.765pt>
 File: ../PY/fig/ts_prevodova_sensors6.png Graphic file (type png)
 <use ../PY/fig/ts_prevodova_sensors6.png>
 Package pdftex.def Info: ../PY/fig/ts_prevodova_sensors6.png  used on input line 116.
@@ -867,7 +867,7 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 117.
 See the caption package documentation for explanation.
 
-<../PY/fig/ts_prevodova_sensors9.png, id=365, 560.3334pt x 204.765pt>
+<../PY/fig/ts_prevodova_sensors9.png, id=370, 560.3334pt x 204.765pt>
 File: ../PY/fig/ts_prevodova_sensors9.png Graphic file (type png)
 <use ../PY/fig/ts_prevodova_sensors9.png>
 Package pdftex.def Info: ../PY/fig/ts_prevodova_sensors9.png  used on input line 126.
@@ -880,7 +880,7 @@ See the caption package documentation for explanation.
 
 
 [13 <../PY/fig/ts_prevodova_sensors3.png> <../PY/fig/ts_prevodova_sensors6.png> <../PY/fig/ts_prevodova_sensors9.png>]
-<../PY/fig/ts_static_sensors3.png, id=377, 560.3334pt x 184.89075pt>
+<../PY/fig/ts_static_sensors3.png, id=382, 560.3334pt x 184.89075pt>
 File: ../PY/fig/ts_static_sensors3.png Graphic file (type png)
 <use ../PY/fig/ts_static_sensors3.png>
 Package pdftex.def Info: ../PY/fig/ts_static_sensors3.png  used on input line 139.
@@ -891,7 +891,7 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 140.
 See the caption package documentation for explanation.
 
-<../PY/fig/ts_static_sensors6.png, id=378, 560.3334pt x 184.89075pt>
+<../PY/fig/ts_static_sensors6.png, id=383, 560.3334pt x 184.89075pt>
 File: ../PY/fig/ts_static_sensors6.png Graphic file (type png)
 <use ../PY/fig/ts_static_sensors6.png>
 Package pdftex.def Info: ../PY/fig/ts_static_sensors6.png  used on input line 149.
@@ -901,7 +901,7 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 150.
 See the caption package documentation for explanation.
 
-<../PY/fig/ts_static_sensors9.png, id=379, 560.3334pt x 184.89075pt>
+<../PY/fig/ts_static_sensors9.png, id=384, 560.3334pt x 184.89075pt>
 File: ../PY/fig/ts_static_sensors9.png Graphic file (type png)
 <use ../PY/fig/ts_static_sensors9.png>
 Package pdftex.def Info: ../PY/fig/ts_static_sensors9.png  used on input line 159.
@@ -914,7 +914,7 @@ See the caption package documentation for explanation.
 
 
 [14 <../PY/fig/ts_static_sensors3.png> <../PY/fig/ts_static_sensors6.png> <../PY/fig/ts_static_sensors9.png>]
-<../PY/fig/ts_pb_vent6_spir4_ident_raw.png, id=391, 560.3334pt x 227.53004pt>
+<../PY/fig/ts_pb_vent6_spir4_ident_raw.png, id=396, 560.3334pt x 227.53004pt>
 File: ../PY/fig/ts_pb_vent6_spir4_ident_raw.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_spir4_ident_raw.png>
 Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_ident_raw.png  used on input line 190.
@@ -964,7 +964,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 243.
 
-<../PY/fig/ts_pb_vent6_spir4_ident_raw_normalized.png, id=404, 560.3334pt x 284.5029pt>
+<../PY/fig/ts_pb_vent6_spir4_ident_raw_normalized.png, id=409, 560.3334pt x 284.5029pt>
 File: ../PY/fig/ts_pb_vent6_spir4_ident_raw_normalized.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_spir4_ident_raw_normalized.png>
 Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_ident_raw_normalized.png  used on input line 253.
@@ -974,7 +974,7 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 254.
 See the caption package documentation for explanation.
 
-<../PY/fig/ts_pb_vent6_spir4_ident_avg.png, id=407, 560.3334pt x 199.10385pt>
+<../PY/fig/ts_pb_vent6_spir4_ident_avg.png, id=412, 560.3334pt x 199.10385pt>
 File: ../PY/fig/ts_pb_vent6_spir4_ident_avg.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_spir4_ident_avg.png>
 Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_ident_avg.png  used on input line 274.
@@ -1085,7 +1085,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 421.
 
-<../PY/fig/ts_pb_vent6_spir4_ident_comparison.png, id=507, 560.3334pt x 170.67764pt>
+<../PY/fig/ts_pb_vent6_spir4_ident_comparison.png, id=512, 560.3334pt x 170.67764pt>
 File: ../PY/fig/ts_pb_vent6_spir4_ident_comparison.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_spir4_ident_comparison.png>
 Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_ident_comparison.png  used on input line 457.
@@ -1098,7 +1098,7 @@ See the caption package documentation for explanation.
 
 
 [19 <../PY/fig/ts_pb_vent6_spir4_ident_comparison.png>]
-<../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png, id=535, 560.3334pt x 170.67764pt>
+<../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png, id=540, 560.3334pt x 170.67764pt>
 File: ../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png>
 Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png  used on input line 548.
@@ -1154,10 +1154,119 @@ Overfull \hbox (69.35999pt too wide) detected at line 825
 
 
 
-[24])
+[24] (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2024/09/23 1.10c listings language file
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2024/09/23 1.10c listings language file
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
+)
 
-[25] (./chapters/section3.tex
-<../SVG/TS_uro_block_scheme.pdf, id=600, 238.97281pt x 68.1747pt>
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 901.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 901.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 901.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 901.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 901.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 901.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 902.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 905.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 905.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 905.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 905.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 906.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 907.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 909.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 910.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 912.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 915.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 915.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 915.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 915.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 916.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 917.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 919.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 920.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 922.
+
+
+
+[25])
+
+[26] (./chapters/section3.tex
+<../SVG/TS_uro_block_scheme.pdf, id=633, 238.97281pt x 68.1747pt>
 File: ../SVG/TS_uro_block_scheme.pdf Graphic file (type pdf)
 <use ../SVG/TS_uro_block_scheme.pdf>
 Package pdftex.def Info: ../SVG/TS_uro_block_scheme.pdf  used on input line 42.
@@ -1170,13 +1279,13 @@ See the caption package documentation for explanation.
 
 
 
-[26 <../SVG/TS_uro_block_scheme.pdf>]
+[27 <../SVG/TS_uro_block_scheme.pdf>]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <9> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 110.
 
 
-[27]
-<../PY/fig/ts_pb_vent6_spir4_pidtune_sim.png, id=657, 560.3334pt x 270.2898pt>
+[28]
+<../PY/fig/ts_pb_vent6_spir4_pidtune_sim.png, id=691, 560.3334pt x 270.2898pt>
 File: ../PY/fig/ts_pb_vent6_spir4_pidtune_sim.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_spir4_pidtune_sim.png>
 Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_pidtune_sim.png  used on input line 214.
@@ -1189,7 +1298,7 @@ See the caption package documentation for explanation.
 
 
 
-[28 <../PY/fig/ts_pb_vent6_spir4_pidtune_sim.png>]
+[29 <../PY/fig/ts_pb_vent6_spir4_pidtune_sim.png>]
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 275.
@@ -1204,7 +1313,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 
 
 
-[29]
+[30]
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 309.
@@ -1221,7 +1330,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 315.
 
-<../SVG/TS_pi_scheme.pdf, id=710, 845.1575pt x 597.23125pt>
+<../SVG/TS_pi_scheme.pdf, id=743, 845.1575pt x 597.23125pt>
 File: ../SVG/TS_pi_scheme.pdf Graphic file (type pdf)
 <use ../SVG/TS_pi_scheme.pdf>
 Package pdftex.def Info: ../SVG/TS_pi_scheme.pdf  used on input line 330.
@@ -1233,8 +1342,8 @@ See the caption package documentation for explanation.
 
 
 
-[30 <../SVG/TS_pi_scheme.pdf>]
-<../PY/fig/ts_pb_vent6_spir4_PI_real.png, id=789, 560.3334pt x 270.2898pt>
+[31 <../SVG/TS_pi_scheme.pdf>]
+<../PY/fig/ts_pb_vent6_spir4_PI_real.png, id=823, 560.3334pt x 270.2898pt>
 File: ../PY/fig/ts_pb_vent6_spir4_PI_real.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_spir4_PI_real.png>
 Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_PI_real.png  used on input line 356.
@@ -1249,7 +1358,7 @@ LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 36
 (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-<../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png, id=791, 560.3334pt x 270.2898pt>
+<../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png, id=825, 560.3334pt x 270.2898pt>
 File: ../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png>
 Package pdftex.def Info: ../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png  used on input line 388.
@@ -1262,42 +1371,97 @@ See the caption package documentation for explanation.
 
 
 
-[31{c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc} <../PY/fig/ts_pb_vent6_spir4_PI_real.png>] (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2024/09/23 1.10c listings language file
-) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2024/09/23 1.10c listings language file
-) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/listings/lstmisc.sty
-File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
-)
-LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <8> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 415.
+[32{c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc} <../PY/fig/ts_pb_vent6_spir4_PI_real.png>]
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 415.
 
 
-[32 <../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png>]
-<../PY/fig/ts_cpp_pi_real.png, id=820, 560.3334pt x 270.2898pt>
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 416.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 417.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 418.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 419.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 420.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 421.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 422.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 423.
+
+
+
+[33 <../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png>]
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 424.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 425.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 426.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 427.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 428.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 434.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 438.
+
+<../PY/fig/ts_cpp_pi_real.png, id=852, 560.3334pt x 270.2898pt>
 File: ../PY/fig/ts_cpp_pi_real.png Graphic file (type png)
 <use ../PY/fig/ts_cpp_pi_real.png>
-Package pdftex.def Info: ../PY/fig/ts_cpp_pi_real.png  used on input line 469.
+Package pdftex.def Info: ../PY/fig/ts_cpp_pi_real.png  used on input line 470.
 (pdftex.def)             Requested size: 554.82875pt x 267.64134pt.
 
-
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 470.
+(caption)                particular \caption on input line 471.
 See the caption package documentation for explanation.
 
 
 
-[33])
+[34])
 
-[34 <../PY/fig/ts_cpp_pi_real.png>] (./chapters/section4.tex
+[35 <../PY/fig/ts_cpp_pi_real.png>] (./chapters/section4.tex
 Overfull \hbox (14.52347pt too wide) in paragraph at lines 30--52
  [][] 
  []
 
 
 
-[35]
-<../SVG/SWITCH_block_logic_scheme.jpg, id=866, 1284.8pt x 484.81125pt>
+[36]
+<../SVG/SWITCH_block_logic_scheme.jpg, id=900, 1284.8pt x 484.81125pt>
 File: ../SVG/SWITCH_block_logic_scheme.jpg Graphic file (type jpg)
 <use ../SVG/SWITCH_block_logic_scheme.jpg>
 Package pdftex.def Info: ../SVG/SWITCH_block_logic_scheme.jpg  used on input line 117.
@@ -1310,15 +1474,15 @@ See the caption package documentation for explanation.
 
 
 
-[36 <../SVG/SWITCH_block_logic_scheme.jpg>]
-
-[37]
+[37 <../SVG/SWITCH_block_logic_scheme.jpg>]
 
 [38]
 
 [39]
 
 [40]
+
+[41]
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 577.
@@ -1369,7 +1533,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 
 
 
-[41]
+[42]
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 638.
@@ -1378,7 +1542,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 640.
 
-<../SVG/TS_prep_simulink_scheme.pdf, id=1114, 845.1575pt x 597.23125pt>
+<../SVG/TS_prep_simulink_scheme.pdf, id=1147, 845.1575pt x 597.23125pt>
 File: ../SVG/TS_prep_simulink_scheme.pdf Graphic file (type pdf)
 <use ../SVG/TS_prep_simulink_scheme.pdf>
 Package pdftex.def Info: ../SVG/TS_prep_simulink_scheme.pdf  used on input line 689.
@@ -1390,14 +1554,14 @@ See the caption package documentation for explanation.
 
 
 
-[42]
+[43]
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 700.
 
 
 
-[43 <../SVG/TS_prep_simulink_scheme.pdf>]
+[44 <../SVG/TS_prep_simulink_scheme.pdf>]
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 727.
@@ -1488,8 +1652,8 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 
 
 
-[44]
-<../PY/fig/ts_ml_prep_simulation.png, id=1290, 560.3334pt x 625.8582pt>
+[45]
+<../PY/fig/ts_ml_prep_simulation.png, id=1323, 560.3334pt x 625.8582pt>
 File: ../PY/fig/ts_ml_prep_simulation.png Graphic file (type png)
 <use ../PY/fig/ts_ml_prep_simulation.png>
 Package pdftex.def Info: ../PY/fig/ts_ml_prep_simulation.png  used on input line 863.
@@ -1502,10 +1666,10 @@ See the caption package documentation for explanation.
 
 
 
-[45]
+[46]
 
-[46 <../PY/fig/ts_ml_prep_simulation.png>]
-<../PY/fig/ts_ml_prep_real.png, id=1306, 560.3334pt x 625.8582pt>
+[47 <../PY/fig/ts_ml_prep_simulation.png>]
+<../PY/fig/ts_ml_prep_real.png, id=1340, 560.3334pt x 625.8582pt>
 File: ../PY/fig/ts_ml_prep_real.png Graphic file (type png)
 <use ../PY/fig/ts_ml_prep_real.png>
 Package pdftex.def Info: ../PY/fig/ts_ml_prep_real.png  used on input line 883.
@@ -1518,8 +1682,8 @@ See the caption package documentation for explanation.
 
 
 
-[47 <../PY/fig/ts_ml_prep_real.png>]
-<../PY/fig/ts_ml_prep_real_zoom.png, id=1314, 560.3334pt x 341.3553pt>
+[48 <../PY/fig/ts_ml_prep_real.png>]
+<../PY/fig/ts_ml_prep_real_zoom.png, id=1348, 560.3334pt x 341.3553pt>
 File: ../PY/fig/ts_ml_prep_real_zoom.png Graphic file (type png)
 <use ../PY/fig/ts_ml_prep_real_zoom.png>
 Package pdftex.def Info: ../PY/fig/ts_ml_prep_real_zoom.png  used on input line 921.
@@ -1530,25 +1694,535 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 922.
 See the caption package documentation for explanation.
 
-)
 
-[48 <../PY/fig/ts_ml_prep_real_zoom.png>] (./chapters/section5.tex
 
-[49]
+[49 <../PY/fig/ts_ml_prep_real_zoom.png>]
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1008.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1008.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1008.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1008.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1008.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1008.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1014.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1014.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1014.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1014.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1014.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1020.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1020.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1020.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1020.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1020.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1020.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1026.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1026.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1026.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1026.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1026.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1027.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1031.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1031.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1031.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1032.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1032.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1039.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1039.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1039.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1040.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1041.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1041.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1044.
+
+
 
 [50]
 
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1062.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1063.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1066.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1067.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1068.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1069.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1072.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1073.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1076.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1077.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1080.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1081.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1084.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1087.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1087.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1092.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1092.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1093.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1093.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1096.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1097.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1100.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1100.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1101.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1101.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1102.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1102.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1103.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1103.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1106.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1106.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1107.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1107.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1110.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1111.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1114.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1115.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1116.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1117.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1118.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1121.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1122.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1123.
+
+
+
 [51]
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1164.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1166.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1166.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1168.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1168.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1170.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1175.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1177.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1177.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1179.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1179.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1181.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1181.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1183.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1183.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1185.
+
+
+Overfull \hbox (96.65024pt too wide) in paragraph at lines 1189--1190
+[][][][][][][][][][][]  
+ []
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1193.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1200.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1201.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1202.
+
+
 
 [52]
 
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1212.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1213.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1215.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1215.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1216.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1217.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1246.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1246.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1247.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1253.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1254.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1255.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1257.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1266.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1268.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1272.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1274.
+
+
+
 [53]
+Overfull \hbox (96.65024pt too wide) in paragraph at lines 1286--1287
+[][][][][][][][][][][]  
+ []
+
+<../PY/fig/ts_cpp_prep_real.png, id=1604, 560.3334pt x 625.8582pt>
+File: ../PY/fig/ts_cpp_prep_real.png Graphic file (type png)
+<use ../PY/fig/ts_cpp_prep_real.png>
+Package pdftex.def Info: ../PY/fig/ts_cpp_prep_real.png  used on input line 1338.
+(pdftex.def)             Requested size: 554.82875pt x 619.72568pt.
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 1339.
+See the caption package documentation for explanation.
+
+
 
 [54]
 
-[55]
+[55 <../PY/fig/ts_cpp_prep_real.png>]
+<../PY/fig/ts_cpp_prep_real_zoom.png, id=1625, 560.3334pt x 341.3553pt>
+File: ../PY/fig/ts_cpp_prep_real_zoom.png Graphic file (type png)
+<use ../PY/fig/ts_cpp_prep_real_zoom.png>
+Package pdftex.def Info: ../PY/fig/ts_cpp_prep_real_zoom.png  used on input line 1363.
+(pdftex.def)             Requested size: 554.82875pt x 338.01048pt.
 
-[56]
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 1364.
+See the caption package documentation for explanation.
+
+)
+
+[56 <../PY/fig/ts_cpp_prep_real_zoom.png>] (./chapters/section5.tex
+
+[57]
+
+[58]
+
+[59]
+
+[60]
+
+[61]
+
+[62]
+
+[63]
+
+[64]
 LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 973.
  (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/lm/ts1lmtt.fd
 File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
@@ -1562,7 +2236,7 @@ Package microtype Info: Character `texttrademark ' is missing
 (microtype)             Ignoring protrusion settings for this character.
 
 
-[57]
+[65]
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 1074.
@@ -1573,7 +2247,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 
 
 
-[58]
+[66]
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 1143.
@@ -1604,12 +2278,12 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 
 
 
-[59]
+[67]
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 1207.
 
-<../SVG/TS_mrac_simulink_scheme.pdf, id=1730, 845.1575pt x 597.23125pt>
+<../SVG/TS_mrac_simulink_scheme.pdf, id=2040, 845.1575pt x 597.23125pt>
 File: ../SVG/TS_mrac_simulink_scheme.pdf Graphic file (type pdf)
 <use ../SVG/TS_mrac_simulink_scheme.pdf>
 Package pdftex.def Info: ../SVG/TS_mrac_simulink_scheme.pdf  used on input line 1230.
@@ -1621,8 +2295,8 @@ See the caption package documentation for explanation.
 
 
 
-[60 <../SVG/TS_mrac_simulink_scheme.pdf>]
-<../PY/fig/ts_ml_mrac_real_raw.png, id=1801, 560.3334pt x 398.32816pt>
+[68 <../SVG/TS_mrac_simulink_scheme.pdf>]
+<../PY/fig/ts_ml_mrac_real_raw.png, id=2111, 560.3334pt x 398.32816pt>
 File: ../PY/fig/ts_ml_mrac_real_raw.png Graphic file (type png)
 <use ../PY/fig/ts_ml_mrac_real_raw.png>
 Package pdftex.def Info: ../PY/fig/ts_ml_mrac_real_raw.png  used on input line 1280.
@@ -1633,7 +2307,7 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 1281.
 See the caption package documentation for explanation.
 
-<../PY/fig/ts_ml_mrac_real.png, id=1804, 560.3334pt x 398.32816pt>
+<../PY/fig/ts_ml_mrac_real.png, id=2114, 560.3334pt x 398.32816pt>
 File: ../PY/fig/ts_ml_mrac_real.png Graphic file (type png)
 <use ../PY/fig/ts_ml_mrac_real.png>
 Package pdftex.def Info: ../PY/fig/ts_ml_mrac_real.png  used on input line 1312.
@@ -1645,45 +2319,330 @@ See the caption package documentation for explanation.
 
 
 
-[61 <../PY/fig/ts_ml_mrac_real_raw.png>])
+[69 <../PY/fig/ts_ml_mrac_real_raw.png>])
 
-[62 <../PY/fig/ts_ml_mrac_real.png>] (./chapters/literatura.tex)
+[70 <../PY/fig/ts_ml_mrac_real.png>] (./chapters/literatura.tex)
 
-[63
+[71
 
 ] (./chapters/prilohy.tex
 
-[64]
-Package microtype Info: Character `texttrademark ' is missing
-(microtype)             in font `TS1/lmtt/m/n/8'.
-(microtype)             Ignoring protrusion settings for this character.
-
-
-[65]
-
-[66] (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2024/09/23 1.10c listings language file
-)
-
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 224.
+(Font)              using `T1/cmtt/bx/n' instead on input line 5.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 225.
+(Font)              using `T1/cmtt/bx/n' instead on input line 5.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 226.
+(Font)              using `T1/cmtt/bx/n' instead on input line 20.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 227.
+(Font)              using `T1/cmtt/bx/n' instead on input line 21.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 228.
+(Font)              using `T1/cmtt/bx/n' instead on input line 24.
 
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 24.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 33.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 33.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 33.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 33.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 33.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 33.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 34.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 38.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 38.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 38.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 38.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 39.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 40.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 42.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 43.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 45.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 49.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 49.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 49.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 49.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 50.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 51.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 53.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 54.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 56.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 62.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 68.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 71.
+
+
+
+[72]
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 77.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 78.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 79.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 85.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 86.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 89.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 89.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 90.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 96.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 112.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 113.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 117.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 120.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 121.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 128.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 129.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 132.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 132.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 132.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 133.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 133.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 133.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 145.
+
+
+
+[73]
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 154.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 163.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 163.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 163.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 164.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 164.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 164.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 173.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 174.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 177.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 178.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 178.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 185.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 186.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 186.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 205.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 205.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 206.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 209.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 213.
+
+
+
+[74]
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 228.
@@ -1692,6 +2651,25 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 230.
 
+(c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2024/09/23 1.10c listings language file
+)
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 237.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 238.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 239.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 240.
+
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 241.
@@ -1702,23 +2680,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 244.
-
-
-LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 247.
-
-
-LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 247.
-
-
-LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 248.
-
-
-LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 251.
+(Font)              using `T1/cmtt/bx/n' instead on input line 243.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
@@ -1726,7 +2688,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 255.
+(Font)              using `T1/cmtt/bx/n' instead on input line 254.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
@@ -1734,15 +2696,15 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 258.
+(Font)              using `T1/cmtt/bx/n' instead on input line 260.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 258.
+(Font)              using `T1/cmtt/bx/n' instead on input line 260.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 262.
+(Font)              using `T1/cmtt/bx/n' instead on input line 261.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
@@ -1750,19 +2712,11 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 266.
-
-
-LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 266.
-
-
-LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 267.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 270.
+(Font)              using `T1/cmtt/bx/n' instead on input line 268.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
@@ -1774,11 +2728,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 273.
-
-
-LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 274.
+(Font)              using `T1/cmtt/bx/n' instead on input line 271.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
@@ -1790,11 +2740,11 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 277.
+(Font)              using `T1/cmtt/bx/n' instead on input line 279.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 277.
+(Font)              using `T1/cmtt/bx/n' instead on input line 279.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
@@ -1802,30 +2752,42 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 283.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 283.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 284.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 286.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 288.
+(Font)              using `T1/cmtt/bx/n' instead on input line 287.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 288.
 
 
-LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 289.
 
-
-
-[67]
+[75]
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 292.
+(Font)              using `T1/cmtt/bx/n' instead on input line 290.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 292.
+(Font)              using `T1/cmtt/bx/n' instead on input line 290.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 290.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
@@ -1833,23 +2795,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 295.
-
-
-LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 296.
-
-
-LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 297.
-
-
-LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 299.
-
-
-LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 300.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
@@ -1857,15 +2803,23 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 303.
+(Font)              using `T1/cmtt/bx/n' instead on input line 301.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 303.
+(Font)              using `T1/cmtt/bx/n' instead on input line 302.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 304.
+(Font)              using `T1/cmtt/bx/n' instead on input line 305.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 305.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 306.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
@@ -1881,7 +2835,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 311.
+(Font)              using `T1/cmtt/bx/n' instead on input line 312.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
@@ -1889,23 +2843,19 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 313.
+(Font)              using `T1/cmtt/bx/n' instead on input line 314.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 316.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 316.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 317.
-
-
-LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 317.
-
-
-LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 318.
-
-
-LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 320.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
@@ -1913,7 +2863,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 323.
+(Font)              using `T1/cmtt/bx/n' instead on input line 322.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
@@ -1929,15 +2879,55 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 327.
+(Font)              using `T1/cmtt/bx/n' instead on input line 326.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 330.
 
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 330.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 331.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 333.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 334.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 336.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 336.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 337.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 339.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 340.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 343.
+
 )
 
-[68] 
+[76] 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
 (./DP.aux)
  ***********
@@ -1945,21 +2935,21 @@ LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-06-09>
  ***********
 Package rerunfilecheck Info: File `DP.out' has not changed.
-(rerunfilecheck)             Checksum: 4E62A408ED4705B604BE56CC5B2B8177;9499.
+(rerunfilecheck)             Checksum: 2935CD230D6C67C7C8B1715080CD573E;9737.
  ) 
 Here is how much of TeX's memory you used:
- 23116 strings out of 467888
- 367405 string characters out of 5431467
- 1435503 words of memory out of 5000000
- 49670 multiletter control sequences out of 15000+600000
- 729397 words of font info for 221 fonts, out of 8000000 for 9000
+ 23495 strings out of 467888
+ 373345 string characters out of 5431467
+ 1560960 words of memory out of 5000000
+ 49766 multiletter control sequences out of 15000+600000
+ 728335 words of font info for 220 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  80i,12n,82p,999b,2650s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt8.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt9.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtti10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfit0800.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb>
-Output written on DP.pdf (68 pages, 7936680 bytes).
+<c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt9.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtti10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfit0800.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb>
+Output written on DP.pdf (76 pages, 9196692 bytes).
 PDF statistics:
- 2571 PDF objects out of 2984 (max. 8388607)
- 2328 compressed objects within 24 object streams
- 1423 named destinations out of 1440 (max. 500000)
- 65503 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 2942 PDF objects out of 2984 (max. 8388607)
+ 2687 compressed objects within 27 object streams
+ 1702 named destinations out of 1728 (max. 500000)
+ 63473 words of extra memory for PDF output out of 74296 (max. 10000000)
 

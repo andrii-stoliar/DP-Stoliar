@@ -829,69 +829,104 @@ pre potreby tejto práce bola dosiahnutá presnosť dostatočná.
 Jedným z možných spôsobov ďalšieho zlepšenia by bolo vykonanie väčšieho počtu
 kalibračných meraní a následná identifikácia presnejšej prevodovej charakteristiky.
 
-Softvérová implementácia na platforme \textit{Arduino UNO} bola realizovaná
-v jazyku C++ s využitím rozšírenia \textit{PlatformIO} v prostredí \textit{Visual Studio Code}.
-Samotný program bol rozdelený na niekoľko logických častí.
-Najprv boli definované hardvérové piny, čas vzorkovania a dĺžka experimentu.
-Následne boli implementované pomocné funkcie pre výpočet kubickej kalibrácie
-a orezávanie hodnôt do povolených rozsahov.
+Softvérová implementácia pre platformu \textit{Arduino UNO} bola realizovaná
+v jazyku C++ s využitím rozšírenia \textit{PlatformIO} v prostredí
+\textit{Visual Studio Code}. Program je rozdelený na niekoľko základných častí:
+definície hardvérových pinov a časových parametrov, pomocné funkcie,
+obsluha sériovej komunikácie a hlavná riadiaca slučka.
 
-Dôležitou časťou programu bola realizácia periodického vykonávania riadiacej logiky.
-Keďže mikrokontrolér neumožňuje garantovať úplne presné spúšťanie výpočtu
-v pevne daných časových okamihoch bez ďalších mechanizmov, bola implementovaná
-takzvaná \uv{tick} logika.
-Program priebežne sleduje čas od posledného vykonania riadiaceho kroku
-a ďalší výpočet sa vykoná až vtedy, keď uplynie požadovaný interval
-$T_s = 0{,}1~\mathrm{s}$.
-Tým sa zabezpečí, že hlavná riadiaca časť programu beží iba raz za každú periódu
-vzorkovania a nie pri každom priechode funkciou \texttt{loop()}.
+V programe je použitá pevná vykonávacia postupnosť, ktorá zodpovedá diskrétnemu
+riadeniu. Jej cieľom je zabezpečiť, aby aktuálne meraná veličina $y(k)$ závisela
+iba od riadiaceho zásahu z predchádzajúceho kroku $u(k-1)$. Nový zásah $u(k)$ sa
+naopak vypočíta na základe práve odmeranej hodnoty $y(k)$ a na systém sa aplikuje
+až v nasledujúcom kroku. Tým sa zabráni miešaniu aktuálne meranej odozvy
+s práve vypočítavaným riadiacim zásahom.
 
-V každom kroku sa najprv načítajú analógové vstupy A1 a A2,
-následne sa pomocou kubických funkcií prevedú na fyzikálne veličiny snímačov.
-Po vykonaní samotnej riadiacej logiky sa požadované hodnoty ventilátora a špirály
-opäť prevedú pomocou kalibračných funkcií na PWM rozsah 0 až 255,
-zaokrúhlia sa a odošlú na výstupné piny mikrokontroléra.
+Postup jedného vykonávacieho kroku možno znázorniť nasledovne:
 
-Súčasťou programu boli aj pomocné funkcie,
-ktoré slúžia na algebraické spracovanie údajov a zjednodušenie samotnej implementácie.
-Konkrétne išlo najmä o funkcie na výpočet kubických aproximačných polynómov
-a o funkcie zabezpečujúce obmedzenie vypočítaných hodnôt do povolených rozsahov.
-Takéto riešenie umožnilo oddeliť samotnú riadiacu logiku od pomocných výpočtov,
-čím sa zvýšila prehľadnosť a zároveň aj jednoduchosť ďalších úprav programu.
+\begin{center}
+\[
+\boxed{\text{aplikácia }u(k-1)}
+\;\longrightarrow\;
+\boxed{\text{meranie }y(k)}
+\;\longrightarrow\;
+\boxed{\text{výpočet }u(k)}
+\;\longrightarrow\;
+\boxed{\text{čakanie do }T_s}
+\]
+\end{center}
 
-Z praktického hľadiska bolo potrebné vyriešiť aj automatický záznam experimentálnych dát.
-Priame zapisovanie do súboru z prostredia \textit{Arduino IDE} alebo \textit{PlatformIO}
-nie je možné, preto bol použitý sériový port ako komunikačný kanál medzi
-mikrokontrolérom a počítačom.
-Na strane \textit{Arduino} bola implementovaná jednoduchá stavová komunikácia.
-Po zapnutí zariadenia odošle mikrokontrolér cez sériový port správu \texttt{READY}.
-Následne externý \textit{Python} skript začne počúvať sériový port a po prijatí
-tejto správy odošle príkaz \texttt{START}.
-Tým sa spustí samotný experiment aj priebežné odosielanie dát v CSV formáte.
-Po uplynutí definovaného času experimentu mikrokontrolér odošle správu \texttt{DONE},
-čím sa záznam ukončí a logger uzavrie výstupný \texttt{.csv} súbor.
+Pri začiatku každého kroku sa preto najprv na výstupy odošlú hodnoty
+\texttt{vent} a \texttt{spirala}, ktoré boli vypočítané už v predchádzajúcej iterácii.
+Pred odoslaním sa tieto veličiny obmedzia na rozsah 0 až 10~V a následne sa
+pomocou kubických kalibračných funkcií prevedú na PWM hodnoty v rozsahu
+0 až 255. Takto sa na systém aplikuje zásah $u(k-1)$.
 
-Dôležitou vlastnosťou implementácie je aj samotná štruktúra súboru \texttt{main.cpp},
-ktorá bola navrhnutá tak, aby bolo možné v ďalších experimentoch veľmi jednoducho
-meniť iba tú časť programu, ktorá súvisí s konkrétnym riadiacim algoritmom.
-V praktickom použití to znamená, že na určenom mieste programu, približne na riadku 102,
-sa inicializujú príslušné premenné algoritmu,
-zatiaľ čo približne na riadku 154 sa zapisuje samotná riadiaca logika.
-Všetky ostatné časti programu, ako napríklad obsluha komunikácie,
-časovanie experimentu, prevody veličín a základná štruktúra vykonávania,
-môžu zostať nezmenené.
-Úpravy sú zvyčajne potrebné iba v prípade,
-že sa mení množina premenných odosielaných na logovanie
-alebo hlavička zapisovaného CSV súboru.
+Následne sa načítajú analógové vstupy A1 a A2 a pomocou kalibračných funkcií sa
+prepočítajú na fyzikálne veličiny snímačov. Z týchto údajov sa v riadiacej časti
+programu vypočítajú nové hodnoty \texttt{vent} a \texttt{spirala}, teda zásah $u(k)$.
+Tieto hodnoty sa však už v danom kroku na systém neposielajú, ale použijú sa až
+pri nasledujúcej iterácii. 
 
-Týmto spôsobom bola zabezpečená nielen samotná komunikácia medzi systémom TS05
-a platformou \textit{Arduino UNO}, ale aj externé spúšťanie experimentov
-a automatizované logovanie nameraných údajov.
-Takto navrhnutá architektúra sa ukázala ako dostatočne flexibilná
-pre implementáciu a testovanie viacerých riadiacich algoritmov.
-Úplné zdrojové kódy hlavného programu pre \textit{Arduino UNO}
-a externého skriptu pre logovanie dát sú uvedené v prílohách
+% Z praktického hľadiska to znamená, že platí vzťah
+% $y(k) \leftarrow u(k-1)$, zatiaľ čo $u(k)$ sa určuje z aktuálneho $y(k)$.
+
+Časovanie programu je realizované pomocou funkcie \texttt{micros()}.
+Hlavná časť algoritmu sa vykoná iba vtedy, keď od posledného kroku uplynie
+požadovaný interval $T_s = 0{,}1~\mathrm{s}$. Tým sa zabezpečí, že riadiaca logika
+nebeží pri každom priechode funkciou \texttt{loop()}, ale iba raz za každú
+vzorkovaciu periódu. Okrem globálneho času experimentu sa zaznamenáva aj
+skutočná dĺžka vykonaného kroku, čo umožňuje kontrolu odchýlok od požadovanej
+periódy.
+
+Automatický záznam dát je riešený cez sériový port. Po inicializácii odošle
+mikrokontrolér správu \texttt{READY}. Externý \textit{Python} skript po jej prijatí
+odošle príkaz \texttt{START}, čím sa spustí experiment a zároveň aj odosielanie
+dát v CSV formáte. Po uplynutí definovaného času experimentu sa výstupy nastavia
+na nulové hodnoty, experiment sa ukončí a cez sériový port sa odošle správa
+\texttt{DONE}. Externý skript tým získa informáciu o ukončení merania a uzavrie
+výstupný súbor.
+
+Takto navrhnutá štruktúra programu oddeľuje obsluhu komunikácie, časovanie,
+prevody veličín a samotný riadiaci zákon. Pri zmene algoritmu je preto potrebné
+upravovať predovšetkým iba časť programu, v ktorej sa z nameraných veličín
+vypočítavajú nové hodnoty \texttt{vent} a \texttt{spirala}. Ostatné časti implementácie
+môžu zostať nezmenené. Úplné zdrojové kódy hlavného programu pre
+\textit{Arduino UNO} a externého skriptu pre logovanie dát sú uvedené v prílohách
 \ref{lst:main_cpp_appendix} a \ref{lst:logger_py_appendix}.
+
+Pomocné funkcie použité v programe sú uvedené v nasledujúcej ukážke.
+
+\begin{lstlisting}[language=C++, caption={Pomocné funkcie použité v programe}, label={lst:helper_functions_cpp}]
+float cubic(float x, float a, float b, float c, float d) {
+    return a * x * x * x + b * x * x + c * x + d;
+}
+
+float clampFloat(float value, float minValue, float maxValue) {
+    if (value < minValue) {
+        return minValue;
+    }
+    if (value > maxValue) {
+        return maxValue;
+    }
+    return value;
+}
+
+int clampInt(int value, int minValue, int maxValue) {
+    if (value < minValue) {
+        return minValue;
+    }
+    if (value > maxValue) {
+        return maxValue;
+    }
+    return value;
+}
+\end{lstlisting}
+
+Funkcia \texttt{cubic()} slúži na výpočet hodnoty kubického kalibračného polynómu.
+Funkcia \texttt{clampFloat()} obmedzuje reálne hodnoty do zvoleného intervalu.
+Funkcia \texttt{clampInt()} obmedzuje celočíselné hodnoty, najmä PWM výstupy,
+na povolený rozsah.
 
 % -------------------------------------------------------------------
 % Subsubsection - Siemens PLC

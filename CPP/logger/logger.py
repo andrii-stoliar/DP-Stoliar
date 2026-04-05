@@ -12,7 +12,7 @@ BAUDRATE = 115200
 TIMEOUT_S = 1.0
 OUTPUT_DIR = "logs"
 
-CSV_HEADER = "t,Ts,snimac1,setpoint_pb,y_pb,u_pb,u,vent"
+CSV_HEADER = "t,r,snimac1,ym,spir,theta1,theta2,theta3,ypb,Ts,vent"
 
 
 def make_output_path() -> str:
