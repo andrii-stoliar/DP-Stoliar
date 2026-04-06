@@ -6,12 +6,20 @@
 \label{sec:pi_switching}
 
 
-V tejto časti sa budeme zaoberať návrhom a testovaním prepínača pracovných bodov.  
-Prepínač bude predstavovať pomalý regulátor, ktorého úlohou bude zabezpečiť robustné prechody medzi rôznymi pracovnými bodmi systému TS05.  
-Cieľom je vytvoriť taký spôsob riadenia, ktorý umožní spoľahlivý presun z ľubovoľného pracovného bodu do ľubovoľného iného pracovného bodu bez neželaných dynamických javov, ako je presýtenie akčného zásahu alebo príliš veľké prekmitové správanie.
+V tejto časti sa budeme zaoberať návrhom a testovaním riadiacej štruktúry
+s prepínaním pracovných bodov. Navrhnutá štruktúra pozostáva z globálneho
+a lokálneho PI regulátora, medzi ktorými rozhoduje logika prepínania.
+Úlohou globálneho regulátora je zabezpečiť pomalé a robustné prechody medzi
+pracovnými bodmi systému TS05, zatiaľ čo lokálny regulátor zabezpečuje
+presnú reguláciu v okolí aktuálneho pracovného bodu. Cieľom je vytvoriť
+taký spôsob riadenia, ktorý umožní spoľahlivé prechody medzi uvažovanými
+pracovnými bodmi systému TS05 bez neželaných dynamických javov, ako je
+presýtenie akčného zásahu alebo príliš veľké prekmitové správanie.
 
-Okrem samotného prepínača bola v tejto časti rozšírená aj pracovná oblasť regulácie o dva ďalšie pracovné body systému – pre napätia špirály 2~V a 6~V. Pre každý z týchto pracovných bodov bol postup opakovaný presne podľa postupu uvedeného v sekcii~\ref{sec:identifikacia},  
-teda boli:
+Okrem samotnej prepínacej logiky bola v tejto časti rozšírená aj pracovná
+oblasť regulácie o dva ďalšie pracovné body systému, a to pre napätia
+špirály 2~V a 6~V. Pre každý z týchto pracovných bodov bol postup zopakovaný
+rovnakým spôsobom ako v sekcii~\ref{sec:identifikacia}, teda boli:
 
 \begin{itemize}
     \item vykonané merania reakcií systému na jednotkové skoky $\pm 0.5$~V okolo pracovného bodu,
@@ -99,6 +107,16 @@ globálnej žiadanej hodnoty,
 v dôsledku čoho prechod medzi pracovnými bodmi
 prebieha pomalšie a s menším rizikom vzniku neželaných prechodových javov.
 
+Parametre globálneho PI regulátora boli zvolené empiricky.
+Cieľom bolo navrhnúť taký regulátor, ktorý bude dostatočne pomalý a robustný
+na bezpečný presun medzi vzdialenejšími pracovnými bodmi, no zároveň nie natoľko
+pomalý, aby boli prechody medzi pracovnými bodmi zbytočne dlhé.
+Proporcionálna zložka bola preto volená tak, aby zabezpečila primeranú rýchlosť
+prechodu, zatiaľ čo integračná zložka bola doplnená s cieľom odstrániť trvalú
+regulačnú odchýlku pri globálnej regulácii.
+V implementovaných algoritmoch boli použité hodnoty
+$K_{p,g} = 4$ a $K_{i,g} = 0.7$.
+
 O tom, ktorý PI regulátor bude v danom okamihu aktívny,
 rozhoduje blok logiky prepínača.
 Jeho úloha je dvojitá.
@@ -134,7 +152,15 @@ Budú sa líšiť predovšetkým spôsobom rozhodovania o tom,
 kedy sa globálna regulácia ukončí
 a kedy sa aktivuje lokálna regulácia.
 
-\paragraph{Sledovanie integrátora}    %%zmenit na zaciatocna podmienka integracnej zlozky
+V ďalšom texte bude označenie $r_g$ používané pre globálnu žiadanú hodnotu
+zadávanú v absolútnych veličinách systému, zatiaľ čo $r_l$ bude označovať
+lokálnu žiadanú hodnotu definovanú ako odchýlku od aktuálneho pracovného bodu.
+Podobne veličiny $y_{pb}$ a $u_{pb}$ budú predstavovať aktuálne používaný
+pracovný bod systému, pričom v závislosti od fázy algoritmu môžu nadobúdať buď
+tabuľkové hodnoty z tabuľky~\ref{tab:pb_overview}, alebo odhadnuté hodnoty
+získané počas globálnej regulácie po detekcii ustálenia.
+
+\paragraph{Počiatočná podmienka integračnej zložky pri prepnutí}   
 
 Dôležitou požiadavkou navrhnutej štruktúry
 je zabezpečenie plynulého prepínania medzi globálnym
@@ -233,10 +259,26 @@ I_g = \frac{u - K_{p,g} e_g}{K_{i,g}},
 \label{eq:pi_switch_global_tracking}
 \end{equation}
 
-Takto definovaný spôsob sledovania integrátora
-zabezpečuje,
-že pri prepnutí medzi lokálnou a globálnou regulačnou vetvou
-nedochádza k skokovej zmene akčného zásahu.
+Uvedený spôsob sledovania integrátora je z teoretického hľadiska potrebný
+predovšetkým v poslednom kroku pred opätovnou aktiváciou príslušného
+regulátora, pretože práve vtedy zabezpečuje vhodnú počiatočnú hodnotu
+integračnej zložky pre plynulé prevzatie riadenia. Z implementačného hľadiska
+je však výhodné vykonávať tento výpočet priebežne počas celej neaktívnej fázy,
+keďže sa tým zjednoduší štruktúra algoritmu a odpadá potreba osobitne
+detegovať okamih tesne pred prepnutím regulačnej vetvy.
+
+V prípade lokálneho regulátora však možno využiť aj ďalšie zjednodušenie.
+Keďže lokálna regulácia pracuje v okolí pracovného bodu, pri korektnom
+prepnutí do lokálneho režimu možno očakávať, že bude približne platiť
+$u \approx u_{pb}$ a zároveň $e_l \approx 0$. V ideálnom prípade je preto
+počiatočná hodnota integračnej zložky lokálneho PI regulátora veľmi blízka
+nule. Z tohto dôvodu možno pri praktickej implementácii lokálny integrátor
+aproximovať aj jednoduchým vynulovaním, zatiaľ čo sledovanie integrátora
+zostáva dôležité najmä pri globálnej regulačnej vetve.
+
+Takto definovaný princíp zabezpečuje, že pri prepnutí medzi lokálnou
+a globálnou regulačnou vetvou nedochádza k nežiaducej skokovej zmene
+akčného zásahu.
 
 % -------------------------------------------------------------------
 % Subsubsection 4.1.1 - Globálna regulácia po určitý čas
@@ -474,6 +516,11 @@ sa systém vždy ustáli dostatočne blízko požadovaného pracovného bodu.
 Z tohto dôvodu bol navrhnutý aj druhý spôsob prepínania,
 ktorý je založený priamo na detekcii ustálenia.
 
+Časovo riadené prepínanie tak predstavuje najmä jednoduchší referenčný variant,
+na základe ktorého bolo možné ilustrovať základný princíp navrhnutej štruktúry.
+Pre finálnu implementáciu však bol uprednostnený prístup založený na detekcii
+ustálenia, ktorý lepšie zodpovedá reálnemu správaniu systému.
+
 % -------------------------------------------------------------------
 % Subsubsection 4.1.3 - Prepínanie na základe detekcie ustálenia
 % -------------------------------------------------------------------
@@ -536,7 +583,7 @@ je hodnota $y_{pb}^{\ast}$ najbližšia.
 
 Pseudokód tejto realizácie je uvedený nižšie.
 
-\begin{lstlisting}[language=Matlab,
+\begin{lstlisting}[style = pseudocode,
 caption={Pseudokód prepínania na základe detekcie ustálenia},
 label={lst:pi_switch_settling_based}]
 % Inputs:
@@ -665,16 +712,16 @@ spôsobené reálnymi prevádzkovými podmienkami.
 % Subsection 4.2 - Realizácia algoritmu v prostredí Matlab Simulink
 % -------------------------------------------------------------------
 
-\subsection{Realizácia algoritmu v prostredí Matlab Simulink}
+\subsection{Realizácia algoritmu v prostredí MATLAB/Simulink}
 \label{sec:pi_switch_matlab_implementation}
 
 Navrhnutý algoritmus prepínania pracovných bodov
-bol implementovaný v prostredí Matlab Simulink
-pomocou bloku \texttt{Matlab Function}.
+bol implementovaný v prostredí MATLAB/Simulink
+pomocou bloku \texttt{MATLAB Function}.
 Celá regulačná logika bola realizovaná explicitne vo forme vlastného kódu,
 bez použitia preddefinovaných blokov.
 
-Keďže blok \texttt{Matlab Function} neuchováva automaticky vnútorné stavy,
+Keďže blok \texttt{MATLAB Function} neuchováva automaticky vnútorné stavy,
 všetky potrebné premenné
 (stav filtra, integračné stavy, príznak aktivity,
 história signálov a predchádzajúca hodnota žiadanej veličiny)
@@ -687,7 +734,7 @@ Schéma implementácie je uvedená na obr.~\ref{fig:pi_switch_simulink_scheme}.
         \makebox[\textwidth][c]{%
             \includegraphics[width=1.35\textwidth, trim=2.2cm 0cm 2.2cm 0cm, clip]{TS_prep_simulink_scheme.pdf}
         }
-        \figcaption{Implementácia prepínacej logiky v prostredí Matlab Simulink}
+        \figcaption{Implementácia prepínacej logiky v prostredí MATLAB/Simulink}
         \label{fig:pi_switch_simulink_scheme}
     }
 \end{center}
@@ -695,7 +742,7 @@ Schéma implementácie je uvedená na obr.~\ref{fig:pi_switch_simulink_scheme}.
 Implementovaný kód je uvedený v nasledujúcom výpise.
 
 \begin{lstlisting}[language=Matlab,
-caption={Implementácia prepínacej logiky v bloku Matlab Function},
+caption={Implementácia prepínacej logiky v bloku MATLAB Function},
 label={lst:pi_switch_matlab_code}]
 function [u, x_f_new, I_l_new, I_g_new, y_hist_new, u_hist_new, ...
           r_g_prev_new, active_g_new, y_pb_new, u_pb_new, r_gf, Kp_l, Ki_l, u_l, u_g] = ...
@@ -779,7 +826,6 @@ if active_g == 1 && count_ok >= 25
 end
 
 active_l = 1 - active_g;
-active_l_new = 1 - active_g_new;
 
 % 8 Integral states update
 if active_l == 1
@@ -799,10 +845,13 @@ r_g_prev_new = r_g;
 \end{lstlisting}
 
 Pri prepnutí z globálnej na lokálnu reguláciu
-bola integračná zložka lokálneho PI regulátora vynulovaná.
-Za predpokladu $u_{pb} \approx u$ a $e_l \approx 0$
-to predstavuje vhodnú počiatočnú podmienku
-a zároveň zjednodušuje implementáciu.
+bola v implementácii integračná zložka lokálneho PI regulátora
+zjednodušene vynulovaná. Toto zjednodušenie vychádza z predpokladu,
+že v okamihu prepnutia systém už pracuje v blízkosti zvoleného
+pracovného bodu, takže približne platí $u \approx u_{pb}$ a zároveň
+$e_l \approx 0$. V takom prípade je ideálna počiatočná hodnota
+lokálneho integrátora blízka nule, a preto je takéto zjednodušenie
+pre praktickú implementáciu prijateľné.
 
 % -------------------------------------------------------------------
 % Subsubsection 4.2.1 - Simulácia algoritmu
@@ -957,7 +1006,7 @@ aj v podmienkach reálneho systému.
 \label{sec:pi_switch_cpp_implementation}
 
 Po overení funkčnosti navrhnutého algoritmu
-v prostredí Matlab Simulink
+v prostredí MATLAB/Simulink
 bola rovnaká prepínacia logika implementovaná aj
 v jazyku C++ pre mikrokontrolérovú platformu Arduino.
 Všeobecný princíp pripojenia mikrokontroléra,
@@ -979,7 +1028,7 @@ do hlavnej časti regulačného cyklu.
 Keďže implementácia prebiehala v jazyku C++,
 nebolo už potrebné prenášať vnútorné stavy algoritmu
 medzi jednotlivými krokmi výpočtu
-rovnakým spôsobom ako v bloku \texttt{Matlab Function}.
+rovnakým spôsobom ako v bloku \texttt{MATLAB Function}.
 Stavové premenné programu totiž prirodzene uchovávajú svoju hodnotu
 medzi jednotlivými iteráciami cyklu \texttt{loop()}.
 Z tohto dôvodu bolo možné pracovať priamo
@@ -1158,7 +1207,8 @@ Implementovaný kód hlavnej regulačnej logiky
 je uvedený vo výpise~\ref{lst:pi_switch_cpp_code}.
 
 \begin{lstlisting}[language=C++, caption={Implementácia prepínacej logiky v hlavnom regulačnom cykle programu}, label={lst:pi_switch_cpp_code}]
-// Reference generation //////////////////////////////////////////////////////////////////
+///////////////////////////////////////    
+// Reference generation 
 
 // Global reference
 if (globalTime < 1.0f) {
@@ -1186,7 +1236,7 @@ if (globalTime < 201.0f) {
     r_l = 0.0f;
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////
 // Control law area - PI switching logic
 
 // 1 Detect step change
@@ -1283,12 +1333,12 @@ active_g = active_g_new;
 
 // Final output
 spirala = u;
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////
 \end{lstlisting}
 
 Z hľadiska samotného algoritmu
 zostala implementácia v jazyku C++
-veľmi blízka verzii použitej v Matlab Simulink.
+veľmi blízka verzii použitej v MATLAB/Simulink.
 Najdôležitejším rozdielom je skutočnosť,
 že pri aktualizácii stavov filtra
 a integračných stavov regulátorov
@@ -1302,9 +1352,9 @@ skutočnej periódy vykonávania kódu
 od nominálnej hodnoty.
 
 Ďalším rozdielom oproti implementácii
-v bloku \texttt{Matlab Function} je spôsob práce
+v bloku \texttt{MATLAB Function} je spôsob práce
 so stavovými premennými.
-V prostredí Matlab bolo potrebné všetky vnútorné stavy
+V prostredí MATLAB bolo potrebné všetky vnútorné stavy
 explicitne prenášať medzi jednotlivými krokmi výpočtu
 vo forme vstupných a výstupných signálov.
 V jazyku C++ sú však tieto veličiny
@@ -1321,7 +1371,7 @@ implementácie v jazyku C++
 sú uvedené na obr.~\ref{fig:pi_switch_cpp_real}.
 Z porovnania s experimentálnymi výsledkami
 získanými pri realizácii algoritmu
-v prostredí Matlab Simulink
+v prostredí MATLAB/Simulink
 na obr.~\ref{fig:pi_switch_real}
 je zrejmé,
 že správanie systému je veľmi podobné.

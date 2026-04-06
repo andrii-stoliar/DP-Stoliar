@@ -115,11 +115,11 @@ Porovnaním s referenčným modelom získame ideálny vektor parametrov
 
 \begin{align}
 	\Theta_1^\ast &= \frac{a_0 - a_{0m}}{b_0}, 
-	\label{eq:mrac_idelal_parameters_theta_1} \\
+	\label{eq:mracIdeal_parameters_theta_1} \\
 	\Theta_2^\ast &= \frac{a_1 - a_{1m}}{b_0}, 
-	\label{eq:mrac_idelal_parameters_theta_2} \\
+	\label{eq:mracIdeal_parameters_theta_2} \\
 	\Theta_3^\ast &= \frac{b_{0m}}{b_0}.
-	\label{eq:mrac_idelal_parameters_theta_3}
+	\label{eq:mracIdeal_parameters_theta_3}
 \end{align}
 
 \paragraph{Adaptačná odchýlka}
@@ -365,14 +365,6 @@ Celý systém je teda v štandardnom stavovom tvare
 	y(t) &= c^{T} x(t),
 \end{align}
 
-Celý systém je teda v štandardnom stavovom tvare
-
-\begin{align}
-	\dot{x}(t) &= A x(t) + b u(t),
-	\\
-	y(t) &= c^{T} x(t),
-\end{align}
-
 kde jednotlivé matice majú tvar
 
 \begin{equation}
@@ -397,25 +389,17 @@ kde jednotlivé matice majú tvar
 
 Zavedená pomocná premenná $z(t)$ predstavuje interný stav systému,
 ktorý bol použitý na rozklad prenosovej funkcie do kaskádového tvaru.
-Pri zvolenej realizácii však výstup systému vzniká priamo
-ako lineárna kombinácia premenných $z(t)$ a $\dot{z}(t)$.
+Pri zvolenej realizácii teda stavový vektor nepredstavuje priamo
+$\begin{bmatrix} y(t) & \dot{y}(t) \end{bmatrix}^{T}$,
+ale pomocné stavové veličiny, z ktorých sa výstup systému určuje
+pomocou výstupnej rovnice
+\[
+y(t)=c^{T}x(t).
+\]
 
-Z tohto dôvodu možno bez straty všeobecnosti
-interpretovať stavový vektor ako
-
-\begin{equation}
-	x(t)
-	=
-	\begin{bmatrix}
-		y(t) \\
-		\dot{y}(t)
-	\end{bmatrix},
-\end{equation}
-
-keďže prvá stavová veličina reprezentuje samotný výstup systému
-a druhá jeho časovú deriváciu.
-Táto voľba je prirodzená pre systém druhého rádu
-a priamo nadväzuje na štruktúru diferenciálnej rovnice.
+Takto získaný stavový opis je vhodný pre numerickú implementáciu,
+pretože dynamika systému je sústredená do stavovej rovnice
+a výstup je určený ako lineárna kombinácia stavových premenných.
 
 \paragraph{Stavový opis referenčného modelu}
 
@@ -684,6 +668,11 @@ a rovnako
 
 Jednotlivé bloky sa odlišujú iba výstupnou maticou $c$.
 
+Táto vlastnosť je výhodná aj z implementačného hľadiska, pretože
+referenčný model aj oba filtračné bloky možno v diskrétnej realizácii
+aktualizovať rovnakým numerickým postupom. Odlišujú sa iba vstupnými
+a výstupnými veličinami, nie vnútornou dynamikou modelu.
+
 Pre filter výstupu a jeho derivácie možno zapísať
 spoločnú výstupnú rovnicu v maticovom tvare
 
@@ -903,34 +892,20 @@ C_rf = [1, 0];
 
 C_ym = [b0m, 0];
 
-Theta_used = Theta;
+% Default outputs and state propagation
 u = u_pb;
 ym = 0;
 
-Theta_next = Theta;
-x_ym_next = x_ym;
-x_yf_next = x_yf;
-x_rf_next = x_rf;
-y_prev_next = y;
+propagate all internal states unchanged by default
+store current output as y_prev_next
+store current operating-point variables as y_pb_next, r_pb_next
+store switching flag as sw_next
 
-y_pb_next = y_pb;
-r_pb_next = r_pb;
-sw_next = sw;
-
+% Settling phase
 if t < T_settle
-    u = u_pb;
-    ym = 0;
-
-    Theta_next = Theta;
-    x_ym_next = x_ym;
-    x_yf_next = x_yf;
-    x_rf_next = x_rf;
-    y_prev_next = y;
-    y_pb_next = y_pb;
-    r_pb_next = r_pb;
-    sw_next = sw;
-
-    return;
+    keep u = u_pb
+    keep adaptation and dynamic blocks inactive
+    return
 end
 
 if sw < 0.5
@@ -1072,9 +1047,9 @@ je uvedený nižšie.
 caption={Implementácia gradientného MRAC regulátora v bloku MATLAB Function},
 label={lst:mrac_matlab_function}]
 function [u, ym, Theta_used, Theta_next, x_ym_next, x_yf_next, ...
-          x_rf_next, y_prev_next, y0_next, r0_next, sw_next] = ...
+          x_rf_next, y_prev_next, y_pb_next, r_pb_next, sw_next] = ...
           mrac_block(r, y, t, Theta_in, x_ym, x_yf, x_rf, y_prev, ...
-                     y0_in, r0_in, sw_in)
+                     y_pb_in, r_pb_in, sw_in)
 
 % params
 a0m = 1;
@@ -1088,7 +1063,7 @@ alpha3 = 14 * 0.01;
 sign_b0 = 1;
 Ts = 0.1;
 
-u0 = 3;
+u_pb = 3;
 T_settle = 400;
 
 u_min = 0;
@@ -1112,12 +1087,12 @@ C_ym = [b0m, 0];
 Theta = Theta_in;
 Theta_used = Theta;
 
-y0_next = y0_in;
-r0_next = r0_in;
+y_pb_next = y_pb_in;
+r_pb_next = r_pb_in;
 sw_next = sw_in;
 
 %---
-u = u0;
+u = u_pb;
 ym = 0;
 
 Theta_next = Theta;
@@ -1128,7 +1103,7 @@ y_prev_next = y;
 
 %Plant settle
 if t < T_settle
-    u = u0;
+    u = u_pb;
     ym = 0;
 
     Theta_next = Theta;
@@ -1136,8 +1111,8 @@ if t < T_settle
     x_yf_next = x_yf;
     x_rf_next = x_rf;
     y_prev_next = y;
-    y0_next = y0_in;
-    r0_next = r0_in;
+    y_pb_next = y_pb_in;
+    r_pb_next = r_pb_in;
     sw_next = sw_in;
 
     return;
@@ -1145,8 +1120,8 @@ end
 
 % transition
 if sw_in < 0.5
-    y0_next = y;
-    r0_next = r;
+    y_pb_next = y;
+    r_pb_next = r;
 
     x_ym_work = [0; 0];
     x_yf_work = [0; 0];
@@ -1163,15 +1138,15 @@ else
 
     Theta_work = Theta;
 
-    y_prev_tilde = y_prev - y0_in;
+    y_prev_tilde = y_prev - y_pb_in;
 end
 
 % Normalize
-y_tilde = y - y0_next;
-r_tilde = r - r0_next;
+dy = y - y_pb_next;
+dr = r - r_pb_next;
 
 % deriv
-ydot_tilde = (y_tilde - y_prev_tilde) / Ts;
+ydot_tilde = (dy - y_prev_tilde) / Ts;
 
 % output
 ym = C_ym * x_ym_work;
@@ -1181,12 +1156,12 @@ ydot_f = yf_full(2);
 rf = C_rf * x_rf_work;
 
 % error
-e = y_tilde - ym;
+e = dy - ym;
 
-omega = [y_tilde; ydot_tilde; r_tilde];
+omega = [dy; ydot_tilde; dr];
 
-u_tilde = Theta_work.' * omega;
-u_unsat = u0 + u_tilde;
+du = Theta_work.' * omega;
+u_unsat = u_pb + du;
 u = min(max(u_unsat, u_min), u_max);
 
 % adapt law
@@ -1198,20 +1173,14 @@ Theta_next = Theta_work + dTheta * Ts;
 Theta_used = Theta_work;
 
 % State updates
-x_ym_next = x_ym_work + Ts * (A * x_ym_work + b * r_tilde);
-x_yf_next = x_yf_work + Ts * (A * x_yf_work + b * y_tilde);
-x_rf_next = x_rf_work + Ts * (A * x_rf_work + b * r_tilde);
+x_ym_next = x_ym_work + Ts * (A * x_ym_work + b * dr);
+x_yf_next = x_yf_work + Ts * (A * x_yf_work + b * dy);
+x_rf_next = x_rf_work + Ts * (A * x_rf_work + b * dr);
 
 y_prev_next = y;
 
 end
 \end{lstlisting}
-
-V zdrojovom kóde sú veličiny pracovného bodu
-z praktických dôvodov označené premennými
-\texttt{u0}, \texttt{y0} a \texttt{r0},
-pričom v teoretickom opise sú označené ako
-$u_{pb}$, $y_{pb}$ a $r_{pb}$.
 
 Schéma implementovaného bloku \texttt{MATLAB Function}
 v prostredí Simulink
@@ -1239,12 +1208,10 @@ je znázornená na obr.~\ref{fig:mrac_matlab_block}.
 \subsubsection{Experiment na tepelnej sústave}
 \label{sec:mrac_matlab_experiment}
 
-Navrhnutý gradientný MRAC regulátor bol aplikovaný
-na reálnu tepelnú sústavu,
-pričom jeho vlastnosti boli overené
+Navrhnutý gradientný MRAC regulátor bol najskôr overený
 na modeli získanom identifikáciou
-(\eqref{eq:Gs_ls_approx}),
-ako aj následne v reálnych podmienkach.
+\eqref{eq:Gs_ls_approx}
+a následne aplikovaný aj na reálnu tepelnú sústavu TS05.
 
 Cieľom bolo overiť,
 či implementovaný adaptačný mechanizmus

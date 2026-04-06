@@ -384,7 +384,7 @@ void loop() {
         dr = r - r_pb_next;
 
         // Derivative
-        dy_dot = (dy - dy_prev) / TS;
+        dy_dot = (dy - dy_prev) / timeTickPeriod;
 
         // Outputs of dynamic blocks
         ym = rowVec2ColVec2Mul(C_YM, x_ym_work);
@@ -410,9 +410,9 @@ void loop() {
         dTheta[1] = -SIGN_B0 * e * (ALPHA2 * ydot_f);
         dTheta[2] = -SIGN_B0 * e * (ALPHA3 * rf);
 
-        Theta_next_arr[0] = Theta_work[0] + dTheta[0] * TS;
-        Theta_next_arr[1] = Theta_work[1] + dTheta[1] * TS;
-        Theta_next_arr[2] = Theta_work[2] + dTheta[2] * TS;
+        Theta_next_arr[0] = Theta_work[0] + dTheta[0] * timeTickPeriod;
+        Theta_next_arr[1] = Theta_work[1] + dTheta[1] * timeTickPeriod;
+        Theta_next_arr[2] = Theta_work[2] + dTheta[2] * timeTickPeriod;
 
         Theta_used[0] = Theta_work[0];
         Theta_used[1] = Theta_work[1];
@@ -425,20 +425,20 @@ void loop() {
         mat2x2Vec2Mul(A_MRAC, x_ym_work, Ax);
         bu[0] = B_MRAC[0] * dr;
         bu[1] = B_MRAC[1] * dr;
-        x_ym_next_arr[0] = x_ym_work[0] + TS * (Ax[0] + bu[0]);
-        x_ym_next_arr[1] = x_ym_work[1] + TS * (Ax[1] + bu[1]);
+        x_ym_next_arr[0] = x_ym_work[0] + timeTickPeriod * (Ax[0] + bu[0]);
+        x_ym_next_arr[1] = x_ym_work[1] + timeTickPeriod * (Ax[1] + bu[1]);
 
         mat2x2Vec2Mul(A_MRAC, x_yf_work, Ax);
         bu[0] = B_MRAC[0] * dy;
         bu[1] = B_MRAC[1] * dy;
-        x_yf_next_arr[0] = x_yf_work[0] + TS * (Ax[0] + bu[0]);
-        x_yf_next_arr[1] = x_yf_work[1] + TS * (Ax[1] + bu[1]);
+        x_yf_next_arr[0] = x_yf_work[0] + timeTickPeriod * (Ax[0] + bu[0]);
+        x_yf_next_arr[1] = x_yf_work[1] + timeTickPeriod * (Ax[1] + bu[1]);
 
         mat2x2Vec2Mul(A_MRAC, x_rf_work, Ax);
         bu[0] = B_MRAC[0] * dr;
         bu[1] = B_MRAC[1] * dr;
-        x_rf_next_arr[0] = x_rf_work[0] + TS * (Ax[0] + bu[0]);
-        x_rf_next_arr[1] = x_rf_work[1] + TS * (Ax[1] + bu[1]);
+        x_rf_next_arr[0] = x_rf_work[0] + timeTickPeriod * (Ax[0] + bu[0]);
+        x_rf_next_arr[1] = x_rf_work[1] + timeTickPeriod * (Ax[1] + bu[1]);
 
         y_prev_next = y;
     }

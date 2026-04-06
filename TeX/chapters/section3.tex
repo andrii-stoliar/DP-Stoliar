@@ -5,12 +5,11 @@
 \section{PI regulátor pre systém TS05}
 \label{sec:pi_controller}
 
-V tejto kapitole je riešený návrh a implementácia PI regulátora
-ako základného nástroja pre reguláciu tepelnej sústavy.
-Najskôr je stručne zhrnutá teoretická štruktúra PI regulátora
-a jeho zapojenie v uzavretom regulačnom obvode,
-následne je tento prístup aplikovaný na systém TS05
-vrátane ladenia parametrov a realizácie v reálnom čase.
+V tejto kapitole je riešený návrh a implementácia PI regulátora pre tepelný systém TS05.
+Najskôr je stručne zhrnutá teoretická štruktúra PI regulátora a jeho zapojenie
+v uzavretom regulačnom obvode, následne je tento prístup aplikovaný na
+identifikovaný model systému TS05 vrátane ladenia parametrov a realizácie
+v reálnom čase v prostredí MATLAB a v jazyku C++.
 
 % -------------------------------------------------------------------
 % Subsection 3.1 - Štruktúra PI regulátora
@@ -86,6 +85,7 @@ je integračný člen aproximovaný rekurentným vzťahom
 	e(k) &= w(k) - y(k), \\
 	I(k) &= I(k-1) + T_s\,e(k), \\
 	u(k) &= K_p\,e(k) + K_i\,I(k).
+	\label{eq:pi_discrete_law}
 \end{align}
 
 Z dôvodu fyzikálnych obmedzení akčného zásahu
@@ -93,7 +93,9 @@ je v praxi uplatnená saturácia riadiaceho signálu.
 
 \paragraph{Pseudokód PI regulátora}
 
-\begin{lstlisting}[style=pseudocode]
+\begin{lstlisting}[style=pseudocode,
+caption={Pseudokód diskrétnej realizácie PI regulátora so saturáciou},
+label={lst:pi_pseudocode}]
 % Inputs: w (setpoint), y (output), Ts
 % States: I (integrator state)
 % Params: Kp, Ki, u_min, u_max
@@ -103,12 +105,11 @@ e = w - y;
 % Integrator update
 I = I + Ts * e;
 
-% PID law
+% PI law
 u = Kp * e + Ki * I;
 
 % Saturation
 u = min(max(u, u_min), u_max);
-
 \end{lstlisting}
 
 % -------------------------------------------------------------------
@@ -117,8 +118,11 @@ u = min(max(u, u_min), u_max);
 
 \subsection{Nastavenie parametrov PI regulátora pre systém TS05}
 
-Pre získanie parametrov regulátora bola využitá funkcia \texttt{pidtune} v prostredí MATLAB, ktorá vykonáva automatizované ladenie regulátora.  
-Tento postup bol zvolený preto, že viaceré analytické metódy ladenia nie je možné na systém TS05 aplikovať.
+Pri návrhu parametrov PI regulátora bolo najprv potrebné zvoliť vhodnú metódu ladenia.
+Vzhľadom na štruktúru identifikovaného modelu systému TS05 sa ukázalo, že viaceré
+bežné analytické metódy ladenia nie je možné použiť priamo alebo v štandardnom tvare.
+Z tohto dôvodu boli najskôr posúdené ich obmedzenia a následne bol na samotné ladenie
+zvolený numerický nástroj \texttt{pidtune} v prostredí MATLAB.
 
 Charakteristický polynóm uzavretého regulačného obvodu pre PI regulátor má po dosadení tvar
 
@@ -155,24 +159,26 @@ Táto sústava nemá realizovateľné riešenie pre parametre $K_p$ a $K_i$.
 Dôvodom je, že členy závislé od $K_p$ a $K_i$ sa vyskytujú iba v dvoch rovniciach, zatiaľ čo parametre želaného dynamického správania $k$, $\omega_0$, $p$ ovplyvňujú tri rovnice.  
 Sústava je preto pre fyzikálne konzistentné riešenie preurčená a neexistuje v nej žiadna kombinácia parametrov, ktorá by spĺňala všetky rovnice súčasne.
 
-Rovnako nie je možné použiť metódu Ziegler–Nichols, keďže námi identifikovaný model (\ref{eq:Gs_ls_approx}) nemá kritický bod, ktorý je pre túto metódu potrebný.
+Rovnako nebolo vhodné použiť klasickú metódu Ziegler--Nichols založenú na určení
+kritického zosilnenia, keďže pre identifikovaný model (\ref{eq:Gs_ls_approx}) nebolo možné týmto spôsobom
+získať parametre potrebné na jej štandardnú aplikáciu.
 
 Keďže návrh PI regulátora nie je hlavnou témou práce, bol zvolený numerický nástroj \texttt{pidtune}.  
 Jeho princíp spočíva v tom, že pre zvolenú požadovanú šírku pásma uzavretého systému vypočíta optimálne hodnoty parametrov PI regulátora tak, aby bola zabezpečená dobrá dynamická odozva a primeraná robustnosť.
 
-Najskôr bol systém prevedený do diskrétnej podoby:
+Najskôr bol systém prevedený do diskrétnej podoby a následne bolo vykonané
+ladenie PI regulátora pomocou funkcie \texttt{pidtune}. Použitý postup je uvedený
+v nasledujúcej ukážke.
 
-\begin{lstlisting}[language=Matlab]
+\begin{lstlisting}[language=Matlab,
+caption={Diskretizácia modelu a ladenie PI regulátora pomocou \texttt{pidtune}},
+label={lst:pi_pidtune}]
 Gs = Gs_fmin;
 Ts = 0.1;
 
 Gz = c2d(Gs, Ts, 'tustin');
 [Ad,Bd,Cd,Dd] = ssdata(Gz);
-\end{lstlisting}
 
-Následne bolo vykonané ladenie PI regulátora:
-
-\begin{lstlisting}[language=Matlab]
 wc = 0.5;
 Cz = pidtune(Gz, 'pi', wc);
 
@@ -182,9 +188,10 @@ Cz = pidtune(Gz, 'pi', wc);
 
 Získané parametre regulátora:
 
-\[
-K_p = 3.58, \qquad K_i = 1.84
-\]
+\begin{equation}
+	K_p = 3.58, \qquad K_i = 1.84
+	\label{eq:pi_gains}
+\end{equation}
 
 Prenosová funkcia otvoreného regulačného obvodu je
 
@@ -201,10 +208,12 @@ Póly otvoreného systému sú:
 	\label{eq:oro_poles}
 \end{equation}
 
-Znakom stability je prítomnosť pólov s negatívnou reálnou časťou, čo je splnené.
+Z polohy pólov otvoreného obvodu je zrejmé, že systém obsahuje integrujúci člen
+a dva póly v ľavej polrovine komplexnej roviny.
 
-Simulácia bola vykonaná s obmedzením akčného zásahu na interval \([-4, 6]\),  
-čo zodpovedá pracovnému bodu 4 V.  
+Simulácia bola vykonaná s obmedzením odchýlkového akčného zásahu na interval
+\([-4, 6]\), čo po pripočítaní pracovného bodu \(u_{pb}=4~\mathrm{V}\)
+zodpovedá fyzikálnemu rozsahu vstupu špirály 0 až 10~V. 
 Výsledok simulácie je uvedený na obrázku~\ref{fig:pi_simulation_results}.
 
 \begin{center}
@@ -247,33 +256,39 @@ Namiesto práce s absolútnymi hodnotami veličín sa regulácia vykonáva v ink
 
 Výstupná veličina je vyjadrená ako odchýlka od pracovného bodu:
 
-\[
-\Delta y = y - y_{pb}
-\]
+\begin{align}
+    \Delta y &= y - y_{pb},
+    \label{eq:pi_delta_y} 
+\end{align}
 
 kde $y_{pb}$ predstavuje odhad ustáleného stavu systému (pracovného bodu).
 
 Podobne aj riadiaci zásah je počítaný ako odchýlka od pracovného bodu:
 
-\[
-\Delta u = u - u_{pb}
-\]
+\begin{align}
+    \Delta u &= u - u_{pb},
+    \label{eq:pi_delta_u} 
+\end{align}
 
 pričom výsledný akčný zásah je následne získaný ako:
 
-\[
-u = \Delta u + u_{pb}
-\]
+\begin{align}
+    u &= \Delta u + u_{pb}.
+    \label{eq:pi_u_from_du}
+\end{align}
 
 Referenčná hodnota (setpoint) je taktiež definovaná vzhľadom na pracovný bod, čo znamená, že regulátor riadi systém v okolí pracovného bodu, nie v absolútnych hodnotách.
 
-Tento prístup umožňuje efektívnejšie riadenie nelineárneho systému a zvyšuje robustnosť regulátora voči zmenám prevádzkových podmienok.
+Tento prístup zodpovedá riadeniu v okolí pracovného bodu a v praxi sa ukázal ako
+vhodný pri zmenách prevádzkových podmienok systému.
 
 Implementácia regulátora je nasledovná:
 
-\begin{lstlisting}[language=Matlab]
-function [u, integrator_out, y_ss_out] = ...
-         pi_block(y, setpoint_pb, integrator_in, t, y_ss_in)
+\begin{lstlisting}[language=Matlab,
+caption={Implementácia PI regulátora v bloku \texttt{MATLAB Function}},
+label={lst:pi_matlab_function}]
+function [u, integrator_out, y_pb_out] = ...
+         pi_block(y, setpoint_pb, integrator_in, t, y_pb_in)
 
 % PI controller
 
@@ -315,10 +330,13 @@ end
 end
 \end{lstlisting}
   
-Tento blok však na rozdiel od štandardných Simulinkových riadiacich blokov neobsahuje vlastnú vnútornú pamäť, preto je potrebné stavové premenné prenášať medzi jednotlivými volaniami bloku explicitne.
-
-Z tohto dôvodu sú hodnoty integrátora a odhad ustáleného stavu odosielané na výstup PI bloku a v nasledujúcom kroku sú privádzané späť na vstup.  
-Týmto spôsobom sa zabezpečí, že regulátor si zachováva svoje vnútorné stavy z jedného riadiaceho kroku do druhého.
+V súlade s princípom implementácie opísaným v podkapitole~\ref{sec:komunikacia_matlab}
+blok \textit{MATLAB Function} ani v tomto prípade neuchováva stavové veličiny
+automaticky medzi jednotlivými diskrétnymi krokmi. Preto je potrebné hodnotu
+integrátora aj odhad pracovného bodu prenášať explicitne cez výstupy bloku a
+v nasledujúcom kroku ich privádzať späť na jeho vstupy. Týmto spôsobom sa
+zabezpečí korektné uchovanie vnútorných stavov PI regulátora medzi
+jednotlivými riadiacimi cyklami.
 
 Logika zapojenia bloku MATLAB Function je zobrazená na obrázku~\ref{fig:pi_rt_scheme},  
 ktorý ukazuje vstupy, výstupy a spätnú väzbu stavových premenných potrebných pre správnu činnosť regulátora.
@@ -386,7 +404,7 @@ Výsledok je zobrazený na obrázku~\ref{fig:ts_pi_real_big_step}.
         \makebox[\textwidth][c]{%
             \includegraphics[width=1.5\textwidth]{ts_pb_vent6_pbTopb_real_badToShow.png}
         }
-        \figcaption{Experiment PI regulátora pri pri skoku z 6.4~V na 7.5~V}
+        \figcaption{Experiment PI regulátora pri skoku z 6.4~V na 7.5~V}
         \label{fig:ts_pi_real_big_step}
     }
 \end{center}
@@ -405,13 +423,19 @@ a následne budú jednotlivé regulátory skombinované tak, aby systém dispono
 Na základe algoritmu uvedeného v prostredí MATLAB bola následne zrealizovaná aj implementácia PI regulátora v jazyku C++.  
 Táto implementácia bola začlenená do hlavného programu uvedeného v prílohe \ref{lst:main_cpp_appendix}, kde zabezpečuje výpočet akčného zásahu pre vykurovaciu špirálu v reálnom čase.
 
+Z hľadiska programovej štruktúry táto implementácia nadväzuje na všeobecný rámec
+komunikácie a časovania opísaný v podkapitole~\ref{sec:komunikacia_cpp}, pričom
+v tomto prípade je do neho doplnený konkrétny PI riadiaci zákon.
+
 Použitá logika regulácie zostala z hľadiska riadiaceho princípu rovnaká ako pri implementácii v prostredí MATLAB.  
 Aj v tomto prípade je regulácia realizovaná vzhľadom na pracovný bod, pričom sa využíva odchýlka výstupu od odhadnutého ustáleného stavu a následne sa vypočíta odchýlkový akčný zásah.  
 Rovnako ostali zachované aj parametre regulátora, hodnota pracovného bodu, saturácia riadiaceho signálu a úvodná čakacia fáza v trvaní desiatich minút, počas ktorej sa systém ustáli a zároveň sa určí hodnota $y_{pb}$.
 
 Najskôr sú v programe inicializované základné parametre regulátora, pracovného bodu a pomocných premenných:
 
-\begin{lstlisting}[language = C++]
+\begin{lstlisting}[language=C++,
+caption={Inicializácia parametrov PI regulátora v jazyku C++},
+label={lst:pi_cpp_init}]
 float vent = 6.0f;
 float spirala = 0.0f;
 float u_pb = 4.0f;
@@ -430,7 +454,9 @@ float du = 0.0f;
 
 Samotná regulačná logika je následne realizovaná priamo v hlavnom cykle programu:
 
-\begin{lstlisting}[language = C++]
+\begin{lstlisting}[language=C++,
+caption={Hlavná regulačná logika PI regulátora v jazyku C++},
+label={lst:pi_cpp_logic}]
 if (globalTime < 10 * 60) {
     u = u_pb;
     y_pb = snimac1;

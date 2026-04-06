@@ -333,10 +333,6 @@ INPUT ../SVG/TS_sch3_foto.pdf
 INPUT ../SVG/TS_sch3_foto.pdf
 INPUT ../SVG/TS_sch3_foto.pdf
 INPUT ../SVG/TS_sch3_foto.pdf
-INPUT ../SVG/TS_simulink_scheme.pdf
-INPUT ../SVG/TS_simulink_scheme.pdf
-INPUT ../SVG/TS_simulink_scheme.pdf
-INPUT ../SVG/TS_simulink_scheme.pdf
 INPUT ../PY/fig/ts_prevodova_spirala.png
 INPUT ../PY/fig/ts_prevodova_spirala.png
 INPUT ../PY/fig/ts_prevodova_spirala.png
@@ -390,6 +386,14 @@ INPUT ../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png
 INPUT ../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png
 INPUT ../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png
 INPUT ../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png
+INPUT ../SVG/TS01_start.pdf
+INPUT ../SVG/TS01_start.pdf
+INPUT ../SVG/TS01_start.pdf
+INPUT ../SVG/TS01_start.pdf
+INPUT ../SVG/TS_simulink_scheme.pdf
+INPUT ../SVG/TS_simulink_scheme.pdf
+INPUT ../SVG/TS_simulink_scheme.pdf
+INPUT ../SVG/TS_simulink_scheme.pdf
 INPUT ../SVG/in_progress.png
 INPUT ../SVG/in_progress.png
 INPUT ../SVG/in_progress.png

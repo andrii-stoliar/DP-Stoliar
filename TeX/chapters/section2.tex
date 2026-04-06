@@ -17,7 +17,7 @@ Táto časť má umožniť porovnanie prístupov k implementácii riadenia v sim
 
 \subsection{Popis tepelného systému}
 
-Táto kapitola sa zaoberá popisom laboratórneho modelu TS05 a jeho základnými statickými vlastnosťami.  
+Táto časť sa zaoberá popisom laboratórneho modelu TS05 a jeho základnými statickými vlastnosťami.  
 Model predstavuje fyzický systém určený na výučbu a experimentálne overovanie princípov riadenia v oblasti automatizácie a mechatroniky.
 
 % -------------------------------------------------------------------
@@ -55,24 +55,10 @@ Vizuálny vzhľad systému je znázornený na obrázku~\ref{fig:TS_sch3_foto}.
 }
 \end{center}
 
-Systém komunikuje s počítačom prostredníctvom meracej a komunikačnej karty \textit{Humusoft},  
-ktorá je určená na prepojenie reálnych systémov so simulačným prostredím MATLAB/Simulink.  
-Táto karta umožňuje obojsmerný prenos analógových signálov – prijíma merané veličiny zo systému a zároveň vysiela riadiace signály na jeho vstupy.
-
-Samotná komunikácia a spracovanie signálov prebieha v prostredí Simulink,  
-v rámci vopred pripravenej schémy (obr.~\ref{fig:TS_simulink_scheme}),  
-ktorá bola vytvorená ako súčasť projektu KUT – Krátke výučbové materiály.  
-Táto schéma slúži aj ako podklad pre predmet \textit{Modelovanie a riadenie systémov}~\cite{kut015}.
-
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=1.3\textwidth, trim=100 200 100 200, clip]{TS_simulink_scheme.pdf}
-}
-\figcaption{Simulinková schéma pre komunikáciu so systémom TS05}
-\label{fig:TS_simulink_scheme}
-}
-\end{center}
+V ďalšom texte tejto sekcie bude systém TS05 v prostredí
+\textit{MATLAB/Simulink} používaný prostredníctvom komunikačného rozhrania
+s meracou kartou. Podrobnejší popis tejto komunikácie a použitých
+Simulinkových schém je uvedený v podkapitole~\ref{sec:komunikacia_matlab}.
 
 % -------------------------------------------------------------------
 % Subsubsection 2.1.2 - Statické vlastnosti systému
@@ -178,7 +164,7 @@ Cieľom je určiť, ktoré prístupy poskytujú presnejšie modely a na aké fak
 
 \subsubsection{Meranie údajov a ich spracovanie}
 
-Na účely identifikácie systému akoukoľvek \textit{off-line} metódou je najprv potrebné získať reakciu systému na jednotkové skoky v okolí pracovného bodu.  
+Na účely identifikácie systému pomocou nami zvolených \textit{off-line} metód je najprv potrebné získať reakciu systému na jednotkové skoky v okolí pracovného bodu.  
 V našom prípade bol pracovný bod zvolený ako vstupné napätia špirály~4~V a ventilátora~6~V.  
 
 Na obrázku~\ref{fig:ts_pb_vent6_spir4_ident_raw} je zobrazený vstupný signál špirály a odpoveď systému na výstupe zo senzora~1.
@@ -195,7 +181,7 @@ Na obrázku~\ref{fig:ts_pb_vent6_spir4_ident_raw} je zobrazený vstupný signál
 
 Z grafu možno pozorovať zreteľný lineárny trend, teda postupné zvyšovanie výstupnej teploty počas celého merania.  
 Tento jav je spôsobený pomalým nahrievaním špirály a tiež prirodzenými zmenami teploty v miestnosti, ktoré neboli v rámci experimentu kontrolované.  
-Teplota prostredia sa však počas meraní pohybovala v rozsahu bežnej izbovej teploty, takže systém bol v stabilných podmienkach.
+Teplota prostredia sa však počas meraní pohybovala v rozsahu bežnej izbovej teploty.
 
 Aby bolo možné získať z nameraných údajov vhodné parametre pre identifikáciu, bolo potrebné odstrániť tento trend aplikovaním odstránenia lineárneho trendu.  
 Metodika výpočtu je založená na lineárnej regresii, kde sa určuje priamka trendu v tvare
@@ -346,7 +332,7 @@ end
 
 \subsubsection{Identifikácia systému pomocou optimalizácie prenosovej funkcie}
 
-V tejto časti bol zvolený menej akademický, skôr prakticky orientovaný prístup k identifikácii systému TS05.  
+V tejto časti bola na identifikáciu systému TS05 zvolená numerická optimalizačná metóda.  
 Namiesto priameho odhadu parametrov modelu metódou najmenších štvorcov bola použitá optimalizácia parametrov prenosovej funkcie tak,  
 aby sa minimalizovala chyba medzi simulovanou odozvou modelu a reálnou priemernou odozvou systému, získanou z experimentov.
 
@@ -425,7 +411,7 @@ Pri tomto prístupe je dôležité upozorniť na jeden podstatný problém.
 Ak nie sú parametre prenosovej funkcie počas optimalizácie vhodne obmedzené,  
 algoritmus môže nájsť také hodnoty parametrov, ktoré síce veľmi dobre aproximujú konkrétnu meranú odozvu,  
 ale vedú k nerealistickému alebo nestabilnému správaniu modelu pri iných vstupoch.  
-V predchádzajúcich pokusoch viedlo práve toto k prenosovým funkciám s „nezdravými“ parametrami,  
+V predchádzajúcich pokusoch viedlo práve toto k prenosovým funkciám s numericky nevhodnými parametrami,  
 ktoré boli použiteľné iba pre konkrétny fitovaný experiment.
 
 Z tohto dôvodu sú v uvedenej implementácii parametre počas optimalizácie mapované pomocou transformácie
@@ -438,7 +424,7 @@ Z tohto dôvodu sú v uvedenej implementácii parametre počas optimalizácie ma
 čím sú efektívne udržiavané v konečnom rozsahu a znižuje sa riziko vzniku numericky extrémnych alebo fyzikálne nezmyselných modelov.  
 Okrem toho bola do optimalizácie pridaná aj dodatočná penalizácia, ktorá výrazne zvyšuje hodnotu účelovej funkcie v prípade,  
 že identifikovaná prenosová funkcia vykazuje známky nestability.  
-Týmto spôsobom algoritmus uprednostňuje iba stabilné riešenia a zabraňuje vzniku modelov so „zdravotne“ nevhodnými pólmi.
+Týmto spôsobom algoritmus uprednostňuje iba stabilné riešenia a zabraňuje vzniku modelov s numericky nevhodnými pólmi.
 
 % -------------------------------------------------------------------
 % Subsubsection 2.2.4 - Výsledky identifikácie TS05
@@ -502,7 +488,7 @@ Treba však zdôrazniť, že oba identifikované modely sú len druhého rádu,
 \subsubsection{Aproximácia identifikovaných modelov}
 
 Na základe získaných prenosových funkcií možno pozorovať, že ich čitatele obsahujú veľmi malé koeficienty pri prvom a druhom rade.  
-Prítomnosť týchto členov je s veľkou pravdepodobnosťou len výsledkom numerických „artefaktov“ vzniknutých pri prevode z diskrétnej prenosovej funkcie na spojitú formu.  
+Možno ich interpretovať ako numerické artefakty vzniknuté pri prevode z diskrétnej prenosovej funkcie na spojitú formu.  
 Zahrnutie týchto vyšších rádov v čitateli by výrazne komplikovalo niektoré analytické metódy návrhu regulátorov, napríklad metódu umiestnenia pólov.
 
 Pre účely ďalšej práce sme sa preto rozhodli tieto prenosové funkcie aproximovať jednoduchšou formou.  
@@ -587,8 +573,75 @@ a zároveň spoľahlivo zaznamenávať namerané údaje pre ďalšie spracovanie
 \subsubsection{Komunikácia s MATLAB}
 \label{sec:komunikacia_matlab}
 
-Táto časť bude doplnená v nasledujúcej verzii práce.
+Komunikácia laboratórneho systému TS05 s počítačom je v prostredí
+\textit{MATLAB/Simulink} realizovaná prostredníctvom meracej a komunikačnej
+karty \textit{Advantech}, ktorá zabezpečuje prepojenie reálneho fyzikálneho
+modelu so simulačným prostredím. Táto karta umožňuje obojsmerný prenos
+analógových signálov, teda snímanie výstupných veličín systému a zároveň
+generovanie riadiacich zásahov privádzaných na jeho vstupy.
 
+Z pohľadu používateľa je komunikácia realizovaná pomocou vopred pripravených
+blokov v prostredí \textit{Simulink}. Základná štartovacia schéma, ktorá slúži
+na inicializáciu komunikácie a prepojenie jednotlivých vstupov a výstupov
+systému TS05 s blokom komunikačnej karty, je znázornená na
+obr.~\ref{fig:TS_simulink_start}. Táto časť schémy predstavuje nadradenú
+vrstvu zapojenia, v ktorej sú definované jednotlivé signálové väzby medzi
+reálnym systémom a rozhraním komunikačnej karty.
+
+\begin{center}
+\vbox{
+\makebox[\textwidth][c]{%
+    \includegraphics[width=1.3\textwidth, trim=100 200 100 200, clip]{TS01_start.pdf}
+}
+\figcaption{Základná Simulinková schéma pre spustenie komunikácie so systémom TS05}
+\label{fig:TS_simulink_start}
+}
+\end{center}
+
+Vnútorná časť komunikačného subsystému, v ktorej sú už explicitne definované
+jednotlivé porty meracej karty a spôsob spracovania analógových vstupov a
+výstupov, je zobrazená na obr.~\ref{fig:TS_simulink_scheme}. Táto schéma
+predstavuje detailnejšiu implementačnú vrstvu komunikácie, na ktorú nadväzujú
+ďalšie experimentálne a riadiace úlohy realizované v prostredí
+\textit{MATLAB/Simulink}.
+
+\begin{center}
+\vbox{
+\makebox[\textwidth][c]{%
+    \includegraphics[width=1.3\textwidth, trim=100 200 100 200, clip]{TS_simulink_scheme.pdf}
+}
+\figcaption{Vnútorná časť Simulinkového bloku komunikácie so systémom TS05}
+\label{fig:TS_simulink_scheme}
+}
+\end{center}
+
+Uvedené schémy boli vytvorené ako súčasť projektu KUT – Krátke výučbové
+materiály a slúžia aj ako podklad pre predmet \textit{Modelovanie a riadenie
+systémov}~\cite{kut015}. Pre potreby tejto práce predstavovali základné
+východisko pre realizáciu meraní, identifikácie systému a následný návrh
+riadenia v prostredí \textit{MATLAB/Simulink}.
+
+V ďalších experimentoch a pri návrhu regulačných algoritmov bude samotná
+riadiaca logika realizovaná vždy v bloku \textit{MATLAB Function}, ktorého
+výstup bude privedený na vstup vykurovacej špirály. V rámci ďalšieho návrhu
+riadenia bude systém TS05 zámerne uvažovaný ako systém typu SISO
+(\textit{Single Input -- Single Output}). Vstup ventilátora bude počas
+experimentov udržiavaný na konštantnej hodnote 6~V, a preto bude z pohľadu
+návrhu regulácie chápaný ako konštantná veličina. Ako riadiaci vstup $u$
+bude uvažované napätie privádzané na vykurovaciu špirálu a ako výstup $y$
+bude použitý signál zo Snímača~1. Signál zo Snímača~2 sa v ďalších návrhoch
+riadenia nebude uvažovať.
+
+Keďže blok \textit{MATLAB Function} nemá vlastnú vnútornú pamäť v zmysle
+uchovávania stavových veličín medzi jednotlivými diskrétnymi krokmi,
+všetky veličiny, ktoré je potrebné zachovať medzi iteráciami algoritmu,
+musia byť vedené spätnou väzbou z výstupov na vstupy tohto bloku. Aby sa pri
+takomto zapojení zabránilo vzniku algebraickej slučky v prostredí
+\textit{Simulink}, je potrebné do spätnej väzby zaradiť diskrétny pamäťový
+blok typu \textit{Unit Delay}, štandardne reprezentovaný operátorom $z^{-1}$.
+Tým sa zabezpečí, že algoritmus bude implementovaný explicitne numerickým
+spôsobom v rámci vlastného kódu, bez použitia preddefinovaných regulačných
+blokov prostredia \textit{Simulink}.
 % -------------------------------------------------------------------
 % Subsubsection - C++
 % -------------------------------------------------------------------
@@ -687,6 +740,12 @@ Celkové fyzické zapojenie systému je znázornené na obrázku~\ref{fig:arduin
 \label{fig:arduino_ts05_connection}
 }
 \end{center}
+
+Rovnako ako v podkapitole~\ref{sec:komunikacia_matlab}, aj v prípade implementácie
+v jazyku C++ bude systém TS05 pre účely ďalších experimentov a návrhu riadenia
+uvažovaný ako systém typu SISO. Riadiaci vstup $u$ bude predstavovať napätie
+privádzané na vykurovaciu špirálu, výstup $y$ bude tvorený signálom zo
+Snímača~1 a vstup ventilátora bude udržiavaný na konštantnej hodnote 6~V.
 
 Po vytvorení hardvérovej časti bolo potrebné vyriešiť aj interpretáciu vstupných
 a výstupných hodnôt.
@@ -792,35 +851,39 @@ Jej všeobecný tvar možno zapísať ako
 
 kde $x$ predstavuje vstupnú hodnotu a $y$ kalibrovaný výstup.
 
-Pre jednotlivé kanály boli použité nasledujúce kalibračné funkcie:
+Pre jednotlivé kanály boli použité nasledujúce kalibračné funkcie. Pre
+prehľadnosť zápisu sú v ďalšom texte koeficienty uvedené so zaokrúhlením
+na štyri desatinné miesta štandardným matematickým zaokrúhľovaním. V
+samotnej softvérovej implementácii však boli použité presnejšie hodnoty
+koeficientov, konkrétne s ôsmimi desatinnými miestami.
 
 \begin{equation}
     \mathrm{PWM5}_{\mathrm{vent}}(u) =
-    0.05938291u^3 - 0.27988543u^2 + 24.20478979u - 0.52522611
+    0.0594u^3 - 0.2799u^2 + 24.2048u - 0.5252
     \label{eq:cal_pwm5}
 \end{equation}
 
 \begin{equation}
     \mathrm{PWM6}_{\mathrm{spir}}(u) =
-    0.08732906u^3 - 0.39322033u^2 + 22.8496962u - 0.61564759
+    0.0873u^3 - 0.3932u^2 + 22.8497u - 0.6156
     \label{eq:cal_pwm6}
 \end{equation}
 
 \begin{equation}
     U_{\mathrm{sn1}}(A1) =
-    4.64044633 \times 10^{-10} A1^3
-    - 8.44254606 \times 10^{-7} A1^2
-    + 1.02946107 \times 10^{-2} A1
-    + 5.87859135 \times 10^{-5}
+    4.6404 \times 10^{-10} A1^3
+    - 8.4425 \times 10^{-7} A1^2
+    + 1.0295 \times 10^{-2} A1
+    + 5.8786 \times 10^{-5}
     \label{eq:cal_a1}
 \end{equation}
 
 \begin{equation}
     U_{\mathrm{sn2}}(A2) =
-    -9.09109415 \times 10^{-10} A2^3
-    + 8.99002333 \times 10^{-7} A2^2
-    + 9.78867803 \times 10^{-3} A2
-    - 9.65193864 \times 10^{-5}
+    -9.0911 \times 10^{-10} A2^3
+    + 8.9900 \times 10^{-7} A2^2
+    + 9.7887 \times 10^{-3} A2
+    - 9.6519 \times 10^{-5}
     \label{eq:cal_a2}
 \end{equation}
 
