@@ -379,14 +379,14 @@ void loop() {
             dy_prev = y_prev - y_pb;
         }
 
-        // Normalize
+        // TO pb
         dy = y - y_pb_next;
         dr = r - r_pb_next;
 
-        // Derivative
+        // Derivacia
         dy_dot = (dy - dy_prev) / timeTickPeriod;
 
-        // Outputs of dynamic blocks
+        // Outputs of dinamic blocks
         ym = rowVec2ColVec2Mul(C_YM, x_ym_work);
         yf = x_yf_work[0];
         ydot_f = x_yf_work[1];
@@ -418,7 +418,7 @@ void loop() {
         Theta_used[1] = Theta_work[1];
         Theta_used[2] = Theta_work[2];
 
-        // State updates
+        // State upd
         float Ax[2];
         float bu[2];
 
@@ -443,7 +443,7 @@ void loop() {
         y_prev_next = y;
     }
 
-    // Commit next states after MRAC step
+    // Commit next step
     Theta[0] = Theta_next_arr[0];
     Theta[1] = Theta_next_arr[1];
     Theta[2] = Theta_next_arr[2];

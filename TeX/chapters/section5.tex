@@ -1287,3 +1287,441 @@ Na základe experimentu možno konštatovať,
 pri súčasnej adaptácii parametrov
 a zachováva adaptačný charakter riadenia
 aj pri aplikácii na reálnu sústavu.
+
+%% -------------------------------------------------------------------
+%% C++ implementation
+%% -------------------------------------------------------------------
+
+\subsection{Implementácia gradientného MRAC regulátora v jazyku C++}
+\label{sec:mrac_cpp_implementation}
+
+Po overení funkčnosti gradientného MRAC regulátora v prostredí
+\textit{MATLAB/Simulink} bola následne realizovaná aj jeho implementácia
+v jazyku C++ na platforme \textit{Arduino UNO}. Všeobecný princíp komunikácie
+so systémom TS05, spôsob časovania hlavného cyklu programu, kalibrácia
+analógových vstupov a výstupov a záznam dát cez sériový port boli už
+opísané v podkapitole~\ref{sec:komunikacia_cpp}. V tejto časti sa preto
+pozornosť sústreďuje už iba na samotnú realizáciu adaptačného regulačného
+algoritmu.
+
+Rovnako ako pri implementácii PI regulátora a prepínacej logiky pracovných
+bodov, aj v tomto prípade bola regulačná časť vložená priamo do hlavného
+riadiaceho cyklu programu. Na rozdiel od prostredia \textit{MATLAB Function},
+kde bolo potrebné všetky vnútorné stavy prenášať medzi jednotlivými krokmi
+výpočtu cez vstupy a výstupy bloku, v jazyku C++ sú tieto veličiny uchovávané
+priamo vo vnútorných premenných programu. Týka sa to najmä vektora parametrov
+$\Theta$, stavov referenčného modelu a filtračných blokov, predchádzajúcej
+hodnoty výstupu, ako aj uložených hodnôt pracovného bodu.
+
+Referenčný signál bol v experimente generovaný harmonickým priebehom
+v tvare
+
+\begin{equation}
+	r(t) = 0.5 \sin\!\left(\frac{2\pi t}{400}\right),
+	\label{eq:mrac_cpp_reference}
+\end{equation}
+
+pričom počiatočná fáza ustálenia systému zostala rovnaká ako pri implementácii
+v prostredí MATLAB. Počas intervalu $T_{\mathrm{settle}} = 400~\mathrm{s}$
+je na vstup systému privádzaný konštantný zásah $u_{pb} = 3~\mathrm{V}$,
+čím sa sústava uvedie do okolia zvoleného pracovného bodu. Až po uplynutí
+tohto času sa aktivuje samotný adaptačný mechanizmus.
+
+Z hľadiska implementácie bolo najprv potrebné doplniť niekoľko jednoduchých
+pomocných funkcií pre výpočty so stavovým modelom a s regresným vektorom.
+Keďže všetky dynamické bloky MRAC algoritmu sú druhého rádu, postačuje
+základná implementácia násobenia matice a vektora a skalárnych súčinov.
+Použité pomocné funkcie sú uvedené vo výpise~\ref{lst:mrac_cpp_helpers}.
+
+\begin{lstlisting}[language=C++,
+caption={Pomocné funkcie použité pri implementácii gradientného MRAC regulátora v jazyku C++},
+label={lst:mrac_cpp_helpers}]
+// 2x2 matrix times 2x1 vector
+void mat2x2Vec2Mul(const float A[2][2], const float x[2], float result[2]) {
+    result[0] = A[0][0] * x[0] + A[0][1] * x[1];
+    result[1] = A[1][0] * x[0] + A[1][1] * x[1];
+}
+
+// Dot product of 1x2 and 2x1
+float rowVec2ColVec2Mul(const float c[2], const float x[2]) {
+    return c[0] * x[0] + c[1] * x[1];
+}
+
+// Dot product of 1x3 and 3x1
+float rowVec3ColVec3Mul(const float a[3], const float b[3]) {
+    return a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+}
+\end{lstlisting}
+
+Po definovaní pomocných funkcií boli inicializované všetky parametre regulátora,
+stavové matice referenčného modelu a filtračných blokov, ako aj vnútorné stavové
+premenné algoritmu. Na rozdiel od PI regulátora ide v tomto prípade o väčší počet
+premenných, pretože implementácia musí uchovávať tri adaptačné parametre,
+tri dynamické bloky druhého rádu a viacero pomocných signálov používaných
+pri výpočte regulačného zásahu a adaptačného zákona. Táto inicializácia je uvedená
+vo výpise~\ref{lst:mrac_cpp_init}.
+
+\begin{lstlisting}[language=C++,
+caption={Inicializácia stavových premenných gradientného MRAC regulátora v jazyku C++},
+label={lst:mrac_cpp_init}]
+constexpr float PI_F = 3.14159265358979323846f;
+constexpr float R_PERIOD = 400.0f;
+constexpr float R_AMPLITUDE = 0.5f;
+
+float vent = 6.0f;
+float spirala = 0.0f;
+
+// MRAC parameters
+constexpr float A0M = 1.0f;
+constexpr float A1M = 20.0f;
+constexpr float B0M = 1.0f;
+
+constexpr float ALPHA1 = 14.0f * 0.01f;
+constexpr float ALPHA2 = 30.0f * 0.01f;
+constexpr float ALPHA3 = 14.0f * 0.01f;
+
+constexpr float SIGN_B0 = 1.0f;
+constexpr float TS = 0.1f;
+
+constexpr float U_pb = 3.0f;
+constexpr float T_SETTLE = 400.0f;
+
+constexpr float U_MIN = 0.0f;
+constexpr float U_MAX = 10.0f;
+
+// State space matrices
+const float A_MRAC[2][2] = {
+    {0.0f, 1.0f},
+    {-A0M, -A1M}
+};
+
+const float B_MRAC[2] = {
+    0.0f,
+    1.0f
+};
+
+const float C_RF[2] = {
+    1.0f,
+    0.0f
+};
+
+const float C_YM[2] = {
+    B0M,
+    0.0f
+};
+
+// MRAC states
+float Theta[3] = {0.0f, 0.0f, 0.0f};
+float Theta_used[3] = {0.0f, 0.0f, 0.0f};
+float Theta_next_arr[3] = {0.0f, 0.0f, 0.0f};
+
+float x_ym[2] = {0.0f, 0.0f};
+float x_yf[2] = {0.0f, 0.0f};
+float x_rf[2] = {0.0f, 0.0f};
+
+float x_ym_next_arr[2] = {0.0f, 0.0f};
+float x_yf_next_arr[2] = {0.0f, 0.0f};
+float x_rf_next_arr[2] = {0.0f, 0.0f};
+
+float y_prev = 0.0f;
+float y_prev_next = 0.0f;
+
+float y_pb = 0.0f;
+float r_pb = 0.0f;
+float y_pb_next = 0.0f;
+float r_pb_next = 0.0f;
+
+float sw = 0.0f;
+float sw_next = 0.0f;
+
+// MRAC signals for logging
+float r = 0.0f;
+float y = 0.0f;
+float ym = 0.0f;
+float yf = 0.0f;
+float ydot_f = 0.0f;
+float rf = 0.0f;
+float e = 0.0f;
+
+float dy = 0.0f;
+float dr = 0.0f;
+float dy_prev = 0.0f;
+float dy_dot = 0.0f;
+
+float omega[3] = {0.0f, 0.0f, 0.0f};
+
+float u = U_pb;
+float du = 0.0f;
+float u_unsat = U_pb;
+float dTheta[3] = {0.0f, 0.0f, 0.0f};
+\end{lstlisting}
+
+Samotná implementácia riadiaceho algoritmu bola následne vložená do hlavnej
+časti programu. Na začiatku každého vzorkovacieho kroku sa najprv načíta aktuálny
+výstup systému $y$, vygeneruje sa referencia $r(t)$ a pripravia sa predvolené
+hodnoty výstupov a vnútorných stavov. Počas úvodnej fázy ustálenia zostáva
+na výstupe hodnota $u_{pb}$ a adaptačný zákon nie je aktívny. Po ukončení
+ustálenia sa pri prvom prechode do adaptívneho režimu uložia hodnoty pracovného
+bodu $y_{pb}$ a $r_{pb}$, nulovo sa inicializujú dynamické bloky a aktivuje sa
+prepínací príznak \texttt{sw}.
+
+V ďalších krokoch sa už počítajú odchýlkové veličiny $\Delta y$ a $\Delta r$,
+numerická derivácia výstupu, výstupy referenčného modelu a filtračných blokov,
+regresný vektor $\omega$, samotný akčný zásah a následne aj prírastky parametrov
+adaptácie. Stavové rovnice všetkých troch dynamických blokov sú integrované
+explicitnou Eulerovou metódou. Implementovaný kód hlavnej regulačnej logiky
+je uvedený vo výpise~\ref{lst:mrac_cpp_logic}.
+
+\begin{lstlisting}[language=C++,
+caption={Hlavná regulačná logika gradientného MRAC regulátora v jazyku C++},
+label={lst:mrac_cpp_logic}]
+// MAIN CONTROL LOGIC //////////////////////////////////////////////////////////////////
+
+// Measured output
+y = snimac1;
+
+// Reference generation
+r = R_AMPLITUDE * sinf(2.0f * PI_F * globalTime / R_PERIOD);
+
+// Default outputs
+u = U_pb;
+ym = 0.0f;
+
+Theta_used[0] = Theta[0];
+Theta_used[1] = Theta[1];
+Theta_used[2] = Theta[2];
+
+Theta_next_arr[0] = Theta[0];
+Theta_next_arr[1] = Theta[1];
+Theta_next_arr[2] = Theta[2];
+
+x_ym_next_arr[0] = x_ym[0];
+x_ym_next_arr[1] = x_ym[1];
+
+x_yf_next_arr[0] = x_yf[0];
+x_yf_next_arr[1] = x_yf[1];
+
+x_rf_next_arr[0] = x_rf[0];
+x_rf_next_arr[1] = x_rf[1];
+
+y_prev_next = y;
+y_pb_next = y_pb;
+r_pb_next = r_pb;
+sw_next = sw;
+
+// Plant settle
+if (globalTime < T_SETTLE) {
+    u = U_pb;
+    ym = 0.0f;
+
+    y_prev_next = y;
+    y_pb_next = y_pb;
+    r_pb_next = r_pb;
+    sw_next = sw;
+} else {
+    float x_ym_work[2];
+    float x_yf_work[2];
+    float x_rf_work[2];
+    float Theta_work[3];
+
+    // Transition
+    if (sw < 0.5f) {
+        y_pb_next = y;
+        r_pb_next = r;
+
+        x_ym_work[0] = 0.0f;
+        x_ym_work[1] = 0.0f;
+
+        x_yf_work[0] = 0.0f;
+        x_yf_work[1] = 0.0f;
+
+        x_rf_work[0] = 0.0f;
+        x_rf_work[1] = 0.0f;
+
+        Theta_work[0] = Theta[0];
+        Theta_work[1] = Theta[1];
+        Theta_work[2] = Theta[2];
+
+        dy_prev = 0.0f;
+        sw_next = 1.0f;
+    } else {
+        x_ym_work[0] = x_ym[0];
+        x_ym_work[1] = x_ym[1];
+
+        x_yf_work[0] = x_yf[0];
+        x_yf_work[1] = x_yf[1];
+
+        x_rf_work[0] = x_rf[0];
+        x_rf_work[1] = x_rf[1];
+
+        Theta_work[0] = Theta[0];
+        Theta_work[1] = Theta[1];
+        Theta_work[2] = Theta[2];
+
+        dy_prev = y_prev - y_pb;
+    }
+
+    // Normalize
+    dy = y - y_pb_next;
+    dr = r - r_pb_next;
+
+    // Derivative
+    dy_dot = (dy - dy_prev) / timeTickPeriod;
+
+    // Outputs of dynamic blocks
+    ym = rowVec2ColVec2Mul(C_YM, x_ym_work);
+    yf = x_yf_work[0];
+    ydot_f = x_yf_work[1];
+    rf = rowVec2ColVec2Mul(C_RF, x_rf_work);
+
+    // Error
+    e = dy - ym;
+
+    // Regressor
+    omega[0] = dy;
+    omega[1] = dy_dot;
+    omega[2] = dr;
+
+    // Control law
+    du = rowVec3ColVec3Mul(Theta_work, omega);
+    u_unsat = U_pb + du;
+    u = clampFloat(u_unsat, U_MIN, U_MAX);
+
+    // Adaptation law
+    dTheta[0] = -SIGN_B0 * e * (ALPHA1 * yf);
+    dTheta[1] = -SIGN_B0 * e * (ALPHA2 * ydot_f);
+    dTheta[2] = -SIGN_B0 * e * (ALPHA3 * rf);
+
+    Theta_next_arr[0] = Theta_work[0] + dTheta[0] * timeTickPeriod;
+    Theta_next_arr[1] = Theta_work[1] + dTheta[1] * timeTickPeriod;
+    Theta_next_arr[2] = Theta_work[2] + dTheta[2] * timeTickPeriod;
+
+    Theta_used[0] = Theta_work[0];
+    Theta_used[1] = Theta_work[1];
+    Theta_used[2] = Theta_work[2];
+
+    // State updates
+    float Ax[2];
+    float bu[2];
+
+    mat2x2Vec2Mul(A_MRAC, x_ym_work, Ax);
+    bu[0] = B_MRAC[0] * dr;
+    bu[1] = B_MRAC[1] * dr;
+    x_ym_next_arr[0] = x_ym_work[0] + timeTickPeriod * (Ax[0] + bu[0]);
+    x_ym_next_arr[1] = x_ym_work[1] + timeTickPeriod * (Ax[1] + bu[1]);
+
+    mat2x2Vec2Mul(A_MRAC, x_yf_work, Ax);
+    bu[0] = B_MRAC[0] * dy;
+    bu[1] = B_MRAC[1] * dy;
+    x_yf_next_arr[0] = x_yf_work[0] + timeTickPeriod * (Ax[0] + bu[0]);
+    x_yf_next_arr[1] = x_yf_work[1] + timeTickPeriod * (Ax[1] + bu[1]);
+
+    mat2x2Vec2Mul(A_MRAC, x_rf_work, Ax);
+    bu[0] = B_MRAC[0] * dr;
+    bu[1] = B_MRAC[1] * dr;
+    x_rf_next_arr[0] = x_rf_work[0] + timeTickPeriod * (Ax[0] + bu[0]);
+    x_rf_next_arr[1] = x_rf_work[1] + timeTickPeriod * (Ax[1] + bu[1]);
+
+    y_prev_next = y;
+}
+
+// Commit next states after MRAC step
+Theta[0] = Theta_next_arr[0];
+Theta[1] = Theta_next_arr[1];
+Theta[2] = Theta_next_arr[2];
+
+x_ym[0] = x_ym_next_arr[0];
+x_ym[1] = x_ym_next_arr[1];
+
+x_yf[0] = x_yf_next_arr[0];
+x_yf[1] = x_yf_next_arr[1];
+
+x_rf[0] = x_rf_next_arr[0];
+x_rf[1] = x_rf_next_arr[1];
+
+y_prev = y_prev_next;
+y_pb = y_pb_next;
+r_pb = r_pb_next;
+sw = sw_next;
+
+// Final output
+spirala = u;
+\end{lstlisting}
+
+Z hľadiska numerickej realizácie zostáva princíp výpočtu rovnaký ako v prostredí
+MATLAB, avšak implementácia v jazyku C++ využíva pri aktualizácii stavových
+premenných reálne nameranú dĺžku vykonaného kroku \texttt{timeTickPeriod}
+namiesto konštantnej hodnoty $T_s$. Tým sa čiastočne zohľadňujú malé odchýlky
+skutočnej periódy vykonávania programu od nominálnej hodnoty $0.1~\mathrm{s}$.
+Súčasne zostáva zachovaná rovnaká logika prechodu do súradníc pracovného bodu,
+rovnaký referenčný model aj rovnaký adaptačný zákon ako pri implementácii
+v prostredí \textit{MATLAB/Simulink}.
+
+\subsubsection{Experimentálne overenie na reálnom systéme}
+
+Na základe uvedenej implementácie bol vykonaný experiment na reálnom systéme
+TS05. Celkový priebeh experimentu v absolútnych veličinách je zobrazený
+na obr.~\ref{fig:mrac_cpp_real_raw}. V hornom grafe sú znázornené priebehy
+výstupu systému $y(t)$, výstupu referenčného modelu $y_m(t)$ a referencie $r(t)$.
+V druhom grafe je zobrazený akčný zásah $u(t)$ a v treťom priebehy parametrov
+$\Theta_1$, $\Theta_2$ a $\Theta_3$.
+
+\begin{center}
+    \vbox{
+        \makebox[\textwidth][c]{%
+            \includegraphics[width=1.5\textwidth]{ts_cpp_mrac_real_raw.png}
+        }
+        \figcaption{Experimentálne výsledky gradientného MRAC regulátora implementovaného v jazyku C++ v absolútnych veličinách}
+        \label{fig:mrac_cpp_real_raw}
+    }
+\end{center}
+
+Z obr.~\ref{fig:mrac_cpp_real_raw} je zrejmé, že počas prvých
+$400~\mathrm{s}$ prebieha ustálenie systému pri konštantnom zásahu $u_{pb}$.
+Po ukončení tejto fázy sa aktivuje adaptačný mechanizmus, začne sa meniť akčný
+zásah a parametre regulátora sa prispôsobujú aktuálnemu správaniu sústavy.
+Tým sa potvrdzuje správna funkcia implementovaného prepnutia medzi fázou
+ustálenia a vlastnou adaptačnou reguláciou.
+
+Pre detailnejšie posúdenie správania počas samotnej adaptívnej fázy je na
+obr.~\ref{fig:mrac_cpp_real} zobrazený priebeh po prechode do súradníc
+pracovného bodu. V hornom grafe sú znázornené odchýlkové veličiny
+$\Delta y(t)$, $\Delta y_m(t)$ a $\Delta r(t)$, v druhom priebeh
+$\Delta u(t)$ a v treťom priebehy adaptačných parametrov.
+
+\begin{center}
+    \vbox{
+        \makebox[\textwidth][c]{%
+            \includegraphics[width=1.5\textwidth]{ts_cpp_mrac_real.png}
+        }
+        \figcaption{Experimentálne výsledky gradientného MRAC regulátora implementovaného v jazyku C++ po vynechaní fázy ustálenia}
+        \label{fig:mrac_cpp_real}
+    }
+\end{center}
+
+Z priebehov možno pozorovať, že bezprostredne po aktivácii adaptácie regulátor
+spočiatočne sleduje referenčný model pomerne uspokojivo. Výstup systému sa
+v úvodnej časti experimentu viaže na priebeh $\Delta y_m(t)$ bez výrazných
+prechodových javov a adaptačné parametre sa menia spojito. V neskoršej fáze
+experimentu však možno pozorovať, že parametre $\Theta$ sa neustália na približne
+konštantných hodnotách, ale začínajú postupne driftovať. Tento jav sa následne
+prejavuje aj na zhoršení kvality sledovania referenčného modelu.
+
+Presná príčina tohto správania nie je z jediného experimentu jednoznačne
+určiteľná, pričom pravdepodobne ide o kombináciu viacerých vplyvov. Jednou
+z možností je citlivosť gradientného adaptačného zákona na merací šum, ktorý sa
+výraznejšie prejavuje najmä v signáli numerickej derivácie $\Delta \dot{y}$.
+Ďalším faktorom môže byť pomalý drift pracovného bodu tepelnej sústavy,
+spôsobený zmenami teploty okolia a dlhodobým tepelným nahrievaním systému.
+Svoju úlohu môže zohrávať aj nepresná zhoda medzi reálnou sústavou a zvoleným
+referenčným modelom, ako aj skutočnosť, že v implementovanom adaptačnom
+zákone nebola použitá žiadna dodatočná stabilizačná úprava, napríklad
+normalizácia regresora, projekčný algoritmus alebo $\sigma$-modifikácia.
+
+Na základe experimentu teda možno konštatovať, že implementácia gradientného
+MRAC regulátora v jazyku C++ potvrdila správnosť samotnej programovej realizácie
+algoritmu a jeho počiatočnú schopnosť sledovať referenčný model aj mimo prostredia
+MATLAB/Simulink. Súčasne sa však ukázalo, že pri dlhšej prevádzke na reálnom
+tepelnom systéme sa prejavuje drift adaptačných parametrov, čo poukazuje na
+praktické obmedzenia použitého gradientného adaptačného zákona v tejto jednoduchej
+forme.

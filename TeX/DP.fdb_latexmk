@@ -1,5 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1775499805.37502 "c:/MyFiles/Study/DP-Stoliar/TeX/DP.tex" "DP.pdf" "DP" 1775499820.16304 0
+["pdflatex"] 1775677752.39305 "c:/MyFiles/Study/DP-Stoliar/TeX/DP.tex" "DP.pdf" "DP" 1775677768.63049 0
+  "../PY/fig/ts_cpp_mrac_real.png" 1775676368 958865 ba4021abbca0ffbeb5e83417f2c74de2 ""
+  "../PY/fig/ts_cpp_mrac_real_raw.png" 1775676364 772048 429ac03990e3de2d0e9cbbbc91ae4f60 ""
   "../PY/fig/ts_cpp_pi_real.png" 1775320630 233426 92c41f36fa093b0749c63f452edb746a ""
   "../PY/fig/ts_cpp_prep_real.png" 1775330427 1031921 ee5f9cb99c64855bc2a567fe99e0335e ""
   "../PY/fig/ts_cpp_prep_real_zoom.png" 1775398547 698682 aeceef9eef51f1b6400033b9a9db9325 ""
@@ -34,10 +36,10 @@
   "../SVG/in_progress.png" 1763903104 505410 c1682d2b95a575af18657e4516402fde ""
   "../zadanieDP/zadanieDP.pdf" 1764158061 104063 33f92488344945982c50291e0dd07c97 ""
   "COMMONFILES/preamble.tex" 1774825789 8355 c6a0adefea37459556de750ac46a3878 ""
-  "DP.aux" 1775499819 39796 3f6e181a2c07064038ad1ab5d0963018 "pdflatex"
-  "DP.out" 1775499819 9734 fe08a6df3ff51e2e7c165ccf61be7806 "pdflatex"
+  "DP.aux" 1775677768 42203 58d8aa6cb751c41f8cdb0c3f805021e6 "pdflatex"
+  "DP.out" 1775677768 10393 40853654d1cf40157740c527ff833bf8 "pdflatex"
   "DP.tex" 1775399789 5396 2147b5e9ec9cf4ab1f9e78c7dc2b2294 ""
-  "DP.toc" 1775499819 5810 c1631046e1cca85090c2dd7eef76c094 "pdflatex"
+  "DP.toc" 1775677768 6057 b3a31dea596698e9e5170a4fba101175 "pdflatex"
   "c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1751211711 2971 def0b6c1f0b107b3b936def894055589 ""
   "c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1751211711 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1751213751 2375 baa924870cfb487815765f9094cf3728 ""
@@ -226,7 +228,7 @@
   "chapters/section2.tex" 1775486885 43363 7195906dd32d0f45fab3c6971fd66fae ""
   "chapters/section3.tex" 1775486607 21924 c515778ec1436da8490224e673c519ad ""
   "chapters/section4.tex" 1775494111 48269 ac5af6ead22a8287452e0cfc405343c2 ""
-  "chapters/section5.tex" 1775499804 28526 2f963338116413dda2da93d69a0efd7d ""
+  "chapters/section5.tex" 1775677731 44199 e4fb08dd7bab6f0f958d7be992b2da5c ""
   "chapters/uvod.tex" 1768500035 2489 56228614ef6caede3279c55597a2e52a ""
   (generated)
   "DP.aux"

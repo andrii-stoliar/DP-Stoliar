@@ -57,5 +57,7 @@
 \contentsline {subsubsection}{\numberline {5.1.2}Pseudokód gradientnej MRAC regulácie (diskrétna realizácia)}{64}{subsubsection.5.1.2}%
 \contentsline {subsection}{\numberline {5.2}Implementácia MRAC v prostredí MATLAB}{67}{subsection.5.2}%
 \contentsline {subsubsection}{\numberline {5.2.1}Experiment na tepelnej sústave}{70}{subsubsection.5.2.1}%
-\contentsline {section}{Zoznam literatúry}{73}{figure.33}%
-\contentsline {section}{\numberline {6}Zdrojové kódy implementácie}{74}{section.6}%
+\contentsline {subsection}{\numberline {5.3}Implementácia gradientného MRAC regulátora v jazyku C++}{72}{subsection.5.3}%
+\contentsline {subsubsection}{\numberline {5.3.1}Experimentálne overenie na reálnom systéme}{77}{subsubsection.5.3.1}%
+\contentsline {section}{Zoznam literatúry}{81}{figure.35}%
+\contentsline {section}{\numberline {6}Zdrojové kódy implementácie}{82}{section.6}%
