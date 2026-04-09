@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1775770834.36416 "c:/MyFiles/Study/DP-Stoliar/TeX/DP.tex" "DP.pdf" "DP" 1775770851.45611 0
+["pdflatex"] 1775772096.66469 "c:/MyFiles/Study/DP-Stoliar/TeX/DP.tex" "DP.pdf" "DP" 1775772113.77976 0
   "../PY/fig/ts_cpp_mrac_experemental.png" 1775769623 963313 debd19c891f4ba193280f725ebaf139d ""
   "../PY/fig/ts_cpp_mrac_real.png" 1775676368 958865 ba4021abbca0ffbeb5e83417f2c74de2 ""
   "../PY/fig/ts_cpp_mrac_real_raw.png" 1775676364 772048 429ac03990e3de2d0e9cbbbc91ae4f60 ""
@@ -37,10 +37,10 @@
   "../SVG/in_progress.png" 1763903104 505410 c1682d2b95a575af18657e4516402fde ""
   "../zadanieDP/zadanieDP.pdf" 1764158061 104063 33f92488344945982c50291e0dd07c97 ""
   "COMMONFILES/preamble.tex" 1774825789 8355 c6a0adefea37459556de750ac46a3878 ""
-  "DP.aux" 1775770851 45205 03efa136fa236f3d95c96abd107e37f0 "pdflatex"
-  "DP.out" 1775770851 10836 501481d1ae5a0ce9dfbd37614dcc2394 "pdflatex"
+  "DP.aux" 1775772113 45205 03efa136fa236f3d95c96abd107e37f0 "pdflatex"
+  "DP.out" 1775772113 10836 501481d1ae5a0ce9dfbd37614dcc2394 "pdflatex"
   "DP.tex" 1775678364 5396 2147b5e9ec9cf4ab1f9e78c7dc2b2294 ""
-  "DP.toc" 1775770851 6533 16f80b5a794f4e9875fab45e41edae0f "pdflatex"
+  "DP.toc" 1775772113 6533 16f80b5a794f4e9875fab45e41edae0f "pdflatex"
   "c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1751211711 2971 def0b6c1f0b107b3b936def894055589 ""
   "c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1751211711 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1751213751 2375 baa924870cfb487815765f9094cf3728 ""
@@ -229,7 +229,7 @@
   "chapters/section2.tex" 1775486885 43363 7195906dd32d0f45fab3c6971fd66fae ""
   "chapters/section3.tex" 1775486607 21924 c515778ec1436da8490224e673c519ad ""
   "chapters/section4.tex" 1775494111 48269 ac5af6ead22a8287452e0cfc405343c2 ""
-  "chapters/section5.tex" 1775770816 53851 0cfae37e4fe726aed718f4d2bc7b7deb ""
+  "chapters/section5.tex" 1775772096 52856 5694401f363c5c6a962ced51c782d9c0 ""
   "chapters/uvod.tex" 1768500035 2489 56228614ef6caede3279c55597a2e52a ""
   (generated)
   "DP.aux"

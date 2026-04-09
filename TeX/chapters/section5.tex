@@ -1733,12 +1733,11 @@ forme.
 \subsubsection{Heuristická modifikácia implementácie na potlačenie driftu parametrov}
 \label{sec:mrac_cpp_heuristic_modification}
 
-Na základe experimentálnych výsledkov uvedených v predchádzajúcej časti sa ukázalo,
-že pri dlhšej prevádzke gradientného MRAC regulátora na reálnom systéme TS05
-dochádza k driftu adaptačných parametrov $\Theta$.
-Keďže cieľom tejto práce nebolo odvodiť nový formálny adaptačný zákon, ale skôr
-prakticky zlepšiť správanie implementovaného regulátora na reálnej sústave,
-bola navrhnutá jednoduchá \textbf{heuristická metóda} potlačenia tohto javu.
+V predchádzajúcej časti bolo ukázané, že pri dlhšej prevádzke gradientného
+MRAC regulátora na reálnom systéme TS05 dochádza k driftu adaptačných
+parametrov $\Theta$. Z tohto dôvodu bola následne overená jednoduchá
+heuristická modifikácia implementácie, ktorej cieľom bolo tento jav
+prakticky potlačiť.
 
 Nejde teda o zmenu samotného princípu MRAC regulácie, ale o doplnkovú
 inžiniersku modifikáciu existujúcej implementácie.
@@ -1957,7 +1956,7 @@ dTheta[2] = -SIGN_B0 * e_ad * (ALPHA3 * rf);
 \paragraph{Experimentálne overenie heuristickej modifikácie}
 
 Na základe tejto úpravy bol následne vykonaný nový experiment na reálnom systéme
-TS05. Na rozdiel od predchádzajúceho obrázka v absolútnych veličinách je tu
+TS05. Je tu
 zobrazená už iba samotná regulačná fáza po ukončení úvodného ustálenia,
 teda bez prvých $400~\mathrm{s}$.
 Výsledok experimentu je uvedený na obr.~\ref{fig:mrac_cpp_experimental}.
@@ -1972,25 +1971,15 @@ Výsledok experimentu je uvedený na obr.~\ref{fig:mrac_cpp_experimental}.
     }
 \end{center}
 
-Adaptačné koeficienty zostali pri tomto experimente úplne rovnaké ako v pôvodnej
+Adaptačné koeficienty zostali pri tomto experimente rovnaké ako v pôvodnej
 implementácii, teda nebola menená ich hodnota ani samotná štruktúra adaptácie.
-Z priebehov možno pozorovať, že drift parametrov $\Theta$ úplne nezmizol,
-avšak jeho intenzita sa viditeľne zmenšila.
-To je možné pozorovať najmä na spodnom grafe, kde priebehy parametrov vykazujú
-miernejší a pomalší trend ako v predchádzajúcom experimente.
 
-Súčasne možno vidieť aj ďalší pozitívny efekt tejto úpravy, a to menšiu úroveň
-šumu v akčnom zásahu $u$.
-Vyhladenie meraného výstupu znížilo prenos vysokofrekvenčných zložiek do výpočtu
-chyby a jej diskrétnej derivácie, čo sa následne prejavilo pokojnejším priebehom
-riadiaceho zásahu.
-Dead-zone v adaptačnom zákone navyše obmedzila neustále drobné korekcie
-parametrov v situácii, keď chyba zostávala iba veľmi malá.
+Z obr.~\ref{fig:mrac_cpp_experimental} je zrejmé, že drift parametrov $\Theta$
+sa po tejto úprave úplne neodstránil, avšak jeho intenzita sa zmenšila.
+Na priebehoch parametrov možno pozorovať miernejší drift ako v predchádzajúcom
+experimente. Zároveň je viditeľné, že akčný zásah $u$ má pokojnejší priebeh
+a menšiu úroveň šumu.
 
-Na druhej strane však treba zdôrazniť, že ide iba o praktickú heuristickú modifikáciu,
-ktorá problém driftu \textbf{nerieši pri jeho príčine}, ale iba zmierňuje jeho prejavy.
-Aj po tejto úprave sa pri dlhšej prevádzke stále prejavuje postupná zmena parametrov,
-čo znamená, že základný problém citlivosti gradientného adaptačného zákona
-na reálnu tepelnú sústavu zostáva zachovaný.
-Navrhnutá úprava preto predstavuje skôr jednoduché inžinierske zlepšenie
-praktického správania implementácie než úplné odstránenie problému.
+Možno teda konštatovať, že navrhnutá heuristická modifikácia viedla
+k praktickému zlepšeniu správania implementovaného regulátora, avšak
+problém driftu parametrov úplne neodstránila.
