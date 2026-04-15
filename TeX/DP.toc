@@ -59,5 +59,10 @@
 \contentsline {subsubsection}{\numberline {5.2.1}Experiment na tepelnej sústave}{70}{subsubsection.5.2.1}%
 \contentsline {subsection}{\numberline {5.3}Implementácia gradientného MRAC regulátora v jazyku C++}{72}{subsection.5.3}%
 \contentsline {subsubsection}{\numberline {5.3.1}Experimentálne overenie na reálnom systéme}{77}{subsubsection.5.3.1}%
-\contentsline {section}{Zoznam literatúry}{81}{figure.35}%
-\contentsline {section}{\numberline {6}Zdrojové kódy implementácie}{82}{section.6}%
+\contentsline {subsubsection}{\numberline {5.3.2}Heuristická modifikácia implementácie na potlačenie driftu parametrov}{80}{subsubsection.5.3.2}%
+\contentsline {paragraph}{Smoothing meraného výstupu}{80}{paragraph*.30}%
+\contentsline {paragraph}{Dead-zone v adaptačnom zákone}{80}{paragraph*.31}%
+\contentsline {paragraph}{Implementačné doplnenia}{81}{paragraph*.32}%
+\contentsline {paragraph}{Experimentálne overenie heuristickej modifikácie}{82}{paragraph*.33}%
+\contentsline {section}{Zoznam literatúry}{84}{figure.36}%
+\contentsline {section}{\numberline {6}Zdrojové kódy implementácie}{85}{section.6}%

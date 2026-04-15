@@ -327,17 +327,39 @@
 \newlabel{fig:mrac_cpp_real_raw}{{34}{78}{Experimentálne výsledky gradientného MRAC regulátora implementovaného v jazyku C++ v absolútnych veličinách}{figure.34}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {35}{\ignorespaces Experimentálne výsledky gradientného MRAC regulátora implementovaného v jazyku C++ po vynechaní fázy ustálenia}}{79}{figure.35}\protected@file@percent }
 \newlabel{fig:mrac_cpp_real}{{35}{79}{Experimentálne výsledky gradientného MRAC regulátora implementovaného v jazyku C++ po vynechaní fázy ustálenia}{figure.35}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.2}Heuristická modifikácia implementácie na potlačenie driftu parametrov}{80}{subsubsection.5.3.2}\protected@file@percent }
+\newlabel{sec:mrac_cpp_heuristic_modification}{{5.3.2}{80}{Heuristická modifikácia implementácie na potlačenie driftu parametrov}{subsubsection.5.3.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Smoothing meraného výstupu}{80}{paragraph*.30}\protected@file@percent }
+\newlabel{eq:mrac_cpp_yavg}{{164}{80}{Smoothing meraného výstupu}{equation.164}{}}
+\newlabel{eq:mrac_cpp_yavg_used}{{165}{80}{Smoothing meraného výstupu}{equation.165}{}}
+\newlabel{eq:mrac_cpp_avg_window}{{166}{80}{Smoothing meraného výstupu}{equation.166}{}}
+\@writefile{toc}{\contentsline {paragraph}{Dead-zone v adaptačnom zákone}{80}{paragraph*.31}\protected@file@percent }
+\newlabel{eq:mrac_cpp_e_original}{{167}{80}{Dead-zone v adaptačnom zákone}{equation.167}{}}
+\newlabel{eq:mrac_cpp_control_unchanged}{{168}{80}{Dead-zone v adaptačnom zákone}{equation.168}{}}
+\newlabel{eq:mrac_cpp_deadzone}{{169}{80}{Dead-zone v adaptačnom zákone}{equation.169}{}}
+\newlabel{eq:mrac_cpp_edead}{{170}{80}{Dead-zone v adaptačnom zákone}{equation.170}{}}
+\newlabel{eq:mrac_cpp_deadzone_adaptation}{{171}{81}{Dead-zone v adaptačnom zákone}{equation.171}{}}
+\@writefile{toc}{\contentsline {paragraph}{Implementačné doplnenia}{81}{paragraph*.32}\protected@file@percent }
+\newlabel{lst:mrac_cpp_heur_helpers}{{22}{81}{Pomocné funkcie a nové premenné pre heuristickú modifikáciu MRAC regulátora}{lstlisting.22}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {22}{\ignorespaces Pomocné funkcie a nové premenné pre heuristickú modifikáciu MRAC regulátora}}{81}{lstlisting.22}\protected@file@percent }
+\newlabel{lst:mrac_cpp_heur_input}{{23}{81}{Doplnenie ukladania surového meraného výstupu do kruhového buffra}{lstlisting.23}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {23}{\ignorespaces Doplnenie ukladania surového meraného výstupu do kruhového buffra}}{81}{lstlisting.23}\protected@file@percent }
+\newlabel{lst:mrac_cpp_heur_logic}{{24}{82}{Modifikovaný úsek MRAC algoritmu s priemerovaním výstupu a dead-zone v adaptácii}{lstlisting.24}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {24}{\ignorespaces Modifikovaný úsek MRAC algoritmu s priemerovaním výstupu a dead-zone v adaptácii}}{82}{lstlisting.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Experimentálne overenie heuristickej modifikácie}{82}{paragraph*.33}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {36}{\ignorespaces Experimentálne výsledky heuristicky upravenej implementácie gradientného MRAC regulátora v jazyku C++}}{83}{figure.36}\protected@file@percent }
+\newlabel{fig:mrac_cpp_experimental}{{36}{83}{Experimentálne výsledky heuristicky upravenej implementácie gradientného MRAC regulátora v jazyku C++}{figure.36}{}}
 \bibcite{fikar}{1}
 \bibcite{kut015}{2}
 \bibcite{montgomery}{3}
-\@writefile{toc}{\contentsline {section}{Zoznam literatúry}{81}{figure.35}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6}Zdrojové kódy implementácie}{82}{section.6}\protected@file@percent }
-\newlabel{sec:zdrojove_kody_arduino}{{6}{82}{Zdrojové kódy implementácie}{section.6}{}}
-\newlabel{lst:main_cpp_appendix}{{22}{82}{Hlavný zdrojový kód pre Arduino UNO}{lstlisting.22}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {22}{\ignorespaces Hlavný zdrojový kód pre Arduino UNO}}{82}{lstlisting.22}\protected@file@percent }
-\newlabel{lst:logger_py_appendix}{{23}{85}{Externý skript pre logovanie dát}{lstlisting.23}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {23}{\ignorespaces Externý skript pre logovanie dát}}{85}{lstlisting.23}\protected@file@percent }
-\newlabel{LastPage}{{6}{86}{Zdrojové kódy implementácie}{page.86}{}}
-\gdef\lastpage@lastpage{86}
-\gdef\lastpage@lastpageHy{86}
-\gdef \@abspage@last{86}
+\@writefile{toc}{\contentsline {section}{Zoznam literatúry}{84}{figure.36}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Zdrojové kódy implementácie}{85}{section.6}\protected@file@percent }
+\newlabel{sec:zdrojove_kody_arduino}{{6}{85}{Zdrojové kódy implementácie}{section.6}{}}
+\newlabel{lst:main_cpp_appendix}{{25}{85}{Hlavný zdrojový kód pre Arduino UNO}{lstlisting.25}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {25}{\ignorespaces Hlavný zdrojový kód pre Arduino UNO}}{85}{lstlisting.25}\protected@file@percent }
+\newlabel{lst:logger_py_appendix}{{26}{88}{Externý skript pre logovanie dát}{lstlisting.26}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {26}{\ignorespaces Externý skript pre logovanie dát}}{88}{lstlisting.26}\protected@file@percent }
+\newlabel{LastPage}{{6}{89}{Zdrojové kódy implementácie}{page.89}{}}
+\gdef\lastpage@lastpage{89}
+\gdef\lastpage@lastpageHy{89}
+\gdef \@abspage@last{89}

@@ -1725,3 +1725,261 @@ MATLAB/Simulink. Súčasne sa však ukázalo, že pri dlhšej prevádzke na reá
 tepelnom systéme sa prejavuje drift adaptačných parametrov, čo poukazuje na
 praktické obmedzenia použitého gradientného adaptačného zákona v tejto jednoduchej
 forme.
+
+%% -------------------------------------------------------------------
+%% Pokus o zlepšenie stability adaptácie
+%% -------------------------------------------------------------------
+
+\subsubsection{Heuristická modifikácia implementácie na potlačenie driftu parametrov}
+\label{sec:mrac_cpp_heuristic_modification}
+
+V predchádzajúcej časti bolo ukázané, že pri dlhšej prevádzke gradientného
+MRAC regulátora na reálnom systéme TS05 dochádza k driftu adaptačných
+parametrov $\Theta$. Z tohto dôvodu bola následne overená jednoduchá
+heuristická modifikácia implementácie, ktorej cieľom bolo tento jav
+prakticky potlačiť.
+
+Nejde teda o zmenu samotného princípu MRAC regulácie, ale o doplnkovú
+inžiniersku modifikáciu existujúcej implementácie.
+Základný zákon riadenia zostal nezmenený, rovnako ako referenčný model,
+štruktúra regresného vektora aj adaptačné koeficienty
+$\alpha_1$, $\alpha_2$, $\alpha_3$ uvedené v \eqref{eq:mrac_adaptation_gains}.
+Modifikácia sa týkala iba dvoch praktických oblastí:
+
+\begin{itemize}
+    \item spracovania meraného výstupného signálu,
+    \item potlačenia driftu v adaptačnom mechanizme.
+\end{itemize}
+
+\paragraph{Smoothing meraného výstupu}
+
+Prvá úprava spočívala v tom, že namiesto použitia jedinej okamžitej hodnoty
+meraného signálu zo snímača sa začalo používať priemerovanie posledných
+$n_y$ vzoriek uložených v kruhovom buffri.
+Ak označíme surový meraný výstup ako $y_{\mathrm{raw}}(k)$ a počet použitých vzoriek
+v danom okamihu ako $M(k)$, potom vyhladený výstup možno zapísať v tvare
+
+\begin{equation}
+    y_{\mathrm{avg}}(k) =
+    \frac{1}{M(k)}
+    \sum_{i=0}^{M(k)-1}
+    y_{\mathrm{raw}}(k-i),
+    \qquad
+    M(k) \leq n_y.
+    \label{eq:mrac_cpp_yavg}
+\end{equation}
+
+V samotnom algoritme sa potom ako aktuálny výstup použije
+
+\begin{equation}
+    y(k) = y_{\mathrm{avg}}(k).
+    \label{eq:mrac_cpp_yavg_used}
+\end{equation}
+
+V implementácii bola zvolená veľkosť okna
+
+\begin{equation}
+    n_y = 8.
+    \label{eq:mrac_cpp_avg_window}
+\end{equation}
+
+Cieľom tejto úpravy bolo zmenšiť vplyv meracieho šumu a kvantovania A/D prevodníka,
+ktoré sa inak priamo prenášajú do výpočtu regulačnej chyby a najmä do diskrétnej
+aproximácie derivácie výstupu.
+
+\paragraph{Dead-zone v adaptačnom zákone}
+
+Druhá úprava sa týkala adaptačného zákona.
+Samotná regulačná chyba zostala definovaná v pôvodnom tvare
+
+\begin{equation}
+    e(k) = \Delta y(k) - y_m(k),
+    \label{eq:mrac_cpp_e_original}
+\end{equation}
+
+pričom ani zákon riadenia sa nezmenil:
+
+\begin{equation}
+    \Delta u(k) = \Theta^T(k)\,\omega(k),
+    \qquad
+    u(k) = \mathrm{sat}\!\left(u_{pb} + \Delta u(k)\right).
+    \label{eq:mrac_cpp_control_unchanged}
+\end{equation}
+
+Zmena bola vykonaná iba v adaptačnom mechanizme.
+Namiesto priameho použitia chyby $e(k)$ sa zaviedla modifikovaná chyba
+$e_{\mathrm{ad}}(k)$ s dead-zone nelinearitou:
+
+\begin{equation}
+    e_{\mathrm{ad}}(k)=
+    \begin{cases}
+        e(k)-E_{\mathrm{dead}}, & \text{ak } e(k) > E_{\mathrm{dead}}, \\
+        e(k)+E_{\mathrm{dead}}, & \text{ak } e(k) < -E_{\mathrm{dead}}, \\
+        0, & \text{ak } |e(k)| \leq E_{\mathrm{dead}}.
+    \end{cases}
+    \label{eq:mrac_cpp_deadzone}
+\end{equation}
+
+V implementácii bola zvolená hodnota prahu
+
+\begin{equation}
+    E_{\mathrm{dead}} = 0.02.
+    \label{eq:mrac_cpp_edead}
+\end{equation}
+
+Adaptácia parametrov potom prebieha podľa vzťahu
+
+\begin{equation}
+    \dot{\Theta}(k) =
+    -\mathrm{sign}(b_0)\,e_{\mathrm{ad}}(k)
+    \begin{bmatrix}
+        \alpha_1 y_f(k) \\
+        \alpha_2 \dot{y}_f(k) \\
+        \alpha_3 r_f(k)
+    \end{bmatrix}.
+    \label{eq:mrac_cpp_deadzone_adaptation}
+\end{equation}
+
+Zmyslom tejto úpravy je, že pri veľmi malej chybe sa adaptácia úplne vypne
+a pri väčšej chybe sa jej účinok zmenší o pevnú prahovú hodnotu.
+Takto sa obmedzí postupné hromadenie parametrov spôsobené malou,
+ale dlhodobo prítomnou chybou, ktorá môže mať pôvod v šume,
+numerickej derivácii alebo v pomalom drifte pracovného bodu.
+
+\paragraph{Implementačné doplnenia}
+
+Na realizáciu uvedených úprav bolo potrebné doplniť dve pomocné funkcie
+pre obsluhu kruhového buffra a niekoľko nových globálnych premenných.
+Tieto doplnenia sú uvedené vo výpise~\ref{lst:mrac_cpp_heur_helpers}.
+
+\begin{lstlisting}[language=C++,
+caption={Pomocné funkcie a nové premenné pre heuristickú modifikáciu MRAC regulátora},
+label={lst:mrac_cpp_heur_helpers}]
+// Circular buffer helpers for y averaging
+void pushToRing(float* buffer, int size, int& index, int& count, float value) {
+    buffer[index] = value;
+    index = (index + 1) % size;
+    if (count < size) {
+        count++;
+    }
+}
+
+float meanRing(const float* buffer, int count) {
+    if (count <= 0) {
+        return 0.0f;
+    }
+
+    float sum = 0.0f;
+    for (int i = 0; i < count; ++i) {
+        sum += buffer[i];
+    }
+    return sum / static_cast<float>(count);
+}
+
+// Y averaging
+constexpr int Y_AVG_WINDOW = 8;
+float yHist[Y_AVG_WINDOW] = {0.0f};
+int yHistIndex = 0;
+int yHistCount = 0;
+
+float y_raw = 0.0f;
+float y_avg = 0.0f;
+
+// Adaptation dead zone
+constexpr float E_DEAD = 0.02f;
+float e_ad = 0.0f;
+\end{lstlisting}
+
+Po načítaní analógových vstupov sa do programu doplnilo priebežné ukladanie
+aktuálnej surovej hodnoty výstupu do kruhového buffra.
+Táto úprava je uvedená vo výpise~\ref{lst:mrac_cpp_heur_input}.
+
+\begin{lstlisting}[language=C++,
+caption={Doplnenie ukladania surového meraného výstupu do kruhového buffra},
+label={lst:mrac_cpp_heur_input}]
+float snimac2 = cubic(
+    static_cast<float>(a2),
+    -9.09109415e-10f,
+    8.99002333e-07f,
+    9.78867803e-03f,
+    -9.65193864e-05f
+);
+
+// Save latest raw output sample every real Arduino loop
+y_raw = snimac1;
+pushToRing(yHist, Y_AVG_WINDOW, yHistIndex, yHistCount, y_raw);
+\end{lstlisting}
+
+V hlavnej časti regulačného algoritmu sa potom namiesto okamžitej hodnoty snímača
+začal používať jej vyhladený priemer a súčasne bol adaptačný zákon upravený
+o dead-zone nelinearitu.
+Modifikovaný úsek regulačnej logiky je uvedený vo výpise
+\ref{lst:mrac_cpp_heur_logic}.
+
+\begin{lstlisting}[language=C++,
+caption={Modifikovaný úsek MRAC algoritmu s priemerovaním výstupu a dead-zone v adaptácii},
+label={lst:mrac_cpp_heur_logic}]
+// Measured output
+y_avg = meanRing(yHist, yHistCount);
+y = y_avg;
+
+// Error
+e = dy - ym;
+
+// Regressor
+omega[0] = dy;
+omega[1] = dy_dot;
+omega[2] = dr;
+
+// Control law
+du = rowVec3ColVec3Mul(Theta_work, omega);
+u_unsat = U_pb + du;
+u = clampFloat(u_unsat, U_MIN, U_MAX);
+
+// Adaptation dead zone
+e_ad = e;
+
+if (e_ad > E_DEAD) {
+    e_ad -= E_DEAD;
+} else if (e_ad < -E_DEAD) {
+    e_ad += E_DEAD;
+} else {
+    e_ad = 0.0f;
+}
+
+// Adaptation law
+dTheta[0] = -SIGN_B0 * e_ad * (ALPHA1 * yf);
+dTheta[1] = -SIGN_B0 * e_ad * (ALPHA2 * ydot_f);
+dTheta[2] = -SIGN_B0 * e_ad * (ALPHA3 * rf);
+\end{lstlisting}
+
+\paragraph{Experimentálne overenie heuristickej modifikácie}
+
+Na základe tejto úpravy bol následne vykonaný nový experiment na reálnom systéme
+TS05. Je tu
+zobrazená už iba samotná regulačná fáza po ukončení úvodného ustálenia,
+teda bez prvých $400~\mathrm{s}$.
+Výsledok experimentu je uvedený na obr.~\ref{fig:mrac_cpp_experimental}.
+
+\begin{center}
+    \vbox{
+        \makebox[\textwidth][c]{%
+            \includegraphics[width=1.5\textwidth]{ts_cpp_mrac_experemental.png}
+        }
+        \figcaption{Experimentálne výsledky heuristicky upravenej implementácie gradientného MRAC regulátora v jazyku C++}
+        \label{fig:mrac_cpp_experimental}
+    }
+\end{center}
+
+Adaptačné koeficienty zostali pri tomto experimente rovnaké ako v pôvodnej
+implementácii, teda nebola menená ich hodnota ani samotná štruktúra adaptácie.
+
+Z obr.~\ref{fig:mrac_cpp_experimental} je zrejmé, že drift parametrov $\Theta$
+sa po tejto úprave úplne neodstránil, avšak jeho intenzita sa zmenšila.
+Na priebehoch parametrov možno pozorovať miernejší drift ako v predchádzajúcom
+experimente. Zároveň je viditeľné, že akčný zásah $u$ má pokojnejší priebeh
+a menšiu úroveň šumu.
+
+Možno teda konštatovať, že navrhnutá heuristická modifikácia viedla
+k praktickému zlepšeniu správania implementovaného regulátora, avšak
+problém driftu parametrov úplne neodstránila.
