@@ -131,7 +131,7 @@ je znázornená na obr.~\ref{fig:pi_switch_logic_scheme}.
 \begin{center}
     \vbox{
         \makebox[\textwidth][c]{%
-            \includegraphics[width=1.2\textwidth]{SWITCH_block_logic_scheme.jpg}
+            \includegraphics[width=1.0\textwidth]{PREP_logic.pdf}
         }
         \figcaption{Bloková schéma riadenia s globálnym a lokálnym PI regulátorom}
         \label{fig:pi_switch_logic_scheme}
@@ -1366,6 +1366,9 @@ Napriek tomu zostal princíp výpočtu nezmenený
 a poradie jednotlivých krokov algoritmu
 bolo zachované.
 
+\subsubsection{Experiment na tepelnej sústave}
+\label{sec:prep_matlab_experiment}
+
 Výsledky experimentálneho overenia
 implementácie v jazyku C++
 sú uvedené na obr.~\ref{fig:pi_switch_cpp_real}.
@@ -1415,3 +1418,275 @@ aj na mikrokontrolérovej platforme.
         \label{fig:pi_switch_cpp_real_zoom}
     }
 \end{center}
+
+\subsection{Realizácia algoritmu v PLC Siemens}
+\label{sec:pi_switch_plc_implementation}
+
+Po overení funkčnosti navrhnutého algoritmu v prostredí MATLAB/Simulink
+a po jeho implementácii v jazyku C++ bola rovnaká prepínacia logika
+realizovaná aj na platforme Siemens SIMATIC S7-1200 G2.
+V tejto časti sa preto už nebudeme vracať k teoretickému princípu
+globálnej a lokálnej regulačnej vetvy ani k samotnej detekcii ustálenia,
+pretože tieto časti boli vysvetlené v predchádzajúcich podkapitolách.
+Pozornosť je sústredená na samotnú implementáciu algoritmu v prostredí TIA Portal
+a na jeho experimentálne overenie.
+
+Celá prepínacia logika bola realizovaná vo funkčnom bloku
+\texttt{FB\_PREP\_TS05}. Vo vnútri bloku sú uložené všetky potrebné stavové
+premenné algoritmu, teda stav filtra globálnej žiadanej hodnoty, integračné
+stavy oboch regulátorov, história vstupu a výstupu, odhadnuté hodnoty
+pracovného bodu aj pomocné premenné prepínacej logiky. Rovnako ako pri
+predchádzajúcich algoritmoch bol k implementácii pripojený aj logovací blok.
+
+Okrem samotného riadiaceho bloku bol vytvorený aj samostatný funkčný blok
+na generovanie žiadanej hodnoty. Tento blok generuje priebeh globálnej a
+lokálnej referencie v závislosti od času experimentu, a tým umožňuje
+realizovať vopred definované scenáre prechodu medzi pracovnými bodmi
+bez potreby manuálneho zásahu počas merania.
+
+Na začiatku vykonávania algoritmu je ošetrený neaktívny stav bloku.
+Ak vstup \texttt{Enable} nie je aktívny, blok nastaví výstupy na definované
+hodnoty a ukončí vykonávanie príkazom \texttt{RETURN}. Následne je
+realizovaná jednorazová inicializácia stavových premenných, tabuliek
+pracovných bodov a parametrov lokálnych PI regulátorov.
+
+Ďalšia časť algoritmu zodpovedá štruktúre opísanej v predchádzajúcich
+implementáciách. Najprv sa deteguje skoková zmena globálnej žiadanej
+hodnoty, potom sa vypočíta filtrovaná globálna referencia, určia sa
+parametre lokálneho PI regulátora podľa aktuálneho pracovného bodu,
+vypočíta sa akčný zásah, aktualizuje sa história signálov a vyhodnotí sa
+podmienka ustálenia. Ak je táto podmienka splnená, z posledných 30 hodnôt
+vstupu a výstupu sa vypočíta nový odhad pracovného bodu, ktorý sa začne
+používať až v nasledujúcom vzorkovacom kroku.
+
+Implementácia funkčného bloku \texttt{FB\_PREP\_TS05} je uvedená
+v nasledujúcej ukážke.
+
+\begin{lstlisting}[language=Pascal,
+caption={Implementácia funkčného bloku FB\_PREP\_TS05 v PLC Siemens},
+label={lst:fb-prep-ts05}]
+IF NOT #Enable THEN
+    #U := 0.0;
+    #R_gf := 0.0;
+    #Y_pb_out := #Y_pb;
+    #U_pb_out := #U_pb;
+    #U_g := 0.0;
+    #U_l := 0.0;
+    #Active_g := #Active_g_m;
+    #Kp_l_out := 0.0;
+    #Ki_l_out := 0.0;
+    #Vent_out := #Vent_in;
+    RETURN;
+END_IF;
+
+// One-time initialization
+IF NOT #Initialized THEN
+    #X_f1 := 0.0;
+    #X_f2 := 0.0;
+    #I_l := 0.0;
+    #I_g := 0.0;
+    #R_g_prev := #R_g;
+    #Active_g_m := FALSE;
+    #Y_pb := 0.0;
+    #U_pb := 0.0;
+    #Y_pb_table[0] := 4.4884;
+    #Y_pb_table[1] := 6.3412;
+    #Y_pb_table[2] := 7.7441;
+    #U_pb_table[0] := 2.0;
+    #U_pb_table[1] := 4.0;
+    #U_pb_table[2] := 6.0;
+    #Kp_l_table[0] := 2.77;
+    #Kp_l_table[1] := 3.58;
+    #Kp_l_table[2] := 1.83;
+    #Ki_l_table[0] := 1.48;
+    #Ki_l_table[1] := 1.84;
+    #Ki_l_table[2] := 2.20;
+    FOR #I := 0 TO 29 DO
+        #Y_hist[#I] := 0.0;
+        #U_hist[#I] := 0.0;
+    END_FOR;
+    #Initialized := TRUE;
+END_IF;
+
+// 1 Detect step change of global reference
+IF #R_g <> #R_g_prev THEN
+    #Active_g_m := TRUE;
+END_IF;
+
+// 2 Filter global reference
+#R_gf := 0.01 * #X_f1;
+
+#X_f1_new := #X_f1 + #Ts * #X_f2;
+#X_f2_new := #X_f2 + #Ts * (-0.01 * #X_f1 - 0.2 * #X_f2 + #R_g);
+
+// 3 Select local operating point and PI parameters from table
+#Dist_pb := ABS(#Y_pb_table[0] - #Y_pb);
+#Idx_pb := 0;
+
+FOR #I := 1 TO 2 DO
+    #Dist_i := ABS(#Y_pb_table[#I] - #Y_pb);
+    IF #Dist_i < #Dist_pb THEN
+        #Dist_pb := #Dist_i;
+        #Idx_pb := #I;
+    END_IF;
+END_FOR;
+
+#Kp_l := #Kp_l_table[#Idx_pb];
+#Ki_l := #Ki_l_table[#Idx_pb];
+
+// 4 Control errors
+#E_l := #R_l - (#Y - #Y_pb);
+#E_g := #R_gf - #Y;
+
+// 5 Control law
+IF #Active_g_m THEN
+    #U_l := 0.0;
+    #U_g := #Kp_g * #E_g + #Ki_g * #I_g;
+ELSE
+    #U_l := #U_pb + #Kp_l * #E_l + #Ki_l * #I_l;
+    #U_g := 0.0;
+END_IF;
+
+#U_tmp := #U_l + #U_g;
+
+// Saturation
+IF #U_tmp > 10.0 THEN
+    #U_tmp := 10.0;
+ELSIF #U_tmp < 0.0 THEN
+    #U_tmp := 0.0;
+END_IF;
+
+#U := #U_tmp;
+
+// 6 Update histories
+FOR #I := 0 TO 28 DO
+    #Y_hist[#I] := #Y_hist[#I + 1];
+    #U_hist[#I] := #U_hist[#I + 1];
+END_FOR;
+
+#Y_hist[29] := #Y;
+#U_hist[29] := #U;
+
+// 7 Settling detection
+#Lower_bound := #R_g - 0.03 * #R_g;
+#Upper_bound := #R_g + 0.03 * #R_g;
+
+#Count_ok := 0;
+FOR #I := 0 TO 29 DO
+    IF (#Y_hist[#I] >= #Lower_bound) AND (#Y_hist[#I] <= #Upper_bound) THEN
+        #Count_ok := #Count_ok + 1;
+    END_IF;
+END_FOR;
+
+// Two-level switching logic
+#Y_pb_new := #Y_pb;
+#U_pb_new := #U_pb;
+#Active_g_new := #Active_g_m;
+
+IF #Active_g_m AND (#Count_ok >= 25) THEN
+    #Mean_y := 0.0;
+    #Mean_u := 0.0;
+    FOR #I := 0 TO 29 DO
+        #Mean_y := #Mean_y + #Y_hist[#I];
+        #Mean_u := #Mean_u + #U_hist[#I];
+    END_FOR;
+    #Y_pb_est := #Mean_y / 30.0;
+    #U_pb_est := #Mean_u / 30.0;
+    #Y_pb_new := #Y_pb_est;
+    #U_pb_new := #U_pb_est;
+    #Active_g_new := FALSE;
+END_IF;
+
+IF #Active_g_m THEN
+    #Active_l := FALSE;
+ELSE
+    #Active_l := TRUE;
+END_IF;
+
+// 8 Integral states update
+IF #Active_l THEN
+    #I_l := #I_l + #E_l * #Ts;
+ELSE
+    #I_l := 0.0;
+END_IF;
+
+IF #Active_g_m THEN
+    #I_g := #I_g + #E_g * #Ts;
+ELSE
+    #I_g := (#U - #Kp_g * #E_g) / #Ki_g;
+END_IF;
+
+// 9 Memory update
+#R_g_prev := #R_g;
+#Y_pb := #Y_pb_new;
+#U_pb := #U_pb_new;
+#Active_g_m := #Active_g_new;
+#X_f1 := #X_f1_new;
+#X_f2 := #X_f2_new;
+
+// Outputs for monitoring/logging
+#Y_pb_out := #Y_pb;
+#U_pb_out := #U_pb;
+#Active_g := #Active_g_m;
+#Kp_l_out := #Kp_l;
+#Ki_l_out := #Ki_l;
+#Vent_out := #Vent_in;
+\end{lstlisting}
+
+Schéma zapojenia algoritmu v PLC programe, vrátane bloku pre generovanie
+žiadanej hodnoty, riadiaceho bloku a logovania, je uvedená na
+obr.~\ref{fig:tia_prep_scheme}.
+
+\begin{center}
+\vbox{
+\makebox[\textwidth][c]{%
+    \includegraphics[width=1.2\textwidth]{../SCH/TIA/tia_prep_scheme.png}
+}
+\figcaption{Zapojenie algoritmu prepínania pracovných bodov v prostredí TIA Portal}
+\label{fig:tia_prep_scheme}
+}
+\end{center}
+
+Keďže funkčný blok obsahuje väčší počet vnútorných premenných, ich zoznam je
+zobrazený na obr.~\ref{fig:tia_prep_vars} v dvoch po sebe nasledujúcich častiach.
+
+\begin{center}
+\vbox{
+\makebox[\textwidth][c]{%
+    \includegraphics[width=0.77\textwidth]{../SCH/TIA/tia_prep_vars1.png}
+}
+\makebox[\textwidth][c]{%
+    \includegraphics[width=0.77\textwidth]{../SCH/TIA/tia_prep_vars2.png}
+}
+\figcaption{Premenné funkčného bloku FB\_PREP\_TS05}
+\label{fig:tia_prep_vars}
+}
+\end{center}
+
+\subsubsection{Experiment na tepelnej sústave}
+\label{sec:prep_plc_experiment}
+
+\begin{center}
+\vbox{
+\makebox[\textwidth][c]{%
+    \includegraphics[width=1.5\textwidth]{ts_plc_prep_real.png}
+}
+\figcaption{Experimentálne overenie prepínania pracovných bodov pri implementácii algoritmu v PLC Siemens}
+\label{fig:ts_plc_prep_real}
+}
+\end{center}
+
+Na základe tejto implementácie bol vykonaný experiment na reálnom systéme TS05.
+Výsledok merania je zobrazený na obr.~\ref{fig:ts_plc_prep_real}.
+
+Z priebehu experimentu je zrejmé, že algoritmus bol implementovaný korektne
+a zachováva rovnaký princíp správania ako v predchádzajúcich platformách.
+Globálna regulačná vetva zabezpečuje prechod do nového pracovného bodu a po
+detekcii ustálenia preberá riadenie lokálny PI regulátor.
+
+Správanie systému je kvalitatívne veľmi podobné výsledkom získaným v prostredí
+MATLAB/Simulink aj v jazyku C++. Zachovaný zostal charakter prechodov medzi
+pracovnými bodmi aj následná lokálna regulácia v ich okolí. Zároveň možno
+pozorovať, že akčný zásah zostáva plynulý aj pri prepnutí regulačných vetiev,
+čo potvrdzuje správnosť implementácie prepínacej logiky aj aktualizácie
+vnútorných stavov algoritmu.

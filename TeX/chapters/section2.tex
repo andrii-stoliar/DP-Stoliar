@@ -998,4 +998,226 @@ na povolený rozsah.
 \subsubsection{Komunikácia s PLC Siemens}
 \label{sec:komunikacia_siemens}
 
-Táto časť bude doplnená v nasledujúcej verzii práce.
+Ako riadiaca platforma pre túto časť práce bol použitý moderný priemyselný
+PLC systém Siemens SIMATIC S7-1200 G2. Cieľom tejto implementácie
+bolo overiť možnosti riadenia tepelného systému TS05 aj na štandardnej
+priemyselnej platforme, ktorá sa svojím charakterom výrazne približuje reálnym
+nasadeniam v praxi.
+
+Z pohľadu priemyselnej automatizácie je tradičným štandardom pre analógové
+signály najmä prúdová slučka \mbox{4--20~mA}, keďže ide o riešenie široko
+používané v technologických prevádzkach a priemyselných zariadeniach.
+Existujú aj spôsoby, ako prevádzať napäťové signály \mbox{0--10~V} na prúdový
+štandard \mbox{4--20~mA}, napríklad pomocou externých prevodníkov. Podobný
+princíp externého prevodu bol v tejto práci použitý aj pri implementácii
+komunikácie v jazyku C++, kde bolo potrebné prevádzať PWM signál na analógový
+rozsah \mbox{0--10~V} v podkapitole~\ref{sec:komunikacia_cpp}.
+
+V tomto prípade však nebolo potrebné realizovať externý prevod signálov, pretože
+k PLC systému boli k dispozícii aj nové analógové rozširujúce moduly
+Siemens typu [TODO]. Tento modul
+obsahuje dva analógové vstupy a dva analógové výstupy, čo pre potreby systému
+TS05 plne postačuje. Z hľadiska počtu kanálov teda presne zodpovedá požiadavkám
+danej experimentálnej zostavy.
+
+Analógové signály sú v PLC systémoch Siemens interne reprezentované
+ako celočíselné hodnoty s rozsahom \mbox{0 až 27648}, pričom tento digitálny
+rozsah zodpovedá fyzikálnemu napäťovému rozsahu \mbox{0 až 10~V}. Na rozdiel
+od realizácie s platformou \textit{Arduino UNO}, kde bolo vzhľadom na použitú
+jednoduchšiu a lacnejšiu hardvérovú architektúru potrebné experimentálne
+vykonať vlastnú kalibráciu signálových ciest, sa v prípade PLC systému
+Siemens predpokladalo, že originálny analógový modul zabezpečuje
+dostatočne presný a lineárny prevod medzi digitálnou a fyzikálnou reprezentáciou.
+Z tohto dôvodu nebola v tejto časti práce realizovaná dodatočná manuálna
+kalibrácia.
+
+Z hľadiska hardvérového zapojenia bol PLC systém napájaný zo zdroja
+\mbox{24~V~DC}, ktorý zabezpečoval jeho štandardnú prevádzku. Súčasne bol PLC
+pripojený do rovnakej ethernetovej siete ako riadiaci počítač, pričom bolo
+potrebné nastaviť IP adresu sieťovej karty počítača tak, aby bola v rovnakej
+podsieti ako PLC zariadenie. Tým sa zabezpečila korektná komunikácia medzi
+vývojovým prostredím a samotným automatom.
+
+Vstupy a výstupy systému TS05 boli následne pripojené priamo na analógový modul
+PLC. Okrem samotných signálových vodičov bolo, samozrejme, potrebné pripojiť aj
+referenčnú zem. Použitý modul obsahuje spolu osem svoriek, teda dva analógové
+vstupy, dva analógové výstupy a ku každému z nich príslušný záporný pól.
+
+Softvérová časť implementácie bola realizovaná v prostredí
+\textit{TIA Portal V20}. V prvom kroku bolo potrebné určiť adresy jednotlivých
+analógových vstupov a výstupov modulu. Výsledné adresovanie je uvedené v
+tabuľke~\ref{tab:plc_ts05_addresses}.
+
+\begin{table}[h!]
+    \centering
+    \caption{Adresovanie analógových vstupov a výstupov PLC modulu pre systém TS05}
+    \label{tab:plc_ts05_addresses}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Signál} & \textbf{Typ} & \textbf{Adresa} \\ \hline
+        Ventilátor & Int & \%QW80 \\ \hline
+        Špirála & Int & \%QW82 \\ \hline
+        Snímač 1 & Int & \%IW80 \\ \hline
+        Snímač 2 & Int & \%IW82 \\ \hline
+    \end{tabular}
+\end{table}
+
+Keďže analógová hodnota je v tomto prípade reprezentovaná ako slovo
+(\textit{word}), teda ako dvojbajtová veličina, jednotlivé adresy sa posúvajú
+po dvoch bajtoch, napríklad z \%IW80 na \%IW82, resp. z \%QW80 na \%QW82.
+
+V hlavnom organizačnom bloku PLC programu bolo rozhodnuté realizovať iba
+základné servisné operácie, konkrétne prevod medzi internou digitálnou
+reprezentáciou analógových signálov a ich inžinierskymi jednotkami, ako aj
+výpočet času od začiatku experimentu. Tento čas sa ďalej používa výhradne
+na účely logovania dát, samotné riadiace algoritmy od neho nebudú závislé.
+
+Prevod vstupných analógových hodnôt do napäťového rozsahu \mbox{0--10~V}
+(z pohľadu modulu PLC ide o čítané vstupy) bol realizovaný ako
+
+\begin{equation}
+    U_{\mathrm{in}} = \frac{\mathrm{INT}}{2764.8}
+    \label{eq:plc_input_scaling}
+\end{equation}
+
+Naopak, pri generovaní výstupných analógových signálov bolo potrebné vykonať
+opačný prevod z reálnej hodnoty napätia na internú celočíselnú reprezentáciu:
+
+\begin{equation}
+    \mathrm{INT} = U_{\mathrm{out}} \cdot 2764.8
+    \label{eq:plc_output_scaling}
+\end{equation}
+
+Na výpočet aktuálneho času od začiatku experimentu bol vytvorený vlastný
+funkčný blok \texttt{Current\_time}. Tento blok využíva systémovú funkciu
+\texttt{RD\_SYS\_T}, ktorá vracia aktuálny systémový čas PLC vo forme dátového
+typu \texttt{DTL}. Uvedený typ obsahuje viacero zložiek, ako sú rok, mesiac,
+deň a denný čas. Keďže na účely logovania nebolo potrebné uchovávať kompletnú
+časovú štruktúru, ale iba čas od začiatku merania v sekundách, bol vytvorený
+samostatný blok, ktorý pri prvom úspešnom volaní uloží počiatočný čas a pri
+ďalších volaniach vypočítava časový rozdiel voči tomuto okamihu.
+
+Implementácia bloku \texttt{Current\_time} je uvedená v nasledujúcej ukážke.
+
+\begin{lstlisting}[language=Pascal,
+caption={Implementácia funkčného bloku Current\_time},
+label={lst:current_time_fb}]
+#retVal := RD_SYS_T(OUT => #currentTime);
+
+IF (NOT #started) AND (#retVal = 0) THEN
+    #startTime := #currentTime;
+    #started := TRUE;
+END_IF;
+
+IF #started AND (#retVal = 0) THEN
+    #elapsedTime := T_DIFF(IN1 := #currentTime, IN2 := #startTime);
+    #CurrentTimeSec := DINT_TO_LREAL(TIME_TO_DINT(#elapsedTime)) / 1000.0;
+ELSE
+    #CurrentTimeSec := 0.0;
+END_IF;
+\end{lstlisting}
+
+Zoznam interných premenných použitých v tomto bloku je zobrazený na
+obr.~\ref{fig:tia_time_vars}.
+
+\begin{center}
+\vbox{
+\makebox[\textwidth][c]{%
+    \includegraphics[width=0.8\textwidth]{tia_time_vars.png}
+}
+\figcaption{Premenné funkčného bloku Current\_time v prostredí TIA Portal}
+\label{fig:tia_time_vars}
+}
+\end{center}
+
+Celková štruktúra hlavného organizačného bloku, ktorý je vykonávaný v každom
+cykle PLC, je zobrazená na obr.~\ref{fig:tia_service_scheme}. Ako už bolo uvedené,
+v tomto bloku sa realizuje iba škálovanie analógových premenných a výpočet
+aktuálneho času od začiatku experimentu.
+
+\begin{center}
+\vbox{
+\makebox[\textwidth][c]{%
+    \includegraphics[width=0.8\textwidth]{tia_service_scheme.png}
+}
+\figcaption{Servisná časť hlavného organizačného bloku PLC programu}
+\label{fig:tia_service_scheme}
+}
+\end{center}
+
+Platforma Siemens zároveň umožňuje realizovať používateľskú logiku
+v blokoch spúšťaných s pevne definovanou periódou. Na tento účel bol vytvorený
+organizačný blok typu \textit{Cyclic Interrupt}, v ktorom bola nastavená perióda
+\mbox{0.1~s}. Práve v tomto bloku bude v ďalších častiach práce realizovaná
+riadiaca logika a zároveň aj logovanie nameraných a vypočítaných veličín.
+
+Dôležité je, že tento blok pracuje ako prerušovacia úloha. To znamená, že
+servisné operácie, ako sú prevody veličín a výpočet času, prebiehajú v každom
+bežnom cykle PLC, zatiaľ čo samotné riadenie a logovanie sa vykonávajú iba raz
+za definovanú vzorkovaciu periódu. Takéto rozdelenie umožňuje prehľadnú
+separáciu pomocných častí programu od vlastnej regulačnej úlohy.
+
+Pre jednotlivé riadiace algoritmy bude následne úlohou implementovať dve hlavné
+časti: samotný riadiaci zákon a príslušné logovanie údajov. Riadiaca logika bude
+umiestnená vo funkčných blokoch (\textit{Function Block}), keďže tieto bloky
+majú vlastnú vnútornú pamäť. Práve táto vlastnosť je pri implementácii regulátorov
+v PLC prirodzená a veľmi výhodná. Operácie, ako je čakanie definovaného času,
+oneskorené spustenie alebo časovo podmienené prechody medzi stavmi, budú
+realizované pomocou štandardných časovačov. Takýto prístup je z pohľadu PLC
+programovania prirodzenejší a tradičnejší než priame využívanie času počítaného
+v bloku \texttt{Current\_time}.
+
+Na účely logovania boli rovnako vytvorené samostatné funkčné bloky. Ich úlohou
+je prijímať na vstup vybrané premenné a pri každom povolenom vzorkovaní ich
+ukladať do interných polí. Takto uložené údaje je následne možné manuálne
+skopírovať do tabuľkového procesora a uložiť napríklad vo formáte \texttt{.csv}.
+V rámci tejto práce sa nepodarilo nájsť natívny spôsob pohodlného logovania
+dát priamo z PLC bez použitia nadstavbového HMI systému typu \textit{WinCC}
+alebo bez použitia špecializovaných hardvérových modulov. Uvedené riešenie však
+bolo pre potreby experimentov plne postačujúce.
+
+Keďže jednotlivé bloky pre logovanie sa líšia iba v tom, ktoré konkrétne premenné
+ukladajú, bolo rozhodnuté uviesť iba jeden reprezentatívny príklad takéhoto
+logovacieho bloku, konkrétne pre PI regulátor opísaný v sekcii~\ref{sec:pi_controller}.
+Tento príklad je dostatočný na vysvetlenie princípu a zároveň zabraňuje
+zbytočnému opakovaniu veľmi podobných implementácií.
+
+Zdrojový kód bloku \texttt{FB\_PI\_LOGGER} je uvedený nižšie.
+
+\begin{lstlisting}[language=Pascal,
+caption={Implementácia logovacieho bloku FB\_PI\_LOGGER},
+label={lst:fb_pi_logger}]
+IF NOT #Full AND #Enable THEN
+    IF #idx <= 9999 THEN
+        #TimeLog_s[#idx] := #CurrentTimeSec;
+        #ULOG[#idx] := #u;
+        #YLOG[#idx] := #y;
+        #RLOG[#idx] := #r;
+        #YPBLOG[#idx] := #ypb;
+        #idx := #idx + 1;
+        #SampleCount := #idx;
+    ELSE
+        #Full := TRUE;
+    END_IF;
+END_IF;
+\end{lstlisting}
+
+Zoznam premenných tohto logovacieho bloku je uvedený na
+obr.~\ref{fig:tia_pi_logger_vars}.
+
+\begin{center}
+\vbox{
+\makebox[\textwidth][c]{%
+    \includegraphics[width=0.8\textwidth]{tia_pi_logger_vars.png}
+}
+\figcaption{Premenné funkčného bloku FB\_PI\_LOGGER}
+\label{fig:tia_pi_logger_vars}
+}
+\end{center}
+
+Z uvedeného dôvodu už v ďalších častiach práce nebudú logovacie bloky
+samostatne zobrazované pre každý algoritmus. Pri jednotlivých návrhoch riadenia
+budú prezentované iba samotné bloky riadiacej logiky a príslušné siete
+organizačných blokov, v ktorých budú tieto algoritmy volané. Tým sa zachová
+prehľadnosť textu a zároveň sa zabráni opakovaniu už raz vysvetlených
+implementačných princípov.

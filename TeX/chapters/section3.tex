@@ -37,12 +37,13 @@ na obr.~\ref{fig:pi_block_scheme}.
 \begin{center}
 	\vbox{
 	\makebox[\textwidth][c]{%
-		\includegraphics[width=1.2\textwidth]{TS_uro_block_scheme.pdf}
+		\includegraphics{PI_scheme_draw.pdf}
 	}
-	\figcaption{Bloková schéma uzavretého regulačného obvodu s PI regulátorom}
+	\figcaption[width=1.0\textwidth]{Bloková schéma uzavretého regulačného obvodu s PI regulátorom}
 	\label{fig:pi_block_scheme}
 	}
 \end{center}
+
 
 \paragraph{Prenosy regulačného obvodu}
 
@@ -362,6 +363,9 @@ Okrem toho surové merania (obr.~\ref{fig:ts_pb_vent6_spir4_ident_raw}) ukázali
 Z toho dôvodu je ustálený stav zisťovaný automaticky priamo regulátorom ako posledná nameraná hodnota $y$ pred spustením PI riadenia.  
 Tento prístup funguje bez ohľadu na to, či je systém iba málo zahriaty alebo už dosiahol vysokú prevádzkovú teplotu.
 
+\subsubsection{Experimentálne overenie na reálnom systéme}
+\label{sec:pi_matlab_real_system}
+
 \paragraph{Experiment 1: Regulácia okolo jedného pracovného bodu}
 
 Na základe implementácie uvedenej vyššie bol následne vykonaný experiment v simulačnom prostredí s cieľom overiť kvalitu regulácie.  
@@ -487,6 +491,9 @@ Z tohto dôvodu je pri implementácii v C++ potrebné venovať zvýšenú pozorn
 Z numerického hľadiska zostáva princíp výpočtu nezmenený.  
 Integrátor sa aj v tejto implementácii aktualizuje diskrétne pomocou periódy vzorkovania a výsledný zásah je následne obmedzený saturáciou.  
 
+\subsubsection{Experimentálne overenie na reálnom systéme}
+\label{sec:pi_cpp_real_system}
+
 Na základe tejto implementácie bol vykonaný experiment na reálnom systéme, ktorého výsledok je uvedený na obrázku~\ref{fig:ts_cpp_pi_real}.
 
 \begin{center}
@@ -504,3 +511,126 @@ Tvar regulačnej odozvy, rýchlosť nábehu aj charakter ustálenia zostali vo v
 Možno však pozorovať menšie rozdiely v detailoch priebehu, ktoré možno vysvetliť odlišnými vonkajšími podmienkami počas experimentu.  
 Jednotlivé merania boli realizované pri rozdielnej teplote v miestnosti, pričom tepelný systém TS05 je na zmeny okolitej teploty citlivý.  
 Preto možno konštatovať, že implementácia v jazyku C++ potvrdila správnosť navrhnutého algoritmu aj mimo prostredia MATLAB/Simulink a zároveň ukázala, že regulátor si zachováva porovnateľné vlastnosti aj pri nasadení na odlišnej softvérovej platforme.
+
+\subsection{Implementácia PI regulátora v PLC Siemens}
+
+Na základe predchádzajúcich implementácií v prostredí MATLAB a v jazyku C++
+bola následne realizovaná aj implementácia PI regulátora na platforme
+Siemens SIMATIC S7-1200 G2. Cieľom tejto časti bolo overiť, či je možné
+zachovať rovnaký princíp riadenia aj v prostredí priemyselného PLC systému
+a zároveň dosiahnuť porovnateľné dynamické vlastnosti regulačného obvodu.
+
+Samotný PI algoritmus bol realizovaný vo funkčnom bloku \texttt{FB\_PI\_TS05}.
+Týmto spôsobom bolo možné prirodzene využiť vnútornú pamäť funkčného bloku,
+a teda uchovávať stavové veličiny regulátora medzi jednotlivými vzorkami bez
+potreby vytvárať externé pomocné štruktúry. Rovnako ako pri ostatných algoritmoch
+bol k implementácii doplnený aj logovací blok, ktorý zabezpečoval záznam
+vybraných premenných počas experimentu.
+
+Úvodná čakacia fáza v trvaní 600 sekúnd bola realizovaná pomocou časovača typu
+\textit{TON}. Výstup tohto časovača nebol použitý na priame povoľovanie samotného
+funkčného bloku cez jeho štandardný vstup \texttt{EN}, ale iba na aktiváciu
+pomocnej logickej premennej, ktorá sa následne privádzala na vstup \texttt{Enable}
+riadiaceho algoritmu vo vnútri bloku \texttt{FB\_PI\_TS05}. Tento detail je z
+hľadiska PLC implementácie dôležitý. Ak totiž na funkčný blok nie je privedený
+signál na štandardný vstup \texttt{EN}, blok sa vôbec nevykonáva a nemôže
+realizovať žiadnu vnútornú logiku. V danom prípade však bolo žiaduce, aby blok
+pracoval aj počas neaktívnej fázy, teda ešte pred samotným spustením regulácie.
+Vďaka tomu nebolo potrebné vytvárať dve samostatné implementácie, jednu pre
+pasívnu a druhú pre aktívnu fázu, ale celá logika bola sústredená do jediného
+funkčného bloku.
+
+V neaktívnej fáze blok nastavuje akčný zásah na hodnotu pracovného bodu,
+nulovú regulačnú odchýlku, nulový odchýlkový zásah a zároveň priebežne
+aktualizuje odhad pracovného bodu výstupu. Po aktivácii regulácie sa už
+vykonáva vlastný PI algoritmus v odchýlkovej forme. Implementácia bloku
+\texttt{FB\_PI\_TS05} je uvedená nižšie.
+
+\begin{lstlisting}[language=Pascal,
+caption={Implementácia funkčného bloku FB\_PI\_TS05 v PLC Siemens},
+label={lst:fb-pi-ts05}]
+IF NOT #Enable THEN
+    #U := #U_pb;
+    #DU := 0.0;
+    #E := 0.0;
+    #Integrator := 0.0;
+    #Ypb := #Y;
+    #vent := 6.0;
+ELSE
+    #E := #Setpoint_pb - (#Y - #Ypb);
+    #Integrator := #Integrator + #E * #Ts;
+    #DU := #Kp * #E + #Ki * #Integrator;
+
+    IF #DU > #DU_max THEN
+        #DU := #DU_max;
+    ELSIF #DU < #DU_min THEN
+        #DU := #DU_min;
+    END_IF;
+
+    #U := #U_pb + #DU;
+    #vent := 6.0;
+END_IF;
+\end{lstlisting}
+
+Zoznam interných premenných použitých vo funkčnom bloku je zobrazený na
+obr.~\ref{fig:tia_pi_vars}.
+
+\begin{center}
+\vbox{
+\makebox[\textwidth][c]{%
+    \includegraphics[width=0.8\textwidth]{tia_pi_vars.png}
+}
+\figcaption{Premenné funkčného bloku FB\_PI\_TS05}
+\label{fig:tia_pi_vars}
+}
+\end{center}
+
+Celkové zapojenie algoritmu v PLC programe, vrátane časovača, riadiaceho bloku
+a logovania, je uvedené na obr.~\ref{fig:tia_pi_scheme}.
+
+\begin{center}
+\vbox{
+\makebox[\textwidth][c]{%
+    \includegraphics[width=0.9\textwidth]{tia_pi_scheme.png}
+}
+\figcaption{Zapojenie PI regulátora, časovača a logovania v prostredí TIA Portal}
+\label{fig:tia_pi_scheme}
+}
+\end{center}
+
+Z hľadiska riadiaceho princípu zostáva implementácia zhodná s predchádzajúcimi
+verziami algoritmu. Aj v tomto prípade sa regulácia vykonáva vzhľadom na pracovný
+bod, pričom chyba regulácie je počítaná z rozdielu medzi požadovanou odchýlkou
+a aktuálnou odchýlkou výstupu od pracovného bodu. Integrátor sa aktualizuje
+diskrétne s periódou vzorkovania a výsledný odchýlkový zásah je následne
+obmedzený saturáciou. Vstup ventilátora zostáva počas celej regulácie nastavený
+na konštantnej hodnote 6~V.
+
+\subsubsection{Experimentálne overenie na reálnom systéme}
+\label{sec:pi_plc_real_system}
+
+Na základe tejto implementácie bol vykonaný experiment na reálnom systéme TS05.
+Výsledok merania je zobrazený na obr.~\ref{fig:ts_plc_pi_real}.
+
+\begin{center}
+\vbox{
+\makebox[\textwidth][c]{%
+    \includegraphics[width=1.5\textwidth]{ts_plc_pi_real.png}
+}
+\figcaption{Experimentálna odozva PI regulátora implementovaného v PLC Siemens}
+\label{fig:ts_plc_pi_real}
+}
+\end{center}
+
+Z výsledku experimentu je zrejmé, že dynamika regulácie je veľmi podobná tej,
+ktorá bola pozorovaná pri implementácii v prostredí MATLAB aj v jazyku
+C++. To potvrdzuje, že navrhnutý algoritmus je prenositeľný aj na platformu PLC
+bez zásadnej zmeny jeho regulačných vlastností. Zároveň možno pozorovať, že
+priebeh akčného zásahu je v tomto prípade miernejší a plynulejší než pri
+predchádzajúcich implementáciách.
+
+Na základe získaných výsledkov možno konštatovať, že implementácia PI regulátora
+na platforme Siemens PLC bola úspešná a poskytla porovnateľné správanie
+ako implementácie na ostatných použitých platformách. Tým sa zároveň potvrdilo,
+že zvolená štruktúra algoritmu je vhodná nielen pre simulačné a mikrokontrolérové
+prostredie, ale aj pre klasické priemyselné PLC riešenie.
