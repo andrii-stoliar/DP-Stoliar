@@ -306,10 +306,10 @@ INPUT ./chapters/section1.tex
 INPUT ./chapters/section1.tex
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/lm/ec-lmss12.tfm
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/lm/ec-lmssbx10.tfm
-INPUT ../SCH/DRAW/UROpdf.pdf
-INPUT ../SCH/DRAW/UROpdf.pdf
-INPUT ../SCH/DRAW/UROpdf.pdf
-INPUT ../SCH/DRAW/UROpdf.pdf
+INPUT ../SCH/DRAW/URO_scheme.pdf
+INPUT ../SCH/DRAW/URO_scheme.pdf
+INPUT ../SCH/DRAW/URO_scheme.pdf
+INPUT ../SCH/DRAW/URO_scheme.pdf
 INPUT c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc
 INPUT c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc
 INPUT c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc
