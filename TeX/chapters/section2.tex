@@ -1015,10 +1015,19 @@ rozsah \mbox{0--10~V} v podkapitole~\ref{sec:komunikacia_cpp}.
 
 V tomto prípade však nebolo potrebné realizovať externý prevod signálov, pretože
 k PLC systému boli k dispozícii aj nové analógové rozširujúce moduly
-Siemens typu [TODO]. Tento modul
+Siemens typu SM 1233 AI 4×14 bit / AQ 4×14 bit, 6ES7 233-4HF50-0XB0. Tento modul
 obsahuje dva analógové vstupy a dva analógové výstupy, čo pre potreby systému
 TS05 plne postačuje. Z hľadiska počtu kanálov teda presne zodpovedá požiadavkám
 danej experimentálnej zostavy.
+
+Z hľadiska spracovania analógových vstupov je potrebné uviesť, že modul umožňuje
+parametrizovať digitálne vyhladzovanie nameraných hodnôt (\textit{smoothing}).
+V rámci merania bolo toto vyhladzovanie nastavené na možnosť \textit{None}, aby modul
+nevykonával dodatočné priemerovanie vzoriek. Súčasne však zostáva aktívna funkcia
+potlačenia rušenia (\textit{noise rejection}), ktorá je súčasťou prevodu analógovej
+hodnoty a jej frekvenciu možno iba parametrizovať. Túto časť preto nebolo možné
+úplne vyradiť, čo môže spôsobovať mierne vyhladenie meraného signálu aj pri
+vypnutom digitálnom vyhladzovaní.
 
 Analógové signály sú v PLC systémoch Siemens interne reprezentované
 ako celočíselné hodnoty s rozsahom \mbox{0 až 27648}, pričom tento digitálny

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.28)  20 APR 2026 17:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.6.29)  22 APR 2026 23:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -6,10 +6,10 @@ entering extended mode
 **c:/MyFiles/Study/DP-Stoliar/TeX/DP.tex
 (c:/MyFiles/Study/DP-Stoliar/TeX/DP.tex
 LaTeX2e <2025-06-01> patch level 1
-L3 programming layer <2025-10-24>
-(c:/texlive/2025/texmf-dist/tex/latex/base/article.cls
+L3 programming layer <2025-06-09>
+(c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
-(c:/texlive/2025/texmf-dist/tex/latex/base/size10.clo
+(c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
 )
 \c@part=\count275
@@ -23,45 +23,46 @@ File: size10.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
 \abovecaptionskip=\skip49
 \belowcaptionskip=\skip50
 \bibindent=\dimen148
-) (./COMMONFILES/preamble.tex (c:/texlive/2025/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2025/10/22 v25.14 The multilingual framework for LuaLaTeX, pdfLaTeX and XeLaTeX
+) (./COMMONFILES/preamble.tex (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2025/06/10 v25.10 The multilingual framework for pdfLaTeX, LuaLaTeX and XeLaTeX
 \babel@savecnt=\count283
-LaTeX Encoding Info:    Redeclaring text command \ij (encoding OT1) on input line 2050.
-LaTeX Encoding Info:    Redeclaring text command \IJ (encoding OT1) on input line 2052.
-LaTeX Encoding Info:    Redeclaring text command \ij (encoding T1) on input line 2054.
-LaTeX Encoding Info:    Redeclaring text command \IJ (encoding T1) on input line 2055.
-LaTeX Encoding Info:    Ignoring declaration for text command \ij (encoding ?) on input line 2056.
-LaTeX Encoding Info:    Ignoring declaration for text command \IJ (encoding ?) on input line 2058.
-LaTeX Encoding Info:    Ignoring declaration for text command \SS (encoding ?) on input line 2083.
+LaTeX Encoding Info:    Redeclaring text command \ij (encoding OT1) on input line 2043.
+LaTeX Encoding Info:    Redeclaring text command \IJ (encoding OT1) on input line 2045.
+LaTeX Encoding Info:    Redeclaring text command \ij (encoding T1) on input line 2047.
+LaTeX Encoding Info:    Redeclaring text command \IJ (encoding T1) on input line 2048.
+LaTeX Encoding Info:    Ignoring declaration for text command \ij (encoding ?) on input line 2049.
+LaTeX Encoding Info:    Ignoring declaration for text command \IJ (encoding ?) on input line 2051.
+LaTeX Encoding Info:    Ignoring declaration for text command \SS (encoding ?) on input line 2076.
 \U@D=\dimen149
 \l@unhyphenated=\language90
- (c:/texlive/2025/texmf-dist/tex/generic/babel/txtbabel.def)
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/generic/babel/txtbabel.def)
 \bbl@readstream=\read2
 \bbl@dirlevel=\count284
- (c:/texlive/2025/texmf-dist/tex/generic/babel/locale/sk/babel-slovak.tex)
-Package babel Info: Importing font and identification data for slovak
-(babel)             from babel-sk.ini. Reported on input line 4295.
- (c:/texlive/2025/texmf-dist/tex/generic/babel-slovak/slovak.ldf
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/generic/babel-slovak/slovak.ldf
 Language: slovak 2008/07/06 v3.1a Slovak support from the babel system
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/generic/babel/locale/sk/babel-slovak.tex
+Package babel Info: Importing font and identification data for slovak
+(babel)             from babel-sk.ini. Reported on input line 11.
+)
 Package babel Info: Making ^ an active character on input line 123.
 Package babel Info: Making " an active character on input line 126.
 Package babel Info: Making ' an active character on input line 129.
 \cs@wordlen=\count285
 Package babel Info: Making - an active character on input line 294.
-)) (c:/texlive/2025/texmf-dist/tex/latex/base/inputenc.sty
+)) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2024/02/08 v1.3d Input encoding file
 \inpenc@prehook=\toks17
 \inpenc@posthook=\toks18
-) (c:/texlive/2025/texmf-dist/tex/latex/base/fontenc.sty
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2024/12/21 v2.1c Standard LaTeX package
-) (c:/texlive/2025/texmf-dist/tex/latex/geometry/geometry.sty
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
- (c:/texlive/2025/texmf-dist/tex/latex/graphics/keyval.sty
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
 \KV@toks@=\toks19
-) (c:/texlive/2025/texmf-dist/tex/generic/iftex/ifvtex.sty
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
- (c:/texlive/2025/texmf-dist/tex/generic/iftex/iftex.sty
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2024/12/12 v1.0g TeX engine tests
 ))
 \Gm@cnth=\count286
@@ -76,28 +77,28 @@ Package: iftex 2024/12/12 v1.0g TeX engine tests
 \Gm@layouthoffset=\dimen156
 \Gm@layoutvoffset=\dimen157
 \Gm@dimlist=\toks20
-) (c:/texlive/2025/texmf-dist/tex/latex/graphics/graphicx.sty
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
- (c:/texlive/2025/texmf-dist/tex/latex/graphics/graphics.sty
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
- (c:/texlive/2025/texmf-dist/tex/latex/graphics/trig.sty
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
-) (c:/texlive/2025/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 106.
- (c:/texlive/2025/texmf-dist/tex/latex/graphics-def/pdftex.def
-File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2024/04/13 v1.2c Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen158
 \Gin@req@width=\dimen159
-) (c:/texlive/2025/texmf-dist/tex/latex/xcolor/xcolor.sty
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
- (c:/texlive/2025/texmf-dist/tex/latex/graphics-cfg/color.cfg
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: pdftex.def on input line 274.
- (c:/texlive/2025/texmf-dist/tex/latex/graphics/mathcolor.ltx)
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/graphics/mathcolor.ltx)
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
 Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1353.
 Package xcolor Info: Model `RGB' extended on input line 1365.
@@ -107,9 +108,9 @@ Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
-) (c:/texlive/2025/texmf-dist/tex/latex/graphics/dvipsnam.def
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/graphics/dvipsnam.def
 File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
-) (c:/texlive/2025/texmf-dist/tex/latex/lm/lmodern.sty
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/lm/lmodern.sty
 Package: lmodern 2015/05/01 v1.6.1 Latin Modern Fonts
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
@@ -143,21 +144,21 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  OT1/cmr/bx/it --> OT1/lmr/bx/it on input line 37.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
-) (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsmath.sty
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2025/06/16 v2.17y AMS math features
 \@mathmargin=\skip51
 
 For additional information on amsmath, use the `?' option.
-(c:/texlive/2025/texmf-dist/tex/latex/amsmath/amstext.sty
+(c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2024/11/17 v2.01 AMS text
- (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsgen.sty
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks21
 \ex@=\dimen160
-)) (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsbsy.sty
+)) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen161
-) (c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsopn.sty
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
 \inf@bad=\count289
@@ -207,16 +208,16 @@ LaTeX Info: Redefining \Relbar on input line 970.
 \mathdisplay@stack=\toks25
 LaTeX Info: Redefining \[ on input line 2949.
 LaTeX Info: Redefining \] on input line 2950.
-) (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/amssymb.sty
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
- (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-)) (c:/texlive/2025/texmf-dist/tex/latex/amscls/amsthm.sty
+)) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/amscls/amsthm.sty
 Package: amsthm 2020/05/29 v2.20.6
 \thm@style=\toks26
 \thm@bodyfont=\toks27
@@ -227,7 +228,7 @@ Package: amsthm 2020/05/29 v2.20.6
 \thm@postskip=\skip55
 \thm@headsep=\skip56
 \dth@everypar=\toks31
-) (c:/texlive/2025/texmf-dist/tex/latex/booktabs/booktabs.sty
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \heavyrulewidth=\dimen169
 \lightrulewidth=\dimen170
@@ -246,13 +247,13 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \@thisruleclass=\count303
 \@lastruleclass=\count304
 \@thisrulewidth=\dimen181
-) (c:/texlive/2025/texmf-dist/tex/latex/multirow/multirow.sty
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
 \multirow@colwidth=\skip57
 \multirow@cntb=\count305
 \multirow@dima=\skip58
 \bigstrutjot=\dimen182
-) (c:/texlive/2025/texmf-dist/tex/latex/tools/array.sty
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/tools/array.sty
 Package: array 2025/06/08 v2.6j Tabular extension package (FMi)
 \col@sep=\dimen183
 \ar@mcellbox=\box55
@@ -261,9 +262,9 @@ Package: array 2025/06/08 v2.6j Tabular extension package (FMi)
 \extratabsurround=\skip59
 \backup@length=\skip60
 \ar@cellbox=\box56
-) (c:/texlive/2025/texmf-dist/tex/latex/tools/dcolumn.sty
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/tools/dcolumn.sty
 Package: dcolumn 2023/07/08 v1.06 decimal alignment package (DPC)
-) (c:/texlive/2025/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
 \f@nch@headwidth=\skip61
 \f@nch@offset@elh=\skip62
@@ -280,7 +281,7 @@ Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
 \f@nch@widthC=\skip73
 \f@nch@widthR=\skip74
 \@temptokenb=\toks33
-) (c:/texlive/2025/texmf-dist/tex/latex/titlesec/titlesec.sty
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/titlesec/titlesec.sty
 Package: titlesec 2025/01/04 v2.17 Sectioning titles
 \ttl@box=\box57
 \beforetitleunit=\skip75
@@ -291,107 +292,107 @@ Package: titlesec 2025/01/04 v2.17 Sectioning titles
 \titlewidth=\dimen187
 \titlewidthlast=\dimen188
 \titlewidthfirst=\dimen189
-) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2025-07-12 v7.01o Hypertext links for LaTeX
- (c:/texlive/2025/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2025-06-21 v7.01n Hypertext links for LaTeX
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
-) (c:/texlive/2025/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
-) (c:/texlive/2025/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/generic/pdfescape/pdfescape.sty
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
- (c:/texlive/2025/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
 Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
-) (c:/texlive/2025/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
- (c:/texlive/2025/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/generic/infwarerr/infwarerr.sty
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 )
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
-)) (c:/texlive/2025/texmf-dist/tex/latex/hycolor/hycolor.sty
+)) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/hycolor/hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
-) (c:/texlive/2025/texmf-dist/tex/latex/hyperref/nameref.sty
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2025-06-21 v2.57 Cross-referencing by name of section
- (c:/texlive/2025/texmf-dist/tex/latex/refcount/refcount.sty
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/refcount/refcount.sty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
-) (c:/texlive/2025/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
- (c:/texlive/2025/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
 \c@section@level=\count306
-) (c:/texlive/2025/texmf-dist/tex/latex/etoolbox/etoolbox.sty
-Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2025/02/11 v2.5l e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count307
-) (c:/texlive/2025/texmf-dist/tex/generic/stringenc/stringenc.sty
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/generic/stringenc/stringenc.sty
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
 )
 \@linkdim=\dimen190
 \Hy@linkcounter=\count308
 \Hy@pagecounter=\count309
- (c:/texlive/2025/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2025-07-12 v7.01o Hyperref: PDFDocEncoding definition (HO)
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2025-06-21 v7.01n Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
-) (c:/texlive/2025/texmf-dist/tex/generic/intcalc/intcalc.sty
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
 \Hy@SavedSpaceFactor=\count310
- (c:/texlive/2025/texmf-dist/tex/latex/hyperref/puenc.def
-File: puenc.def 2025-07-12 v7.01o Hyperref: PDF Unicode definition (HO)
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2025-06-21 v7.01n Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
-Package hyperref Info: Option `colorlinks' set `false' on input line 4066.
-Package hyperref Info: Option `breaklinks' set `true' on input line 4066.
-Package hyperref Info: Hyper figures OFF on input line 4195.
-Package hyperref Info: Link nesting OFF on input line 4200.
-Package hyperref Info: Hyper index ON on input line 4203.
-Package hyperref Info: Plain pages OFF on input line 4210.
-Package hyperref Info: Backreferencing OFF on input line 4215.
+Package hyperref Info: Option `colorlinks' set `false' on input line 4052.
+Package hyperref Info: Option `breaklinks' set `true' on input line 4052.
+Package hyperref Info: Hyper figures OFF on input line 4181.
+Package hyperref Info: Link nesting OFF on input line 4186.
+Package hyperref Info: Hyper index ON on input line 4189.
+Package hyperref Info: Plain pages OFF on input line 4196.
+Package hyperref Info: Backreferencing OFF on input line 4201.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4462.
+Package hyperref Info: Bookmarks ON on input line 4448.
 \c@Hy@tempcnt=\count311
- (c:/texlive/2025/texmf-dist/tex/latex/url/url.sty
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip18
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 4801.
+LaTeX Info: Redefining \url on input line 4787.
 \XeTeXLinkMargin=\dimen191
- (c:/texlive/2025/texmf-dist/tex/generic/bitset/bitset.sty
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
- (c:/texlive/2025/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
 \Fld@menulength=\count312
 \Field@Width=\dimen192
 \Fld@charsize=\dimen193
-Package hyperref Info: Hyper figures OFF on input line 6078.
-Package hyperref Info: Link nesting OFF on input line 6083.
-Package hyperref Info: Hyper index ON on input line 6086.
-Package hyperref Info: backreferencing OFF on input line 6093.
-Package hyperref Info: Link coloring OFF on input line 6098.
-Package hyperref Info: Link coloring with OCG OFF on input line 6103.
-Package hyperref Info: PDF/A mode OFF on input line 6108.
+Package hyperref Info: Hyper figures OFF on input line 6066.
+Package hyperref Info: Link nesting OFF on input line 6071.
+Package hyperref Info: Hyper index ON on input line 6074.
+Package hyperref Info: backreferencing OFF on input line 6081.
+Package hyperref Info: Link coloring OFF on input line 6086.
+Package hyperref Info: Link coloring with OCG OFF on input line 6091.
+Package hyperref Info: PDF/A mode OFF on input line 6096.
 \Hy@abspage=\count313
 \c@Item=\count314
 \c@Hfootnote=\count315
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
- (c:/texlive/2025/texmf-dist/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2025-07-12 v7.01o Hyperref driver for pdfTeX
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2025-06-21 v7.01n Hyperref driver for pdfTeX
 \Fld@listcount=\count316
 \c@bookmark@seq@number=\count317
- (c:/texlive/2025/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2025-06-21 v1.11 Rerun checks for auxiliary files (HO)
- (c:/texlive/2025/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
 Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 284.
 )
 \Hy@SectionHShift=\skip77
-) (c:/texlive/2025/texmf-dist/tex/latex/enumitem/enumitem.sty
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/enumitem/enumitem.sty
 Package: enumitem 2025/02/06 v3.11 Customized lists
 \labelindent=\skip78
 \enit@outerparindent=\dimen194
@@ -399,15 +400,15 @@ Package: enumitem 2025/02/06 v3.11 Customized lists
 \enit@inbox=\box58
 \enit@count@id=\count318
 \enitdp@description=\count319
-) (c:/texlive/2025/texmf-dist/tex/latex/lettrine/lettrine.sty
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/lettrine/lettrine.sty
 File: lettrine.sty 2025-01-30 v2.80 (Daniel Flipo)
- (c:/texlive/2025/texmf-dist/tex/latex/l3packages/xfp/xfp.sty (c:/texlive/2025/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2025-10-24 L3 programming layer (loader) 
- (c:/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/l3packages/xfp/xfp.sty (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2025-06-09 L3 programming layer (loader) 
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2025-06-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count320
 ))
-Package: xfp 2025-10-09 L3 Floating point unit
+Package: xfp 2024-08-16 L3 Floating point unit
 )
 \c@DefaultLines=\count321
 \c@DefaultDepth=\count322
@@ -439,21 +440,21 @@ Package: xfp 2025-10-09 L3 Floating point unit
 \L@finaldp=\dimen271
 
 Loading lettrine.cfg
-(c:/texlive/2025/texmf-dist/tex/latex/lettrine/lettrine.cfg)
+(c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/lettrine/lettrine.cfg)
 \Lettrine@tweaks=\toks36
 \Llist@everypar=\toks37
-) (c:/texlive/2025/texmf-dist/tex/latex/setspace/setspace.sty
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2022/12/04 v6.7b set line spacing
-) (c:/texlive/2025/texmf-dist/tex/latex/lastpage/lastpage.sty
-Package: lastpage 2025/08/14 v2.1h lastpage: 2.09 or 2e? (HMM)
- (c:/texlive/2025/texmf-dist/tex/latex/lastpage/lastpage2e.sty
-Package: lastpage2e 2025/08/14 v2.1h Decide which 2e lastpage version to use (HMM)
- (c:/texlive/2025/texmf-dist/tex/latex/lastpage/lastpagemodern.sty
-Package: lastpagemodern 2025-08-14 v2.1h Refers to last page's name (HMM; JPG)
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/lastpage/lastpage.sty
+Package: lastpage 2025/06/06 v2.1g lastpage: 2.09 or 2e? (HMM)
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/lastpage/lastpage2e.sty
+Package: lastpage2e 2025/06/06 v2.1g Decide which 2e lastpage version to use (HMM)
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/lastpage/lastpagemodern.sty
+Package: lastpagemodern 2025-06-06 v2.1g Refers to last page's name (HMM; JPG)
 \c@lastpagecount=\count325
 ) 
-)) (c:/texlive/2025/texmf-dist/tex/latex/microtype/microtype.sty
-Package: microtype 2025/07/09 v3.2b Micro-typographical refinements (RS)
+)) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/microtype/microtype.sty
+Package: microtype 2025/02/11 v3.2a Micro-typographical refinements (RS)
 \MT@toks=\toks38
 \MT@tempbox=\box62
 \MT@count=\count326
@@ -466,18 +467,18 @@ LaTeX Info: Redefining \textls on input line 1449.
 LaTeX Info: Redefining \microtypecontext on input line 2053.
 LaTeX Info: Redefining \textmicrotypecontext on input line 2070.
 \MT@listname@count=\count327
- (c:/texlive/2025/texmf-dist/tex/latex/microtype/microtype-pdftex.def
-File: microtype-pdftex.def 2025/07/09 v3.2b Definitions specific to pdftex (RS)
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/microtype/microtype-pdftex.def
+File: microtype-pdftex.def 2025/02/11 v3.2a Definitions specific to pdftex (RS)
 LaTeX Info: Redefining \lsstyle on input line 944.
 LaTeX Info: Redefining \lslig on input line 944.
 \MT@outer@space=\skip79
 )
 Package microtype Info: Loading configuration file microtype.cfg.
- (c:/texlive/2025/texmf-dist/tex/latex/microtype/microtype.cfg
-File: microtype.cfg 2025/07/09 v3.2b microtype main configuration file (RS)
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/microtype/microtype.cfg
+File: microtype.cfg 2025/02/11 v3.2a microtype main configuration file (RS)
 )
 LaTeX Info: Redefining \microtypesetup on input line 3065.
-) (c:/texlive/2025/texmf-dist/tex/latex/listings/listings.sty
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/listings/listings.sty
 \lst@mode=\count328
 \lst@gtempboxa=\box63
 \lst@token=\toks40
@@ -490,20 +491,20 @@ LaTeX Info: Redefining \microtypesetup on input line 3065.
 \lst@newlines=\count332
 \lst@lineno=\count333
 \lst@maxwidth=\dimen276
- (c:/texlive/2025/texmf-dist/tex/latex/listings/lstpatch.sty
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/listings/lstpatch.sty
 File: lstpatch.sty 2024/09/23 1.10c (Carsten Heinz)
-) (c:/texlive/2025/texmf-dist/tex/latex/listings/lstmisc.sty
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
 \c@lstnumber=\count334
 \lst@skipnumbers=\count335
 \lst@framebox=\box64
-) (c:/texlive/2025/texmf-dist/tex/latex/listings/listings.cfg
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2024/09/23 1.10c listings configuration
 ))
 Package: listings 2024/09/23 1.10c (Carsten Heinz)
- (c:/texlive/2025/texmf-dist/tex/latex/caption/caption.sty
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2023/08/05 v3.6o Customizing captions (AR)
- (c:/texlive/2025/texmf-dist/tex/latex/caption/caption3.sty
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
 \caption@tempdima=\dimen277
 \captionmargin=\dimen278
@@ -519,15 +520,15 @@ Package caption Info: Standard document class detected.
 \c@continuedfloat=\count337
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
-) (c:/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
 ))
 LaTeX Font Info:    Trying to load font information for T1+lmr on input line 5.
- (c:/texlive/2025/texmf-dist/tex/latex/lm/t1lmr.fd
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) (./DP.aux
 Package babel Info: 'slovak' activates 'slovak' shorthands.
-(babel)             Reported on input line 11.
+(babel)             Reported  on input line 11.
 )
 \openout1 = `DP.aux'.
 
@@ -584,7 +585,7 @@ LaTeX Font Info:    ... okay on input line 5.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-(c:/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+(c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count338
 \scratchdimen=\dimen285
@@ -597,10 +598,10 @@ LaTeX Font Info:    ... okay on input line 5.
 \MPnumerator=\count342
 \makeMPintoPDFobject=\count343
 \everyMPtoPDFconversion=\toks42
-) (c:/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
- (c:/texlive/2025/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 Package hyperref Info: Link coloring OFF on input line 5.
@@ -626,11 +627,15 @@ Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-Package microtype Info: Patching command `\showhyphens'.
+
+LaTeX Warning: Command \showhyphens   has changed.
+               Check if current package is valid.
+
+LaTeX Info: Redefining \showhyphens on input line 5.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
-(c:/texlive/2025/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+(c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
 )
 \c@lstlisting=\count344
@@ -644,19 +649,19 @@ Package microtype Info: Character `029' is missing
 (microtype)             Ignoring protrusion settings for this character.
 LaTeX Font Info:    Calculating math sizes for size <11> on input line 54.
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 54.
- (c:/texlive/2025/texmf-dist/tex/latex/lm/ot1lmr.fd
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 54.
- (c:/texlive/2025/texmf-dist/tex/latex/lm/omllmm.fd
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 54.
- (c:/texlive/2025/texmf-dist/tex/latex/lm/omslmsy.fd
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 54.
- (c:/texlive/2025/texmf-dist/tex/latex/lm/omxlmex.fd
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -666,21 +671,21 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5.5> on input line 54.
 LaTeX Font Info:    Trying to load font information for U+msa on input line 54.
- (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-) (c:/texlive/2025/texmf-dist/tex/latex/microtype/mt-msa.cfg
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 54.
- (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) (c:/texlive/2025/texmf-dist/tex/latex/microtype/mt-msb.cfg
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 
 [1
 
-{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}]
+{c:/MyFiles/Soft/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}]
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
 * paper: a4paper
@@ -713,7 +718,7 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<../zadanieDP/zadanieDP.pdf, id=208, 597.51233pt x 845.0471pt>
+<../zadanieDP/zadanieDP.pdf, id=212, 597.51233pt x 845.0471pt>
 File: ../zadanieDP/zadanieDP.pdf Graphic file (type pdf)
 <use ../zadanieDP/zadanieDP.pdf>
 Package pdftex.def Info: ../zadanieDP/zadanieDP.pdf  used on input line 97.
@@ -724,7 +729,7 @@ Package pdftex.def Info: ../zadanieDP/zadanieDP.pdf  used on input line 97.
 
  <../zadanieDP/zadanieDP.pdf>]
 LaTeX Font Info:    Trying to load font information for T1+lmss on input line 127.
- (c:/texlive/2025/texmf-dist/tex/latex/lm/t1lmss.fd
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 Package microtype Info: Loading generic protrusion settings for font family
@@ -746,18 +751,18 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 [4] (./chapters/abstract.tex)
 
-[5] (./DP.toc)
+[5] (./DP.toc
+
+[6])
 \tf@toc=\write4
 \openout4 = `DP.toc'.
 
 
 
-[6]
-
 [7] (./chapters/uvod.tex)
 
 [8] (./chapters/section1.tex
-<../SCH/DRAW/URO_scheme.pdf, id=311, 369.88583pt x 99.58464pt>
+<../SCH/DRAW/URO_scheme.pdf, id=316, 369.88583pt x 99.58464pt>
 File: ../SCH/DRAW/URO_scheme.pdf Graphic file (type pdf)
 <use ../SCH/DRAW/URO_scheme.pdf>
 Package pdftex.def Info: ../SCH/DRAW/URO_scheme.pdf  used on input line 48.
@@ -770,7 +775,7 @@ See the caption package documentation for explanation.
 
 
 
-[9{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc} <../SCH/DRAW/URO_scheme.pdf>]
+[9{c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc} <../SCH/DRAW/URO_scheme.pdf>]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 156.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmtt' (encoding: T1).
@@ -782,7 +787,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             See the microtype manual for details.
 
 
-[10{c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+[10{c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 173.
@@ -794,7 +799,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 173.
 
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 177.
-(c:/texlive/2025/texmf-dist/tex/latex/lm/t1lmtt.fd
+(c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 Package microtype Info: Loading generic protrusion settings for font family
@@ -804,7 +809,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 )
 
 [11] (./chapters/section2.tex
-<../SVG/TS_sch3_foto.pdf, id=384, 455.2441pt x 241.84843pt>
+<../SVG/TS_sch3_foto.pdf, id=389, 455.2441pt x 241.84843pt>
 File: ../SVG/TS_sch3_foto.pdf Graphic file (type pdf)
 <use ../SVG/TS_sch3_foto.pdf>
 Package pdftex.def Info: ../SVG/TS_sch3_foto.pdf  used on input line 52.
@@ -818,7 +823,7 @@ See the caption package documentation for explanation.
 
 
 [12 <../SVG/TS_sch3_foto.pdf>]
-<../PY/fig/ts_prevodova_spirala.png, id=400, 560.3334pt x 170.67764pt>
+<../PY/fig/ts_prevodova_spirala.png, id=405, 560.3334pt x 170.67764pt>
 File: ../PY/fig/ts_prevodova_spirala.png Graphic file (type png)
 <use ../PY/fig/ts_prevodova_spirala.png>
 Package pdftex.def Info: ../PY/fig/ts_prevodova_spirala.png  used on input line 79.
@@ -829,7 +834,7 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 80.
 See the caption package documentation for explanation.
 
-<../PY/fig/ts_prevodova_sensors3.png, id=402, 560.3334pt x 204.765pt>
+<../PY/fig/ts_prevodova_sensors3.png, id=407, 560.3334pt x 204.765pt>
 File: ../PY/fig/ts_prevodova_sensors3.png Graphic file (type png)
 <use ../PY/fig/ts_prevodova_sensors3.png>
 Package pdftex.def Info: ../PY/fig/ts_prevodova_sensors3.png  used on input line 92.
@@ -839,7 +844,7 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 93.
 See the caption package documentation for explanation.
 
-<../PY/fig/ts_prevodova_sensors6.png, id=403, 560.3334pt x 204.765pt>
+<../PY/fig/ts_prevodova_sensors6.png, id=408, 560.3334pt x 204.765pt>
 File: ../PY/fig/ts_prevodova_sensors6.png Graphic file (type png)
 <use ../PY/fig/ts_prevodova_sensors6.png>
 Package pdftex.def Info: ../PY/fig/ts_prevodova_sensors6.png  used on input line 102.
@@ -852,7 +857,7 @@ See the caption package documentation for explanation.
 
 
 [13 <../PY/fig/ts_prevodova_spirala.png> <../PY/fig/ts_prevodova_sensors3.png>]
-<../PY/fig/ts_prevodova_sensors9.png, id=413, 560.3334pt x 204.765pt>
+<../PY/fig/ts_prevodova_sensors9.png, id=418, 560.3334pt x 204.765pt>
 File: ../PY/fig/ts_prevodova_sensors9.png Graphic file (type png)
 <use ../PY/fig/ts_prevodova_sensors9.png>
 Package pdftex.def Info: ../PY/fig/ts_prevodova_sensors9.png  used on input line 112.
@@ -863,7 +868,7 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 113.
 See the caption package documentation for explanation.
 
-<../PY/fig/ts_static_sensors3.png, id=414, 560.3334pt x 184.89075pt>
+<../PY/fig/ts_static_sensors3.png, id=419, 560.3334pt x 184.89075pt>
 File: ../PY/fig/ts_static_sensors3.png Graphic file (type png)
 <use ../PY/fig/ts_static_sensors3.png>
 Package pdftex.def Info: ../PY/fig/ts_static_sensors3.png  used on input line 125.
@@ -876,7 +881,7 @@ See the caption package documentation for explanation.
 
 
 [14 <../PY/fig/ts_prevodova_sensors6.png> <../PY/fig/ts_prevodova_sensors9.png>]
-<../PY/fig/ts_static_sensors6.png, id=423, 560.3334pt x 184.89075pt>
+<../PY/fig/ts_static_sensors6.png, id=428, 560.3334pt x 184.89075pt>
 File: ../PY/fig/ts_static_sensors6.png Graphic file (type png)
 <use ../PY/fig/ts_static_sensors6.png>
 Package pdftex.def Info: ../PY/fig/ts_static_sensors6.png  used on input line 135.
@@ -887,7 +892,7 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 136.
 See the caption package documentation for explanation.
 
-<../PY/fig/ts_static_sensors9.png, id=424, 560.3334pt x 184.89075pt>
+<../PY/fig/ts_static_sensors9.png, id=429, 560.3334pt x 184.89075pt>
 File: ../PY/fig/ts_static_sensors9.png Graphic file (type png)
 <use ../PY/fig/ts_static_sensors9.png>
 Package pdftex.def Info: ../PY/fig/ts_static_sensors9.png  used on input line 145.
@@ -900,7 +905,7 @@ See the caption package documentation for explanation.
 
 
 [15 <../PY/fig/ts_static_sensors3.png> <../PY/fig/ts_static_sensors6.png> <../PY/fig/ts_static_sensors9.png>]
-<../PY/fig/ts_pb_vent6_spir4_ident_raw.png, id=436, 560.3334pt x 227.53004pt>
+<../PY/fig/ts_pb_vent6_spir4_ident_raw.png, id=441, 560.3334pt x 227.53004pt>
 File: ../PY/fig/ts_pb_vent6_spir4_ident_raw.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_spir4_ident_raw.png>
 Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_ident_raw.png  used on input line 176.
@@ -950,7 +955,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 229.
 
-<../PY/fig/ts_pb_vent6_spir4_ident_raw_normalized.png, id=456, 560.3334pt x 284.5029pt>
+<../PY/fig/ts_pb_vent6_spir4_ident_raw_normalized.png, id=461, 560.3334pt x 284.5029pt>
 File: ../PY/fig/ts_pb_vent6_spir4_ident_raw_normalized.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_spir4_ident_raw_normalized.png>
 Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_ident_raw_normalized.png  used on input line 239.
@@ -960,7 +965,7 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 240.
 See the caption package documentation for explanation.
 
-<../PY/fig/ts_pb_vent6_spir4_ident_avg.png, id=459, 560.3334pt x 199.10385pt>
+<../PY/fig/ts_pb_vent6_spir4_ident_avg.png, id=464, 560.3334pt x 199.10385pt>
 File: ../PY/fig/ts_pb_vent6_spir4_ident_avg.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_spir4_ident_avg.png>
 Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_ident_avg.png  used on input line 260.
@@ -1071,7 +1076,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 407.
 
-<../PY/fig/ts_pb_vent6_spir4_ident_comparison.png, id=553, 560.3334pt x 170.67764pt>
+<../PY/fig/ts_pb_vent6_spir4_ident_comparison.png, id=558, 560.3334pt x 170.67764pt>
 File: ../PY/fig/ts_pb_vent6_spir4_ident_comparison.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_spir4_ident_comparison.png>
 Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_ident_comparison.png  used on input line 443.
@@ -1084,7 +1089,7 @@ See the caption package documentation for explanation.
 
 
 [20 <../PY/fig/ts_pb_vent6_spir4_ident_comparison.png>]
-<../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png, id=581, 560.3334pt x 170.67764pt>
+<../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png, id=586, 560.3334pt x 170.67764pt>
 File: ../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png>
 Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png  used on input line 534.
@@ -1098,7 +1103,7 @@ See the caption package documentation for explanation.
 
 
 [21]
-<../SCH/SIMULINK/TS01_start.pdf, id=596, 845.1575pt x 597.23125pt>
+<../SCH/SIMULINK/TS01_start.pdf, id=601, 845.1575pt x 597.23125pt>
 File: ../SCH/SIMULINK/TS01_start.pdf Graphic file (type pdf)
 <use ../SCH/SIMULINK/TS01_start.pdf>
 Package pdftex.def Info: ../SCH/SIMULINK/TS01_start.pdf  used on input line 595.
@@ -1112,7 +1117,7 @@ See the caption package documentation for explanation.
 
 
 [22 <../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png>]
-<../SCH/SIMULINK/TS_simulink_scheme.pdf, id=607, 794.97pt x 614.295pt>
+<../SCH/SIMULINK/TS_simulink_scheme.pdf, id=612, 794.97pt x 614.295pt>
 File: ../SCH/SIMULINK/TS_simulink_scheme.pdf Graphic file (type pdf)
 <use ../SCH/SIMULINK/TS_simulink_scheme.pdf>
 Package pdftex.def Info: ../SCH/SIMULINK/TS_simulink_scheme.pdf  used on input line 612.
@@ -1129,7 +1134,7 @@ See the caption package documentation for explanation.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<../FOTO/in_progress.png, id=641, 735.49782pt x 414.79968pt>
+<../FOTO/in_progress.png, id=646, 735.49782pt x 414.79968pt>
 File: ../FOTO/in_progress.png Graphic file (type png)
 <use ../FOTO/in_progress.png>
 Package pdftex.def Info: ../FOTO/in_progress.png  used on input line 738.
@@ -1158,11 +1163,11 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [25 <../FOTO/in_progress.png>]
 
-[26] (c:/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
+[26] (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
-) (c:/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
-) (c:/texlive/2025/texmf-dist/tex/latex/listings/lstmisc.sty
+) (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
 )
 
@@ -1268,97 +1273,89 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 985.
 
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1018.
+(c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
 
-
-[28] (c:/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
+[28{c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}] (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
 )
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 1107.
+(Font)              using `T1/cmtt/bx/n' instead on input line 1116.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 1107.
+(Font)              using `T1/cmtt/bx/n' instead on input line 1116.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 1107.
+(Font)              using `T1/cmtt/bx/n' instead on input line 1116.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 1107.
+(Font)              using `T1/cmtt/bx/n' instead on input line 1116.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 1109.
+(Font)              using `T1/cmtt/bx/n' instead on input line 1118.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 1112.
+(Font)              using `T1/cmtt/bx/n' instead on input line 1121.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 1112.
+(Font)              using `T1/cmtt/bx/n' instead on input line 1121.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 1112.
-
-
-LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 1115.
-
-<../SCH/TIA/tia_time_vars.png, id=715, 388.45125pt x 207.02344pt>
-File: ../SCH/TIA/tia_time_vars.png Graphic file (type png)
-<use ../SCH/TIA/tia_time_vars.png>
-Package pdftex.def Info: ../SCH/TIA/tia_time_vars.png  used on input line 1127.
-(pdftex.def)             Requested size: 295.90979pt x 157.70903pt.
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1128.
-See the caption package documentation for explanation.
+(Font)              using `T1/cmtt/bx/n' instead on input line 1121.
 
 
 
 [29]
-<../SCH/TIA/tia_service_scheme.png, id=739, 470.50781pt x 626.34pt>
-File: ../SCH/TIA/tia_service_scheme.png Graphic file (type png)
-<use ../SCH/TIA/tia_service_scheme.png>
-Package pdftex.def Info: ../SCH/TIA/tia_service_scheme.png  used on input line 1142.
-(pdftex.def)             Requested size: 295.90979pt x 393.91772pt.
 
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1124.
+
+<../SCH/TIA/tia_time_vars.png, id=736, 388.45125pt x 207.02344pt>
+File: ../SCH/TIA/tia_time_vars.png Graphic file (type png)
+<use ../SCH/TIA/tia_time_vars.png>
+Package pdftex.def Info: ../SCH/TIA/tia_time_vars.png  used on input line 1136.
+(pdftex.def)             Requested size: 295.90979pt x 157.70903pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1143.
+(caption)                particular \caption on input line 1137.
+See the caption package documentation for explanation.
+
+<../SCH/TIA/tia_service_scheme.png, id=738, 470.50781pt x 626.34pt>
+File: ../SCH/TIA/tia_service_scheme.png Graphic file (type png)
+<use ../SCH/TIA/tia_service_scheme.png>
+Package pdftex.def Info: ../SCH/TIA/tia_service_scheme.png  used on input line 1151.
+(pdftex.def)             Requested size: 295.90979pt x 393.91772pt.
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 1152.
 See the caption package documentation for explanation.
 
 
 
-[30 <../SCH/TIA/tia_time_vars.png> <../SCH/TIA/tia_service_scheme.png>]
+[30 <../SCH/TIA/tia_time_vars.png>]
+
+[31 <../SCH/TIA/tia_service_scheme.png>]
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 1190.
-
-
-LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 1190.
+(Font)              using `T1/cmtt/bx/n' instead on input line 1199.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 1190.
+(Font)              using `T1/cmtt/bx/n' instead on input line 1199.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 1190.
-
-
-LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 1191.
-
-
-LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 1191.
+(Font)              using `T1/cmtt/bx/n' instead on input line 1199.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
@@ -1368,22 +1365,32 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 1200.
 
-<../SCH/TIA/tia_pi_logger_vars.png, id=749, 389.95688pt x 319.94531pt>
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1200.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1208.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 1209.
+
+<../SCH/TIA/tia_pi_logger_vars.png, id=760, 389.95688pt x 319.94531pt>
 File: ../SCH/TIA/tia_pi_logger_vars.png Graphic file (type png)
 <use ../SCH/TIA/tia_pi_logger_vars.png>
-Package pdftex.def Info: ../SCH/TIA/tia_pi_logger_vars.png  used on input line 1212.
+Package pdftex.def Info: ../SCH/TIA/tia_pi_logger_vars.png  used on input line 1221.
 (pdftex.def)             Requested size: 295.90979pt x 242.78992pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1213.
+(caption)                particular \caption on input line 1222.
 See the caption package documentation for explanation.
 
-
-
-[31])
+)
 
 [32 <../SCH/TIA/tia_pi_logger_vars.png>] (./chapters/section3.tex
-<../SCH/DRAW/PI_scheme_draw.pdf, id=776, 369.88583pt x 125.19212pt>
+<../SCH/DRAW/PI_scheme_draw.pdf, id=782, 369.88583pt x 125.19212pt>
 File: ../SCH/DRAW/PI_scheme_draw.pdf Graphic file (type pdf)
 <use ../SCH/DRAW/PI_scheme_draw.pdf>
 Package pdftex.def Info: ../SCH/DRAW/PI_scheme_draw.pdf  used on input line 41.
@@ -1402,7 +1409,7 @@ LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <9> not available
 
 
 [34]
-<../PY/fig/ts_pb_vent6_spir4_pidtune_sim.png, id=827, 560.3334pt x 270.2898pt>
+<../PY/fig/ts_pb_vent6_spir4_pidtune_sim.png, id=833, 560.3334pt x 270.2898pt>
 File: ../PY/fig/ts_pb_vent6_spir4_pidtune_sim.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_spir4_pidtune_sim.png>
 Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_pidtune_sim.png  used on input line 224.
@@ -1446,7 +1453,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 331.
 
-<../SCH/SIMULINK/TS_pi_scheme.pdf, id=860, 845.1575pt x 597.23125pt>
+<../SCH/SIMULINK/TS_pi_scheme.pdf, id=866, 845.1575pt x 597.23125pt>
 File: ../SCH/SIMULINK/TS_pi_scheme.pdf Graphic file (type pdf)
 <use ../SCH/SIMULINK/TS_pi_scheme.pdf>
 Package pdftex.def Info: ../SCH/SIMULINK/TS_pi_scheme.pdf  used on input line 349.
@@ -1459,7 +1466,7 @@ See the caption package documentation for explanation.
 
 
 [37]
-<../PY/fig/ts_pb_vent6_spir4_PI_real.png, id=915, 560.3334pt x 270.2898pt>
+<../PY/fig/ts_pb_vent6_spir4_PI_real.png, id=921, 560.3334pt x 270.2898pt>
 File: ../PY/fig/ts_pb_vent6_spir4_PI_real.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_spir4_PI_real.png>
 Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_PI_real.png  used on input line 378.
@@ -1473,11 +1480,7 @@ See the caption package documentation for explanation.
 
 
 [38 <../SCH/SIMULINK/TS_pi_scheme.pdf>]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 387.
- (c:/texlive/2025/texmf-dist/tex/latex/lm/ts1lmr.fd
-File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-<../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png, id=972, 560.3334pt x 270.2898pt>
+<../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png, id=978, 560.3334pt x 270.2898pt>
 File: ../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png>
 Package pdftex.def Info: ../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png  used on input line 410.
@@ -1490,7 +1493,7 @@ See the caption package documentation for explanation.
 
 
 
-[39{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc} <../PY/fig/ts_pb_vent6_spir4_PI_real.png>]
+[39 <../PY/fig/ts_pb_vent6_spir4_PI_real.png>]
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 443.
@@ -1558,7 +1561,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 468.
 
-<../PY/fig/ts_cpp_pi_real.png, id=994, 560.3334pt x 270.2898pt>
+<../PY/fig/ts_cpp_pi_real.png, id=999, 560.3334pt x 270.2898pt>
 File: ../PY/fig/ts_cpp_pi_real.png Graphic file (type png)
 <use ../PY/fig/ts_cpp_pi_real.png>
 Package pdftex.def Info: ../PY/fig/ts_cpp_pi_real.png  used on input line 503.
@@ -1601,7 +1604,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 566.
 
-<../SCH/TIA/tia_pi_vars.png, id=1036, 390.70969pt x 333.49594pt>
+<../SCH/TIA/tia_pi_vars.png, id=1041, 390.70969pt x 333.49594pt>
 File: ../SCH/TIA/tia_pi_vars.png Graphic file (type png)
 <use ../SCH/TIA/tia_pi_vars.png>
 Package pdftex.def Info: ../SCH/TIA/tia_pi_vars.png  used on input line 582.
@@ -1611,7 +1614,7 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 583.
 See the caption package documentation for explanation.
 
-<../SCH/TIA/tia_pi_scheme.png, id=1038, 844.65562pt x 455.45157pt>
+<../SCH/TIA/tia_pi_scheme.png, id=1043, 844.65562pt x 455.45157pt>
 File: ../SCH/TIA/tia_pi_scheme.png Graphic file (type png)
 <use ../SCH/TIA/tia_pi_scheme.png>
 Package pdftex.def Info: ../SCH/TIA/tia_pi_scheme.png  used on input line 595.
@@ -1624,7 +1627,7 @@ See the caption package documentation for explanation.
 
 
 [43 <../SCH/TIA/tia_pi_vars.png>]
-<../PY/fig/ts_plc_pi_real.png, id=1070, 560.3334pt x 270.2898pt>
+<../PY/fig/ts_plc_pi_real.png, id=1075, 560.3334pt x 270.2898pt>
 File: ../PY/fig/ts_plc_pi_real.png Graphic file (type png)
 <use ../PY/fig/ts_plc_pi_real.png>
 Package pdftex.def Info: ../PY/fig/ts_plc_pi_real.png  used on input line 619.
@@ -1647,7 +1650,7 @@ Overfull \hbox (14.52347pt too wide) in paragraph at lines 38--60
 
 
 [46]
-<../SCH/DRAW/PREP_logic.pdf, id=1093, 369.88583pt x 156.49016pt>
+<../SCH/DRAW/PREP_logic.pdf, id=1098, 369.88583pt x 156.49016pt>
 File: ../SCH/DRAW/PREP_logic.pdf Graphic file (type pdf)
 <use ../SCH/DRAW/PREP_logic.pdf>
 Package pdftex.def Info: ../SCH/DRAW/PREP_logic.pdf  used on input line 135.
@@ -1673,7 +1676,7 @@ See the caption package documentation for explanation.
 [52]
 
 [53]
-<../SCH/SIMULINK/TS_prep_simulink_scheme.pdf, id=1357, 845.1575pt x 597.23125pt>
+<../SCH/SIMULINK/TS_prep_simulink_scheme.pdf, id=1362, 845.1575pt x 597.23125pt>
 File: ../SCH/SIMULINK/TS_prep_simulink_scheme.pdf Graphic file (type pdf)
 <use ../SCH/SIMULINK/TS_prep_simulink_scheme.pdf>
 Package pdftex.def Info: ../SCH/SIMULINK/TS_prep_simulink_scheme.pdf  used on input line 736.
@@ -1782,7 +1785,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 841.
 
-<../PY/fig/ts_ml_prep_simulation.png, id=1507, 560.3334pt x 625.8582pt>
+<../PY/fig/ts_ml_prep_simulation.png, id=1512, 560.3334pt x 625.8582pt>
 File: ../PY/fig/ts_ml_prep_simulation.png Graphic file (type png)
 <use ../PY/fig/ts_ml_prep_simulation.png>
 Package pdftex.def Info: ../PY/fig/ts_ml_prep_simulation.png  used on input line 912.
@@ -1797,7 +1800,7 @@ See the caption package documentation for explanation.
 [56]
 
 [57 <../PY/fig/ts_ml_prep_simulation.png>]
-<../PY/fig/ts_ml_prep_real.png, id=1535, 560.3334pt x 625.8582pt>
+<../PY/fig/ts_ml_prep_real.png, id=1540, 560.3334pt x 625.8582pt>
 File: ../PY/fig/ts_ml_prep_real.png Graphic file (type png)
 <use ../PY/fig/ts_ml_prep_real.png>
 Package pdftex.def Info: ../PY/fig/ts_ml_prep_real.png  used on input line 932.
@@ -1811,7 +1814,7 @@ See the caption package documentation for explanation.
 
 
 [58 <../PY/fig/ts_ml_prep_real.png>]
-<../PY/fig/ts_ml_prep_real_zoom.png, id=1543, 560.3334pt x 341.3553pt>
+<../PY/fig/ts_ml_prep_real_zoom.png, id=1548, 560.3334pt x 341.3553pt>
 File: ../PY/fig/ts_ml_prep_real_zoom.png Graphic file (type png)
 <use ../PY/fig/ts_ml_prep_real_zoom.png>
 Package pdftex.def Info: ../PY/fig/ts_ml_prep_real_zoom.png  used on input line 970.
@@ -2297,7 +2300,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 
 
 [63]
-<../PY/fig/ts_cpp_prep_real.png, id=1801, 560.3334pt x 625.8582pt>
+<../PY/fig/ts_cpp_prep_real.png, id=1806, 560.3334pt x 625.8582pt>
 File: ../PY/fig/ts_cpp_prep_real.png Graphic file (type png)
 <use ../PY/fig/ts_cpp_prep_real.png>
 Package pdftex.def Info: ../PY/fig/ts_cpp_prep_real.png  used on input line 1391.
@@ -2313,7 +2316,7 @@ See the caption package documentation for explanation.
 [64]
 
 [65 <../PY/fig/ts_cpp_prep_real.png>]
-<../PY/fig/ts_cpp_prep_real_zoom.png, id=1821, 560.3334pt x 341.3553pt>
+<../PY/fig/ts_cpp_prep_real_zoom.png, id=1826, 560.3334pt x 341.3553pt>
 File: ../PY/fig/ts_cpp_prep_real_zoom.png Graphic file (type png)
 <use ../PY/fig/ts_cpp_prep_real_zoom.png>
 Package pdftex.def Info: ../PY/fig/ts_cpp_prep_real_zoom.png  used on input line 1416.
@@ -2557,7 +2560,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 1627.
 
-<../SCH/TIA/tia_prep_scheme.png, id=1966, 1297.84875pt x 472.01344pt>
+<../SCH/TIA/tia_prep_scheme.png, id=1971, 1297.84875pt x 472.01344pt>
 File: ../SCH/TIA/tia_prep_scheme.png Graphic file (type png)
 <use ../SCH/TIA/tia_prep_scheme.png>
 Package pdftex.def Info: ../SCH/TIA/tia_prep_scheme.png  used on input line 1644.
@@ -2567,12 +2570,12 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 1645.
 See the caption package documentation for explanation.
 
-<../SCH/TIA/tia_prep_vars1.png, id=1968, 389.95688pt x 521.69907pt>
+<../SCH/TIA/tia_prep_vars1.png, id=1973, 389.95688pt x 521.69907pt>
 File: ../SCH/TIA/tia_prep_vars1.png Graphic file (type png)
 <use ../SCH/TIA/tia_prep_vars1.png>
 Package pdftex.def Info: ../SCH/TIA/tia_prep_vars1.png  used on input line 1657.
 (pdftex.def)             Requested size: 284.81366pt x 381.05208pt.
-<../SCH/TIA/tia_prep_vars2.png, id=1969, 389.95688pt x 389.95688pt>
+<../SCH/TIA/tia_prep_vars2.png, id=1974, 389.95688pt x 389.95688pt>
 File: ../SCH/TIA/tia_prep_vars2.png Graphic file (type png)
 <use ../SCH/TIA/tia_prep_vars2.png>
 Package pdftex.def Info: ../SCH/TIA/tia_prep_vars2.png  used on input line 1660.
@@ -2585,7 +2588,7 @@ See the caption package documentation for explanation.
 
 
 [69 <../SCH/TIA/tia_prep_scheme.png>]
-<../PY/fig/ts_plc_prep_real.png, id=2017, 560.3334pt x 625.8582pt>
+<../PY/fig/ts_plc_prep_real.png, id=2022, 560.3334pt x 625.8582pt>
 File: ../PY/fig/ts_plc_prep_real.png Graphic file (type png)
 <use ../PY/fig/ts_plc_prep_real.png>
 Package pdftex.def Info: ../PY/fig/ts_plc_prep_real.png  used on input line 1673.
@@ -2620,7 +2623,7 @@ See the caption package documentation for explanation.
 
 [80]
 LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 948.
- (c:/texlive/2025/texmf-dist/tex/latex/lm/ts1lmtt.fd
+ (c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/lm/ts1lmtt.fd
 File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 Package microtype Info: Loading generic protrusion settings for font family
@@ -2676,7 +2679,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 1182.
 
-<../SCH/SIMULINK/TS_mrac_simulink_scheme.pdf, id=2361, 845.1575pt x 597.23125pt>
+<../SCH/SIMULINK/TS_mrac_simulink_scheme.pdf, id=2366, 845.1575pt x 597.23125pt>
 File: ../SCH/SIMULINK/TS_mrac_simulink_scheme.pdf Graphic file (type pdf)
 <use ../SCH/SIMULINK/TS_mrac_simulink_scheme.pdf>
 Package pdftex.def Info: ../SCH/SIMULINK/TS_mrac_simulink_scheme.pdf  used on input line 1199.
@@ -2689,7 +2692,7 @@ See the caption package documentation for explanation.
 
 
 [83]
-<../PY/fig/ts_ml_mrac_real_raw.png, id=2436, 560.3334pt x 398.32816pt>
+<../PY/fig/ts_ml_mrac_real_raw.png, id=2441, 560.3334pt x 398.32816pt>
 File: ../PY/fig/ts_ml_mrac_real_raw.png Graphic file (type png)
 <use ../PY/fig/ts_ml_mrac_real_raw.png>
 Package pdftex.def Info: ../PY/fig/ts_ml_mrac_real_raw.png  used on input line 1247.
@@ -2703,7 +2706,7 @@ See the caption package documentation for explanation.
 
 
 [84 <../SCH/SIMULINK/TS_mrac_simulink_scheme.pdf>]
-<../PY/fig/ts_ml_mrac_real.png, id=2500, 560.3334pt x 398.32816pt>
+<../PY/fig/ts_ml_mrac_real.png, id=2505, 560.3334pt x 398.32816pt>
 File: ../PY/fig/ts_ml_mrac_real.png Graphic file (type png)
 <use ../PY/fig/ts_ml_mrac_real.png>
 Package pdftex.def Info: ../PY/fig/ts_ml_mrac_real.png  used on input line 1279.
@@ -3075,7 +3078,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 
 
 [90]
-<../PY/fig/ts_cpp_mrac_real_raw.png, id=2783, 560.3334pt x 398.32816pt>
+<../PY/fig/ts_cpp_mrac_real_raw.png, id=2788, 560.3334pt x 398.32816pt>
 File: ../PY/fig/ts_cpp_mrac_real_raw.png Graphic file (type png)
 <use ../PY/fig/ts_cpp_mrac_real_raw.png>
 Package pdftex.def Info: ../PY/fig/ts_cpp_mrac_real_raw.png  used on input line 1673.
@@ -3089,7 +3092,7 @@ See the caption package documentation for explanation.
 
 
 [91]
-<../PY/fig/ts_cpp_mrac_real.png, id=2826, 560.3334pt x 398.32816pt>
+<../PY/fig/ts_cpp_mrac_real.png, id=2831, 560.3334pt x 398.32816pt>
 File: ../PY/fig/ts_cpp_mrac_real.png Graphic file (type png)
 <use ../PY/fig/ts_cpp_mrac_real.png>
 Package pdftex.def Info: ../PY/fig/ts_cpp_mrac_real.png  used on input line 1696.
@@ -3246,7 +3249,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 1946.
 
-<../PY/fig/ts_cpp_mrac_experemental.png, id=2909, 560.3334pt x 398.32816pt>
+<../PY/fig/ts_cpp_mrac_experemental.png, id=2914, 560.3334pt x 398.32816pt>
 File: ../PY/fig/ts_cpp_mrac_experemental.png Graphic file (type png)
 <use ../PY/fig/ts_cpp_mrac_experemental.png>
 Package pdftex.def Info: ../PY/fig/ts_cpp_mrac_experemental.png  used on input line 1968.
@@ -3258,11 +3261,132 @@ See the caption package documentation for explanation.
 
 
 
-[96])
+[96]
 
-[97 <../PY/fig/ts_cpp_mrac_experemental.png>] (./chapters/literatura.tex)
+[97 <../PY/fig/ts_cpp_mrac_experemental.png>]
 
-[98
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 2035.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 2035.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 2035.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 2038.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 2040.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 2066.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 2067.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 2067.
+
+
+
+[98]
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 2081.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 2115.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 2115.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 2117.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 2119.
+
+
+
+[99]
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/bx/n' instead on input line 2163.
+
+<../SCH/TIA/tia_mrac_scheme.png, id=3098, 992.20688pt x 401.24907pt>
+File: ../SCH/TIA/tia_mrac_scheme.png Graphic file (type png)
+<use ../SCH/TIA/tia_mrac_scheme.png>
+Package pdftex.def Info: ../SCH/TIA/tia_mrac_scheme.png  used on input line 2178.
+(pdftex.def)             Requested size: 443.86186pt x 179.49507pt.
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 2179.
+See the caption package documentation for explanation.
+
+<../SCH/TIA/tia_mrac_vars1.png, id=3100, 387.69844pt x 734.745pt>
+File: ../SCH/TIA/tia_mrac_vars1.png Graphic file (type png)
+<use ../SCH/TIA/tia_mrac_vars1.png>
+Package pdftex.def Info: ../SCH/TIA/tia_mrac_vars1.png  used on input line 2192.
+(pdftex.def)             Requested size: 258.91895pt x 490.6958pt.
+<../SCH/TIA/tia_mrac_vars2.png, id=3101, 389.20406pt x 390.70969pt>
+File: ../SCH/TIA/tia_mrac_vars2.png Graphic file (type png)
+<use ../SCH/TIA/tia_mrac_vars2.png>
+Package pdftex.def Info: ../SCH/TIA/tia_mrac_vars2.png  used on input line 2195.
+(pdftex.def)             Requested size: 258.91895pt x 259.92598pt.
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 2196.
+See the caption package documentation for explanation.
+
+
+
+[100 <../SCH/TIA/tia_mrac_scheme.png>]
+Overfull \vbox (82.22006pt too high) has occurred while \output is active []
+
+
+
+[101 <../SCH/TIA/tia_mrac_vars1.png> <../SCH/TIA/tia_mrac_vars2.png>]
+<../PY/fig/ts_plc_mrac_real_raw.png, id=3135, 560.3334pt x 398.32816pt>
+File: ../PY/fig/ts_plc_mrac_real_raw.png Graphic file (type png)
+<use ../PY/fig/ts_plc_mrac_real_raw.png>
+Package pdftex.def Info: ../PY/fig/ts_plc_mrac_real_raw.png  used on input line 2209.
+(pdftex.def)             Requested size: 554.82875pt x 394.4251pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 2210.
+See the caption package documentation for explanation.
+
+<../PY/fig/ts_plc_mrac_real.png, id=3137, 560.3334pt x 398.32816pt>
+File: ../PY/fig/ts_plc_mrac_real.png Graphic file (type png)
+<use ../PY/fig/ts_plc_mrac_real.png>
+Package pdftex.def Info: ../PY/fig/ts_plc_mrac_real.png  used on input line 2222.
+(pdftex.def)             Requested size: 554.82875pt x 394.4251pt.
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 2223.
+See the caption package documentation for explanation.
+
+
+
+[102 <../PY/fig/ts_plc_mrac_real_raw.png>])
+
+[103 <../PY/fig/ts_plc_mrac_real.png>] (./chapters/literatura.tex)
+
+[104
 
 ] (./chapters/prilohy.tex
 
@@ -3403,7 +3527,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 
 
 
-[99]
+[105]
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 77.
@@ -3498,7 +3622,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 
 
 
-[100]
+[106]
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 154.
@@ -3581,7 +3705,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 
 
 
-[101]
+[107]
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 228.
@@ -3590,7 +3714,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 230.
 
-(c:/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
+(c:/MyFiles/Soft/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
 )
 
@@ -3715,7 +3839,7 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 
 
 
-[102]
+[108]
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 (Font)              using `T1/cmtt/bx/n' instead on input line 290.
@@ -3866,29 +3990,29 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 
 )
 
-[103] 
+[109] 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
 (./DP.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
-L3 programming layer <2025-10-24>
+L3 programming layer <2025-06-09>
  ***********
 Package rerunfilecheck Info: File `DP.out' has not changed.
-(rerunfilecheck)             Checksum: 31B8F04E8544BD03ED48DA94F56DE394;12720.
+(rerunfilecheck)             Checksum: 9F888B6B1EE7AFD6EC82A4687F7454D2;13085.
  ) 
 Here is how much of TeX's memory you used:
- 24968 strings out of 467747
- 393322 string characters out of 5431120
- 1570588 words of memory out of 5000000
- 50730 multiletter control sequences out of 15000+600000
- 730343 words of font info for 230 fonts, out of 8000000 for 9000
+ 25370 strings out of 467888
+ 402736 string characters out of 5431467
+ 1567129 words of memory out of 5000000
+ 50831 multiletter control sequences out of 15000+600000
+ 729613 words of font info for 232 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  80i,12n,82p,999b,2652s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt9.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtti10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfit0800.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb>
-Output written on DP.pdf (103 pages, 12219231 bytes).
+<c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt9.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtti10.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfit0800.pfb><c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb>
+Output written on DP.pdf (109 pages, 13684116 bytes).
 PDF statistics:
- 3899 PDF objects out of 4296 (max. 8388607)
- 3578 compressed objects within 36 object streams
- 2330 named destinations out of 2487 (max. 500000)
- 63634 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 4127 PDF objects out of 4296 (max. 8388607)
+ 3788 compressed objects within 38 object streams
+ 2486 named destinations out of 2487 (max. 500000)
+ 63667 words of extra memory for PDF output out of 74296 (max. 10000000)
 

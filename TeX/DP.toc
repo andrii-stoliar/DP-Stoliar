@@ -71,5 +71,6 @@
 \contentsline {paragraph}{Dead-zone v adaptačnom zákone}{94}{paragraph*.32}%
 \contentsline {paragraph}{Implementačné doplnenia}{95}{paragraph*.33}%
 \contentsline {paragraph}{Experimentálne overenie heuristickej modifikácie}{96}{paragraph*.34}%
-\contentsline {section}{Zoznam literatúry}{98}{figure.45}%
-\contentsline {section}{\numberline {6}Zdrojové kódy implementácie}{99}{section.6}%
+\contentsline {subsection}{\numberline {5.4}Implementácia gradientného MRAC regulátora v PLC Siemens}{97}{subsection.5.4}%
+\contentsline {section}{Zoznam literatúry}{104}{figure.49}%
+\contentsline {section}{\numberline {6}Zdrojové kódy implementácie}{105}{section.6}%
