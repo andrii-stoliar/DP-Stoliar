@@ -56,7 +56,7 @@ Vizuálny vzhľad systému je znázornený na obrázku~\ref{fig:TS_sch3_foto}.
 \end{center}
 
 V ďalšom texte tejto sekcie bude systém TS05 v prostredí
-\textit{MATLAB/Simulink} používaný prostredníctvom komunikačného rozhrania
+MATLAB/Simulink používaný prostredníctvom komunikačného rozhrania
 s meracou kartou. Podrobnejší popis tejto komunikácie a použitých
 Simulinkových schém je uvedený v podkapitole~\ref{sec:komunikacia_matlab}.
 
@@ -207,7 +207,7 @@ Takto určený trend je následne odčítaný od pôvodného signálu:
     \label{eq:detrended_signal}
 \end{equation}
 
-Uvedený postup bol implementovaný v prostredí \textit{MATLAB} pomocou vlastnej funkcie:
+Uvedený postup bol implementovaný v prostredí MATLAB pomocou vlastnej funkcie:
 
 \begin{lstlisting}[language=Matlab, 
 caption={MATLAB implementácia detrendácie signálu pomocou lineárnej regresie},
@@ -559,8 +559,8 @@ Hodnota RMSE sa zhoršila len minimálne, čo je z pohľadu ďalšieho použitia
 V tejto časti je opísaný spôsob komunikácie laboratórneho tepelného systému TS05
 s jednotlivými hardvérovými a softvérovými platformami použitými v práci.
 Cieľom bolo zabezpečiť jednotný a funkčný prístup k vstupom a výstupom systému
-nielen v prostredí \textit{MATLAB/Simulink}, ale aj pri implementácii na platforme
-\textit{Arduino UNO} v jazyku C++ a na priemyselnom PLC systéme \textit{Siemens}.
+nielen v prostredí MATLAB/Simulink, ale aj pri implementácii na platforme
+Arduino UNO v jazyku C++ a na priemyselnom PLC systéme Siemens.
 
 Osobitná pozornosť bola venovaná najmä tomu, aby bolo možné realizovať experimenty
 aj mimo pôvodného simulačného prostredia, vytvárať nové riadiace algoritmy
@@ -574,14 +574,14 @@ a zároveň spoľahlivo zaznamenávať namerané údaje pre ďalšie spracovanie
 \label{sec:komunikacia_matlab}
 
 Komunikácia laboratórneho systému TS05 s počítačom je v prostredí
-\textit{MATLAB/Simulink} realizovaná prostredníctvom meracej a komunikačnej
-karty \textit{Advantech}, ktorá zabezpečuje prepojenie reálneho fyzikálneho
+MATLAB/Simulink realizovaná prostredníctvom meracej a komunikačnej
+karty Advantech, ktorá zabezpečuje prepojenie reálneho fyzikálneho
 modelu so simulačným prostredím. Táto karta umožňuje obojsmerný prenos
 analógových signálov, teda snímanie výstupných veličín systému a zároveň
 generovanie riadiacich zásahov privádzaných na jeho vstupy.
 
 Z pohľadu používateľa je komunikácia realizovaná pomocou vopred pripravených
-blokov v prostredí \textit{Simulink}. Základná štartovacia schéma, ktorá slúži
+blokov v prostredí Simulink. Základná štartovacia schéma, ktorá slúži
 na inicializáciu komunikácie a prepojenie jednotlivých vstupov a výstupov
 systému TS05 s blokom komunikačnej karty, je znázornená na
 obr.~\ref{fig:TS_simulink_start}. Táto časť schémy predstavuje nadradenú
@@ -603,7 +603,7 @@ jednotlivé porty meracej karty a spôsob spracovania analógových vstupov a
 výstupov, je zobrazená na obr.~\ref{fig:TS_simulink_scheme}. Táto schéma
 predstavuje detailnejšiu implementačnú vrstvu komunikácie, na ktorú nadväzujú
 ďalšie experimentálne a riadiace úlohy realizované v prostredí
-\textit{MATLAB/Simulink}.
+MATLAB/Simulink.
 
 \begin{center}
 \vbox{
@@ -619,29 +619,29 @@ Uvedené schémy boli vytvorené ako súčasť projektu KUT – Krátke výučbo
 materiály a slúžia aj ako podklad pre predmet \textit{Modelovanie a riadenie
 systémov}~\cite{kut015}. Pre potreby tejto práce predstavovali základné
 východisko pre realizáciu meraní, identifikácie systému a následný návrh
-riadenia v prostredí \textit{MATLAB/Simulink}.
+riadenia v prostredí MATLAB/Simulink.
 
 V ďalších experimentoch a pri návrhu regulačných algoritmov bude samotná
-riadiaca logika realizovaná vždy v bloku \textit{MATLAB Function}, ktorého
+riadiaca logika realizovaná vždy v bloku MATLAB Function, ktorého
 výstup bude privedený na vstup vykurovacej špirály. V rámci ďalšieho návrhu
 riadenia bude systém TS05 zámerne uvažovaný ako systém typu SISO
-(\textit{Single Input -- Single Output}). Vstup ventilátora bude počas
+(Single Input -- Single Output). Vstup ventilátora bude počas
 experimentov udržiavaný na konštantnej hodnote 6~V, a preto bude z pohľadu
 návrhu regulácie chápaný ako konštantná veličina. Ako riadiaci vstup $u$
 bude uvažované napätie privádzané na vykurovaciu špirálu a ako výstup $y$
 bude použitý signál zo Snímača~1. Signál zo Snímača~2 sa v ďalších návrhoch
 riadenia nebude uvažovať.
 
-Keďže blok \textit{MATLAB Function} nemá vlastnú vnútornú pamäť v zmysle
+Keďže blok MATLAB Function nemá vlastnú vnútornú pamäť v zmysle
 uchovávania stavových veličín medzi jednotlivými diskrétnymi krokmi,
 všetky veličiny, ktoré je potrebné zachovať medzi iteráciami algoritmu,
 musia byť vedené spätnou väzbou z výstupov na vstupy tohto bloku. Aby sa pri
 takomto zapojení zabránilo vzniku algebraickej slučky v prostredí
-\textit{Simulink}, je potrebné do spätnej väzby zaradiť diskrétny pamäťový
+Simulink, je potrebné do spätnej väzby zaradiť diskrétny pamäťový
 blok typu \textit{Unit Delay}, štandardne reprezentovaný operátorom $z^{-1}$.
 Tým sa zabezpečí, že algoritmus bude implementovaný explicitne numerickým
 spôsobom v rámci vlastného kódu, bez použitia preddefinovaných regulačných
-blokov prostredia \textit{Simulink}.
+blokov prostredia Simulink.
 % -------------------------------------------------------------------
 % Subsubsection - C++
 % -------------------------------------------------------------------
@@ -650,11 +650,11 @@ blokov prostredia \textit{Simulink}.
 \label{sec:komunikacia_cpp}
 
 Keďže systém TS05 bol pôvodne používaný predovšetkým v prostredí
-\textit{MATLAB/Simulink} a k dispozícii nebola podrobná technická dokumentácia
+MATLAB/Simulink a k dispozícii nebola podrobná technická dokumentácia
 popisujúca jednotlivé vodiče a signály, bolo najprv potrebné experimentálne určiť,
 ktorý kontakt konektora zodpovedá jednotlivým vstupom a výstupom systému.
 Súčasne bolo potrebné vytvoriť nový prepojovací kábel a navrhnúť fyzické zapojenie,
-ktoré by umožnilo komunikáciu systému TS05 s platformou \textit{Arduino UNO}.
+ktoré by umožnilo komunikáciu systému TS05 s platformou Arduino UNO.
 
 Zo zariadenia TS05 je vyvedený kruhový 8-pinový konektor.
 Pomocou multimetra boli identifikované jednotlivé kontakty, pričom výsledné
@@ -677,19 +677,19 @@ priradenie je uvedené v tabuľke~\ref{tab:ts05_pinout}.
 
 Po identifikácii pinov bol zhotovený nový kábel, ktorý umožnil priamy prístup
 k meraným aj akčným signálom systému TS05. Následne bola zostavená riadiaca
-a meracia reťaz založená na mikrokontroléri \textit{Arduino UNO}.
+a meracia reťaz založená na mikrokontroléri Arduino UNO.
 
 Akčné veličiny systému, teda ventilátor a vykurovacia špirála, boli z platformy
-\textit{Arduino} generované pomocou PWM signálu s rozsahom 0 až 255.
+Arduino generované pomocou PWM signálu s rozsahom 0 až 255.
 Keďže samotný systém TS05 pracuje s analógovými vstupmi v rozsahu 0 až 10~V,
 bolo potrebné použiť prevodník PWM/0--10~V.
 Tento prevodník vyžaduje externé napájanie minimálne 12~V a 0,1~A.
-Takýmto spôsobom bolo možné z digitálnych PWM výstupov \textit{Arduino}
+Takýmto spôsobom bolo možné z digitálnych PWM výstupov Arduino
 vytvoriť analógové riadiace signály použiteľné pre systém TS05.
 
 Na druhej strane, výstupné signály snímačov systému TS05 sú analógové napätia
 v rozsahu 0 až 10~V.
-Keďže analógové vstupy platformy \textit{Arduino UNO} pracujú iba v rozsahu
+Keďže analógové vstupy platformy Arduino UNO pracujú iba v rozsahu
 0 až 5~V, bolo potrebné tieto signály vhodne upraviť.
 Na tento účel boli použité napäťové deliče, pričom každý delič bol zostavený
 z dvoch rezistorov s hodnotou 90~k$\Omega$.
@@ -709,10 +709,10 @@ pričom pre $R_1 = R_2 = 90~\mathrm{k}\Omega$ dostaneme
 
 Z toho vyplýva, že signál 0 až 10~V zo snímača je po delení prevedený približne
 na rozsah 0 až 5~V, čo už zodpovedá možnostiam analógových vstupov
-mikrokontroléra. Samotný prevod v \textit{Arduino} je následne reprezentovaný
+mikrokontroléra. Samotný prevod v Arduino je následne reprezentovaný
 hodnotou A/D prevodníka v rozsahu 0 až 1023.
 
-Mapovanie vstupov a výstupov medzi systémom TS05 a platformou \textit{Arduino UNO}
+Mapovanie vstupov a výstupov medzi systémom TS05 a platformou Arduino UNO
 je uvedené v tabuľke~\ref{tab:arduino_mapping_ts05}.
 
 \begin{table}[h!]
@@ -892,8 +892,8 @@ pre potreby tejto práce bola dosiahnutá presnosť dostatočná.
 Jedným z možných spôsobov ďalšieho zlepšenia by bolo vykonanie väčšieho počtu
 kalibračných meraní a následná identifikácia presnejšej prevodovej charakteristiky.
 
-Softvérová implementácia pre platformu \textit{Arduino UNO} bola realizovaná
-v jazyku C++ s využitím rozšírenia \textit{PlatformIO} v prostredí
+Softvérová implementácia pre platformu Arduino UNO bola realizovaná
+v jazyku C++ s využitím rozšírenia PlatformIO v prostredí
 \textit{Visual Studio Code}. Program je rozdelený na niekoľko základných častí:
 definície hardvérových pinov a časových parametrov, pomocné funkcie,
 obsluha sériovej komunikácie a hlavná riadiaca slučka.
@@ -943,7 +943,7 @@ skutočná dĺžka vykonaného kroku, čo umožňuje kontrolu odchýlok od poža
 periódy.
 
 Automatický záznam dát je riešený cez sériový port. Po inicializácii odošle
-mikrokontrolér správu \texttt{READY}. Externý \textit{Python} skript po jej prijatí
+mikrokontrolér správu \texttt{READY}. Externý Python skript po jej prijatí
 odošle príkaz \texttt{START}, čím sa spustí experiment a zároveň aj odosielanie
 dát v CSV formáte. Po uplynutí definovaného času experimentu sa výstupy nastavia
 na nulové hodnoty, experiment sa ukončí a cez sériový port sa odošle správa
@@ -955,7 +955,7 @@ prevody veličín a samotný riadiaci zákon. Pri zmene algoritmu je preto potre
 upravovať predovšetkým iba časť programu, v ktorej sa z nameraných veličín
 vypočítavajú nové hodnoty \texttt{vent} a \texttt{spirala}. Ostatné časti implementácie
 môžu zostať nezmenené. Úplné zdrojové kódy hlavného programu pre
-\textit{Arduino UNO} a externého skriptu pre logovanie dát sú uvedené v prílohách
+Arduino UNO a externého skriptu pre logovanie dát sú uvedené v prílohách
 \ref{lst:main_cpp_appendix} a \ref{lst:logger_py_appendix}.
 
 Pomocné funkcie použité v programe sú uvedené v nasledujúcej ukážke.
@@ -1032,7 +1032,7 @@ vypnutom digitálnom vyhladzovaní.
 Analógové signály sú v PLC systémoch Siemens interne reprezentované
 ako celočíselné hodnoty s rozsahom \mbox{0 až 27648}, pričom tento digitálny
 rozsah zodpovedá fyzikálnemu napäťovému rozsahu \mbox{0 až 10~V}. Na rozdiel
-od realizácie s platformou \textit{Arduino UNO}, kde bolo vzhľadom na použitú
+od realizácie s platformou Arduino UNO, kde bolo vzhľadom na použitú
 jednoduchšiu a lacnejšiu hardvérovú architektúru potrebné experimentálne
 vykonať vlastnú kalibráciu signálových ciest, sa v prípade PLC systému
 Siemens predpokladalo, že originálny analógový modul zabezpečuje
@@ -1053,7 +1053,7 @@ referenčnú zem. Použitý modul obsahuje spolu osem svoriek, teda dva analógo
 vstupy, dva analógové výstupy a ku každému z nich príslušný záporný pól.
 
 Softvérová časť implementácie bola realizovaná v prostredí
-\textit{TIA Portal V20}. V prvom kroku bolo potrebné určiť adresy jednotlivých
+TIA Portal V20. V prvom kroku bolo potrebné určiť adresy jednotlivých
 analógových vstupov a výstupov modulu. Výsledné adresovanie je uvedené v
 tabuľke~\ref{tab:plc_ts05_addresses}.
 
@@ -1100,7 +1100,7 @@ opačný prevod z reálnej hodnoty napätia na internú celočíselnú reprezent
 Na výpočet aktuálneho času od začiatku experimentu bol vytvorený vlastný
 funkčný blok \texttt{Current\_time}. Tento blok využíva systémovú funkciu
 \texttt{RD\_SYS\_T}, ktorá vracia aktuálny systémový čas PLC vo forme dátového
-typu \texttt{DTL}. Uvedený typ obsahuje viacero zložiek, ako sú rok, mesiac,
+typu \textit{DTL}. Uvedený typ obsahuje viacero zložiek, ako sú rok, mesiac,
 deň a denný čas. Keďže na účely logovania nebolo potrebné uchovávať kompletnú
 časovú štruktúru, ale iba čas od začiatku merania v sekundách, bol vytvorený
 samostatný blok, ktorý pri prvom úspešnom volaní uloží počiatočný čas a pri
@@ -1109,7 +1109,7 @@ samostatný blok, ktorý pri prvom úspešnom volaní uloží počiatočný čas
 Implementácia bloku \texttt{Current\_time} je uvedená v nasledujúcej ukážke.
 
 \begin{lstlisting}[language=Pascal,
-caption={Implementácia funkčného bloku Current\_time},
+caption={Implementácia funkčného bloku \texttt{Current\_time}},
 label={lst:current_time_fb}]
 #retVal := RD_SYS_T(OUT => #currentTime);
 
@@ -1126,18 +1126,23 @@ ELSE
 END_IF;
 \end{lstlisting}
 
-Zoznam interných premenných použitých v tomto bloku je zobrazený na
-obr.~\ref{fig:tia_time_vars}.
+Zoznam interných premenných použitých v tomto bloku je uvedený v tab.~\ref{tab:tia_time_vars}.
 
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=0.8\textwidth]{tia_time_vars.png}
-}
-\figcaption{Premenné funkčného bloku Current\_time v prostredí TIA Portal}
-\label{fig:tia_time_vars}
-}
-\end{center}
+\begin{table}[h!]
+    \centering
+    \caption{Premenné funkčného bloku \texttt{Current\_time} v prostredí TIA Portal}
+    \label{tab:tia_time_vars}
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        \textbf{Sekcia} & \textbf{Premenná} & \textbf{Dátový typ} & \textbf{Predvolená hodnota} & \textbf{Retain} \\ \hline
+        Output & \texttt{CurrentTimeSec} & \texttt{LReal} & \texttt{0.0} & Non-retain \\ \hline
+        Static & \texttt{started} & \texttt{Bool} & \texttt{false} & Non-retain \\ \hline
+        Static & \texttt{retVal} & \texttt{Int} & \texttt{0} & Non-retain \\ \hline
+        Static & \texttt{startTime} & \texttt{DTL} & \texttt{DTL\#1970-01-01-...} & Non-retain \\ \hline
+        Static & \texttt{currentTime} & \texttt{DTL} & \texttt{DTL\#1970-01-01-...} & Non-retain \\ \hline
+        Static & \texttt{elapsedTime} & \texttt{Time} & \texttt{T\#0ms} & Non-retain \\ \hline
+    \end{tabular}
+\end{table}
 
 Celková štruktúra hlavného organizačného bloku, ktorý je vykonávaný v každom
 cykle PLC, je zobrazená na obr.~\ref{fig:tia_service_scheme}. Ako už bolo uvedené,
@@ -1181,7 +1186,7 @@ je prijímať na vstup vybrané premenné a pri každom povolenom vzorkovaní ic
 ukladať do interných polí. Takto uložené údaje je následne možné manuálne
 skopírovať do tabuľkového procesora a uložiť napríklad vo formáte \texttt{.csv}.
 V rámci tejto práce sa nepodarilo nájsť natívny spôsob pohodlného logovania
-dát priamo z PLC bez použitia nadstavbového HMI systému typu \textit{WinCC}
+dát priamo z PLC bez použitia nadstavbového HMI systému typu WinCC  
 alebo bez použitia špecializovaných hardvérových modulov. Uvedené riešenie však
 bolo pre potreby experimentov plne postačujúce.
 
@@ -1194,7 +1199,7 @@ zbytočnému opakovaniu veľmi podobných implementácií.
 Zdrojový kód bloku \texttt{FB\_PI\_LOGGER} je uvedený nižšie.
 
 \begin{lstlisting}[language=Pascal,
-caption={Implementácia logovacieho bloku FB\_PI\_LOGGER},
+caption={Implementácia logovacieho bloku \texttt{FB\_PI\_LOGGER}},
 label={lst:fb_pi_logger}]
 IF NOT #Full AND #Enable THEN
     IF #idx <= 9999 THEN
@@ -1211,18 +1216,33 @@ IF NOT #Full AND #Enable THEN
 END_IF;
 \end{lstlisting}
 
-Zoznam premenných tohto logovacieho bloku je uvedený na
-obr.~\ref{fig:tia_pi_logger_vars}.
+Zoznam premenných tohto logovacieho bloku je uvedený v tab.~\ref{tab:tia_pi_logger_vars}.
 
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=0.8\textwidth]{tia_pi_logger_vars.png}
-}
-\figcaption{Premenné funkčného bloku FB\_PI\_LOGGER}
-\label{fig:tia_pi_logger_vars}
-}
-\end{center}
+\begin{table}[h!]
+    \centering
+    \caption{Premenné funkčného bloku \texttt{FB\_PI\_LOGGER}}
+    \label{tab:tia_pi_logger_vars}
+    \makebox[\textwidth][c]{%
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        \textbf{Sekcia} & \textbf{Premenná} & \textbf{Dátový typ} & \textbf{Predvolená hodnota} & \textbf{Retain} \\ \hline
+        Input & \texttt{CurrentTimeSec} & \texttt{LReal} & \texttt{0.0} & Non-retain \\ \hline
+        Input & \texttt{u} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+        Input & \texttt{y} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+        Input & \texttt{r} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+        Input & \texttt{ypb} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+        Input & \texttt{Enable} & \texttt{Bool} & \texttt{false} & Non-retain \\ \hline
+        Output & \texttt{SampleCount} & \texttt{DInt} & \texttt{0} & Non-retain \\ \hline
+        Output & \texttt{Full} & \texttt{Bool} & \texttt{false} & Non-retain \\ \hline
+        Static & \texttt{idx} & \texttt{DInt} & \texttt{0} & Non-retain \\ \hline
+        Static & \texttt{TimeLog\_s} & \texttt{Array[0..9999] of LReal} & -- & Non-retain \\ \hline
+        Static & \texttt{ULOG} & \texttt{Array[0..9999] of Real} & -- & Non-retain \\ \hline
+        Static & \texttt{YLOG} & \texttt{Array[0..9999] of Real} & -- & Non-retain \\ \hline
+        Static & \texttt{RLOG} & \texttt{Array[0..9999] of Real} & -- & Non-retain \\ \hline
+        Static & \texttt{YPBLOG} & \texttt{Array[0..9999] of Real} & -- & Non-retain \\ \hline
+    \end{tabular}
+    }
+\end{table}
 
 Z uvedeného dôvodu už v ďalších častiach práce nebudú logovacie bloky
 samostatne zobrazované pre každý algoritmus. Pri jednotlivých návrhoch riadenia

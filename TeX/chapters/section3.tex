@@ -168,11 +168,11 @@ Keďže návrh PI regulátora nie je hlavnou témou práce, bol zvolený numeric
 Jeho princíp spočíva v tom, že pre zvolenú požadovanú šírku pásma uzavretého systému vypočíta optimálne hodnoty parametrov PI regulátora tak, aby bola zabezpečená dobrá dynamická odozva a primeraná robustnosť.
 
 Najskôr bol systém prevedený do diskrétnej podoby a následne bolo vykonané
-ladenie PI regulátora pomocou funkcie \texttt{pidtune}. Použitý postup je uvedený
+ladenie PI regulátora pomocou funkcie \texttt{pidtune()}. Použitý postup je uvedený
 v nasledujúcej ukážke.
 
 \begin{lstlisting}[language=Matlab,
-caption={Diskretizácia modelu a ladenie PI regulátora pomocou \texttt{pidtune}},
+caption={Diskretizácia modelu a ladenie PI regulátora pomocou \texttt{pidtune()}},
 label={lst:pi_pidtune}]
 Gs = Gs_fmin;
 Ts = 0.1;
@@ -278,7 +278,7 @@ pričom výsledný akčný zásah je následne získaný ako:
     \label{eq:pi_u_from_du}
 \end{align}
 
-Referenčná hodnota (setpoint) je taktiež definovaná vzhľadom na pracovný bod, čo znamená, že regulátor riadi systém v okolí pracovného bodu, nie v absolútnych hodnotách.
+Referenčná hodnota (\textit{setpoint}) je taktiež definovaná vzhľadom na pracovný bod, čo znamená, že regulátor riadi systém v okolí pracovného bodu, nie v absolútnych hodnotách.
 
 Tento prístup zodpovedá riadeniu v okolí pracovného bodu a v praxi sa ukázal ako
 vhodný pri zmenách prevádzkových podmienok systému.
@@ -332,7 +332,7 @@ end
 \end{lstlisting}
   
 V súlade s princípom implementácie opísaným v podkapitole~\ref{sec:komunikacia_matlab}
-blok \textit{MATLAB Function} ani v tomto prípade neuchováva stavové veličiny
+blok MATLAB Function ani v tomto prípade neuchováva stavové veličiny
 automaticky medzi jednotlivými diskrétnymi krokmi. Preto je potrebné hodnotu
 integrátora aj odhad pracovného bodu prenášať explicitne cez výstupy bloku a
 v nasledujúcom kroku ich privádzať späť na jeho vstupy. Týmto spôsobom sa
@@ -528,7 +528,7 @@ bol k implementácii doplnený aj logovací blok, ktorý zabezpečoval záznam
 vybraných premenných počas experimentu.
 
 Úvodná čakacia fáza v trvaní 600 sekúnd bola realizovaná pomocou časovača typu
-\textit{TON}. Výstup tohto časovača nebol použitý na priame povoľovanie samotného
+TON. Výstup tohto časovača nebol použitý na priame povoľovanie samotného
 funkčného bloku cez jeho štandardný vstup \texttt{EN}, ale iba na aktiváciu
 pomocnej logickej premennej, ktorá sa následne privádzala na vstup \texttt{Enable}
 riadiaceho algoritmu vo vnútri bloku \texttt{FB\_PI\_TS05}. Tento detail je z
@@ -547,7 +547,7 @@ vykonáva vlastný PI algoritmus v odchýlkovej forme. Implementácia bloku
 \texttt{FB\_PI\_TS05} je uvedená nižšie.
 
 \begin{lstlisting}[language=Pascal,
-caption={Implementácia funkčného bloku FB\_PI\_TS05 v PLC Siemens},
+caption={Implementácia funkčného bloku \texttt{FB\_PI\_TS05} v PLC Siemens},
 label={lst:fb-pi-ts05}]
 IF NOT #Enable THEN
     #U := #U_pb;
@@ -572,18 +572,32 @@ ELSE
 END_IF;
 \end{lstlisting}
 
-Zoznam interných premenných použitých vo funkčnom bloku je zobrazený na
-obr.~\ref{fig:tia_pi_vars}.
+Zoznam interných premenných použitých vo funkčnom bloku je uvedený v tab.~\ref{tab:tia_pi_vars}.
 
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=0.8\textwidth]{tia_pi_vars.png}
-}
-\figcaption{Premenné funkčného bloku FB\_PI\_TS05}
-\label{fig:tia_pi_vars}
-}
-\end{center}
+\begin{table}[h!]
+    \centering
+    \caption{Premenné funkčného bloku \texttt{FB\_PI\_TS05}}
+    \label{tab:tia_pi_vars}
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        \textbf{Sekcia} & \textbf{Premenná} & \textbf{Dátový typ} & \textbf{Predvolená hodnota} & \textbf{Retain} \\ \hline
+        Input & \texttt{Y} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+        Input & \texttt{Setpoint\_pb} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+        Input & \texttt{Enable} & \texttt{Bool} & \texttt{false} & Non-retain \\ \hline
+        Output & \texttt{U} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+        Output & \texttt{Ypb} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+        Output & \texttt{vent} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+        Static & \texttt{Integrator} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+        Temp & \texttt{E} & \texttt{Real} & -- & -- \\ \hline
+        Temp & \texttt{DU} & \texttt{Real} & -- & -- \\ \hline
+        Constant & \texttt{Kp} & \texttt{Real} & \texttt{3.58} & -- \\ \hline
+        Constant & \texttt{Ki} & \texttt{Real} & \texttt{1.84} & -- \\ \hline
+        Constant & \texttt{Ts} & \texttt{Real} & \texttt{0.1} & -- \\ \hline
+        Constant & \texttt{U\_pb} & \texttt{Real} & \texttt{4.0} & -- \\ \hline
+        Constant & \texttt{DU\_min} & \texttt{Real} & \texttt{-4.0} & -- \\ \hline
+        Constant & \texttt{DU\_max} & \texttt{Real} & \texttt{6.0} & -- \\ \hline
+    \end{tabular}
+\end{table}
 
 Celkové zapojenie algoritmu v PLC programe, vrátane časovača, riadiaceho bloku
 a logovania, je uvedené na obr.~\ref{fig:tia_pi_scheme}.

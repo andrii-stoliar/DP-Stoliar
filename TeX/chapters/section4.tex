@@ -717,11 +717,11 @@ spôsobené reálnymi prevádzkovými podmienkami.
 
 Navrhnutý algoritmus prepínania pracovných bodov
 bol implementovaný v prostredí MATLAB/Simulink
-pomocou bloku \texttt{MATLAB Function}.
+pomocou bloku MATLAB Function.
 Celá regulačná logika bola realizovaná explicitne vo forme vlastného kódu,
 bez použitia preddefinovaných blokov.
 
-Keďže blok \texttt{MATLAB Function} neuchováva automaticky vnútorné stavy,
+Keďže blok MATLAB Function neuchováva automaticky vnútorné stavy,
 všetky potrebné premenné
 (stav filtra, integračné stavy, príznak aktivity,
 história signálov a predchádzajúca hodnota žiadanej veličiny)
@@ -1028,7 +1028,7 @@ do hlavnej časti regulačného cyklu.
 Keďže implementácia prebiehala v jazyku C++,
 nebolo už potrebné prenášať vnútorné stavy algoritmu
 medzi jednotlivými krokmi výpočtu
-rovnakým spôsobom ako v bloku \texttt{MATLAB Function}.
+rovnakým spôsobom ako v bloku MATLAB Function.
 Stavové premenné programu totiž prirodzene uchovávajú svoju hodnotu
 medzi jednotlivými iteráciami cyklu \texttt{loop()}.
 Z tohto dôvodu bolo možné pracovať priamo
@@ -1352,7 +1352,7 @@ skutočnej periódy vykonávania kódu
 od nominálnej hodnoty.
 
 Ďalším rozdielom oproti implementácii
-v bloku \texttt{MATLAB Function} je spôsob práce
+v bloku MATLAB Function je spôsob práce
 so stavovými premennými.
 V prostredí MATLAB bolo potrebné všetky vnútorné stavy
 explicitne prenášať medzi jednotlivými krokmi výpočtu
@@ -1463,7 +1463,7 @@ Implementácia funkčného bloku \texttt{FB\_PREP\_TS05} je uvedená
 v nasledujúcej ukážke.
 
 \begin{lstlisting}[language=Pascal,
-caption={Implementácia funkčného bloku FB\_PREP\_TS05 v PLC Siemens},
+caption={Implementácia funkčného bloku \texttt{FB\_PREP\_TS05} v PLC Siemens},
 label={lst:fb-prep-ts05}]
 IF NOT #Enable THEN
     #U := 0.0;
@@ -1647,21 +1647,75 @@ obr.~\ref{fig:tia_prep_scheme}.
 }
 \end{center}
 
-Keďže funkčný blok obsahuje väčší počet vnútorných premenných, ich zoznam je
-zobrazený na obr.~\ref{fig:tia_prep_vars} v dvoch po sebe nasledujúcich častiach.
+Zoznam premenných funkčného bloku je uvedený v tab.~\ref{tab:tia_prep_vars}.
 
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=0.77\textwidth]{../SCH/TIA/tia_prep_vars1.png}
-}
-\makebox[\textwidth][c]{%
-    \includegraphics[width=0.77\textwidth]{../SCH/TIA/tia_prep_vars2.png}
-}
-\figcaption{Premenné funkčného bloku FB\_PREP\_TS05}
-\label{fig:tia_prep_vars}
-}
-\end{center}
+\begin{table}[h!]
+    \centering
+    \caption{Premenné funkčného bloku \texttt{FB\_PREP\_TS05}}
+    \label{tab:tia_prep_vars}
+    \scriptsize
+    \makebox[\textwidth][c]{%
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        \textbf{Sekcia} & \textbf{Premenná} & \textbf{Dátový typ} & \textbf{Predvolená hodnota} & \textbf{Retain} \\ \hline
+        Input & \texttt{Y} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+        Input & \texttt{R\_g} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+        Input & \texttt{R\_l} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+        Input & \texttt{Enable} & \texttt{Bool} & \texttt{false} & Non-retain \\ \hline
+        Input & \texttt{Vent\_in} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+        Output & \texttt{U} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+        Output & \texttt{R\_gf} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+        Output & \texttt{Y\_pb\_out} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+        Output & \texttt{U\_pb\_out} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+        Output & \texttt{U\_g} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+        Output & \texttt{U\_l} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+        Output & \texttt{Active\_g} & \texttt{Bool} & \texttt{false} & Non-retain \\ \hline
+        Output & \texttt{Kp\_l\_out} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+        Output & \texttt{Ki\_l\_out} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+        Output & \texttt{Vent\_out} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+        Static & \texttt{X\_f1} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+        Static & \texttt{X\_f2} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+        Static & \texttt{I\_l} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+        Static & \texttt{I\_g} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+        Static & \texttt{Y\_hist} & \texttt{Array[0..29] of Real} & -- & Non-retain \\ \hline
+        Static & \texttt{U\_hist} & \texttt{Array[0..29] of Real} & -- & Non-retain \\ \hline
+        Static & \texttt{R\_g\_prev} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+        Static & \texttt{Active\_g\_m} & \texttt{Bool} & \texttt{false} & Non-retain \\ \hline
+        Static & \texttt{Y\_pb} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+        Static & \texttt{U\_pb} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+        Static & \texttt{Initialized} & \texttt{Bool} & \texttt{false} & Non-retain \\ \hline
+        Static & \texttt{Y\_pb\_table} & \texttt{Array[0..2] of Real} & -- & Non-retain \\ \hline
+        Static & \texttt{U\_pb\_table} & \texttt{Array[0..2] of Real} & -- & Non-retain \\ \hline
+        Static & \texttt{Kp\_l\_table} & \texttt{Array[0..2] of Real} & -- & Non-retain \\ \hline
+        Static & \texttt{Ki\_l\_table} & \texttt{Array[0..2] of Real} & -- & Non-retain \\ \hline
+        Temp & \texttt{E\_l} & \texttt{Real} & -- & -- \\ \hline
+        Temp & \texttt{E\_g} & \texttt{Real} & -- & -- \\ \hline
+        Temp & \texttt{U\_tmp} & \texttt{Real} & -- & -- \\ \hline
+        Temp & \texttt{Lower\_bound} & \texttt{Real} & -- & -- \\ \hline
+        Temp & \texttt{Upper\_bound} & \texttt{Real} & -- & -- \\ \hline
+        Temp & \texttt{Y\_pb\_new} & \texttt{Real} & -- & -- \\ \hline
+        Temp & \texttt{U\_pb\_new} & \texttt{Real} & -- & -- \\ \hline
+        Temp & \texttt{Count\_ok} & \texttt{Int} & -- & -- \\ \hline
+        Temp & \texttt{Idx\_pb} & \texttt{Int} & -- & -- \\ \hline
+        Temp & \texttt{I} & \texttt{Int} & -- & -- \\ \hline
+        Temp & \texttt{Active\_g\_new} & \texttt{Bool} & -- & -- \\ \hline
+        Temp & \texttt{Active\_l} & \texttt{Bool} & -- & -- \\ \hline
+        Temp & \texttt{Kp\_l} & \texttt{Real} & -- & -- \\ \hline
+        Temp & \texttt{Ki\_l} & \texttt{Real} & -- & -- \\ \hline
+        Temp & \texttt{Y\_pb\_est} & \texttt{Real} & -- & -- \\ \hline
+        Temp & \texttt{U\_pb\_est} & \texttt{Real} & -- & -- \\ \hline
+        Temp & \texttt{Dist\_pb} & \texttt{Real} & -- & -- \\ \hline
+        Temp & \texttt{Dist\_l} & \texttt{Real} & -- & -- \\ \hline
+        Temp & \texttt{X\_f1\_new} & \texttt{Real} & -- & -- \\ \hline
+        Temp & \texttt{X\_f2\_new} & \texttt{Real} & -- & -- \\ \hline
+        Temp & \texttt{Mean\_y} & \texttt{Real} & -- & -- \\ \hline
+        Temp & \texttt{Mean\_u} & \texttt{Real} & -- & -- \\ \hline
+        Constant & \texttt{Ts} & \texttt{Real} & \texttt{0.1} & -- \\ \hline
+        Constant & \texttt{Kp\_g} & \texttt{Real} & \texttt{4.0} & -- \\ \hline
+        Constant & \texttt{Ki\_g} & \texttt{Real} & \texttt{0.7} & -- \\ \hline
+    \end{tabular}
+    }
+\end{table}
 
 \subsubsection{Experiment na tepelnej sústave}
 \label{sec:prep_plc_experiment}
