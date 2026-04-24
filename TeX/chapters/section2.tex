@@ -734,7 +734,7 @@ Celkové fyzické zapojenie systému je znázornené na obrázku~\ref{fig:arduin
 \begin{center}
 \vbox{
 \makebox[\textwidth][c]{%
-    \includegraphics[width=1.2\textwidth]{in_progress.png}
+    \includegraphics[width=1.0\textwidth]{ARDUINO_connect_scheme.pdf}
 }
 \figcaption{Schéma prepojenia systému TS05 s platformou Arduino UNO}
 \label{fig:arduino_ts05_connection}
@@ -1025,9 +1025,7 @@ parametrizovať digitálne vyhladzovanie nameraných hodnôt (\textit{smoothing}
 V rámci merania bolo toto vyhladzovanie nastavené na možnosť \textit{None}, aby modul
 nevykonával dodatočné priemerovanie vzoriek. Súčasne však zostáva aktívna funkcia
 potlačenia rušenia (\textit{noise rejection}), ktorá je súčasťou prevodu analógovej
-hodnoty a jej frekvenciu možno iba parametrizovať. Túto časť preto nebolo možné
-úplne vyradiť, čo môže spôsobovať mierne vyhladenie meraného signálu aj pri
-vypnutom digitálnom vyhladzovaní.
+hodnoty a jej frekvenciu možno iba parametrizovať. V tomto prípade bolo zvolené potlačenie rušenia s frekvenciou 50~Hz.
 
 Analógové signály sú v PLC systémoch Siemens interne reprezentované
 ako celočíselné hodnoty s rozsahom \mbox{0 až 27648}, pričom tento digitálny

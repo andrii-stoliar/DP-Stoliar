@@ -639,9 +639,13 @@ Výsledok merania je zobrazený na obr.~\ref{fig:ts_plc_pi_real}.
 Z výsledku experimentu je zrejmé, že dynamika regulácie je veľmi podobná tej,
 ktorá bola pozorovaná pri implementácii v prostredí MATLAB aj v jazyku
 C++. To potvrdzuje, že navrhnutý algoritmus je prenositeľný aj na platformu PLC
-bez zásadnej zmeny jeho regulačných vlastností. Zároveň možno pozorovať, že
-priebeh akčného zásahu je v tomto prípade miernejší a plynulejší než pri
-predchádzajúcich implementáciách.
+bez zásadnej zmeny jeho regulačných vlastností. Zároveň možno pozorovať, že priebeh akčného zásahu je v tomto prípade
+miernejší a menej zašumený než pri predchádzajúcich implementáciách. Toto správanie môže súvisieť so spôsobom spracovania analógového signálu
+v použitom PLC module. Ako bolo uvedené v podkapitole~\ref{sec:komunikacia_siemens},
+digitálne vyhladzovanie bolo síce vypnuté, avšak funkcia potlačenia rušenia
+(\textit{noise rejection}) zostáva súčasťou analógového prevodu. Z tohto dôvodu
+môže byť meraný signál mierne vyhladený už na úrovni samotného vstupného modulu,
+čo sa následne prejaví aj pokojnejším priebehom akčného zásahu.
 
 Na základe získaných výsledkov možno konštatovať, že implementácia PI regulátora
 na platforme Siemens PLC bola úspešná a poskytla porovnateľné správanie

@@ -45,32 +45,32 @@
 \contentsline {subsection}{\numberline {4.3}Realizácia algoritmu v jazyku C++}{60}{subsection.4.3}%
 \contentsline {subsubsection}{\numberline {4.3.1}Experiment na tepelnej sústave}{64}{subsubsection.4.3.1}%
 \contentsline {subsection}{\numberline {4.4}Realizácia algoritmu v PLC Siemens}{66}{subsection.4.4}%
-\contentsline {subsubsection}{\numberline {4.4.1}Experiment na tepelnej sústave}{71}{subsubsection.4.4.1}%
-\contentsline {section}{\numberline {5}MRAC regulácia – gradientná metóda}{73}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Popis algoritmu}{73}{subsection.5.1}%
-\contentsline {paragraph}{Model riadeného systému}{73}{paragraph*.23}%
-\contentsline {paragraph}{Referenčný model a statické zosilnenie}{73}{paragraph*.24}%
-\contentsline {paragraph}{Zákon riadenia}{73}{paragraph*.25}%
-\contentsline {paragraph}{Podmienka zhody a ideálne parametre}{74}{paragraph*.26}%
-\contentsline {paragraph}{Adaptačná odchýlka}{74}{paragraph*.27}%
-\contentsline {paragraph}{Účelová funkcia a MIT pravidlo}{74}{paragraph*.28}%
-\contentsline {paragraph}{Zákon adaptácie pre systém druhého rádu}{74}{paragraph*.29}%
-\contentsline {subsubsection}{\numberline {5.1.1}Prevod systému do stavového priestoru}{75}{subsubsection.5.1.1}%
-\contentsline {paragraph}{Stavový opis referenčného modelu}{76}{paragraph*.30}%
-\contentsline {paragraph}{Stavový opis filtra výstupu}{77}{paragraph*.31}%
-\contentsline {paragraph}{Stavový opis filtra derivácie výstupu}{77}{paragraph*.32}%
-\contentsline {paragraph}{Stavový opis filtra referencie}{77}{paragraph*.33}%
-\contentsline {paragraph}{Zhrnutie štruktúry dynamických blokov}{78}{paragraph*.34}%
-\contentsline {subsubsection}{\numberline {5.1.2}Pseudokód gradientnej MRAC regulácie (diskrétna realizácia)}{78}{subsubsection.5.1.2}%
-\contentsline {subsection}{\numberline {5.2}Implementácia MRAC v prostredí MATLAB}{81}{subsection.5.2}%
-\contentsline {subsubsection}{\numberline {5.2.1}Experiment na tepelnej sústave}{84}{subsubsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.3}Implementácia gradientného MRAC regulátora v jazyku C++}{86}{subsection.5.3}%
-\contentsline {subsubsection}{\numberline {5.3.1}Experimentálne overenie na reálnom systéme}{91}{subsubsection.5.3.1}%
-\contentsline {subsubsection}{\numberline {5.3.2}Heuristická modifikácia implementácie na potlačenie driftu parametrov}{94}{subsubsection.5.3.2}%
-\contentsline {paragraph}{Smoothing meraného výstupu}{94}{paragraph*.35}%
-\contentsline {paragraph}{Dead-zone v adaptačnom zákone}{94}{paragraph*.36}%
-\contentsline {paragraph}{Implementačné doplnenia}{95}{paragraph*.37}%
-\contentsline {paragraph}{Experimentálne overenie heuristickej modifikácie}{96}{paragraph*.38}%
-\contentsline {subsection}{\numberline {5.4}Implementácia gradientného MRAC regulátora v PLC Siemens}{97}{subsection.5.4}%
-\contentsline {section}{Zoznam literatúry}{104}{figure.45}%
-\contentsline {section}{\numberline {6}Zdrojové kódy implementácie}{105}{section.6}%
+\contentsline {subsubsection}{\numberline {4.4.1}Experiment na tepelnej sústave}{72}{subsubsection.4.4.1}%
+\contentsline {section}{\numberline {5}MRAC regulácia – gradientná metóda}{74}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Popis algoritmu}{74}{subsection.5.1}%
+\contentsline {paragraph}{Model riadeného systému}{74}{paragraph*.22}%
+\contentsline {paragraph}{Referenčný model a statické zosilnenie}{74}{paragraph*.23}%
+\contentsline {paragraph}{Zákon riadenia}{74}{paragraph*.24}%
+\contentsline {paragraph}{Podmienka zhody a ideálne parametre}{75}{paragraph*.25}%
+\contentsline {paragraph}{Adaptačná odchýlka}{75}{paragraph*.26}%
+\contentsline {paragraph}{Účelová funkcia a MIT pravidlo}{75}{paragraph*.27}%
+\contentsline {paragraph}{Zákon adaptácie pre systém druhého rádu}{75}{paragraph*.28}%
+\contentsline {subsubsection}{\numberline {5.1.1}Prevod systému do stavového priestoru}{76}{subsubsection.5.1.1}%
+\contentsline {paragraph}{Stavový opis referenčného modelu}{77}{paragraph*.29}%
+\contentsline {paragraph}{Stavový opis filtra výstupu}{78}{paragraph*.30}%
+\contentsline {paragraph}{Stavový opis filtra derivácie výstupu}{78}{paragraph*.31}%
+\contentsline {paragraph}{Stavový opis filtra referencie}{78}{paragraph*.32}%
+\contentsline {paragraph}{Zhrnutie štruktúry dynamických blokov}{79}{paragraph*.33}%
+\contentsline {subsubsection}{\numberline {5.1.2}Pseudokód gradientnej MRAC regulácie (diskrétna realizácia)}{79}{subsubsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.2}Implementácia MRAC v prostredí MATLAB}{82}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.1}Experiment na tepelnej sústave}{85}{subsubsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.3}Implementácia gradientného MRAC regulátora v jazyku C++}{87}{subsection.5.3}%
+\contentsline {subsubsection}{\numberline {5.3.1}Experimentálne overenie na reálnom systéme}{92}{subsubsection.5.3.1}%
+\contentsline {subsubsection}{\numberline {5.3.2}Heuristická modifikácia implementácie na potlačenie driftu parametrov}{95}{subsubsection.5.3.2}%
+\contentsline {paragraph}{Smoothing meraného výstupu}{95}{paragraph*.34}%
+\contentsline {paragraph}{Dead-zone v adaptačnom zákone}{95}{paragraph*.35}%
+\contentsline {paragraph}{Implementačné doplnenia}{96}{paragraph*.36}%
+\contentsline {paragraph}{Experimentálne overenie heuristickej modifikácie}{97}{paragraph*.37}%
+\contentsline {subsection}{\numberline {5.4}Implementácia gradientného MRAC regulátora v PLC Siemens}{98}{subsection.5.4}%
+\contentsline {section}{Zoznam literatúry}{105}{figure.44}%
+\contentsline {section}{\numberline {6}Zdrojové kódy implementácie}{106}{section.6}%

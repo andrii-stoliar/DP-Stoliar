@@ -1649,73 +1649,79 @@ obr.~\ref{fig:tia_prep_scheme}.
 
 Zoznam premenných funkčného bloku je uvedený v tab.~\ref{tab:tia_prep_vars}.
 
-\begin{table}[h!]
-    \centering
+{\begin{longtable}{|c|c|c|c|c|}
     \caption{Premenné funkčného bloku \texttt{FB\_PREP\_TS05}}
-    \label{tab:tia_prep_vars}
-    \scriptsize
-    \makebox[\textwidth][c]{%
-    \begin{tabular}{|c|c|c|c|c|}
-        \hline
-        \textbf{Sekcia} & \textbf{Premenná} & \textbf{Dátový typ} & \textbf{Predvolená hodnota} & \textbf{Retain} \\ \hline
-        Input & \texttt{Y} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-        Input & \texttt{R\_g} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-        Input & \texttt{R\_l} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-        Input & \texttt{Enable} & \texttt{Bool} & \texttt{false} & Non-retain \\ \hline
-        Input & \texttt{Vent\_in} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-        Output & \texttt{U} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-        Output & \texttt{R\_gf} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-        Output & \texttt{Y\_pb\_out} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-        Output & \texttt{U\_pb\_out} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-        Output & \texttt{U\_g} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-        Output & \texttt{U\_l} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-        Output & \texttt{Active\_g} & \texttt{Bool} & \texttt{false} & Non-retain \\ \hline
-        Output & \texttt{Kp\_l\_out} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-        Output & \texttt{Ki\_l\_out} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-        Output & \texttt{Vent\_out} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-        Static & \texttt{X\_f1} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-        Static & \texttt{X\_f2} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-        Static & \texttt{I\_l} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-        Static & \texttt{I\_g} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-        Static & \texttt{Y\_hist} & \texttt{Array[0..29] of Real} & -- & Non-retain \\ \hline
-        Static & \texttt{U\_hist} & \texttt{Array[0..29] of Real} & -- & Non-retain \\ \hline
-        Static & \texttt{R\_g\_prev} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-        Static & \texttt{Active\_g\_m} & \texttt{Bool} & \texttt{false} & Non-retain \\ \hline
-        Static & \texttt{Y\_pb} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-        Static & \texttt{U\_pb} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-        Static & \texttt{Initialized} & \texttt{Bool} & \texttt{false} & Non-retain \\ \hline
-        Static & \texttt{Y\_pb\_table} & \texttt{Array[0..2] of Real} & -- & Non-retain \\ \hline
-        Static & \texttt{U\_pb\_table} & \texttt{Array[0..2] of Real} & -- & Non-retain \\ \hline
-        Static & \texttt{Kp\_l\_table} & \texttt{Array[0..2] of Real} & -- & Non-retain \\ \hline
-        Static & \texttt{Ki\_l\_table} & \texttt{Array[0..2] of Real} & -- & Non-retain \\ \hline
-        Temp & \texttt{E\_l} & \texttt{Real} & -- & -- \\ \hline
-        Temp & \texttt{E\_g} & \texttt{Real} & -- & -- \\ \hline
-        Temp & \texttt{U\_tmp} & \texttt{Real} & -- & -- \\ \hline
-        Temp & \texttt{Lower\_bound} & \texttt{Real} & -- & -- \\ \hline
-        Temp & \texttt{Upper\_bound} & \texttt{Real} & -- & -- \\ \hline
-        Temp & \texttt{Y\_pb\_new} & \texttt{Real} & -- & -- \\ \hline
-        Temp & \texttt{U\_pb\_new} & \texttt{Real} & -- & -- \\ \hline
-        Temp & \texttt{Count\_ok} & \texttt{Int} & -- & -- \\ \hline
-        Temp & \texttt{Idx\_pb} & \texttt{Int} & -- & -- \\ \hline
-        Temp & \texttt{I} & \texttt{Int} & -- & -- \\ \hline
-        Temp & \texttt{Active\_g\_new} & \texttt{Bool} & -- & -- \\ \hline
-        Temp & \texttt{Active\_l} & \texttt{Bool} & -- & -- \\ \hline
-        Temp & \texttt{Kp\_l} & \texttt{Real} & -- & -- \\ \hline
-        Temp & \texttt{Ki\_l} & \texttt{Real} & -- & -- \\ \hline
-        Temp & \texttt{Y\_pb\_est} & \texttt{Real} & -- & -- \\ \hline
-        Temp & \texttt{U\_pb\_est} & \texttt{Real} & -- & -- \\ \hline
-        Temp & \texttt{Dist\_pb} & \texttt{Real} & -- & -- \\ \hline
-        Temp & \texttt{Dist\_l} & \texttt{Real} & -- & -- \\ \hline
-        Temp & \texttt{X\_f1\_new} & \texttt{Real} & -- & -- \\ \hline
-        Temp & \texttt{X\_f2\_new} & \texttt{Real} & -- & -- \\ \hline
-        Temp & \texttt{Mean\_y} & \texttt{Real} & -- & -- \\ \hline
-        Temp & \texttt{Mean\_u} & \texttt{Real} & -- & -- \\ \hline
-        Constant & \texttt{Ts} & \texttt{Real} & \texttt{0.1} & -- \\ \hline
-        Constant & \texttt{Kp\_g} & \texttt{Real} & \texttt{4.0} & -- \\ \hline
-        Constant & \texttt{Ki\_g} & \texttt{Real} & \texttt{0.7} & -- \\ \hline
-    \end{tabular}
-    }
-\end{table}
+    \label{tab:tia_prep_vars} \\
+
+    \hline
+    \textbf{Sekcia} & \textbf{Premenná} & \textbf{Dátový typ} & \textbf{Predvolená hodnota} & \textbf{Retain} \\ \hline
+    \endfirsthead
+
+    \hline
+    \textbf{Sekcia} & \textbf{Premenná} & \textbf{Dátový typ} & \textbf{Predvolená hodnota} & \textbf{Retain} \\ \hline
+    \endhead
+
+    Input & \texttt{Y} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Input & \texttt{R\_g} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Input & \texttt{R\_l} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Input & \texttt{Enable} & \texttt{Bool} & \texttt{false} & Non-retain \\ \hline
+    Input & \texttt{Vent\_in} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+
+    Output & \texttt{U} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Output & \texttt{R\_gf} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Output & \texttt{Y\_pb\_out} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Output & \texttt{U\_pb\_out} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Output & \texttt{U\_g} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Output & \texttt{U\_l} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Output & \texttt{Active\_g} & \texttt{Bool} & \texttt{false} & Non-retain \\ \hline
+    Output & \texttt{Kp\_l\_out} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Output & \texttt{Ki\_l\_out} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Output & \texttt{Vent\_out} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+
+    Static & \texttt{X\_f1} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Static & \texttt{X\_f2} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Static & \texttt{I\_l} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Static & \texttt{I\_g} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Static & \texttt{Y\_hist} & \texttt{Array[0..29] of Real} & -- & Non-retain \\ \hline
+    Static & \texttt{U\_hist} & \texttt{Array[0..29] of Real} & -- & Non-retain \\ \hline
+    Static & \texttt{R\_g\_prev} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Static & \texttt{Active\_g\_m} & \texttt{Bool} & \texttt{false} & Non-retain \\ \hline
+    Static & \texttt{Y\_pb} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Static & \texttt{U\_pb} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Static & \texttt{Initialized} & \texttt{Bool} & \texttt{false} & Non-retain \\ \hline
+    Static & \texttt{Y\_pb\_table} & \texttt{Array[0..2] of Real} & -- & Non-retain \\ \hline
+    Static & \texttt{U\_pb\_table} & \texttt{Array[0..2] of Real} & -- & Non-retain \\ \hline
+    Static & \texttt{Kp\_l\_table} & \texttt{Array[0..2] of Real} & -- & Non-retain \\ \hline
+    Static & \texttt{Ki\_l\_table} & \texttt{Array[0..2] of Real} & -- & Non-retain \\ \hline
+
+    Temp & \texttt{E\_l} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{E\_g} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{U\_tmp} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{Lower\_bound} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{Upper\_bound} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{Y\_pb\_new} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{U\_pb\_new} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{Count\_ok} & \texttt{Int} & -- & -- \\ \hline
+    Temp & \texttt{Idx\_pb} & \texttt{Int} & -- & -- \\ \hline
+    Temp & \texttt{I} & \texttt{Int} & -- & -- \\ \hline
+    Temp & \texttt{Active\_g\_new} & \texttt{Bool} & -- & -- \\ \hline
+    Temp & \texttt{Active\_l} & \texttt{Bool} & -- & -- \\ \hline
+    Temp & \texttt{Kp\_l} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{Ki\_l} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{Y\_pb\_est} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{U\_pb\_est} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{Dist\_pb} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{Dist\_i} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{X\_f1\_new} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{X\_f2\_new} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{Mean\_y} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{Mean\_u} & \texttt{Real} & -- & -- \\ \hline
+
+    Constant & \texttt{Ts} & \texttt{Real} & \texttt{0.1} & -- \\ \hline
+    Constant & \texttt{Kp\_g} & \texttt{Real} & \texttt{4.0} & -- \\ \hline
+    Constant & \texttt{Ki\_g} & \texttt{Real} & \texttt{0.7} & -- \\ \hline
+\end{longtable}
+}
 
 \subsubsection{Experiment na tepelnej sústave}
 \label{sec:prep_plc_experiment}

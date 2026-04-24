@@ -2181,22 +2181,95 @@ je uvedená na obr.~\ref{fig:tia_mrac_scheme}.
 }
 \end{center}
 
-Keďže funkčný blok obsahuje väčší počet vnútorných premenných, ich zoznam je
-z dôvodu prehľadnosti rozdelený do dvoch častí. Obe časti sú uvedené na
-obr.~\ref{fig:tia_mrac_vars}.
+Zoznam premenných funkčného bloku je uvedený v tab.~\ref{tab:tia_mrac_vars}.
 
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=0.7\textwidth]{tia_mrac_vars1.png}
-}
-\makebox[\textwidth][c]{%
-    \includegraphics[width=0.7\textwidth]{tia_mrac_vars2.png}
-}
-\figcaption{Premenné funkčného bloku \texttt{FB\_MRAC\_TS05}}
-\label{fig:tia_mrac_vars}
-}
-\end{center}
+\begin{longtable}{|c|c|c|c|c|}
+    \caption{Premenné funkčného bloku \texttt{FB\_MRAC\_TS05}}
+    \label{tab:tia_mrac_vars} \\
+
+    \hline
+    \textbf{Sekcia} & \textbf{Premenná} & \textbf{Dátový typ} & \textbf{Predvolená hodnota} & \textbf{Retain} \\ \hline
+    \endfirsthead
+
+    \hline
+    \textbf{Sekcia} & \textbf{Premenná} & \textbf{Dátový typ} & \textbf{Predvolená hodnota} & \textbf{Retain} \\ \hline
+    \endhead
+
+    Input & \texttt{Y} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Input & \texttt{R} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Input & \texttt{Enable} & \texttt{Bool} & \texttt{false} & Non-retain \\ \hline
+    Input & \texttt{Vent\_in} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+
+    Output & \texttt{U} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Output & \texttt{Ym} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Output & \texttt{Theta1\_out} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Output & \texttt{Theta2\_out} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Output & \texttt{Theta3\_out} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Output & \texttt{Y\_pb\_out} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Output & \texttt{Vent\_out} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+
+    Static & \texttt{Theta1} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Static & \texttt{Theta2} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Static & \texttt{Theta3} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Static & \texttt{X\_ym1} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Static & \texttt{X\_ym2} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Static & \texttt{X\_yf1} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Static & \texttt{X\_yf2} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Static & \texttt{X\_rf1} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Static & \texttt{X\_rf2} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Static & \texttt{Y\_prev} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Static & \texttt{Y\_pb} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Static & \texttt{R\_pb} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Static & \texttt{Sw} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+
+    Temp & \texttt{Theta1\_work} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{Theta2\_work} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{Theta3\_work} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{X\_ym1\_work} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{X\_ym2\_work} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{X\_yf1\_work} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{X\_yf2\_work} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{X\_rf1\_work} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{X\_rf2\_work} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{Theta1\_next} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{Theta2\_next} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{Theta3\_next} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{X\_ym1\_next} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{X\_ym2\_next} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{X\_yf1\_next} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{X\_yf2\_next} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{X\_rf1\_next} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{X\_rf2\_next} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{Y\_prev\_next} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{Y\_pb\_next} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{R\_pb\_next} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{Sw\_next} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{Dy} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{Dr} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{Dy\_prev} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{Dy\_dot} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{Yf} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{Ydot\_f} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{Rf} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{E} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{Du} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{U\_unsat} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{DTheta1} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{DTheta2} & \texttt{Real} & -- & -- \\ \hline
+    Temp & \texttt{DTheta3} & \texttt{Real} & -- & -- \\ \hline
+
+    Constant & \texttt{A0M} & \texttt{Real} & \texttt{1.0} & -- \\ \hline
+    Constant & \texttt{A1M} & \texttt{Real} & \texttt{20.0} & -- \\ \hline
+    Constant & \texttt{B0M} & \texttt{Real} & \texttt{1.0} & -- \\ \hline
+    Constant & \texttt{Alpha1} & \texttt{Real} & \texttt{0.14} & -- \\ \hline
+    Constant & \texttt{Alpha2} & \texttt{Real} & \texttt{0.3} & -- \\ \hline
+    Constant & \texttt{Alpha3} & \texttt{Real} & \texttt{0.14} & -- \\ \hline
+    Constant & \texttt{Sign\_b0} & \texttt{Real} & \texttt{1.0} & -- \\ \hline
+    Constant & \texttt{Ts} & \texttt{Real} & \texttt{0.1} & -- \\ \hline
+    Constant & \texttt{U\_pb} & \texttt{Real} & \texttt{3.0} & -- \\ \hline
+    Constant & \texttt{U\_min} & \texttt{Real} & \texttt{0.0} & -- \\ \hline
+    Constant & \texttt{U\_max} & \texttt{Real} & \texttt{10.0} & -- \\ \hline
+\end{longtable}
 
 Na základe tejto implementácie bol následne vykonaný experiment na reálnom
 systéme TS05. Celkový priebeh experimentu v absolútnych veličinách je
@@ -2244,6 +2317,11 @@ nemusia byť úplne vhodné práve pre túto hardvérovú platformu a jej úrove
 meracieho šumu. Určitú úlohu môžu zohrávať aj odlišné vonkajšie podmienky
 počas experimentu. Tieto faktory však z uvedených meraní nemožno jednoznačne
 potvrdiť.
+
+Pokojnejší priebeh signálov môže súvisieť aj so spracovaním analógových hodnôt
+v PLC module. Ako bolo uvedené v podkapitole~\ref{sec:komunikacia_siemens},
+aj pri vypnutom digitálnom vyhladzovaní zostáva aktívne potlačenie rušenia
+(\textit{noise rejection}).
 
 Napriek tomu možno konštatovať, že implementácia gradientného MRAC regulátora
 v PLC Siemens je správna a výsledné správanie systému zodpovedá charakteru
