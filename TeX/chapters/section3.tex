@@ -32,7 +32,9 @@ kde $K_p$ je proporcionálny zisk a $K_i$ integračný zisk regulátora.
 Regulátor je zapojený v štandardnej uzavretej spätnej väzbe
 so zápornou spätnou väzbou.
 Bloková schéma uzavretého regulačného obvodu je znázornená
-na obr.~\ref{fig:pi_block_scheme}.
+na obr.~\ref{fig:pi_block_scheme}. V schéme označenie $u_1$ predstavuje napätie privádzané na vykurovaciu špirálu,
+$u_2$ napätie privádzané na ventilátor, zatiaľ čo $y_1$ a $y_2$ označujú
+signály zo snímača teploty~1 a snímača teploty~2.
 
 \begin{center}
 	\vbox{
@@ -578,7 +580,7 @@ Zoznam interných premenných použitých vo funkčnom bloku je uvedený v tab.~
     \centering
     \caption{Premenné funkčného bloku \texttt{FB\_PI\_TS05}}
     \label{tab:tia_pi_vars}
-    \begin{tabular}{|c|c|c|c|c|}
+    \begin{tabular}{c c c c c}
         \hline
         \textbf{Sekcia} & \textbf{Premenná} & \textbf{Dátový typ} & \textbf{Predvolená hodnota} & \textbf{Retain} \\ \hline
         Input & \texttt{Y} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
@@ -652,3 +654,39 @@ na platforme Siemens PLC bola úspešná a poskytla porovnateľné správanie
 ako implementácie na ostatných použitých platformách. Tým sa zároveň potvrdilo,
 že zvolená štruktúra algoritmu je vhodná nielen pre simulačné a mikrokontrolérové
 prostredie, ale aj pre klasické priemyselné PLC riešenie.
+
+\subsection{Porovnanie výsledkov implementácie PI regulátora}
+\label{sec:pi_implementation_comparison}
+
+PI regulátor bol implementovaný na všetkých troch uvažovaných platformách:
+v prostredí MATLAB/Simulink, v jazyku C++ na platforme Arduino a v PLC Siemens.
+Vo všetkých prípadoch bol zachovaný rovnaký princíp regulácie v okolí pracovného
+bodu a rovnaké parametre PI regulátora.
+
+Porovnanie experimentálnych výsledkov je uvedené na obr.~\ref{fig:ts_pi_real_comparison}.
+Z priebehov je zrejmé, že odozvy systému sú na jednotlivých platformách veľmi
+podobné. Podobnosť je viditeľná nielen na výstupe systému, ale aj na priebehu
+akčného zásahu vypočítaného regulátorom.
+
+\begin{center}
+\vbox{
+\makebox[\textwidth][c]{%
+    \includegraphics[width=1.5\textwidth]{ts_pi_real_comparison.png}
+}
+\figcaption{Porovnanie experimentálnych výsledkov PI regulátora na jednotlivých platformách}
+\label{fig:ts_pi_real_comparison}
+}
+\end{center}
+
+Pre kvantitatívne porovnanie bola vypočítaná hodnota RMSE vzhľadom na príslušnú
+žiadanú hodnotu každého experimentu:
+
+\begin{align}
+    \mathrm{RMSE}_{\mathrm{MATLAB}} &= 0.092899~\mathrm{V}, \\
+    \mathrm{RMSE}_{\mathrm{C++}} &= 0.085426~\mathrm{V}, \\
+    \mathrm{RMSE}_{\mathrm{PLC}} &= 0.085760~\mathrm{V}.
+\end{align}
+
+Z uvedených hodnôt vyplýva, že rozdiely medzi jednotlivými platformami sú malé.
+Implementácia PI regulátora tak bola úspešne overená vo všetkých troch
+uvažovaných prostrediach.

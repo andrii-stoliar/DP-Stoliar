@@ -35,7 +35,7 @@ kde sú uvedené identifikované prenosové funkcie, hodnoty pracovného bodu $y
     \centering
     \caption{Parametre pracovných bodov, identifikované prenosové funkcie a PI regulátory}
     \label{tab:pb_overview}
-    \begin{tabular}{|c|c|c|c|c|}
+    \begin{tabular}{c c c c c}
         \hline
         \textbf{$u_{pb}$} & \textbf{Prenosová funkcia} & \textbf{$y_{pb}$} & \textbf{$\Delta y_{pb}$ pri $u_{pb}$ $\pm 0.5$~V} & \textbf{PI parametre} \\ \hline
 
@@ -1649,17 +1649,16 @@ obr.~\ref{fig:tia_prep_scheme}.
 
 Zoznam premenných funkčného bloku je uvedený v tab.~\ref{tab:tia_prep_vars}.
 
-{\begin{longtable}{|c|c|c|c|c|}
-    \caption{Premenné funkčného bloku \texttt{FB\_PREP\_TS05}}
-    \label{tab:tia_prep_vars} \\
+\clearpage
+\vspace*{-2.0cm}
+\begin{center}
+\captionof{table}{Premenné funkčného bloku \texttt{FB\_PREP\_TS05}}
+\label{tab:tia_prep_vars}
+\makebox[\textwidth][c]{%
+\begin{tabular}{c c c c c}
 
     \hline
     \textbf{Sekcia} & \textbf{Premenná} & \textbf{Dátový typ} & \textbf{Predvolená hodnota} & \textbf{Retain} \\ \hline
-    \endfirsthead
-
-    \hline
-    \textbf{Sekcia} & \textbf{Premenná} & \textbf{Dátový typ} & \textbf{Predvolená hodnota} & \textbf{Retain} \\ \hline
-    \endhead
 
     Input & \texttt{Y} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
     Input & \texttt{R\_g} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
@@ -1720,8 +1719,9 @@ Zoznam premenných funkčného bloku je uvedený v tab.~\ref{tab:tia_prep_vars}.
     Constant & \texttt{Ts} & \texttt{Real} & \texttt{0.1} & -- \\ \hline
     Constant & \texttt{Kp\_g} & \texttt{Real} & \texttt{4.0} & -- \\ \hline
     Constant & \texttt{Ki\_g} & \texttt{Real} & \texttt{0.7} & -- \\ \hline
-\end{longtable}
+\end{tabular}
 }
+\end{center}
 
 \subsubsection{Experiment na tepelnej sústave}
 \label{sec:prep_plc_experiment}
@@ -1750,3 +1750,52 @@ pracovnými bodmi aj následná lokálna regulácia v ich okolí. Zároveň mož
 pozorovať, že akčný zásah zostáva plynulý aj pri prepnutí regulačných vetiev,
 čo potvrdzuje správnosť implementácie prepínacej logiky aj aktualizácie
 vnútorných stavov algoritmu.
+
+Pre kontrolu práce detekcie ustálenia je na obr.~\ref{fig:ts_plc_prep_real_zoom}
+uvedený detail vybraných úsekov experimentu. Vidno, že odhadnutý pracovný bod
+sa po prepnutí nachádza v tolerančnom pásme $\pm 3\,\%$, čo potvrdzuje správnu
+činnosť použitej podmienky ustálenia aj v PLC implementácii.
+
+\begin{center}
+\vbox{
+\makebox[\textwidth][c]{%
+    \includegraphics[width=1.5\textwidth]{ts_plc_prep_real_zoom.png}
+}
+\figcaption{Detail regulácie v okolí pracovného bodu pri implementácii algoritmu v PLC Siemens}
+\label{fig:ts_plc_prep_real_zoom}
+}
+\end{center}
+
+\subsection{Porovnanie výsledkov implementácie prepínania pracovných bodov}
+\label{sec:prep_implementation_comparison}
+
+Algoritmus prepínania pracovných bodov bol implementovaný v prostredí
+MATLAB/Simulink, v jazyku C++ a v PLC Siemens. Porovnanie experimentálnych
+výsledkov je uvedené na obr.~\ref{fig:ts_prep_real_comparison}.
+
+\begin{center}
+\vbox{
+\makebox[\textwidth][c]{%
+    \includegraphics[width=1.5\textwidth]{ts_prep_real_comparison.png}
+}
+\figcaption{Porovnanie experimentálnych výsledkov prepínania pracovných bodov na jednotlivých platformách}
+\label{fig:ts_prep_real_comparison}
+}
+\end{center}
+
+Z priebehov výstupu je viditeľné, že správanie systému je vo všetkých troch
+prípadoch podobné. Priebehy akčného zásahu majú podobný charakter, avšak
+medzi jednotlivými experimentmi možno pozorovať rozdielny \textit{offset}. Ten môže
+súvisieť s odlišnými vonkajšími podmienkami počas meraní.
+
+Pre kvantitatívne porovnanie bola vypočítaná hodnota RMSE vzhľadom na príslušnú
+hodnotu $r_{gf}+r_l$ každého experimentu:
+
+\begin{align}
+    \mathrm{RMSE}_{\mathrm{MATLAB}} &= 0.497536~\mathrm{V}, \\
+    \mathrm{RMSE}_{\mathrm{C++}} &= 0.405534~\mathrm{V}, \\
+    \mathrm{RMSE}_{\mathrm{PLC}} &= 0.456926~\mathrm{V}.
+\end{align}
+
+Výsledky ukazujú, že algoritmus bol realizovaný na všetkých troch platformách
+s porovnateľným správaním výstupu systému.

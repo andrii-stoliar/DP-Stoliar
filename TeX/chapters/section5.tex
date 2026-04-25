@@ -2183,7 +2183,7 @@ je uvedená na obr.~\ref{fig:tia_mrac_scheme}.
 
 Zoznam premenných funkčného bloku je uvedený v tab.~\ref{tab:tia_mrac_vars}.
 
-\begin{longtable}{|c|c|c|c|c|}
+\begin{longtable}{c c c c c}
     \caption{Premenné funkčného bloku \texttt{FB\_MRAC\_TS05}}
     \label{tab:tia_mrac_vars} \\
 
@@ -2271,7 +2271,9 @@ Zoznam premenných funkčného bloku je uvedený v tab.~\ref{tab:tia_mrac_vars}.
     Constant & \texttt{U\_max} & \texttt{Real} & \texttt{10.0} & -- \\ \hline
 \end{longtable}
 
-Na základe tejto implementácie bol následne vykonaný experiment na reálnom
+\subsubsection{Experimentálne overenie na reálnom systéme}
+
+Na základe popisanej implementácie bol následne vykonaný experiment na reálnom
 systéme TS05. Celkový priebeh experimentu v absolútnych veličinách je
 zobrazený na obr.~\ref{fig:ts_plc_mrac_real_raw}.
 
@@ -2327,3 +2329,47 @@ Napriek tomu možno konštatovať, že implementácia gradientného MRAC regulá
 v PLC Siemens je správna a výsledné správanie systému zodpovedá charakteru
 výsledkov, ktoré boli pozorované pri realizácii v jazyku C++ aj v prostredí
 MATLAB/Simulink.
+
+\subsection{Porovnanie výsledkov implementácie MRAC regulátora}
+\label{sec:mrac_implementation_comparison}
+
+Porovnanie experimentálnych výsledkov jednotlivých implementácií MRAC regulátora
+je uvedené na obr.~\ref{fig:ts_mrac_real_comparison}.
+
+\begin{center}
+\vbox{
+\makebox[\textwidth][c]{%
+    \includegraphics[width=1.5\textwidth]{ts_mrac_real_comparison.png}
+}
+\figcaption{Porovnanie experimentálnych výsledkov gradientného MRAC regulátora na jednotlivých platformách}
+\label{fig:ts_mrac_real_comparison}
+}
+\end{center}
+
+Pre kvantitatívne porovnanie bola vypočítaná hodnota RMSE medzi priebehmi
+$\Delta y$ a $\Delta y_m$:
+
+\begin{align}
+    \mathrm{RMSE}_{\mathrm{MATLAB}} &= 0.062104~\mathrm{V}, \\
+    \mathrm{RMSE}_{\mathrm{C++}} &= 0.176280~\mathrm{V}, \\
+    \mathrm{RMSE}_{\mathrm{PLC}} &= 0.074174~\mathrm{V}, \\
+    \mathrm{RMSE}_{\mathrm{C++\,ex.}} &= 0.127432~\mathrm{V}.
+\end{align}
+
+Z porovnania je zrejmé, že výsledky jednotlivých implementácií nie sú také
+podobné ako pri PI regulátore zo sekcie~\ref{sec:pi_controller} alebo pri
+prepínaní pracovných bodov zo sekcie~\ref{sec:pi_switching}. To súvisí
+s tým, že gradientný MRAC regulátor je citlivejší na praktické podmienky
+experimentu. Na výsledné správanie môže mať vplyv najmä úroveň a charakter
+meracieho šumu, diskrétne rozlíšenie vstupov a výstupov, vonkajšie podmienky
+počas merania a tiež samotná voľba adaptačných koeficientov.
+
+Adaptačné koeficienty boli v tejto práci zvolené empiricky na základe správania
+systému v prostredí MATLAB/Simulink a následne boli použité aj na ostatných
+platformách. Z uvedených meraní však nemožno jednoznačne určiť, ktorý z faktorov
+mal na rozdiely medzi experimentmi rozhodujúci vplyv.
+
+Napriek týmto rozdielom výsledky ukazujú, že základná implementácia MRAC
+algoritmu bola realizovaná na všetkých uvažovaných platformách. Detailná
+optimalizácia adaptačných parametrov pre každú platformu samostatne však nebola
+cieľom tejto práce.

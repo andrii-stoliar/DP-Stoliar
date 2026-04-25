@@ -33,7 +33,7 @@ Vstupné veličiny tvoria napätia riadiace ventilátor a vykurovaciu špirálu 
     \centering
     \caption{Vstupy a výstupy systému TS05}
     \label{tab:io_ts05}
-    \begin{tabular}{|c|c|c|}
+    \begin{tabular}{c c c}
         \hline
         \textbf{Typ signálu} & \textbf{Označenie} & \textbf{Rozsah} \\ \hline
         Vstup & Ventilátor & 0–10~V \\ \hline
@@ -664,7 +664,7 @@ priradenie je uvedené v tabuľke~\ref{tab:ts05_pinout}.
     \centering
     \caption{Identifikované kontakty konektora systému TS05}
     \label{tab:ts05_pinout}
-    \begin{tabular}{|c|l|}
+    \begin{tabular}{c l}
         \hline
         \textbf{Pin} & \textbf{Funkcia} \\ \hline
         1 & Snímač 1 \\ \hline
@@ -719,7 +719,7 @@ je uvedené v tabuľke~\ref{tab:arduino_mapping_ts05}.
     \centering
     \caption{Mapovanie vstupov a výstupov medzi TS05 a Arduino UNO}
     \label{tab:arduino_mapping_ts05}
-    \begin{tabular}{|c|l|c|c|}
+    \begin{tabular}{c l c c}
         \hline
         \textbf{Port Arduino} & \textbf{Signál} & \textbf{Reálny rozsah} & \textbf{Digitálny rozsah} \\ \hline
         A1   & Snímač 1    & 0--10~V & 0--1023 \\ \hline
@@ -730,6 +730,9 @@ je uvedené v tabuľke~\ref{tab:arduino_mapping_ts05}.
 \end{table}
 
 Celkové fyzické zapojenie systému je znázornené na obrázku~\ref{fig:arduino_ts05_connection}.
+V schéme označenie $u_1$ predstavuje napätie privádzané na vykurovaciu špirálu,
+$u_2$ napätie privádzané na ventilátor, zatiaľ čo $y_1$ a $y_2$ označujú
+signály zo snímača teploty~1 a snímača teploty~2.
 
 \begin{center}
 \vbox{
@@ -771,7 +774,7 @@ Výsledky pre jednotlivé kanály sú uvedené v tabuľkách~\ref{tab:pwm5_vent}
     \centering
     \caption{Kalibračné merania pre výstup PWM5 -- ventilátor}
     \label{tab:pwm5_vent}
-    \begin{tabular}{|c|c|}
+    \begin{tabular}{c c}
         \hline
         \textbf{PWM5} & \textbf{Namerané napätie [V]} \\ \hline
         0   & 0.00 \\ \hline
@@ -787,7 +790,7 @@ Výsledky pre jednotlivé kanály sú uvedené v tabuľkách~\ref{tab:pwm5_vent}
     \centering
     \caption{Kalibračné merania pre výstup PWM6 -- špirála}
     \label{tab:pwm6_spirala}
-    \begin{tabular}{|c|c|}
+    \begin{tabular}{c c}
         \hline
         \textbf{PWM6} & \textbf{Namerané napätie [V]} \\ \hline
         0   & 0.00 \\ \hline
@@ -803,7 +806,7 @@ Výsledky pre jednotlivé kanály sú uvedené v tabuľkách~\ref{tab:pwm5_vent}
     \centering
     \caption{Kalibračné merania pre vstup A1 -- snímač 1}
     \label{tab:a1_snimac1}
-    \begin{tabular}{|c|c|}
+    \begin{tabular}{c c}
         \hline
         \textbf{Hodnota A1} & \textbf{Namerané napätie [V]} \\ \hline
         0   & 0.00 \\ \hline
@@ -819,7 +822,7 @@ Výsledky pre jednotlivé kanály sú uvedené v tabuľkách~\ref{tab:pwm5_vent}
     \centering
     \caption{Kalibračné merania pre vstup A2 -- snímač 2}
     \label{tab:a2_snimac2}
-    \begin{tabular}{|c|c|}
+    \begin{tabular}{c c}
         \hline
         \textbf{Hodnota A2} & \textbf{Namerané napätie [V]} \\ \hline
         0   & 0.00 \\ \hline
@@ -1059,7 +1062,7 @@ tabuľke~\ref{tab:plc_ts05_addresses}.
     \centering
     \caption{Adresovanie analógových vstupov a výstupov PLC modulu pre systém TS05}
     \label{tab:plc_ts05_addresses}
-    \begin{tabular}{|c|c|c|}
+    \begin{tabular}{c c c}
         \hline
         \textbf{Signál} & \textbf{Typ} & \textbf{Adresa} \\ \hline
         Ventilátor & Int & \%QW80 \\ \hline
@@ -1130,7 +1133,7 @@ Zoznam interných premenných použitých v tomto bloku je uvedený v tab.~\ref{
     \centering
     \caption{Premenné funkčného bloku \texttt{Current\_time} v prostredí TIA Portal}
     \label{tab:tia_time_vars}
-    \begin{tabular}{|c|c|c|c|c|}
+    \begin{tabular}{c c c c c}
         \hline
         \textbf{Sekcia} & \textbf{Premenná} & \textbf{Dátový typ} & \textbf{Predvolená hodnota} & \textbf{Retain} \\ \hline
         Output & \texttt{CurrentTimeSec} & \texttt{LReal} & \texttt{0.0} & Non-retain \\ \hline
@@ -1221,7 +1224,7 @@ Zoznam premenných tohto logovacieho bloku je uvedený v tab.~\ref{tab:tia_pi_lo
     \caption{Premenné funkčného bloku \texttt{FB\_PI\_LOGGER}}
     \label{tab:tia_pi_logger_vars}
     \makebox[\textwidth][c]{%
-    \begin{tabular}{|c|c|c|c|c|}
+    \begin{tabular}{c c c c c}
         \hline
         \textbf{Sekcia} & \textbf{Premenná} & \textbf{Dátový typ} & \textbf{Predvolená hodnota} & \textbf{Retain} \\ \hline
         Input & \texttt{CurrentTimeSec} & \texttt{LReal} & \texttt{0.0} & Non-retain \\ \hline
