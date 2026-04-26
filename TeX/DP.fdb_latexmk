@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1777235573.18525 "c:/MyFiles/Study/DP-Stoliar/TeX/DP.tex" "DP.pdf" "DP" 1777235598.76455 0
+["pdflatex"] 1777239482.86621 "c:/MyFiles/Study/DP-Stoliar/TeX/DP.tex" "DP.pdf" "DP" 1777239507.16345 0
   "../PY/fig/ts_cpp_mrac_experemental.png" 1775769623 963313 debd19c891f4ba193280f725ebaf139d ""
   "../PY/fig/ts_cpp_mrac_real.png" 1775676368 958865 ba4021abbca0ffbeb5e83417f2c74de2 ""
   "../PY/fig/ts_cpp_mrac_real_raw.png" 1775676364 772048 429ac03990e3de2d0e9cbbbc91ae4f60 ""
@@ -50,10 +50,10 @@
   "../SVG/TS_sch3_foto.pdf" 1761495333 80040 1b74f28156c7762abaf4f86565790e36 ""
   "../zadanieDP/zadanieDP.pdf" 1764158061 104063 33f92488344945982c50291e0dd07c97 ""
   "COMMONFILES/preamble.tex" 1777145737 8445 21bf2b5e02a48f5d9c7c92e1171e974b ""
-  "DP.aux" 1777235598 56807 fb641b5e4c6dbfca77fd38d8ac5bb1a2 "pdflatex"
-  "DP.out" 1777235598 14622 99972ab9b0ad1b3870006d060913d336 "pdflatex"
+  "DP.aux" 1777239506 56807 fb641b5e4c6dbfca77fd38d8ac5bb1a2 "pdflatex"
+  "DP.out" 1777239506 14622 99972ab9b0ad1b3870006d060913d336 "pdflatex"
   "DP.tex" 1777210236 5465 969343822e51f6f32739481e618f9d69 ""
-  "DP.toc" 1777235598 8018 dd492fffff4492b6a6dc741c374cf5a2 "pdflatex"
+  "DP.toc" 1777239506 8018 dd492fffff4492b6a6dc741c374cf5a2 "pdflatex"
   "c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1751211711 2971 def0b6c1f0b107b3b936def894055589 ""
   "c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1751211711 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "c:/MyFiles/Soft/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1751213751 2375 baa924870cfb487815765f9094cf3728 ""
@@ -241,7 +241,7 @@
   "chapters/literatura.tex" 1777218953 2400 850ae513f90585ace1ee769cf3512f9b ""
   "chapters/prilohy.tex" 1777208635 9510 d348921dcbadda152399dcb074b392f7 ""
   "chapters/section1.tex" 1777235572 7094 5622eac50090d9300621ad35de448f34 ""
-  "chapters/section2.tex" 1777219042 57270 3f729fd237a1e056ac3a8c64b478a2b1 ""
+  "chapters/section2.tex" 1777239482 57485 baa870936897193d3dddaf22b481d55d ""
   "chapters/section3.tex" 1777216222 31521 2dcd808bda32a864803a419208286385 ""
   "chapters/section4.tex" 1777154149 63136 3352e662b59bbb4afc483ff748696b1e ""
   "chapters/section5.tex" 1777218019 69925 596724e56eeb74db3b5179f8d615a770 ""
