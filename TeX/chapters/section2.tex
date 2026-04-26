@@ -337,7 +337,7 @@ Namiesto priameho odhadu parametrov modelu metódou najmenších štvorcov bola 
 aby sa minimalizovala chyba medzi simulovanou odozvou modelu a reálnou priemernou odozvou systému, získanou z experimentov.
 
 Ako nástroj optimalizácie bola použitá funkcia \texttt{fminsearch} z prostredia MATLAB,  
-ktorá implementuje Nelderovu–Meadovu simplexovú metódu.  
+ktorá implementuje Nelderovu–Meadovu simplexovú metódu \cite{hudzovic2000}.  
 Ide o bezderivačnú lokálnu optimalizačnú metódu, ktorá na základe hodnotenia účelovej funkcie v niekoľkých bodoch parametrov iteratívne posúva simplex (mnohouholník v priestore parametrov) tak, aby sa znižovala hodnota účelovej funkcie.  
 V našom prípade je účelová funkcia definovaná ako koreň zo strednej kvadratickej chyby (RMSE) medzi nameranou odozvou systému a simulovaným výstupom modelu:
 
@@ -636,7 +636,7 @@ Keďže blok MATLAB Function nemá vlastnú vnútornú pamäť v zmysle
 uchovávania stavových veličín medzi jednotlivými diskrétnymi krokmi,
 všetky veličiny, ktoré je potrebné zachovať medzi iteráciami algoritmu,
 musia byť vedené spätnou väzbou z výstupov na vstupy tohto bloku. Aby sa pri
-takomto zapojení zabránilo vzniku algebraickej slučky v prostredí
+takomto zapojení zabránilo vzniku algebraickej slučky ~\cite{cellier1991} v prostredí
 Simulink, je potrebné do spätnej väzby zaradiť diskrétny pamäťový
 blok typu \textit{Unit Delay}, štandardne reprezentovaný operátorom $z^{-1}$.
 Tým sa zabezpečí, že algoritmus bude implementovaný explicitne numerickým
@@ -1002,7 +1002,9 @@ na povolený rozsah.
 \label{sec:komunikacia_siemens}
 
 Ako riadiaca platforma pre túto časť práce bol použitý moderný priemyselný
-PLC systém Siemens SIMATIC S7-1200 G2. Cieľom tejto implementácie
+PLC systém Siemens SIMATIC S7-1200 G2. Základné technické informácie,
+spôsob konfigurácie a vlastnosti tejto platformy sú uvedené v systémovej
+dokumentácii výrobcu~\cite{siemens_s71200g2_manual}. Cieľom tejto implementácie
 bolo overiť možnosti riadenia tepelného systému TS05 aj na štandardnej
 priemyselnej platforme, ktorá sa svojím charakterom výrazne približuje reálnym
 nasadeniam v praxi.
@@ -1193,7 +1195,7 @@ bolo pre potreby experimentov plne postačujúce.
 
 Keďže jednotlivé bloky pre logovanie sa líšia iba v tom, ktoré konkrétne premenné
 ukladajú, bolo rozhodnuté uviesť iba jeden reprezentatívny príklad takéhoto
-logovacieho bloku, konkrétne pre PI regulátor opísaný v sekcii~\ref{sec:pi_controller}.
+logovacieho bloku, konkrétne pre PI regulátor opísaný v sekcii~\ref{sec:pi_plc_system}.
 Tento príklad je dostatočný na vysvetlenie princípu a zároveň zabraňuje
 zbytočnému opakovaniu veľmi podobných implementácií.
 
@@ -1251,3 +1253,5 @@ budú prezentované iba samotné bloky riadiacej logiky a príslušné siete
 organizačných blokov, v ktorých budú tieto algoritmy volané. Tým sa zachová
 prehľadnosť textu a zároveň sa zabráni opakovaniu už raz vysvetlených
 implementačných princípov.
+
+\clearpage

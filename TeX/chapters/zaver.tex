@@ -1,0 +1,60 @@
+\section*{Záver}
+\addcontentsline{toc}{section}{Záver}
+
+Cieľom tejto diplomovej práce bolo navrhnúť, implementovať a experimentálne
+overiť vybrané algoritmy riadenia pre laboratórny tepelný systém TS05. Hlavný
+dôraz bol kladený na praktickú realizáciu riadiacich systémov na dostupných
+implementačných platformách, konkrétne v prostredí MATLAB/Simulink, v jazyku
+C++ na platforme Arduino UNO a na priemyselnom PLC systéme Siemens
+SIMATIC S7-1200 G2.
+
+V rámci práce bol najskôr spracovaný opis použitého laboratórneho systému,
+spôsob jeho pripojenia k jednotlivým platformám a základné postupy potrebné
+pre prácu s jeho vstupnými a výstupnými signálmi. Pre potreby návrhu regulátorov
+bola vykonaná identifikácia systému na základe experimentálne nameraných údajov.
+Získaný model bol použitý pri návrhu regulačných algoritmov a pri ich počiatočnom
+simulačnom overení.
+
+Hlavným výsledkom práce je realizácia troch regulačných prístupov na reálnom
+laboratórnom zariadení. Prvým z nich bol PI regulátor, ktorý predstavoval
+základné riešenie pre riadenie v okolí jedného pracovného bodu. Druhým bol
+vlastne navrhnutý algoritmus PI regulácie s prepínaním pracovných bodov, ktorý
+rozšíril použiteľný pracovný rozsah riadenia kombináciou globálnej a lokálnej
+regulačnej vetvy. Tretím bol adaptívny MRAC regulátor založený na gradientnej
+metóde, ktorý umožnil overiť implementáciu pokročilejšieho adaptačného
+algoritmu na reálnom hardvéri.
+
+Navrhnuté algoritmy boli implementované na všetkých uvažovaných platformách.
+Tým sa podarilo overiť nielen ich regulačný princíp, ale aj praktické aspekty
+spojené s realizáciou riadiaceho systému, ako sú časovanie výpočtu, uchovávanie
+stavových premenných, škálovanie analógových signálov, saturácia akčného zásahu
+a záznam experimentálnych údajov. Porovnanie výsledkov medzi platformami
+slúžilo ako doplnkové vyhodnotenie a ukázalo, že pri jednoduchších regulačných
+štruktúrach možno dosiahnuť veľmi podobné správanie, zatiaľ čo adaptívny
+algoritmus je výraznejšie ovplyvnený vlastnosťami konkrétnej implementácie.
+
+Z experimentálnych výsledkov vyplynulo, že PI regulátor je vhodný najmä pre
+lokálne riadenie v okolí pracovného bodu. Algoritmus s prepínaním pracovných
+bodov umožnil realizovať prechody medzi rôznymi pracovnými oblasťami systému
+a následne pokračovať v lokálnej regulácii. Pri MRAC regulátore sa potvrdila
+možnosť implementácie adaptačného mechanizmu, zároveň sa však prejavila jeho
+citlivosť na merací šum, numerickú deriváciu, drift pracovného bodu a voľbu
+adaptačných koeficientov. Heuristická úprava použitá pri C++ implementácii
+znížila drift parametrov, ale úplne ho neodstránila.
+
+Možno konštatovať, že stanovené ciele práce boli splnené. Bol zostavený riadiaci
+systém pre reálny laboratórny dynamický systém, boli navrhnuté a implementované
+vybrané riadiace algoritmy a ich funkčnosť bola overená experimentálne. Práca
+zároveň ukázala, že prenos algoritmu zo simulačného prostredia na reálny hardvér
+nie je iba formálnym prepísaním kódu, ale samostatnou technickou úlohou, ktorá
+vyžaduje zohľadnenie vlastností merania, akčných členov, výpočtovej platformy
+a fyzikálneho správania riadeného systému.
+
+Ďalšie pokračovanie práce by sa mohlo zamerať najmä na zlepšenie adaptívneho
+riadenia. V prípade MRAC regulátora by bolo vhodné overiť normalizáciu
+regresora, projekčný algoritmus, $\sigma$-modifikáciu alebo iné stabilizačné úpravy
+adaptačného zákona. Pri algoritme prepínania pracovných bodov by bolo možné
+rozšíriť počet pracovných bodov, doplniť interpoláciu parametrov lokálnych
+regulátorov alebo upraviť podmienku detekcie ustálenia. Samostatným smerom
+ďalšej práce je rozšírenie návrhu zo SISO prístupu na využitie MIMO charakteru
+systému TS05.

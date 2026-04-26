@@ -76,5 +76,6 @@
 \contentsline {subsection}{\numberline {5.4}Implementácia gradientného MRAC regulátora v PLC Siemens}{98}{subsection.5.4}%
 \contentsline {subsubsection}{\numberline {5.4.1}Experimentálne overenie na reálnom systéme}{103}{subsubsection.5.4.1}%
 \contentsline {subsection}{\numberline {5.5}Porovnanie výsledkov implementácie MRAC regulátora}{105}{subsection.5.5}%
-\contentsline {section}{Zoznam literatúry}{106}{equation.183}%
-\contentsline {section}{\numberline {6}Zdrojové kódy implementácie}{107}{section.6}%
+\contentsline {section}{Záver}{106}{equation.183}%
+\contentsline {section}{Zoznam literatúry}{107}{equation.183}%
+\contentsline {section}{Zdrojové kódy implementácie}{108}{equation.183}%

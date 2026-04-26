@@ -9,6 +9,8 @@ V tejto kapitole je riešená adaptívna regulácia typu
 MRAC (\textit{Model Reference Adaptive Control}),
 ktorá umožňuje automatické prispôsobovanie parametrov regulátora
 pri nepresne známej dynamike riadeného systému.
+Adaptívne riadenie a jeho použitie pri technologických procesoch je
+podrobne spracované napríklad v~\cite{murgas1993,tao2003}.
 Na rozdiel od klasických regulátorov s pevnými parametrami
 MRAC využíva referenčný model,
 ktorý definuje požadované správanie uzavretého regulačného obvodu,
@@ -140,7 +142,9 @@ Minimalizovaná je účelová funkcia
 	J(\Theta) = \frac{1}{2} e^2(t).
 \end{equation}
 
-MIT pravidlo je formulované ako
+MIT pravidlo patrí medzi základné gradientné prístupy používané
+pri návrhu adaptačných zákonov v adaptívnom riadení~\cite{tao2003}.
+Je formulované ako
 \begin{equation}
 	\frac{d\Theta}{dt}
 	=
@@ -195,7 +199,9 @@ v zákone riadenia.
 
 Pre potreby diskrétnej implementácie je vhodné
 preniesť opis riadeného systému z tvaru prenosovej funkcie
-do tvaru stavového modelu.
+do tvaru stavového modelu. Stavový opis predstavuje prirodzený spôsob
+reprezentácie dynamických systémov, keďže umožňuje pracovať priamo
+s vnútornými stavmi systému a ich časovým vývojom~\cite{cellier1991,ogata2010}.
 
 Uvažujme všeobecný lineárny systém druhého rádu
 

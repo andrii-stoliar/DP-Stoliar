@@ -1,43 +1,60 @@
 \section*{Úvod}
 \addcontentsline{toc}{section}{Úvod}
 
-Riadenie procesov je kľúčovou súčasťou moderných priemyselných systémov,
-ktoré zabezpečujú efektívnu, bezpečnú a spoľahlivú prevádzku širokého spektra technologických zariadení.
-S rastúcimi nárokmi na kvalitu výroby, energetickú efektívnosť a flexibilitu riadenia
-sa čoraz väčší dôraz kladie nielen na samotný návrh riadiacich algoritmov,
-ale aj na ich praktickú implementáciu v reálnych podmienkach.
+Riadenie dynamických systémov patrí medzi základné úlohy automatizácie a
+kybernetiky. V technickej praxi však samotný návrh regulačného algoritmu
+nepredstavuje celý problém. Aby bolo možné algoritmus použiť na reálnom
+zariadení, je potrebné zabezpečiť jeho softvérovú implementáciu, komunikáciu
+s meracím a akčným hardvérom, správne časovanie výpočtu, spracovanie vstupných
+a výstupných signálov a rešpektovanie fyzikálnych obmedzení riadeného systému.
 
-Hlavným zameraním tejto práce je práve problematika implementácie riadiacich algoritmov
-na rôznych hardvérových a softvérových platformách.
-Dôraz nie je kladený výlučne na teoretický návrh regulátorov,
-ale najmä na spôsob ich realizácie, integrácie do riadiaceho systému
-a na porovnanie správania algoritmov v simulačnom prostredí a pri riadení reálneho procesu.
-Takýto prístup umožňuje identifikovať praktické obmedzenia,
-ktoré sa v čisto teoretickom návrhu často neprejavia.
+Táto diplomová práca sa zameriava najmä na praktickú implementáciu algoritmov
+riadenia pre vybraný laboratórny dynamický systém. V súlade so zadaním práce je
+hlavným cieľom zostavenie riadiaceho systému pre dostupný laboratórny hardvér
+vrátane vlastného softvérového návrhu. Súčasťou riešenia je aj stručná technická
+dokumentácia použitého laboratórneho zariadenia, keďže poznanie jeho vstupov,
+výstupov, fyzikálnych vlastností a spôsobu pripojenia je nevyhnutné pre návrh
+a realizáciu riadiacich algoritmov.
 
-Štruktúra práce v jej aktuálnej podobe zodpovedá prirodzenému postupu riešenia úloh,
-ktorý bol zvolený počas samotnej realizácie experimentov.
-Jednotlivé časti sú preto usporiadané ako postupný proces od identifikácie systému,
-cez návrh a ladenie riadiacich algoritmov, až po ich overenie v simulácii
-a pri riadení reálneho zariadenia.
-Takéto členenie verne odráža praktický spôsob práce
-a umožňuje sledovať vývoj návrhu riadenia krok za krokom.
+Práca zároveň využíva postupy z oblasti identifikácie systémov, numerickej
+simulácie a vyhodnocovania kvality riadenia. Pred samotným návrhom regulátorov
+je preto potrebné získať model správania riadeného systému na základe
+experimentálne nameraných údajov. Identifikovaný model následne slúži ako
+podklad pre numerickú simuláciu, návrh parametrov regulátorov a počiatočné
+overenie regulačných štruktúr pred ich nasadením na reálne zariadenie.
 
-V konečnej verzii práce však bude štruktúra upravená tak,
-aby zodpovedala štandardnému členeniu technicky orientovaných prác.
-Najskôr bude systematicky predstavený samotný algoritmus riadenia,
-jeho logika a vzájomné väzby medzi jednotlivými blokmi,
-v prípade potreby doplnené o pseudokód.
-Následne bude uvedený podrobný opis riadeného systému,
-jeho fyzikálne vlastnosti a proces identifikácie.
-Až v ďalších kapitolách bude spracovaná samotná implementácia riadenia
-v simulačnom prostredí a na zvolenej hardvérovej platforme.
+Riadiace algoritmy sú realizované na viacerých hardvérových a softvérových
+platformách. Uvažované platformy sa odlišujú spôsobom práce so stavovými
+premennými, spracovaním analógových signálov, časovaním výpočtu aj možnosťami
+záznamu údajov. Práve tieto rozdiely sú z praktického hľadiska dôležité pri
+prenose algoritmu z návrhového alebo simulačného prostredia na reálny hardvér.
 
-Z tohto dôvodu bude existujúca, už vypracovaná časť práce
-dodatočne štrukturálne upravená a reorganizovaná,
-pričom obsah jednotlivých kapitol zostane zachovaný.
-Cieľom tejto úpravy je zosúladenie výslednej štruktúry práce
-s požiadavkami zadania a zároveň zachovanie logickej nadväznosti
-medzi jednotlivými krokmi návrhu a implementácie riadenia.
+Výber riadiacich algoritmov bol zvolený tak, aby pokrýval viacero úrovní
+náročnosti návrhu a implementácie. Prvým algoritmom je PI regulátor, ktorý
+predstavuje klasický a v praxi široko používaný prístup k riadeniu pomalších
+technologických sústav. Tento regulátor tvorí základný referenčný prípad, na
+ktorom je možné ukázať postup návrhu, diskrétnej realizácie a implementácie
+na rôznych platformách.
 
-\pagebreak
+Druhým algoritmom je PI regulácia s prepínaním pracovných bodov. Ide o vlastne
+navrhnutú riadiacu štruktúru, ktorej cieľom je rozšíriť použiteľný pracovný rozsah
+základného PI riadenia. Algoritmus kombinuje globálnu regulačnú vetvu, lokálnu
+regulačnú vetvu a prepínaciu logiku založenú na vyhodnotení ustálenia systému.
+Tým vzniká prechod medzi jednoduchým lokálnym regulátorom a zložitejšou
+štruktúrou, ktorá zohľadňuje zmenu pracovného bodu.
+
+Tretím algoritmom je adaptívna regulácia typu MRAC
+(\textit{Model Reference Adaptive Control}) založená na gradientnej metóde.
+Tento prístup bol zvolený ako reprezentant pokročilejšej regulačnej metódy,
+pri ktorej sa parametre regulátora menia počas prevádzky. Zároveň ide
+o algoritmus citlivejší na praktické podmienky merania a implementácie,
+napríklad na merací šum, numerickú deriváciu, voľbu adaptačných koeficientov
+a vlastnosti konkrétnej hardvérovej platformy.
+
+Štruktúra práce zodpovedá jednotlivým úlohám zadania. Najskôr je uvedený
+úvodný príklad návrhu regulácie a opis použitého laboratórneho systému.
+Následne je spracovaná identifikácia systému a prehľad vybraných riadiacich
+algoritmov. Ďalšie kapitoly sa venujú návrhu, realizácii a experimentálnemu
+overeniu jednotlivých riadiacich systémov na dostupných platformách. V závere
+práce sú vyhodnotené dosiahnuté výsledky a zhrnuté praktické poznatky získané
+pri implementácii algoritmov na reálnom laboratórnom zariadení.

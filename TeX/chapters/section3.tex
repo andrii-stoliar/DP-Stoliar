@@ -18,6 +18,9 @@ v reálnom čase v prostredí MATLAB a v jazyku C++.
 
 PI regulátor predstavuje zjednodušenú formu PID regulátora,
 v ktorej je derivačná zložka vynechaná.
+Regulátory typu PID a ich modifikácie patria medzi najčastejšie používané
+štruktúry v priemyselnom riadení, najmä vďaka jednoduchej implementácii
+a možnosti praktického ladenia~\cite{wang2020,astrom1995}.
 Pre systémy s pomalou dynamikou, ako sú tepelné sústavy,
 derivačný člen spravidla neprináša zlepšenie regulácie
 a naopak môže zosilňovať merací šum.
@@ -166,7 +169,7 @@ Rovnako nebolo vhodné použiť klasickú metódu Ziegler--Nichols založenú na
 kritického zosilnenia, keďže pre identifikovaný model (\ref{eq:Gs_ls_approx}) nebolo možné týmto spôsobom
 získať parametre potrebné na jej štandardnú aplikáciu.
 
-Keďže návrh PI regulátora nie je hlavnou témou práce, bol zvolený numerický nástroj \texttt{pidtune}.  
+Keďže návrh PI regulátora nie je hlavnou témou práce, bol zvolený numerický nástroj \texttt{pidtune} \cite{wang2020,astrom1995}.  
 Jeho princíp spočíva v tom, že pre zvolenú požadovanú šírku pásma uzavretého systému vypočíta optimálne hodnoty parametrov PI regulátora tak, aby bola zabezpečená dobrá dynamická odozva a primeraná robustnosť.
 
 Najskôr bol systém prevedený do diskrétnej podoby a následne bolo vykonané
@@ -515,6 +518,7 @@ Jednotlivé merania boli realizované pri rozdielnej teplote v miestnosti, prič
 Preto možno konštatovať, že implementácia v jazyku C++ potvrdila správnosť navrhnutého algoritmu aj mimo prostredia MATLAB/Simulink a zároveň ukázala, že regulátor si zachováva porovnateľné vlastnosti aj pri nasadení na odlišnej softvérovej platforme.
 
 \subsection{Implementácia PI regulátora v PLC Siemens}
+\label{sec:pi_plc_system}
 
 Na základe predchádzajúcich implementácií v prostredí MATLAB a v jazyku C++
 bola následne realizovaná aj implementácia PI regulátora na platforme

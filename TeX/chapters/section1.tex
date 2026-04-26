@@ -82,6 +82,8 @@ Prenosová funkcia uzavretého regulačného obvodu (URO) pri jednotkovej spätn
     G_{\mathrm{URO}}(s) = \frac{G_{\mathrm{ORO}}(s)}{1 + G_{\mathrm{ORO}}(s)}.
     \label{eq:intro_uro_def}
 \end{equation}
+Uvedený tvar vychádza zo štandardného opisu uzavretej spätnej väzby
+v klasickej teórii riadenia~\cite{nise2015}.
 
 Po dosadení \eqref{eq:intro_oro_result} platí
 \begin{equation}
@@ -114,7 +116,7 @@ pričom po roznásobení dostaneme explicitný tvar tretieho rádu
     \label{eq:intro_uro_char_poly}
 \end{equation}
 
-Stabilita je v oboch prípadoch kľúčová, avšak význam sa líši. V prípade ORO sa stabilita posudzuje najmä z hľadiska robustnosti a bezpečnosti návrhu regulátora. V prípade URO je stabilita nevyhnutná podmienka správnej funkcie regulácie. Pre spojité systémy stabilita znamená, že všetky póly $G_{\mathrm{URO}}(s)$ majú zápornú reálnu časť. V opačnom prípade výstup $y(t)$ diverguje, regulačná odchýlka neklesá a systém môže byť v reálnej prevádzke nebezpečný.
+Stabilita je v oboch prípadoch kľúčová, avšak význam sa líši. V prípade ORO sa stabilita posudzuje najmä z hľadiska robustnosti a bezpečnosti návrhu regulátora. V prípade URO je stabilita nevyhnutná podmienka správnej funkcie regulácie. Pre spojité systémy stabilita znamená, že všetky póly $G_{\mathrm{URO}}(s)$ majú zápornú reálnu časť \cite{ogata2010}. V opačnom prípade výstup $y(t)$ diverguje, regulačná odchýlka neklesá a systém môže byť v reálnej prevádzke nebezpečný.
 
 
 % -----------------------------
