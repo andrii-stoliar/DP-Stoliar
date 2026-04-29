@@ -24,6 +24,7 @@
 \usepackage{lmodern}
 
 % \usepackage[tt={oldstyle=false,proportional=true,monowidth}]{cfr-lm}
+\usepackage[rm={oldstyle=false}, sf={oldstyle=false}, tt={oldstyle=false,proportional=true,monowidth}]{cfr-lm}
 % https://mirror.szerverem.hu/ctan/fonts/cfr-lm/doc/cfr-lm.pdf
 
 % ------------------------------
@@ -264,7 +265,8 @@
 \lstset{
     language=Matlab,
     backgroundcolor=\color[RGB]{245,245,245}, % light gray background
-    basicstyle=\fontfamily{cmtt}\selectfont\footnotesize,
+    % basicstyle=\fontfamily{cmtt}\selectfont\footnotesize,
+    basicstyle=\ttfamily\footnotesize,
     keywordstyle=\color[RGB]{0,0,255}\bfseries,
     stringstyle=\color[RGB]{163,21,21}, % MATLAB string color
     commentstyle=\color[RGB]{0,128,0}\itshape,
