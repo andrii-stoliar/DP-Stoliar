@@ -1,81 +1,82 @@
 \babel@toc {slovak}{}\relax 
 \contentsline {section}{Úvod}{8}{Doc-Start}%
-\contentsline {section}{\numberline {1}Úvodný príklad návrhu implementácie regulátora}{9}{section.1}%
-\contentsline {subsection}{\numberline {1.1}PID regulácia v uzavretej spätnej väzbe}{9}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Prenosové funkcie ORO a URO a zákon regulácie}{9}{subsection.1.2}%
-\contentsline {paragraph}{Zákon riadenia}{10}{paragraph*.1}%
-\contentsline {paragraph}{Pseudokód PID regulátora}{10}{paragraph*.2}%
-\contentsline {section}{\numberline {2}Identifikácia a popis tepelného systému TS05}{12}{section.2}%
+\contentsline {section}{\numberline {1}Podstata návrhu implementácie algoritmu riadenia}{9}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Regulačná odchýlka a regulátor}{9}{subsection.1.1}%
+\contentsline {paragraph}{Uzavretý regulačný obvod}{9}{paragraph*.1}%
+\contentsline {paragraph}{Poloha pólov a stabilita}{10}{paragraph*.3}%
+\contentsline {subsection}{\numberline {1.2}Zákon riadenia}{10}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Pseudokód PID regulátora}{11}{subsection.1.3}%
+\contentsline {section}{\numberline {2}Riadený systém}{12}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Popis tepelného systému}{12}{subsection.2.1}%
-\contentsline {subsubsection}{\numberline {2.1.1}Popis laboratórneho fyzikálneho modelu}{12}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Technický opis laboratórneho modelu dynamického systému}{12}{subsubsection.2.1.1}%
 \contentsline {subsubsection}{\numberline {2.1.2}Statické vlastnosti tepelného systému}{13}{subsubsection.2.1.2}%
-\contentsline {subsection}{\numberline {2.2}Identifikácia tepelného systému}{15}{subsection.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.1}Meranie údajov a ich spracovanie}{16}{subsubsection.2.2.1}%
-\contentsline {subsubsection}{\numberline {2.2.2}Identifikácia systému pomocou metódy najmenších štvorcov}{18}{subsubsection.2.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.3}Identifikácia systému pomocou optimalizácie prenosovej funkcie}{19}{subsubsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2}Identifikácia tepelného systému}{13}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Meranie údajov a ich spracovanie}{13}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Identifikácia systému pomocou metódy najmenších štvorcov}{17}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Identifikácia systému pomocou optimalizácie prenosovej funkcie}{18}{subsubsection.2.2.3}%
 \contentsline {subsubsection}{\numberline {2.2.4}Výsledky identifikácie tepelného systému}{20}{subsubsection.2.2.4}%
 \contentsline {subsubsection}{\numberline {2.2.5}Aproximácia identifikovaných modelov}{21}{subsubsection.2.2.5}%
 \contentsline {subsection}{\numberline {2.3}Komunikácia so systémom TS05}{22}{subsection.2.3}%
 \contentsline {subsubsection}{\numberline {2.3.1}Komunikácia s MATLAB}{22}{subsubsection.2.3.1}%
-\contentsline {subsubsection}{\numberline {2.3.2}Komunikácia v jazyku C++}{24}{subsubsection.2.3.2}%
-\contentsline {subsubsection}{\numberline {2.3.3}Komunikácia s PLC Siemens}{28}{subsubsection.2.3.3}%
-\contentsline {section}{\numberline {3}PI regulátor pre systém TS05}{33}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Štruktúra PI regulátora}{33}{subsection.3.1}%
-\contentsline {paragraph}{Prenosy regulačného obvodu}{33}{paragraph*.13}%
-\contentsline {paragraph}{Zákon riadenia}{34}{paragraph*.14}%
-\contentsline {paragraph}{Pseudokód PI regulátora}{34}{paragraph*.15}%
-\contentsline {subsection}{\numberline {3.2}Nastavenie parametrov PI regulátora pre systém TS05}{34}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Implementácia PI regulátora v MATLABe}{36}{subsection.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.1}Experimentálne overenie na reálnom systéme}{38}{subsubsection.3.3.1}%
-\contentsline {paragraph}{Experiment 1: Regulácia okolo jedného pracovného bodu}{38}{paragraph*.16}%
-\contentsline {paragraph}{Experiment 2: Reakcia na väčší skok}{39}{paragraph*.17}%
-\contentsline {subsection}{\numberline {3.4}Implementácia PI regulátora v jazyku C++}{40}{subsection.3.4}%
-\contentsline {subsubsection}{\numberline {3.4.1}Experimentálne overenie na reálnom systéme}{41}{subsubsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.5}Implementácia PI regulátora v PLC Siemens}{42}{subsection.3.5}%
-\contentsline {subsubsection}{\numberline {3.5.1}Experimentálne overenie na reálnom systéme}{44}{subsubsection.3.5.1}%
-\contentsline {subsection}{\numberline {3.6}Porovnanie výsledkov implementácie PI regulátora}{45}{subsection.3.6}%
-\contentsline {section}{\numberline {4}PI regulácia s prepínaním pracovných bodov}{46}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Opis a schéma riadenia s použitím prepínača}{46}{subsection.4.1}%
-\contentsline {paragraph}{Počiatočná podmienka integračnej zložky pri prepnutí}{47}{paragraph*.20}%
-\contentsline {paragraph}{Zákon riadenia}{48}{paragraph*.21}%
-\contentsline {subsubsection}{\numberline {4.1.1}Globálna regulácia po určitý čas}{49}{subsubsection.4.1.1}%
-\contentsline {subsubsection}{\numberline {4.1.2}Prepínanie na základe detekcie ustálenia}{51}{subsubsection.4.1.2}%
-\contentsline {subsection}{\numberline {4.2}Realizácia algoritmu v prostredí MATLAB/Simulink}{54}{subsection.4.2}%
-\contentsline {subsubsection}{\numberline {4.2.1}Simulácia algoritmu}{56}{subsubsection.4.2.1}%
-\contentsline {subsubsection}{\numberline {4.2.2}Experimentálne overenie na reálnom systéme}{58}{subsubsection.4.2.2}%
-\contentsline {subsection}{\numberline {4.3}Realizácia algoritmu v jazyku C++}{60}{subsection.4.3}%
-\contentsline {subsubsection}{\numberline {4.3.1}Experiment na tepelnej sústave}{64}{subsubsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.4}Realizácia algoritmu v PLC Siemens}{66}{subsection.4.4}%
-\contentsline {subsubsection}{\numberline {4.4.1}Experiment na tepelnej sústave}{71}{subsubsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.5}Porovnanie výsledkov implementácie prepínania pracovných bodov}{72}{subsection.4.5}%
-\contentsline {section}{\numberline {5}MRAC regulácia – gradientná metóda}{74}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Popis algoritmu}{74}{subsection.5.1}%
-\contentsline {paragraph}{Model riadeného systému}{74}{paragraph*.22}%
-\contentsline {paragraph}{Referenčný model a statické zosilnenie}{74}{paragraph*.23}%
-\contentsline {paragraph}{Zákon riadenia}{74}{paragraph*.24}%
-\contentsline {paragraph}{Podmienka zhody a ideálne parametre}{75}{paragraph*.25}%
-\contentsline {paragraph}{Adaptačná odchýlka}{75}{paragraph*.26}%
-\contentsline {paragraph}{Účelová funkcia a MIT pravidlo}{75}{paragraph*.27}%
-\contentsline {paragraph}{Zákon adaptácie pre systém druhého rádu}{75}{paragraph*.28}%
-\contentsline {subsubsection}{\numberline {5.1.1}Prevod systému do stavového priestoru}{76}{subsubsection.5.1.1}%
-\contentsline {paragraph}{Stavový opis referenčného modelu}{77}{paragraph*.29}%
-\contentsline {paragraph}{Stavový opis filtra výstupu}{78}{paragraph*.30}%
-\contentsline {paragraph}{Stavový opis filtra derivácie výstupu}{78}{paragraph*.31}%
-\contentsline {paragraph}{Stavový opis filtra referencie}{78}{paragraph*.32}%
-\contentsline {paragraph}{Zhrnutie štruktúry dynamických blokov}{79}{paragraph*.33}%
-\contentsline {subsubsection}{\numberline {5.1.2}Pseudokód gradientnej MRAC regulácie (diskrétna realizácia)}{79}{subsubsection.5.1.2}%
-\contentsline {subsection}{\numberline {5.2}Implementácia MRAC v prostredí MATLAB}{82}{subsection.5.2}%
-\contentsline {subsubsection}{\numberline {5.2.1}Experiment na tepelnej sústave}{85}{subsubsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.3}Implementácia gradientného MRAC regulátora v jazyku C++}{87}{subsection.5.3}%
-\contentsline {subsubsection}{\numberline {5.3.1}Experimentálne overenie na reálnom systéme}{92}{subsubsection.5.3.1}%
-\contentsline {subsubsection}{\numberline {5.3.2}Heuristická modifikácia implementácie na potlačenie driftu parametrov}{95}{subsubsection.5.3.2}%
-\contentsline {paragraph}{Smoothing meraného výstupu}{95}{paragraph*.34}%
-\contentsline {paragraph}{Dead-zone v adaptačnom zákone}{95}{paragraph*.35}%
-\contentsline {paragraph}{Implementačné doplnenia}{96}{paragraph*.36}%
-\contentsline {paragraph}{Experimentálne overenie heuristickej modifikácie}{97}{paragraph*.37}%
-\contentsline {subsection}{\numberline {5.4}Implementácia gradientného MRAC regulátora v PLC Siemens}{98}{subsection.5.4}%
-\contentsline {subsubsection}{\numberline {5.4.1}Experimentálne overenie na reálnom systéme}{103}{subsubsection.5.4.1}%
-\contentsline {subsection}{\numberline {5.5}Porovnanie výsledkov implementácie MRAC regulátora}{105}{subsection.5.5}%
-\contentsline {section}{Záver}{106}{equation.5.183}%
-\contentsline {section}{Zoznam literatúry}{107}{equation.5.183}%
-\contentsline {section}{Zdrojové kódy implementácie}{108}{equation.5.183}%
+\contentsline {subsubsection}{\numberline {2.3.2}Komunikácia v jazyku C++}{23}{subsubsection.2.3.2}%
+\contentsline {subsubsection}{\numberline {2.3.3}Komunikácia s PLC Siemens}{27}{subsubsection.2.3.3}%
+\contentsline {section}{\numberline {3}PI regulátor pre systém TS05}{32}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Štruktúra PI regulátora}{32}{subsection.3.1}%
+\contentsline {paragraph}{Prenosy regulačného obvodu}{32}{paragraph*.28}%
+\contentsline {paragraph}{Zákon riadenia}{33}{paragraph*.29}%
+\contentsline {paragraph}{Pseudokód PI regulátora}{33}{paragraph*.30}%
+\contentsline {subsection}{\numberline {3.2}Nastavenie parametrov PI regulátora pre systém TS05}{33}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Implementácia PI regulátora v MATLABe}{35}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Experimentálne overenie na reálnom systéme}{37}{subsubsection.3.3.1}%
+\contentsline {paragraph}{Experiment 1: Regulácia okolo jedného pracovného bodu}{37}{paragraph*.34}%
+\contentsline {paragraph}{Experiment 2: Reakcia na väčší skok}{38}{paragraph*.35}%
+\contentsline {subsection}{\numberline {3.4}Implementácia PI regulátora v jazyku C++}{38}{subsection.3.4}%
+\contentsline {subsubsection}{\numberline {3.4.1}Experimentálne overenie na reálnom systéme}{39}{subsubsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.5}Implementácia PI regulátora v PLC Siemens}{40}{subsection.3.5}%
+\contentsline {subsubsection}{\numberline {3.5.1}Experimentálne overenie na reálnom systéme}{42}{subsubsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.6}Porovnanie výsledkov implementácie PI regulátora}{43}{subsection.3.6}%
+\contentsline {section}{\numberline {4}PI regulácia s prepínaním pracovných bodov}{44}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Opis a schéma riadenia s použitím prepínača}{44}{subsection.4.1}%
+\contentsline {paragraph}{Počiatočná podmienka integračnej zložky pri prepnutí}{45}{paragraph*.43}%
+\contentsline {paragraph}{Zákon riadenia}{46}{paragraph*.44}%
+\contentsline {subsubsection}{\numberline {4.1.1}Globálna regulácia po určitý čas}{47}{subsubsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.2}Prepínanie na základe detekcie ustálenia}{49}{subsubsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.2}Realizácia algoritmu v prostredí MATLAB/Simulink}{51}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}Simulácia algoritmu}{54}{subsubsection.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.2}Experimentálne overenie na reálnom systéme}{56}{subsubsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.3}Realizácia algoritmu v jazyku C++}{58}{subsection.4.3}%
+\contentsline {subsubsection}{\numberline {4.3.1}Experiment na tepelnej sústave}{62}{subsubsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.4}Realizácia algoritmu v PLC Siemens}{64}{subsection.4.4}%
+\contentsline {subsubsection}{\numberline {4.4.1}Experiment na tepelnej sústave}{69}{subsubsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.5}Porovnanie výsledkov implementácie prepínania pracovných bodov}{70}{subsection.4.5}%
+\contentsline {section}{\numberline {5}MRAC regulácia – gradientná metóda}{72}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Popis algoritmu}{72}{subsection.5.1}%
+\contentsline {paragraph}{Model riadeného systému}{72}{paragraph*.45}%
+\contentsline {paragraph}{Referenčný model a statické zosilnenie}{72}{paragraph*.46}%
+\contentsline {paragraph}{Zákon riadenia}{72}{paragraph*.47}%
+\contentsline {paragraph}{Podmienka zhody a ideálne parametre}{73}{paragraph*.48}%
+\contentsline {paragraph}{Adaptačná odchýlka}{73}{paragraph*.49}%
+\contentsline {paragraph}{Účelová funkcia a MIT pravidlo}{73}{paragraph*.50}%
+\contentsline {paragraph}{Zákon adaptácie pre systém druhého rádu}{73}{paragraph*.51}%
+\contentsline {subsubsection}{\numberline {5.1.1}Prevod systému do stavového priestoru}{74}{subsubsection.5.1.1}%
+\contentsline {paragraph}{Stavový opis referenčného modelu}{75}{paragraph*.52}%
+\contentsline {paragraph}{Stavový opis filtra výstupu}{76}{paragraph*.53}%
+\contentsline {paragraph}{Stavový opis filtra derivácie výstupu}{76}{paragraph*.54}%
+\contentsline {paragraph}{Stavový opis filtra referencie}{76}{paragraph*.55}%
+\contentsline {paragraph}{Zhrnutie štruktúry dynamických blokov}{77}{paragraph*.56}%
+\contentsline {subsubsection}{\numberline {5.1.2}Pseudokód gradientnej MRAC regulácie (diskrétna realizácia)}{77}{subsubsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.2}Implementácia MRAC v prostredí MATLAB}{80}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.1}Experiment na tepelnej sústave}{83}{subsubsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.3}Implementácia gradientného MRAC regulátora v jazyku C++}{85}{subsection.5.3}%
+\contentsline {subsubsection}{\numberline {5.3.1}Experimentálne overenie na reálnom systéme}{90}{subsubsection.5.3.1}%
+\contentsline {subsubsection}{\numberline {5.3.2}Heuristická modifikácia implementácie na potlačenie driftu parametrov}{93}{subsubsection.5.3.2}%
+\contentsline {paragraph}{Smoothing meraného výstupu}{93}{paragraph*.57}%
+\contentsline {paragraph}{Dead-zone v adaptačnom zákone}{93}{paragraph*.58}%
+\contentsline {paragraph}{Implementačné doplnenia}{94}{paragraph*.59}%
+\contentsline {paragraph}{Experimentálne overenie heuristickej modifikácie}{95}{paragraph*.60}%
+\contentsline {subsection}{\numberline {5.4}Implementácia gradientného MRAC regulátora v PLC Siemens}{96}{subsection.5.4}%
+\contentsline {subsubsection}{\numberline {5.4.1}Experimentálne overenie na reálnom systéme}{101}{subsubsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.5}Porovnanie výsledkov implementácie MRAC regulátora}{103}{subsection.5.5}%
+\contentsline {section}{Záver}{104}{equation.5.91}%
+\contentsline {section}{Zoznam literatúry}{105}{equation.5.91}%
+\contentsline {section}{Zdrojové kódy implementácie}{106}{equation.5.91}%

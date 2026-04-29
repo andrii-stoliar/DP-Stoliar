@@ -10,437 +10,439 @@
 \providecommand\HyField@AuxAddToCoFields[2]{}
 \babel@aux{slovak}{}
 \@writefile{toc}{\contentsline {section}{Úvod}{8}{Doc-Start}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {1}Úvodný príklad návrhu implementácie regulátora}{9}{section.1}\protected@file@percent }
-\newlabel{sec:intro_example_control}{{1}{9}{Úvodný príklad návrhu implementácie regulátora}{section.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}PID regulácia v uzavretej spätnej väzbe}{9}{subsection.1.1}\protected@file@percent }
-\newlabel{eq:intro_pid_parallel}{{1}{9}{PID regulácia v uzavretej spätnej väzbe}{equation.1.1}{}}
-\newlabel{eq:intro_error_cont}{{2}{9}{PID regulácia v uzavretej spätnej väzbe}{equation.1.2}{}}
-\newlabel{eq:intro_error_disc}{{3}{9}{PID regulácia v uzavretej spätnej väzbe}{equation.1.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Bloková schéma uzavretého regulačného obvodu so zápornou spätnou väzbou a PID regulátorom}}{9}{figure.1}\protected@file@percent }
-\newlabel{fig:uro_pid_block_scheme}{{1}{9}{Bloková schéma uzavretého regulačného obvodu so zápornou spätnou väzbou a PID regulátorom}{figure.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Prenosové funkcie ORO a URO a zákon regulácie}{9}{subsection.1.2}\protected@file@percent }
-\newlabel{eq:intro_plant_2nd_order}{{4}{9}{Prenosové funkcie ORO a URO a zákon regulácie}{equation.1.4}{}}
-\newlabel{eq:intro_oro_def}{{5}{9}{Prenosové funkcie ORO a URO a zákon regulácie}{equation.1.5}{}}
-\newlabel{eq:intro_oro_result}{{6}{9}{Prenosové funkcie ORO a URO a zákon regulácie}{equation.1.6}{}}
 \citation{nise2015}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Podstata návrhu implementácie algoritmu riadenia}{9}{section.1}\protected@file@percent }
+\newlabel{sec:intro_example_control}{{1}{9}{Podstata návrhu implementácie algoritmu riadenia}{section.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Regulačná odchýlka a regulátor}{9}{subsection.1.1}\protected@file@percent }
+\newlabel{eq:intro_pid_parallel}{{1.1}{9}{Regulačná odchýlka a regulátor}{equation.1.1}{}}
+\newlabel{eq:intro_error_cont}{{1.2}{9}{Regulačná odchýlka a regulátor}{equation.1.2}{}}
+\newlabel{eq:intro_error_disc}{{1.3}{9}{Regulačná odchýlka a regulátor}{equation.1.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Uzavretý regulačný obvod}{9}{paragraph*.1}\protected@file@percent }
+\newlabel{eq:intro_plant_2nd_order}{{1.4}{9}{Uzavretý regulačný obvod}{equation.1.4}{}}
+\newlabel{eq:intro_oro_def}{{1.5}{9}{Uzavretý regulačný obvod}{equation.1.5}{}}
+\newlabel{eq:intro_oro_result}{{1.6}{9}{Uzavretý regulačný obvod}{equation.1.6}{}}
+\newlabel{eq:intro_uro_def}{{1.7}{9}{Uzavretý regulačný obvod}{equation.1.7}{}}
 \citation{ogata2010}
-\newlabel{eq:intro_uro_def}{{7}{10}{Prenosové funkcie ORO a URO a zákon regulácie}{equation.1.7}{}}
-\newlabel{eq:intro_uro_result}{{8}{10}{Prenosové funkcie ORO a URO a zákon regulácie}{equation.1.8}{}}
-\newlabel{eq:intro_oro_poles_eq}{{9}{10}{Prenosové funkcie ORO a URO a zákon regulácie}{equation.1.9}{}}
-\newlabel{eq:intro_plant_poles_eq}{{10}{10}{Prenosové funkcie ORO a URO a zákon regulácie}{equation.1.10}{}}
-\newlabel{eq:intro_uro_poles_eq}{{11}{10}{Prenosové funkcie ORO a URO a zákon regulácie}{equation.1.11}{}}
-\newlabel{eq:intro_uro_char_poly}{{12}{10}{Prenosové funkcie ORO a URO a zákon regulácie}{equation.1.12}{}}
-\@writefile{toc}{\contentsline {paragraph}{Zákon riadenia}{10}{paragraph*.1}\protected@file@percent }
-\newlabel{eq:intro_pid_law_cont}{{13}{10}{Zákon riadenia}{equation.1.13}{}}
-\newlabel{eq:intro_int_update}{{14}{10}{Zákon riadenia}{equation.1.14}{}}
-\newlabel{eq:intro_der_update}{{15}{10}{Zákon riadenia}{equation.1.15}{}}
-\newlabel{eq:intro_pid_law_disc}{{16}{10}{Zákon riadenia}{equation.1.16}{}}
-\newlabel{eq:intro_saturation}{{17}{10}{Zákon riadenia}{equation.1.17}{}}
-\@writefile{toc}{\contentsline {paragraph}{Pseudokód PID regulátora}{10}{paragraph*.2}\protected@file@percent }
-\newlabel{lst:intro_pid_pseudocode}{{1}{10}{Pseudokód diskrétnej implementácie PID regulátora (ilustračný príklad)}{lstlisting.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {1}{\ignorespaces Pseudokód diskrétnej implementácie PID regulátora (ilustračný príklad)}}{10}{lstlisting.1}\protected@file@percent }
-\citation{kut015}
-\citation{kut015}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Identifikácia a popis tepelného systému TS05}{12}{section.2}\protected@file@percent }
-\newlabel{sec:system_ident_ts05}{{2}{12}{Identifikácia a popis tepelného systému TS05}{section.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Popis tepelného systému}{12}{subsection.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.1}Popis laboratórneho fyzikálneho modelu}{12}{subsubsection.2.1.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Vstupy a výstupy systému TS05}}{12}{table.caption.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Bloková schéma uzavretého regulačného obvodu so zápornou spätnou väzbou a PID regulátorom}}{10}{figure.caption.2}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{tab:io_ts05}{{1}{12}{Vstupy a výstupy systému TS05}{table.caption.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Laboratórny model TS05 – reálna zostava~\cite  {kut015}}}{12}{figure.2}\protected@file@percent }
-\newlabel{fig:TS_sch3_foto}{{2}{12}{Laboratórny model TS05 – reálna zostava~\cite {kut015}}{figure.2}{}}
+\newlabel{fig:uro_pid_block_scheme}{{1}{10}{Bloková schéma uzavretého regulačného obvodu so zápornou spätnou väzbou a PID regulátorom}{figure.caption.2}{}}
+\newlabel{eq:intro_uro_result}{{1.8}{10}{Uzavretý regulačný obvod}{equation.1.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{Poloha pólov a stabilita}{10}{paragraph*.3}\protected@file@percent }
+\newlabel{eq:intro_oro_poles_eq}{{1.9}{10}{Poloha pólov a stabilita}{equation.1.9}{}}
+\newlabel{eq:intro_plant_poles_eq}{{1.10}{10}{Poloha pólov a stabilita}{equation.1.10}{}}
+\newlabel{eq:intro_uro_poles_eq}{{1.11}{10}{Poloha pólov a stabilita}{equation.1.11}{}}
+\newlabel{eq:intro_uro_char_poly}{{1.12}{10}{Poloha pólov a stabilita}{equation.1.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Zákon riadenia}{10}{subsection.1.2}\protected@file@percent }
+\newlabel{sec:intro_control_law}{{1.2}{10}{Zákon riadenia}{subsection.1.2}{}}
+\newlabel{eq:intro_pid_law_cont}{{1.13}{10}{Zákon riadenia}{equation.1.13}{}}
+\newlabel{eq:intro_int_update}{{1.14}{10}{Zákon riadenia}{equation.1.14}{}}
+\newlabel{eq:intro_der_update}{{1.15}{10}{Zákon riadenia}{equation.1.15}{}}
+\newlabel{eq:intro_pid_law_disc}{{1.16}{10}{Zákon riadenia}{equation.1.16}{}}
+\newlabel{eq:intro_saturation}{{1.17}{10}{Zákon riadenia}{equation.1.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Pseudokód PID regulátora}{11}{subsection.1.3}\protected@file@percent }
+\newlabel{lst:intro_pid_pseudocode}{{1}{11}{Pseudokód diskrétnej implementácie PID regulátora (ilustračný príklad)}{lstlisting.1}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1}{\ignorespaces Pseudokód diskrétnej implementácie PID regulátora (ilustračný príklad)}}{11}{lstlisting.1}\protected@file@percent }
+\citation{kut015}
+\citation{kut015}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Riadený systém}{12}{section.2}\protected@file@percent }
+\newlabel{sec:system_ident_ts05}{{2}{12}{Riadený systém}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Popis tepelného systému}{12}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.1}Technický opis laboratórneho modelu dynamického systému}{12}{subsubsection.2.1.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Vstupy a výstupy systému TS05}}{12}{table.caption.4}\protected@file@percent }
+\newlabel{tab:io_ts05}{{1}{12}{Vstupy a výstupy systému TS05}{table.caption.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Laboratórny model TS05 – reálna zostava~\cite  {kut015}}}{12}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:TS_sch3_foto}{{2}{12}{Laboratórny model TS05 – reálna zostava~\cite {kut015}}{figure.caption.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Priebeh napätia na špirále počas všetkých troch experimentov}}{13}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:ts_prevodova_spirala}{{3}{13}{Priebeh napätia na špirále počas všetkých troch experimentov}{figure.caption.6}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.2}Statické vlastnosti tepelného systému}{13}{subsubsection.2.1.2}\protected@file@percent }
 \newlabel{sec:staticke_vlastnosti}{{2.1.2}{13}{Statické vlastnosti tepelného systému}{subsubsection.2.1.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Priebeh napätia na špirále počas všetkých troch experimentov}}{13}{figure.3}\protected@file@percent }
-\newlabel{fig:ts_prevodova_spirala}{{3}{13}{Priebeh napätia na špirále počas všetkých troch experimentov}{figure.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Odozva systému TS05 pre pracovný bod ventilátora 3~V}}{13}{figure.4}\protected@file@percent }
-\newlabel{fig:ts_prevodova_sensors3}{{4}{13}{Odozva systému TS05 pre pracovný bod ventilátora 3~V}{figure.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Odozva systému TS05 pre pracovný bod ventilátora 6~V}}{14}{figure.5}\protected@file@percent }
-\newlabel{fig:ts_prevodova_sensors6}{{5}{14}{Odozva systému TS05 pre pracovný bod ventilátora 6~V}{figure.5}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Odozva systému TS05 pre pracovný bod ventilátora 9~V}}{14}{figure.6}\protected@file@percent }
-\newlabel{fig:ts_prevodova_sensors9}{{6}{14}{Odozva systému TS05 pre pracovný bod ventilátora 9~V}{figure.6}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Prevodová charakteristika systému TS05 pre pracovný bod ventilátora 3~V}}{15}{figure.7}\protected@file@percent }
-\newlabel{fig:ts_static_sensors3}{{7}{15}{Prevodová charakteristika systému TS05 pre pracovný bod ventilátora 3~V}{figure.7}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Prevodová charakteristika systému TS05 pre pracovný bod ventilátora 6~V}}{15}{figure.8}\protected@file@percent }
-\newlabel{fig:ts_static_sensors6}{{8}{15}{Prevodová charakteristika systému TS05 pre pracovný bod ventilátora 6~V}{figure.8}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Prevodová charakteristika systému TS05 pre pracovný bod ventilátora 9~V}}{15}{figure.9}\protected@file@percent }
-\newlabel{fig:ts_static_sensors9}{{9}{15}{Prevodová charakteristika systému TS05 pre pracovný bod ventilátora 9~V}{figure.9}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Identifikácia tepelného systému}{15}{subsection.2.2}\protected@file@percent }
-\newlabel{sec:identifikacia}{{2.2}{15}{Identifikácia tepelného systému}{subsection.2.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Identifikácia tepelného systému}{13}{subsection.2.2}\protected@file@percent }
+\newlabel{sec:identifikacia}{{2.2}{13}{Identifikácia tepelného systému}{subsection.2.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Meranie údajov a ich spracovanie}{13}{subsubsection.2.2.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Odozva systému TS05 pre pracovný bod ventilátora 3~V}}{14}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:ts_prevodova_sensors3}{{4}{14}{Odozva systému TS05 pre pracovný bod ventilátora 3~V}{figure.caption.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Odozva systému TS05 pre pracovný bod ventilátora 6~V}}{14}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:ts_prevodova_sensors6}{{5}{14}{Odozva systému TS05 pre pracovný bod ventilátora 6~V}{figure.caption.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Odozva systému TS05 pre pracovný bod ventilátora 9~V}}{14}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:ts_prevodova_sensors9}{{6}{14}{Odozva systému TS05 pre pracovný bod ventilátora 9~V}{figure.caption.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Prevodová charakteristika systému TS05 pre pracovný bod ventilátora 3~V}}{15}{figure.caption.8}\protected@file@percent }
+\newlabel{fig:ts_static_sensors3}{{7}{15}{Prevodová charakteristika systému TS05 pre pracovný bod ventilátora 3~V}{figure.caption.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Prevodová charakteristika systému TS05 pre pracovný bod ventilátora 6~V}}{15}{figure.caption.8}\protected@file@percent }
+\newlabel{fig:ts_static_sensors6}{{8}{15}{Prevodová charakteristika systému TS05 pre pracovný bod ventilátora 6~V}{figure.caption.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Prevodová charakteristika systému TS05 pre pracovný bod ventilátora 9~V}}{15}{figure.caption.8}\protected@file@percent }
+\newlabel{fig:ts_static_sensors9}{{9}{15}{Prevodová charakteristika systému TS05 pre pracovný bod ventilátora 9~V}{figure.caption.8}{}}
 \citation{montgomery}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Meranie údajov a ich spracovanie}{16}{subsubsection.2.2.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Vstupný signál špirály a výstup senzora~1 pri skokovej zmene}}{16}{figure.10}\protected@file@percent }
-\newlabel{fig:ts_pb_vent6_spir4_ident_raw}{{10}{16}{Vstupný signál špirály a výstup senzora~1 pri skokovej zmene}{figure.10}{}}
-\newlabel{eq:linear_trend}{{18}{16}{Meranie údajov a ich spracovanie}{equation.2.18}{}}
-\newlabel{eq:beta_coefficients}{{19}{16}{Meranie údajov a ich spracovanie}{equation.2.19}{}}
-\newlabel{eq:detrended_signal}{{20}{16}{Meranie údajov a ich spracovanie}{equation.2.20}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Vstupný signál špirály a výstup senzora~1 pri skokovej zmene}}{16}{figure.caption.9}\protected@file@percent }
+\newlabel{fig:ts_pb_vent6_spir4_ident_raw}{{10}{16}{Vstupný signál špirály a výstup senzora~1 pri skokovej zmene}{figure.caption.9}{}}
+\newlabel{eq:linear_trend}{{2.1}{16}{Meranie údajov a ich spracovanie}{equation.2.1}{}}
+\newlabel{eq:beta_coefficients}{{2.2}{16}{Meranie údajov a ich spracovanie}{equation.2.2}{}}
+\newlabel{eq:detrended_signal}{{2.3}{16}{Meranie údajov a ich spracovanie}{equation.2.3}{}}
 \newlabel{lst:my_detrend}{{2}{16}{MATLAB implementácia detrendácie signálu pomocou lineárnej regresie}{lstlisting.2}{}}
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {2}{\ignorespaces MATLAB implementácia detrendácie signálu pomocou lineárnej regresie}}{16}{lstlisting.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Normalizované a detrendované priebehy vstupného a výstupného signálu}}{17}{figure.11}\protected@file@percent }
-\newlabel{fig:ts_pb_vent6_spir4_ident_raw_normalized}{{11}{17}{Normalizované a detrendované priebehy vstupného a výstupného signálu}{figure.11}{}}
 \citation{fikar}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Priemerná odozva systému TS05 v pracovnom bode 4~V}}{18}{figure.12}\protected@file@percent }
-\newlabel{fig:ts_pb_vent6_spir4_ident_avg}{{12}{18}{Priemerná odozva systému TS05 v pracovnom bode 4~V}{figure.12}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}Identifikácia systému pomocou metódy najmenších štvorcov}{18}{subsubsection.2.2.2}\protected@file@percent }
-\newlabel{eq:phi_matrix}{{21}{18}{Identifikácia systému pomocou metódy najmenších štvorcov}{equation.2.21}{}}
-\newlabel{eq:theta_estimation}{{22}{18}{Identifikácia systému pomocou metódy najmenších štvorcov}{equation.2.22}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Normalizované a detrendované priebehy vstupného a výstupného signálu}}{17}{figure.caption.10}\protected@file@percent }
+\newlabel{fig:ts_pb_vent6_spir4_ident_raw_normalized}{{11}{17}{Normalizované a detrendované priebehy vstupného a výstupného signálu}{figure.caption.10}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}Identifikácia systému pomocou metódy najmenších štvorcov}{17}{subsubsection.2.2.2}\protected@file@percent }
+\newlabel{eq:phi_matrix}{{2.4}{17}{Identifikácia systému pomocou metódy najmenších štvorcov}{equation.2.4}{}}
+\newlabel{eq:theta_estimation}{{2.5}{17}{Identifikácia systému pomocou metódy najmenších štvorcov}{equation.2.5}{}}
+\citation{hudzovic2000}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Priemerná odozva systému TS05 v pracovnom bode 4~V}}{18}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:ts_pb_vent6_spir4_ident_avg}{{12}{18}{Priemerná odozva systému TS05 v pracovnom bode 4~V}{figure.caption.11}{}}
 \newlabel{lst:ls_identify_basic}{{3}{18}{MATLAB implementácia identifikácie metódou najmenších štvorcov}{lstlisting.3}{}}
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {3}{\ignorespaces MATLAB implementácia identifikácie metódou najmenších štvorcov}}{18}{lstlisting.3}\protected@file@percent }
-\citation{hudzovic2000}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.3}Identifikácia systému pomocou optimalizácie prenosovej funkcie}{19}{subsubsection.2.2.3}\protected@file@percent }
-\newlabel{eq:rmse_function}{{23}{19}{Identifikácia systému pomocou optimalizácie prenosovej funkcie}{equation.2.23}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.3}Identifikácia systému pomocou optimalizácie prenosovej funkcie}{18}{subsubsection.2.2.3}\protected@file@percent }
+\newlabel{eq:rmse_function}{{2.6}{19}{Identifikácia systému pomocou optimalizácie prenosovej funkcie}{equation.2.6}{}}
 \newlabel{lst:tf_identify_fmin}{{4}{19}{MATLAB implementácia identifikácie pomocou optimalizácie prenosovej funkcie}{lstlisting.4}{}}
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {4}{\ignorespaces MATLAB implementácia identifikácie pomocou optimalizácie prenosovej funkcie}}{19}{lstlisting.4}\protected@file@percent }
-\newlabel{eq:param_transform_extended}{{24}{20}{Identifikácia systému pomocou optimalizácie prenosovej funkcie}{equation.2.24}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Porovnanie skokovej odozvy reálneho systému TS05 a identifikovaných modelov}}{20}{figure.caption.12}\protected@file@percent }
+\newlabel{fig:ts_pb_vent6_spir4_ident_comparison}{{13}{20}{Porovnanie skokovej odozvy reálneho systému TS05 a identifikovaných modelov}{figure.caption.12}{}}
+\newlabel{eq:param_transform_extended}{{2.7}{20}{Identifikácia systému pomocou optimalizácie prenosovej funkcie}{equation.2.7}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.4}Výsledky identifikácie tepelného systému}{20}{subsubsection.2.2.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Porovnanie skokovej odozvy reálneho systému TS05 a identifikovaných modelov}}{20}{figure.13}\protected@file@percent }
-\newlabel{fig:ts_pb_vent6_spir4_ident_comparison}{{13}{20}{Porovnanie skokovej odozvy reálneho systému TS05 a identifikovaných modelov}{figure.13}{}}
-\newlabel{eq:Gs_ls}{{25}{21}{Výsledky identifikácie tepelného systému}{equation.2.25}{}}
-\newlabel{eq:Gs_fmin}{{26}{21}{Výsledky identifikácie tepelného systému}{equation.2.26}{}}
-\newlabel{eq:rmse_ls}{{27}{21}{Výsledky identifikácie tepelného systému}{equation.2.27}{}}
-\newlabel{eq:rmse_fmin}{{28}{21}{Výsledky identifikácie tepelného systému}{equation.2.28}{}}
+\newlabel{eq:Gs_ls}{{2.8}{20}{Výsledky identifikácie tepelného systému}{equation.2.8}{}}
+\newlabel{eq:Gs_fmin}{{2.9}{20}{Výsledky identifikácie tepelného systému}{equation.2.9}{}}
+\newlabel{eq:rmse_ls}{{2.10}{20}{Výsledky identifikácie tepelného systému}{equation.2.10}{}}
+\newlabel{eq:rmse_fmin}{{2.11}{20}{Výsledky identifikácie tepelného systému}{equation.2.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Porovnanie skokovej odozvy reálneho systému TS05 a aproximovaných modelov}}{21}{figure.caption.13}\protected@file@percent }
+\newlabel{fig:ts_pb_vent6_spir4_ident_approximated_comparison}{{14}{21}{Porovnanie skokovej odozvy reálneho systému TS05 a aproximovaných modelov}{figure.caption.13}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.5}Aproximácia identifikovaných modelov}{21}{subsubsection.2.2.5}\protected@file@percent }
-\newlabel{eq:Gs_ls_approx}{{29}{21}{Aproximácia identifikovaných modelov}{equation.2.29}{}}
-\newlabel{eq:poles_ls_approx}{{30}{21}{Aproximácia identifikovaných modelov}{equation.2.30}{}}
-\newlabel{eq:Gs_fmin_approx}{{31}{21}{Aproximácia identifikovaných modelov}{equation.2.31}{}}
-\newlabel{eq:poles_fmin_approx}{{32}{21}{Aproximácia identifikovaných modelov}{equation.2.32}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Porovnanie skokovej odozvy reálneho systému TS05 a aproximovaných modelov}}{22}{figure.14}\protected@file@percent }
-\newlabel{fig:ts_pb_vent6_spir4_ident_approximated_comparison}{{14}{22}{Porovnanie skokovej odozvy reálneho systému TS05 a aproximovaných modelov}{figure.14}{}}
-\newlabel{eq:rmse_ls_approx}{{33}{22}{Aproximácia identifikovaných modelov}{equation.2.33}{}}
-\newlabel{eq:rmse_fmin_approx}{{34}{22}{Aproximácia identifikovaných modelov}{equation.2.34}{}}
+\newlabel{eq:Gs_ls_approx}{{2.12}{21}{Aproximácia identifikovaných modelov}{equation.2.12}{}}
+\newlabel{eq:poles_ls_approx}{{2.13}{21}{Aproximácia identifikovaných modelov}{equation.2.13}{}}
+\newlabel{eq:Gs_fmin_approx}{{2.14}{21}{Aproximácia identifikovaných modelov}{equation.2.14}{}}
+\newlabel{eq:poles_fmin_approx}{{2.15}{21}{Aproximácia identifikovaných modelov}{equation.2.15}{}}
+\newlabel{eq:rmse_ls_approx}{{2.16}{21}{Aproximácia identifikovaných modelov}{equation.2.16}{}}
+\newlabel{eq:rmse_fmin_approx}{{2.17}{21}{Aproximácia identifikovaných modelov}{equation.2.17}{}}
+\citation{kut015}
+\citation{cellier1991}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Základná Simulinková schéma pre spustenie komunikácie so systémom TS05}}{22}{figure.caption.14}\protected@file@percent }
+\newlabel{fig:TS_simulink_start}{{15}{22}{Základná Simulinková schéma pre spustenie komunikácie so systémom TS05}{figure.caption.14}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Komunikácia so systémom TS05}{22}{subsection.2.3}\protected@file@percent }
 \newlabel{sec:komunikacia_ts05}{{2.3}{22}{Komunikácia so systémom TS05}{subsection.2.3}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.1}Komunikácia s MATLAB}{22}{subsubsection.2.3.1}\protected@file@percent }
 \newlabel{sec:komunikacia_matlab}{{2.3.1}{22}{Komunikácia s MATLAB}{subsubsection.2.3.1}{}}
-\citation{kut015}
-\citation{cellier1991}
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Základná Simulinková schéma pre spustenie komunikácie so systémom TS05}}{23}{figure.15}\protected@file@percent }
-\newlabel{fig:TS_simulink_start}{{15}{23}{Základná Simulinková schéma pre spustenie komunikácie so systémom TS05}{figure.15}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Vnútorná časť Simulinkového bloku komunikácie so systémom TS05}}{23}{figure.16}\protected@file@percent }
-\newlabel{fig:TS_simulink_scheme}{{16}{23}{Vnútorná časť Simulinkového bloku komunikácie so systémom TS05}{figure.16}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.2}Komunikácia v jazyku C++}{24}{subsubsection.2.3.2}\protected@file@percent }
-\newlabel{sec:komunikacia_cpp}{{2.3.2}{24}{Komunikácia v jazyku C++}{subsubsection.2.3.2}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Identifikované kontakty konektora systému TS05}}{24}{table.caption.4}\protected@file@percent }
-\newlabel{tab:ts05_pinout}{{2}{24}{Identifikované kontakty konektora systému TS05}{table.caption.4}{}}
-\newlabel{eq:voltage_divider}{{35}{24}{Komunikácia v jazyku C++}{equation.2.35}{}}
-\newlabel{eq:voltage_divider_half}{{36}{24}{Komunikácia v jazyku C++}{equation.2.36}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Mapovanie vstupov a výstupov medzi TS05 a Arduino UNO}}{25}{table.caption.5}\protected@file@percent }
-\newlabel{tab:arduino_mapping_ts05}{{3}{25}{Mapovanie vstupov a výstupov medzi TS05 a Arduino UNO}{table.caption.5}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Schéma prepojenia systému TS05 s platformou Arduino UNO}}{25}{figure.17}\protected@file@percent }
-\newlabel{fig:arduino_ts05_connection}{{17}{25}{Schéma prepojenia systému TS05 s platformou Arduino UNO}{figure.17}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Kalibračné merania pre výstup PWM5 -- ventilátor}}{25}{table.caption.6}\protected@file@percent }
-\newlabel{tab:pwm5_vent}{{4}{25}{Kalibračné merania pre výstup PWM5 -- ventilátor}{table.caption.6}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Kalibračné merania pre výstup PWM6 -- špirála}}{26}{table.caption.7}\protected@file@percent }
-\newlabel{tab:pwm6_spirala}{{5}{26}{Kalibračné merania pre výstup PWM6 -- špirála}{table.caption.7}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Kalibračné merania pre vstup A1 -- snímač 1}}{26}{table.caption.8}\protected@file@percent }
-\newlabel{tab:a1_snimac1}{{6}{26}{Kalibračné merania pre vstup A1 -- snímač 1}{table.caption.8}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Kalibračné merania pre vstup A2 -- snímač 2}}{26}{table.caption.9}\protected@file@percent }
-\newlabel{tab:a2_snimac2}{{7}{26}{Kalibračné merania pre vstup A2 -- snímač 2}{table.caption.9}{}}
-\newlabel{eq:cubic_calibration}{{37}{26}{Komunikácia v jazyku C++}{equation.2.37}{}}
-\newlabel{eq:cal_pwm5}{{38}{26}{Komunikácia v jazyku C++}{equation.2.38}{}}
-\newlabel{eq:cal_pwm6}{{39}{26}{Komunikácia v jazyku C++}{equation.2.39}{}}
-\newlabel{eq:cal_a1}{{40}{26}{Komunikácia v jazyku C++}{equation.2.40}{}}
-\newlabel{eq:cal_a2}{{41}{26}{Komunikácia v jazyku C++}{equation.2.41}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Vnútorná časť Simulinkového bloku komunikácie so systémom TS05}}{23}{figure.caption.15}\protected@file@percent }
+\newlabel{fig:TS_simulink_scheme}{{16}{23}{Vnútorná časť Simulinkového bloku komunikácie so systémom TS05}{figure.caption.15}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.2}Komunikácia v jazyku C++}{23}{subsubsection.2.3.2}\protected@file@percent }
+\newlabel{sec:komunikacia_cpp}{{2.3.2}{23}{Komunikácia v jazyku C++}{subsubsection.2.3.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Identifikované kontakty konektora systému TS05}}{23}{table.caption.16}\protected@file@percent }
+\newlabel{tab:ts05_pinout}{{2}{23}{Identifikované kontakty konektora systému TS05}{table.caption.16}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Schéma prepojenia systému TS05 s platformou Arduino UNO}}{24}{figure.caption.17}\protected@file@percent }
+\newlabel{fig:arduino_ts05_connection}{{17}{24}{Schéma prepojenia systému TS05 s platformou Arduino UNO}{figure.caption.17}{}}
+\newlabel{eq:voltage_divider}{{2.18}{24}{Komunikácia v jazyku C++}{equation.2.18}{}}
+\newlabel{eq:voltage_divider_half}{{2.19}{24}{Komunikácia v jazyku C++}{equation.2.19}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Mapovanie vstupov a výstupov medzi TS05 a Arduino UNO}}{24}{table.caption.18}\protected@file@percent }
+\newlabel{tab:arduino_mapping_ts05}{{3}{24}{Mapovanie vstupov a výstupov medzi TS05 a Arduino UNO}{table.caption.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Kalibračné merania pre výstup PWM5 -- ventilátor}}{25}{table.caption.19}\protected@file@percent }
+\newlabel{tab:pwm5_vent}{{4}{25}{Kalibračné merania pre výstup PWM5 -- ventilátor}{table.caption.19}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Kalibračné merania pre výstup PWM6 -- špirála}}{25}{table.caption.20}\protected@file@percent }
+\newlabel{tab:pwm6_spirala}{{5}{25}{Kalibračné merania pre výstup PWM6 -- špirála}{table.caption.20}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Kalibračné merania pre vstup A1 -- snímač 1}}{25}{table.caption.21}\protected@file@percent }
+\newlabel{tab:a1_snimac1}{{6}{25}{Kalibračné merania pre vstup A1 -- snímač 1}{table.caption.21}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Kalibračné merania pre vstup A2 -- snímač 2}}{25}{table.caption.22}\protected@file@percent }
+\newlabel{tab:a2_snimac2}{{7}{25}{Kalibračné merania pre vstup A2 -- snímač 2}{table.caption.22}{}}
+\newlabel{eq:cubic_calibration}{{2.20}{26}{Komunikácia v jazyku C++}{equation.2.20}{}}
+\newlabel{eq:cal_pwm5}{{2.21}{26}{Komunikácia v jazyku C++}{equation.2.21}{}}
+\newlabel{eq:cal_pwm6}{{2.22}{26}{Komunikácia v jazyku C++}{equation.2.22}{}}
+\newlabel{eq:cal_a1}{{2.23}{26}{Komunikácia v jazyku C++}{equation.2.23}{}}
+\newlabel{eq:cal_a2}{{2.24}{26}{Komunikácia v jazyku C++}{equation.2.24}{}}
+\citation{siemens_s71200g2_manual}
 \newlabel{lst:helper_functions_cpp}{{5}{27}{Pomocné funkcie použité v programe}{lstlisting.5}{}}
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {5}{\ignorespaces Pomocné funkcie použité v programe}}{27}{lstlisting.5}\protected@file@percent }
-\citation{siemens_s71200g2_manual}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.3}Komunikácia s PLC Siemens}{28}{subsubsection.2.3.3}\protected@file@percent }
-\newlabel{sec:komunikacia_siemens}{{2.3.3}{28}{Komunikácia s PLC Siemens}{subsubsection.2.3.3}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Adresovanie analógových vstupov a výstupov PLC modulu pre systém TS05}}{29}{table.caption.10}\protected@file@percent }
-\newlabel{tab:plc_ts05_addresses}{{8}{29}{Adresovanie analógových vstupov a výstupov PLC modulu pre systém TS05}{table.caption.10}{}}
-\newlabel{eq:plc_input_scaling}{{42}{29}{Komunikácia s PLC Siemens}{equation.2.42}{}}
-\newlabel{eq:plc_output_scaling}{{43}{29}{Komunikácia s PLC Siemens}{equation.2.43}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.3}Komunikácia s PLC Siemens}{27}{subsubsection.2.3.3}\protected@file@percent }
+\newlabel{sec:komunikacia_siemens}{{2.3.3}{27}{Komunikácia s PLC Siemens}{subsubsection.2.3.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Adresovanie analógových vstupov a výstupov PLC modulu pre systém TS05}}{28}{table.caption.23}\protected@file@percent }
+\newlabel{tab:plc_ts05_addresses}{{8}{28}{Adresovanie analógových vstupov a výstupov PLC modulu pre systém TS05}{table.caption.23}{}}
+\newlabel{eq:plc_input_scaling}{{2.25}{29}{Komunikácia s PLC Siemens}{equation.2.25}{}}
+\newlabel{eq:plc_output_scaling}{{2.26}{29}{Komunikácia s PLC Siemens}{equation.2.26}{}}
 \newlabel{lst:current_time_fb}{{6}{29}{Implementácia funkčného bloku \texttt {Current\_time}}{lstlisting.6}{}}
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {6}{\ignorespaces Implementácia funkčného bloku \texttt  {Current\_time}}}{29}{lstlisting.6}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Premenné funkčného bloku \texttt  {Current\_time} v prostredí TIA Portal}}{30}{table.caption.11}\protected@file@percent }
-\newlabel{tab:tia_time_vars}{{9}{30}{Premenné funkčného bloku \texttt {Current\_time} v prostredí TIA Portal}{table.caption.11}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Servisná časť hlavného organizačného bloku PLC programu}}{30}{figure.18}\protected@file@percent }
-\newlabel{fig:tia_service_scheme}{{18}{30}{Servisná časť hlavného organizačného bloku PLC programu}{figure.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Premenné funkčného bloku \texttt  {Current\_time} v prostredí TIA Portal}}{29}{table.caption.24}\protected@file@percent }
+\newlabel{tab:tia_time_vars}{{9}{29}{Premenné funkčného bloku \texttt {Current\_time} v prostredí TIA Portal}{table.caption.24}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Servisná časť hlavného organizačného bloku PLC programu}}{30}{figure.caption.25}\protected@file@percent }
+\newlabel{fig:tia_service_scheme}{{18}{30}{Servisná časť hlavného organizačného bloku PLC programu}{figure.caption.25}{}}
 \newlabel{lst:fb_pi_logger}{{7}{31}{Implementácia logovacieho bloku \texttt {FB\_PI\_LOGGER}}{lstlisting.7}{}}
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {7}{\ignorespaces Implementácia logovacieho bloku \texttt  {FB\_PI\_LOGGER}}}{31}{lstlisting.7}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Premenné funkčného bloku \texttt  {FB\_PI\_LOGGER}}}{32}{table.caption.12}\protected@file@percent }
-\newlabel{tab:tia_pi_logger_vars}{{10}{32}{Premenné funkčného bloku \texttt {FB\_PI\_LOGGER}}{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Premenné funkčného bloku \texttt  {FB\_PI\_LOGGER}}}{31}{table.caption.26}\protected@file@percent }
+\newlabel{tab:tia_pi_logger_vars}{{10}{31}{Premenné funkčného bloku \texttt {FB\_PI\_LOGGER}}{table.caption.26}{}}
 \citation{wang2020}
 \citation{astrom1995}
-\@writefile{toc}{\contentsline {section}{\numberline {3}PI regulátor pre systém TS05}{33}{section.3}\protected@file@percent }
-\newlabel{sec:pi_controller}{{3}{33}{PI regulátor pre systém TS05}{section.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Štruktúra PI regulátora}{33}{subsection.3.1}\protected@file@percent }
-\newlabel{eq:pi_parallel}{{44}{33}{Štruktúra PI regulátora}{equation.3.44}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces width=1.0\textwidth }}{33}{figure.19}\protected@file@percent }
-\newlabel{fig:pi_block_scheme}{{19}{33}{width=1.0\textwidth }{figure.19}{}}
-\@writefile{toc}{\contentsline {paragraph}{Prenosy regulačného obvodu}{33}{paragraph*.13}\protected@file@percent }
-\newlabel{eq:pi_oro_general}{{45}{33}{Prenosy regulačného obvodu}{equation.3.45}{}}
-\newlabel{eq:pi_uro_general}{{46}{33}{Prenosy regulačného obvodu}{equation.3.46}{}}
-\newlabel{eq:pi_char_eq}{{47}{33}{Prenosy regulačného obvodu}{equation.3.47}{}}
-\@writefile{toc}{\contentsline {paragraph}{Zákon riadenia}{34}{paragraph*.14}\protected@file@percent }
-\newlabel{eq:pi_control_law}{{48}{34}{Zákon riadenia}{equation.3.48}{}}
-\newlabel{eq:pi_discrete_law}{{51}{34}{Zákon riadenia}{equation.3.51}{}}
-\@writefile{toc}{\contentsline {paragraph}{Pseudokód PI regulátora}{34}{paragraph*.15}\protected@file@percent }
-\newlabel{lst:pi_pseudocode}{{8}{34}{Pseudokód diskrétnej realizácie PI regulátora so saturáciou}{lstlisting.8}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {8}{\ignorespaces Pseudokód diskrétnej realizácie PI regulátora so saturáciou}}{34}{lstlisting.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Nastavenie parametrov PI regulátora pre systém TS05}{34}{subsection.3.2}\protected@file@percent }
-\newlabel{eq:cl_poly_real}{{52}{34}{Nastavenie parametrov PI regulátora pre systém TS05}{equation.3.52}{}}
-\newlabel{eq:desired_poly}{{53}{34}{Nastavenie parametrov PI regulátora pre systém TS05}{equation.3.53}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}PI regulátor pre systém TS05}{32}{section.3}\protected@file@percent }
+\newlabel{sec:pi_controller}{{3}{32}{PI regulátor pre systém TS05}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Štruktúra PI regulátora}{32}{subsection.3.1}\protected@file@percent }
+\newlabel{eq:pi_parallel}{{3.1}{32}{Štruktúra PI regulátora}{equation.3.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Prenosy regulačného obvodu}{32}{paragraph*.28}\protected@file@percent }
+\newlabel{eq:pi_oro_general}{{3.2}{32}{Prenosy regulačného obvodu}{equation.3.2}{}}
+\newlabel{eq:pi_uro_general}{{3.3}{32}{Prenosy regulačného obvodu}{equation.3.3}{}}
+\newlabel{eq:pi_char_eq}{{3.4}{32}{Prenosy regulačného obvodu}{equation.3.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces width=1.0\textwidth }}{32}{figure.caption.27}\protected@file@percent }
+\newlabel{fig:pi_block_scheme}{{19}{32}{width=1.0\textwidth }{figure.caption.27}{}}
+\@writefile{toc}{\contentsline {paragraph}{Zákon riadenia}{33}{paragraph*.29}\protected@file@percent }
+\newlabel{eq:pi_control_law}{{3.5}{33}{Zákon riadenia}{equation.3.5}{}}
+\newlabel{eq:pi_discrete_law}{{3.8}{33}{Zákon riadenia}{equation.3.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{Pseudokód PI regulátora}{33}{paragraph*.30}\protected@file@percent }
+\newlabel{lst:pi_pseudocode}{{8}{33}{Pseudokód diskrétnej realizácie PI regulátora so saturáciou}{lstlisting.8}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {8}{\ignorespaces Pseudokód diskrétnej realizácie PI regulátora so saturáciou}}{33}{lstlisting.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Nastavenie parametrov PI regulátora pre systém TS05}{33}{subsection.3.2}\protected@file@percent }
+\newlabel{eq:cl_poly_real}{{3.9}{33}{Nastavenie parametrov PI regulátora pre systém TS05}{equation.3.9}{}}
+\newlabel{eq:desired_poly}{{3.10}{33}{Nastavenie parametrov PI regulátora pre systém TS05}{equation.3.10}{}}
+\newlabel{eq:compare1}{{3.11}{33}{Nastavenie parametrov PI regulátora pre systém TS05}{equation.3.11}{}}
+\newlabel{eq:compare2}{{3.12}{33}{Nastavenie parametrov PI regulátora pre systém TS05}{equation.3.12}{}}
+\newlabel{eq:compare3}{{3.13}{33}{Nastavenie parametrov PI regulátora pre systém TS05}{equation.3.13}{}}
+\newlabel{eq:compare4}{{3.14}{33}{Nastavenie parametrov PI regulátora pre systém TS05}{equation.3.14}{}}
 \citation{wang2020}
 \citation{astrom1995}
-\newlabel{eq:compare1}{{54}{35}{Nastavenie parametrov PI regulátora pre systém TS05}{equation.3.54}{}}
-\newlabel{eq:compare2}{{55}{35}{Nastavenie parametrov PI regulátora pre systém TS05}{equation.3.55}{}}
-\newlabel{eq:compare3}{{56}{35}{Nastavenie parametrov PI regulátora pre systém TS05}{equation.3.56}{}}
-\newlabel{eq:compare4}{{57}{35}{Nastavenie parametrov PI regulátora pre systém TS05}{equation.3.57}{}}
-\newlabel{lst:pi_pidtune}{{9}{35}{Diskretizácia modelu a ladenie PI regulátora pomocou \texttt {pidtune()}}{lstlisting.9}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {9}{\ignorespaces Diskretizácia modelu a ladenie PI regulátora pomocou \texttt  {pidtune()}}}{35}{lstlisting.9}\protected@file@percent }
-\newlabel{eq:pi_gains}{{58}{35}{Nastavenie parametrov PI regulátora pre systém TS05}{equation.3.58}{}}
-\newlabel{eq:oro_tf}{{59}{35}{Nastavenie parametrov PI regulátora pre systém TS05}{equation.3.59}{}}
-\newlabel{eq:oro_poles}{{60}{35}{Nastavenie parametrov PI regulátora pre systém TS05}{equation.3.60}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Simulačný výsledok uzavretého PI riadenia systému TS05}}{36}{figure.20}\protected@file@percent }
-\newlabel{fig:pi_simulation_results}{{20}{36}{Simulačný výsledok uzavretého PI riadenia systému TS05}{figure.20}{}}
-\newlabel{eq:settling_time}{{61}{36}{Nastavenie parametrov PI regulátora pre systém TS05}{equation.3.61}{}}
-\newlabel{eq:overshoot}{{62}{36}{Nastavenie parametrov PI regulátora pre systém TS05}{equation.3.62}{}}
-\newlabel{eq:mse_pi}{{63}{36}{Nastavenie parametrov PI regulátora pre systém TS05}{equation.3.63}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Implementácia PI regulátora v MATLABe}{36}{subsection.3.3}\protected@file@percent }
-\newlabel{eq:pi_delta_y}{{64}{36}{Implementácia PI regulátora v MATLABe}{equation.3.64}{}}
-\newlabel{eq:pi_delta_u}{{65}{36}{Implementácia PI regulátora v MATLABe}{equation.3.65}{}}
-\newlabel{eq:pi_u_from_du}{{66}{37}{Implementácia PI regulátora v MATLABe}{equation.3.66}{}}
-\newlabel{lst:pi_matlab_function}{{10}{37}{Implementácia PI regulátora v bloku \texttt {MATLAB Function}}{lstlisting.10}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {10}{\ignorespaces Implementácia PI regulátora v bloku \texttt  {MATLAB Function}}}{37}{lstlisting.10}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces Zapojenie PI regulátora v bloku MATLAB Function so spätnou väzbou stavov}}{38}{figure.21}\protected@file@percent }
-\newlabel{fig:pi_rt_scheme}{{21}{38}{Zapojenie PI regulátora v bloku MATLAB Function so spätnou väzbou stavov}{figure.21}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}Experimentálne overenie na reálnom systéme}{38}{subsubsection.3.3.1}\protected@file@percent }
-\newlabel{sec:pi_matlab_real_system}{{3.3.1}{38}{Experimentálne overenie na reálnom systéme}{subsubsection.3.3.1}{}}
-\@writefile{toc}{\contentsline {paragraph}{Experiment 1: Regulácia okolo jedného pracovného bodu}{38}{paragraph*.16}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces Simulačný experiment s PI regulátorom pri skokovej zmene žiadanej hodnoty}}{39}{figure.22}\protected@file@percent }
-\newlabel{fig:ts_pi_real_basic}{{22}{39}{Simulačný experiment s PI regulátorom pri skokovej zmene žiadanej hodnoty}{figure.22}{}}
-\@writefile{toc}{\contentsline {paragraph}{Experiment 2: Reakcia na väčší skok}{39}{paragraph*.17}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {23}{\ignorespaces Experiment PI regulátora pri skoku z 6.4~V na 7.5~V}}{40}{figure.23}\protected@file@percent }
-\newlabel{fig:ts_pi_real_big_step}{{23}{40}{Experiment PI regulátora pri skoku z 6.4~V na 7.5~V}{figure.23}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Implementácia PI regulátora v jazyku C++}{40}{subsection.3.4}\protected@file@percent }
-\newlabel{lst:pi_cpp_init}{{11}{40}{Inicializácia parametrov PI regulátora v jazyku C++}{lstlisting.11}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {11}{\ignorespaces Inicializácia parametrov PI regulátora v jazyku C++}}{40}{lstlisting.11}\protected@file@percent }
-\newlabel{lst:pi_cpp_logic}{{12}{41}{Hlavná regulačná logika PI regulátora v jazyku C++}{lstlisting.12}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {12}{\ignorespaces Hlavná regulačná logika PI regulátora v jazyku C++}}{41}{lstlisting.12}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.1}Experimentálne overenie na reálnom systéme}{41}{subsubsection.3.4.1}\protected@file@percent }
-\newlabel{sec:pi_cpp_real_system}{{3.4.1}{41}{Experimentálne overenie na reálnom systéme}{subsubsection.3.4.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {24}{\ignorespaces Experimentálna odozva PI regulátora implementovaného v jazyku C++}}{42}{figure.24}\protected@file@percent }
-\newlabel{fig:ts_cpp_pi_real}{{24}{42}{Experimentálna odozva PI regulátora implementovaného v jazyku C++}{figure.24}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Implementácia PI regulátora v PLC Siemens}{42}{subsection.3.5}\protected@file@percent }
-\newlabel{sec:pi_plc_system}{{3.5}{42}{Implementácia PI regulátora v PLC Siemens}{subsection.3.5}{}}
-\newlabel{lst:fb-pi-ts05}{{13}{43}{Implementácia funkčného bloku \texttt {FB\_PI\_TS05} v PLC Siemens}{lstlisting.13}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {13}{\ignorespaces Implementácia funkčného bloku \texttt  {FB\_PI\_TS05} v PLC Siemens}}{43}{lstlisting.13}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Premenné funkčného bloku \texttt  {FB\_PI\_TS05}}}{43}{table.caption.18}\protected@file@percent }
-\newlabel{tab:tia_pi_vars}{{11}{43}{Premenné funkčného bloku \texttt {FB\_PI\_TS05}}{table.caption.18}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {25}{\ignorespaces Zapojenie PI regulátora, časovača a logovania v prostredí TIA Portal}}{44}{figure.25}\protected@file@percent }
-\newlabel{fig:tia_pi_scheme}{{25}{44}{Zapojenie PI regulátora, časovača a logovania v prostredí TIA Portal}{figure.25}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.1}Experimentálne overenie na reálnom systéme}{44}{subsubsection.3.5.1}\protected@file@percent }
-\newlabel{sec:pi_plc_real_system}{{3.5.1}{44}{Experimentálne overenie na reálnom systéme}{subsubsection.3.5.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {26}{\ignorespaces Experimentálna odozva PI regulátora implementovaného v PLC Siemens}}{44}{figure.26}\protected@file@percent }
-\newlabel{fig:ts_plc_pi_real}{{26}{44}{Experimentálna odozva PI regulátora implementovaného v PLC Siemens}{figure.26}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Porovnanie výsledkov implementácie PI regulátora}{45}{subsection.3.6}\protected@file@percent }
-\newlabel{sec:pi_implementation_comparison}{{3.6}{45}{Porovnanie výsledkov implementácie PI regulátora}{subsection.3.6}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {27}{\ignorespaces Porovnanie experimentálnych výsledkov PI regulátora na jednotlivých platformách}}{45}{figure.27}\protected@file@percent }
-\newlabel{fig:ts_pi_real_comparison}{{27}{45}{Porovnanie experimentálnych výsledkov PI regulátora na jednotlivých platformách}{figure.27}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}PI regulácia s prepínaním pracovných bodov}{46}{section.4}\protected@file@percent }
-\newlabel{sec:pi_switching}{{4}{46}{PI regulácia s prepínaním pracovných bodov}{section.4}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Parametre pracovných bodov, identifikované prenosové funkcie a PI regulátory}}{46}{table.caption.19}\protected@file@percent }
-\newlabel{tab:pb_overview}{{12}{46}{Parametre pracovných bodov, identifikované prenosové funkcie a PI regulátory}{table.caption.19}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Opis a schéma riadenia s použitím prepínača}{46}{subsection.4.1}\protected@file@percent }
-\newlabel{eq:pi_switch_delta_variables}{{70}{46}{Opis a schéma riadenia s použitím prepínača}{equation.4.70}{}}
-\newlabel{eq:pi_switch_global_filter_tf}{{71}{47}{Opis a schéma riadenia s použitím prepínača}{equation.4.71}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {28}{\ignorespaces Bloková schéma riadenia s globálnym a lokálnym PI regulátorom}}{47}{figure.28}\protected@file@percent }
-\newlabel{fig:pi_switch_logic_scheme}{{28}{47}{Bloková schéma riadenia s globálnym a lokálnym PI regulátorom}{figure.28}{}}
-\@writefile{toc}{\contentsline {paragraph}{Počiatočná podmienka integračnej zložky pri prepnutí}{47}{paragraph*.20}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Zákon riadenia}{48}{paragraph*.21}\protected@file@percent }
-\newlabel{eq:pi_switch_activity_condition}{{72}{48}{Zákon riadenia}{equation.4.72}{}}
-\newlabel{eq:pi_switch_local_error}{{73}{48}{Zákon riadenia}{equation.4.73}{}}
-\newlabel{eq:pi_switch_global_error}{{74}{48}{Zákon riadenia}{equation.4.74}{}}
-\newlabel{eq:pi_switch_local_control}{{75}{48}{Zákon riadenia}{equation.4.75}{}}
-\newlabel{eq:pi_switch_global_control}{{76}{48}{Zákon riadenia}{equation.4.76}{}}
-\newlabel{eq:pi_switch_total_control_cases}{{77}{48}{Zákon riadenia}{equation.4.77}{}}
-\newlabel{eq:pi_switch_local_tracking}{{78}{48}{Zákon riadenia}{equation.4.78}{}}
-\newlabel{eq:pi_switch_global_tracking}{{79}{48}{Zákon riadenia}{equation.4.79}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}Globálna regulácia po určitý čas}{49}{subsubsection.4.1.1}\protected@file@percent }
-\newlabel{sec:pi_switch_timer_based}{{4.1.1}{49}{Globálna regulácia po určitý čas}{subsubsection.4.1.1}{}}
-\newlabel{eq:pi_switch_timer}{{80}{49}{Globálna regulácia po určitý čas}{equation.4.80}{}}
-\newlabel{eq:pi_switch_filter_tf_repeat}{{81}{49}{Globálna regulácia po určitý čas}{equation.4.81}{}}
-\newlabel{eq:pi_switch_filter_state_vector}{{82}{49}{Globálna regulácia po určitý čas}{equation.4.82}{}}
-\newlabel{eq:pi_switch_filter_state_model}{{83}{49}{Globálna regulácia po určitý čas}{equation.4.83}{}}
-\newlabel{eq:pi_switch_filter_output_model}{{84}{49}{Globálna regulácia po určitý čas}{equation.4.84}{}}
-\newlabel{eq:pi_switch_filter_matrices}{{85}{49}{Globálna regulácia po určitý čas}{equation.4.85}{}}
-\newlabel{eq:pi_switch_filter_discrete_state}{{86}{49}{Globálna regulácia po určitý čas}{equation.4.86}{}}
-\newlabel{eq:pi_switch_filter_discrete_output}{{87}{49}{Globálna regulácia po určitý čas}{equation.4.87}{}}
-\newlabel{lst:pi_switch_timer_based}{{14}{49}{Pseudokód prepínania s globálnou reguláciou po určitý čas}{lstlisting.14}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {14}{\ignorespaces Pseudokód prepínania s globálnou reguláciou po určitý čas}}{49}{lstlisting.14}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}Prepínanie na základe detekcie ustálenia}{51}{subsubsection.4.1.2}\protected@file@percent }
-\newlabel{sec:pi_switch_settling_detection}{{4.1.2}{51}{Prepínanie na základe detekcie ustálenia}{subsubsection.4.1.2}{}}
-\newlabel{eq:pi_switch_settling_band}{{88}{51}{Prepínanie na základe detekcie ustálenia}{equation.4.88}{}}
-\newlabel{eq:pi_switch_estimated_operating_point}{{89}{52}{Prepínanie na základe detekcie ustálenia}{equation.4.89}{}}
-\newlabel{lst:pi_switch_settling_based}{{15}{52}{Pseudokód prepínania na základe detekcie ustálenia}{lstlisting.15}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {15}{\ignorespaces Pseudokód prepínania na základe detekcie ustálenia}}{52}{lstlisting.15}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Realizácia algoritmu v prostredí MATLAB/Simulink}{54}{subsection.4.2}\protected@file@percent }
-\newlabel{sec:pi_switch_matlab_implementation}{{4.2}{54}{Realizácia algoritmu v prostredí MATLAB/Simulink}{subsection.4.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {29}{\ignorespaces Implementácia prepínacej logiky v prostredí MATLAB/Simulink}}{54}{figure.29}\protected@file@percent }
-\newlabel{fig:pi_switch_simulink_scheme}{{29}{54}{Implementácia prepínacej logiky v prostredí MATLAB/Simulink}{figure.29}{}}
-\newlabel{lst:pi_switch_matlab_code}{{16}{54}{Implementácia prepínacej logiky v bloku MATLAB Function}{lstlisting.16}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {16}{\ignorespaces Implementácia prepínacej logiky v bloku MATLAB Function}}{54}{lstlisting.16}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}Simulácia algoritmu}{56}{subsubsection.4.2.1}\protected@file@percent }
-\newlabel{sec:pi_switch_simulation}{{4.2.1}{56}{Simulácia algoritmu}{subsubsection.4.2.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {30}{\ignorespaces Simulácia prepínania pracovných bodov a správanie regulačných veličín}}{57}{figure.30}\protected@file@percent }
-\newlabel{fig:pi_switch_simulation}{{30}{57}{Simulácia prepínania pracovných bodov a správanie regulačných veličín}{figure.30}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.2}Experimentálne overenie na reálnom systéme}{58}{subsubsection.4.2.2}\protected@file@percent }
-\newlabel{sec:pi_switch_real_system}{{4.2.2}{58}{Experimentálne overenie na reálnom systéme}{subsubsection.4.2.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {31}{\ignorespaces Experimentálne overenie prepínania pracovných bodov na systéme TS05}}{58}{figure.31}\protected@file@percent }
-\newlabel{fig:pi_switch_real}{{31}{58}{Experimentálne overenie prepínania pracovných bodov na systéme TS05}{figure.31}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {32}{\ignorespaces Detail regulácie v okolí pracovného bodu po ukončení globálnej regulácie}}{59}{figure.32}\protected@file@percent }
-\newlabel{fig:pi_switch_real_zoom}{{32}{59}{Detail regulácie v okolí pracovného bodu po ukončení globálnej regulácie}{figure.32}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Realizácia algoritmu v jazyku C++}{60}{subsection.4.3}\protected@file@percent }
-\newlabel{sec:pi_switch_cpp_implementation}{{4.3}{60}{Realizácia algoritmu v jazyku C++}{subsection.4.3}{}}
-\newlabel{lst:pi_switch_cpp_helpers}{{17}{60}{Pomocné funkcie použité pri implementácii algoritmu v jazyku C++}{lstlisting.17}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {17}{\ignorespaces Pomocné funkcie použité pri implementácii algoritmu v jazyku C++}}{60}{lstlisting.17}\protected@file@percent }
-\newlabel{lst:pi_switch_cpp_init}{{18}{61}{Inicializácia stavových premenných algoritmu v jazyku C++}{lstlisting.18}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {18}{\ignorespaces Inicializácia stavových premenných algoritmu v jazyku C++}}{61}{lstlisting.18}\protected@file@percent }
-\newlabel{lst:pi_switch_cpp_code}{{19}{62}{Implementácia prepínacej logiky v hlavnom regulačnom cykle programu}{lstlisting.19}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {19}{\ignorespaces Implementácia prepínacej logiky v hlavnom regulačnom cykle programu}}{62}{lstlisting.19}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1}Experiment na tepelnej sústave}{64}{subsubsection.4.3.1}\protected@file@percent }
-\newlabel{sec:prep_matlab_experiment}{{4.3.1}{64}{Experiment na tepelnej sústave}{subsubsection.4.3.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {33}{\ignorespaces Experimentálne overenie prepínania pracovných bodov pri implementácii algoritmu v jazyku C++}}{65}{figure.33}\protected@file@percent }
-\newlabel{fig:pi_switch_cpp_real}{{33}{65}{Experimentálne overenie prepínania pracovných bodov pri implementácii algoritmu v jazyku C++}{figure.33}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {34}{\ignorespaces Detail regulácie v okolí pracovného bodu pri implementácii algoritmu v jazyku C++}}{66}{figure.34}\protected@file@percent }
-\newlabel{fig:pi_switch_cpp_real_zoom}{{34}{66}{Detail regulácie v okolí pracovného bodu pri implementácii algoritmu v jazyku C++}{figure.34}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Realizácia algoritmu v PLC Siemens}{66}{subsection.4.4}\protected@file@percent }
-\newlabel{sec:pi_switch_plc_implementation}{{4.4}{66}{Realizácia algoritmu v PLC Siemens}{subsection.4.4}{}}
-\newlabel{lst:fb-prep-ts05}{{20}{67}{Implementácia funkčného bloku \texttt {FB\_PREP\_TS05} v PLC Siemens}{lstlisting.20}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {20}{\ignorespaces Implementácia funkčného bloku \texttt  {FB\_PREP\_TS05} v PLC Siemens}}{67}{lstlisting.20}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {35}{\ignorespaces Zapojenie algoritmu prepínania pracovných bodov v prostredí TIA Portal}}{69}{figure.35}\protected@file@percent }
-\newlabel{fig:tia_prep_scheme}{{35}{69}{Zapojenie algoritmu prepínania pracovných bodov v prostredí TIA Portal}{figure.35}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Premenné funkčného bloku \texttt  {FB\_PREP\_TS05}}}{70}{table.13}\protected@file@percent }
-\newlabel{tab:tia_prep_vars}{{13}{70}{Premenné funkčného bloku \texttt {FB\_PREP\_TS05}}{table.13}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.1}Experiment na tepelnej sústave}{71}{subsubsection.4.4.1}\protected@file@percent }
-\newlabel{sec:prep_plc_experiment}{{4.4.1}{71}{Experiment na tepelnej sústave}{subsubsection.4.4.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {36}{\ignorespaces Experimentálne overenie prepínania pracovných bodov pri implementácii algoritmu v PLC Siemens}}{71}{figure.36}\protected@file@percent }
-\newlabel{fig:ts_plc_prep_real}{{36}{71}{Experimentálne overenie prepínania pracovných bodov pri implementácii algoritmu v PLC Siemens}{figure.36}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {37}{\ignorespaces Detail regulácie v okolí pracovného bodu pri implementácii algoritmu v PLC Siemens}}{72}{figure.37}\protected@file@percent }
-\newlabel{fig:ts_plc_prep_real_zoom}{{37}{72}{Detail regulácie v okolí pracovného bodu pri implementácii algoritmu v PLC Siemens}{figure.37}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Porovnanie výsledkov implementácie prepínania pracovných bodov}{72}{subsection.4.5}\protected@file@percent }
-\newlabel{sec:prep_implementation_comparison}{{4.5}{72}{Porovnanie výsledkov implementácie prepínania pracovných bodov}{subsection.4.5}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {38}{\ignorespaces Porovnanie experimentálnych výsledkov prepínania pracovných bodov na jednotlivých platformách}}{73}{figure.38}\protected@file@percent }
-\newlabel{fig:ts_prep_real_comparison}{{38}{73}{Porovnanie experimentálnych výsledkov prepínania pracovných bodov na jednotlivých platformách}{figure.38}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Simulačný výsledok uzavretého PI riadenia systému TS05}}{34}{figure.caption.31}\protected@file@percent }
+\newlabel{fig:pi_simulation_results}{{20}{34}{Simulačný výsledok uzavretého PI riadenia systému TS05}{figure.caption.31}{}}
+\newlabel{lst:pi_pidtune}{{9}{34}{Diskretizácia modelu a ladenie PI regulátora pomocou \texttt {pidtune()}}{lstlisting.9}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {9}{\ignorespaces Diskretizácia modelu a ladenie PI regulátora pomocou \texttt  {pidtune()}}}{34}{lstlisting.9}\protected@file@percent }
+\newlabel{eq:pi_gains}{{3.15}{34}{Nastavenie parametrov PI regulátora pre systém TS05}{equation.3.15}{}}
+\newlabel{eq:oro_tf}{{3.16}{34}{Nastavenie parametrov PI regulátora pre systém TS05}{equation.3.16}{}}
+\newlabel{eq:oro_poles}{{3.17}{35}{Nastavenie parametrov PI regulátora pre systém TS05}{equation.3.17}{}}
+\newlabel{eq:settling_time}{{3.18}{35}{Nastavenie parametrov PI regulátora pre systém TS05}{equation.3.18}{}}
+\newlabel{eq:overshoot}{{3.19}{35}{Nastavenie parametrov PI regulátora pre systém TS05}{equation.3.19}{}}
+\newlabel{eq:mse_pi}{{3.20}{35}{Nastavenie parametrov PI regulátora pre systém TS05}{equation.3.20}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Implementácia PI regulátora v MATLABe}{35}{subsection.3.3}\protected@file@percent }
+\newlabel{eq:pi_delta_y}{{3.21}{35}{Implementácia PI regulátora v MATLABe}{equation.3.21}{}}
+\newlabel{eq:pi_delta_u}{{3.22}{35}{Implementácia PI regulátora v MATLABe}{equation.3.22}{}}
+\newlabel{eq:pi_u_from_du}{{3.23}{35}{Implementácia PI regulátora v MATLABe}{equation.3.23}{}}
+\newlabel{lst:pi_matlab_function}{{10}{35}{Implementácia PI regulátora v bloku \texttt {MATLAB Function}}{lstlisting.10}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {10}{\ignorespaces Implementácia PI regulátora v bloku \texttt  {MATLAB Function}}}{35}{lstlisting.10}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces Zapojenie PI regulátora v bloku MATLAB Function so spätnou väzbou stavov}}{36}{figure.caption.32}\protected@file@percent }
+\newlabel{fig:pi_rt_scheme}{{21}{36}{Zapojenie PI regulátora v bloku MATLAB Function so spätnou väzbou stavov}{figure.caption.32}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces Simulačný experiment s PI regulátorom pri skokovej zmene žiadanej hodnoty}}{37}{figure.caption.33}\protected@file@percent }
+\newlabel{fig:ts_pi_real_basic}{{22}{37}{Simulačný experiment s PI regulátorom pri skokovej zmene žiadanej hodnoty}{figure.caption.33}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}Experimentálne overenie na reálnom systéme}{37}{subsubsection.3.3.1}\protected@file@percent }
+\newlabel{sec:pi_matlab_real_system}{{3.3.1}{37}{Experimentálne overenie na reálnom systéme}{subsubsection.3.3.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Experiment 1: Regulácia okolo jedného pracovného bodu}{37}{paragraph*.34}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {23}{\ignorespaces Experiment PI regulátora pri skoku z 6.4~V na 7.5~V}}{38}{figure.caption.36}\protected@file@percent }
+\newlabel{fig:ts_pi_real_big_step}{{23}{38}{Experiment PI regulátora pri skoku z 6.4~V na 7.5~V}{figure.caption.36}{}}
+\@writefile{toc}{\contentsline {paragraph}{Experiment 2: Reakcia na väčší skok}{38}{paragraph*.35}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Implementácia PI regulátora v jazyku C++}{38}{subsection.3.4}\protected@file@percent }
+\newlabel{lst:pi_cpp_init}{{11}{39}{Inicializácia parametrov PI regulátora v jazyku C++}{lstlisting.11}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {11}{\ignorespaces Inicializácia parametrov PI regulátora v jazyku C++}}{39}{lstlisting.11}\protected@file@percent }
+\newlabel{lst:pi_cpp_logic}{{12}{39}{Hlavná regulačná logika PI regulátora v jazyku C++}{lstlisting.12}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {12}{\ignorespaces Hlavná regulačná logika PI regulátora v jazyku C++}}{39}{lstlisting.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.1}Experimentálne overenie na reálnom systéme}{39}{subsubsection.3.4.1}\protected@file@percent }
+\newlabel{sec:pi_cpp_real_system}{{3.4.1}{39}{Experimentálne overenie na reálnom systéme}{subsubsection.3.4.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {24}{\ignorespaces Experimentálna odozva PI regulátora implementovaného v jazyku C++}}{40}{figure.caption.37}\protected@file@percent }
+\newlabel{fig:ts_cpp_pi_real}{{24}{40}{Experimentálna odozva PI regulátora implementovaného v jazyku C++}{figure.caption.37}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Implementácia PI regulátora v PLC Siemens}{40}{subsection.3.5}\protected@file@percent }
+\newlabel{sec:pi_plc_system}{{3.5}{40}{Implementácia PI regulátora v PLC Siemens}{subsection.3.5}{}}
+\newlabel{lst:fb-pi-ts05}{{13}{41}{Implementácia funkčného bloku \texttt {FB\_PI\_TS05} v PLC Siemens}{lstlisting.13}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {13}{\ignorespaces Implementácia funkčného bloku \texttt  {FB\_PI\_TS05} v PLC Siemens}}{41}{lstlisting.13}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Premenné funkčného bloku \texttt  {FB\_PI\_TS05}}}{41}{table.caption.38}\protected@file@percent }
+\newlabel{tab:tia_pi_vars}{{11}{41}{Premenné funkčného bloku \texttt {FB\_PI\_TS05}}{table.caption.38}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {25}{\ignorespaces Experimentálna odozva PI regulátora implementovaného v PLC Siemens}}{42}{figure.caption.39}\protected@file@percent }
+\newlabel{fig:ts_plc_pi_real}{{25}{42}{Experimentálna odozva PI regulátora implementovaného v PLC Siemens}{figure.caption.39}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.1}Experimentálne overenie na reálnom systéme}{42}{subsubsection.3.5.1}\protected@file@percent }
+\newlabel{sec:pi_plc_real_system}{{3.5.1}{42}{Experimentálne overenie na reálnom systéme}{subsubsection.3.5.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {26}{\ignorespaces Zapojenie PI regulátora, časovača a logovania v prostredí TIA Portal}}{42}{figure.caption.40}\protected@file@percent }
+\newlabel{fig:tia_pi_scheme}{{26}{42}{Zapojenie PI regulátora, časovača a logovania v prostredí TIA Portal}{figure.caption.40}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {27}{\ignorespaces Porovnanie experimentálnych výsledkov PI regulátora na jednotlivých platformách}}{43}{figure.caption.41}\protected@file@percent }
+\newlabel{fig:ts_pi_real_comparison}{{27}{43}{Porovnanie experimentálnych výsledkov PI regulátora na jednotlivých platformách}{figure.caption.41}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Porovnanie výsledkov implementácie PI regulátora}{43}{subsection.3.6}\protected@file@percent }
+\newlabel{sec:pi_implementation_comparison}{{3.6}{43}{Porovnanie výsledkov implementácie PI regulátora}{subsection.3.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}PI regulácia s prepínaním pracovných bodov}{44}{section.4}\protected@file@percent }
+\newlabel{sec:pi_switching}{{4}{44}{PI regulácia s prepínaním pracovných bodov}{section.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Parametre pracovných bodov, identifikované prenosové funkcie a PI regulátory}}{44}{table.caption.42}\protected@file@percent }
+\newlabel{tab:pb_overview}{{12}{44}{Parametre pracovných bodov, identifikované prenosové funkcie a PI regulátory}{table.caption.42}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Opis a schéma riadenia s použitím prepínača}{44}{subsection.4.1}\protected@file@percent }
+\newlabel{eq:pi_switch_delta_variables}{{4.1}{44}{Opis a schéma riadenia s použitím prepínača}{equation.4.1}{}}
+\newlabel{eq:pi_switch_global_filter_tf}{{4.2}{45}{Opis a schéma riadenia s použitím prepínača}{equation.4.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {28}{\ignorespaces Bloková schéma riadenia s globálnym a lokálnym PI regulátorom}}{45}{figure.28}\protected@file@percent }
+\newlabel{fig:pi_switch_logic_scheme}{{28}{45}{Bloková schéma riadenia s globálnym a lokálnym PI regulátorom}{figure.28}{}}
+\@writefile{toc}{\contentsline {paragraph}{Počiatočná podmienka integračnej zložky pri prepnutí}{45}{paragraph*.43}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Zákon riadenia}{46}{paragraph*.44}\protected@file@percent }
+\newlabel{eq:pi_switch_activity_condition}{{4.3}{46}{Zákon riadenia}{equation.4.3}{}}
+\newlabel{eq:pi_switch_local_error}{{4.4}{46}{Zákon riadenia}{equation.4.4}{}}
+\newlabel{eq:pi_switch_global_error}{{4.5}{46}{Zákon riadenia}{equation.4.5}{}}
+\newlabel{eq:pi_switch_local_control}{{4.6}{46}{Zákon riadenia}{equation.4.6}{}}
+\newlabel{eq:pi_switch_global_control}{{4.7}{46}{Zákon riadenia}{equation.4.7}{}}
+\newlabel{eq:pi_switch_total_control_cases}{{4.8}{46}{Zákon riadenia}{equation.4.8}{}}
+\newlabel{eq:pi_switch_local_tracking}{{4.9}{46}{Zákon riadenia}{equation.4.9}{}}
+\newlabel{eq:pi_switch_global_tracking}{{4.10}{46}{Zákon riadenia}{equation.4.10}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}Globálna regulácia po určitý čas}{47}{subsubsection.4.1.1}\protected@file@percent }
+\newlabel{sec:pi_switch_timer_based}{{4.1.1}{47}{Globálna regulácia po určitý čas}{subsubsection.4.1.1}{}}
+\newlabel{eq:pi_switch_timer}{{4.11}{47}{Globálna regulácia po určitý čas}{equation.4.11}{}}
+\newlabel{eq:pi_switch_filter_tf_repeat}{{4.12}{47}{Globálna regulácia po určitý čas}{equation.4.12}{}}
+\newlabel{eq:pi_switch_filter_state_vector}{{4.13}{47}{Globálna regulácia po určitý čas}{equation.4.13}{}}
+\newlabel{eq:pi_switch_filter_state_model}{{4.14}{47}{Globálna regulácia po určitý čas}{equation.4.14}{}}
+\newlabel{eq:pi_switch_filter_output_model}{{4.15}{47}{Globálna regulácia po určitý čas}{equation.4.15}{}}
+\newlabel{eq:pi_switch_filter_matrices}{{4.16}{47}{Globálna regulácia po určitý čas}{equation.4.16}{}}
+\newlabel{eq:pi_switch_filter_discrete_state}{{4.17}{47}{Globálna regulácia po určitý čas}{equation.4.17}{}}
+\newlabel{eq:pi_switch_filter_discrete_output}{{4.18}{47}{Globálna regulácia po určitý čas}{equation.4.18}{}}
+\newlabel{lst:pi_switch_timer_based}{{14}{47}{Pseudokód prepínania s globálnou reguláciou po určitý čas}{lstlisting.14}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {14}{\ignorespaces Pseudokód prepínania s globálnou reguláciou po určitý čas}}{47}{lstlisting.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}Prepínanie na základe detekcie ustálenia}{49}{subsubsection.4.1.2}\protected@file@percent }
+\newlabel{sec:pi_switch_settling_detection}{{4.1.2}{49}{Prepínanie na základe detekcie ustálenia}{subsubsection.4.1.2}{}}
+\newlabel{eq:pi_switch_settling_band}{{4.19}{49}{Prepínanie na základe detekcie ustálenia}{equation.4.19}{}}
+\newlabel{eq:pi_switch_estimated_operating_point}{{4.20}{49}{Prepínanie na základe detekcie ustálenia}{equation.4.20}{}}
+\newlabel{lst:pi_switch_settling_based}{{15}{49}{Pseudokód prepínania na základe detekcie ustálenia}{lstlisting.15}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {15}{\ignorespaces Pseudokód prepínania na základe detekcie ustálenia}}{49}{lstlisting.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Realizácia algoritmu v prostredí MATLAB/Simulink}{51}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:pi_switch_matlab_implementation}{{4.2}{51}{Realizácia algoritmu v prostredí MATLAB/Simulink}{subsection.4.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {29}{\ignorespaces Implementácia prepínacej logiky v prostredí MATLAB/Simulink}}{52}{figure.29}\protected@file@percent }
+\newlabel{fig:pi_switch_simulink_scheme}{{29}{52}{Implementácia prepínacej logiky v prostredí MATLAB/Simulink}{figure.29}{}}
+\newlabel{lst:pi_switch_matlab_code}{{16}{52}{Implementácia prepínacej logiky v bloku MATLAB Function}{lstlisting.16}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {16}{\ignorespaces Implementácia prepínacej logiky v bloku MATLAB Function}}{52}{lstlisting.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}Simulácia algoritmu}{54}{subsubsection.4.2.1}\protected@file@percent }
+\newlabel{sec:pi_switch_simulation}{{4.2.1}{54}{Simulácia algoritmu}{subsubsection.4.2.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {30}{\ignorespaces Simulácia prepínania pracovných bodov a správanie regulačných veličín}}{55}{figure.30}\protected@file@percent }
+\newlabel{fig:pi_switch_simulation}{{30}{55}{Simulácia prepínania pracovných bodov a správanie regulačných veličín}{figure.30}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.2}Experimentálne overenie na reálnom systéme}{56}{subsubsection.4.2.2}\protected@file@percent }
+\newlabel{sec:pi_switch_real_system}{{4.2.2}{56}{Experimentálne overenie na reálnom systéme}{subsubsection.4.2.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {31}{\ignorespaces Experimentálne overenie prepínania pracovných bodov na systéme TS05}}{56}{figure.31}\protected@file@percent }
+\newlabel{fig:pi_switch_real}{{31}{56}{Experimentálne overenie prepínania pracovných bodov na systéme TS05}{figure.31}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {32}{\ignorespaces Detail regulácie v okolí pracovného bodu po ukončení globálnej regulácie}}{57}{figure.32}\protected@file@percent }
+\newlabel{fig:pi_switch_real_zoom}{{32}{57}{Detail regulácie v okolí pracovného bodu po ukončení globálnej regulácie}{figure.32}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Realizácia algoritmu v jazyku C++}{58}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:pi_switch_cpp_implementation}{{4.3}{58}{Realizácia algoritmu v jazyku C++}{subsection.4.3}{}}
+\newlabel{lst:pi_switch_cpp_helpers}{{17}{58}{Pomocné funkcie použité pri implementácii algoritmu v jazyku C++}{lstlisting.17}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {17}{\ignorespaces Pomocné funkcie použité pri implementácii algoritmu v jazyku C++}}{58}{lstlisting.17}\protected@file@percent }
+\newlabel{lst:pi_switch_cpp_init}{{18}{59}{Inicializácia stavových premenných algoritmu v jazyku C++}{lstlisting.18}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {18}{\ignorespaces Inicializácia stavových premenných algoritmu v jazyku C++}}{59}{lstlisting.18}\protected@file@percent }
+\newlabel{lst:pi_switch_cpp_code}{{19}{60}{Implementácia prepínacej logiky v hlavnom regulačnom cykle programu}{lstlisting.19}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {19}{\ignorespaces Implementácia prepínacej logiky v hlavnom regulačnom cykle programu}}{60}{lstlisting.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1}Experiment na tepelnej sústave}{62}{subsubsection.4.3.1}\protected@file@percent }
+\newlabel{sec:prep_matlab_experiment}{{4.3.1}{62}{Experiment na tepelnej sústave}{subsubsection.4.3.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {33}{\ignorespaces Experimentálne overenie prepínania pracovných bodov pri implementácii algoritmu v jazyku C++}}{63}{figure.33}\protected@file@percent }
+\newlabel{fig:pi_switch_cpp_real}{{33}{63}{Experimentálne overenie prepínania pracovných bodov pri implementácii algoritmu v jazyku C++}{figure.33}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {34}{\ignorespaces Detail regulácie v okolí pracovného bodu pri implementácii algoritmu v jazyku C++}}{64}{figure.34}\protected@file@percent }
+\newlabel{fig:pi_switch_cpp_real_zoom}{{34}{64}{Detail regulácie v okolí pracovného bodu pri implementácii algoritmu v jazyku C++}{figure.34}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Realizácia algoritmu v PLC Siemens}{64}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:pi_switch_plc_implementation}{{4.4}{64}{Realizácia algoritmu v PLC Siemens}{subsection.4.4}{}}
+\newlabel{lst:fb-prep-ts05}{{20}{65}{Implementácia funkčného bloku \texttt {FB\_PREP\_TS05} v PLC Siemens}{lstlisting.20}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {20}{\ignorespaces Implementácia funkčného bloku \texttt  {FB\_PREP\_TS05} v PLC Siemens}}{65}{lstlisting.20}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {35}{\ignorespaces Zapojenie algoritmu prepínania pracovných bodov v prostredí TIA Portal}}{67}{figure.35}\protected@file@percent }
+\newlabel{fig:tia_prep_scheme}{{35}{67}{Zapojenie algoritmu prepínania pracovných bodov v prostredí TIA Portal}{figure.35}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Premenné funkčného bloku \texttt  {FB\_PREP\_TS05}}}{68}{table.13}\protected@file@percent }
+\newlabel{tab:tia_prep_vars}{{13}{68}{Premenné funkčného bloku \texttt {FB\_PREP\_TS05}}{table.13}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.1}Experiment na tepelnej sústave}{69}{subsubsection.4.4.1}\protected@file@percent }
+\newlabel{sec:prep_plc_experiment}{{4.4.1}{69}{Experiment na tepelnej sústave}{subsubsection.4.4.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {36}{\ignorespaces Experimentálne overenie prepínania pracovných bodov pri implementácii algoritmu v PLC Siemens}}{69}{figure.36}\protected@file@percent }
+\newlabel{fig:ts_plc_prep_real}{{36}{69}{Experimentálne overenie prepínania pracovných bodov pri implementácii algoritmu v PLC Siemens}{figure.36}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {37}{\ignorespaces Detail regulácie v okolí pracovného bodu pri implementácii algoritmu v PLC Siemens}}{70}{figure.37}\protected@file@percent }
+\newlabel{fig:ts_plc_prep_real_zoom}{{37}{70}{Detail regulácie v okolí pracovného bodu pri implementácii algoritmu v PLC Siemens}{figure.37}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Porovnanie výsledkov implementácie prepínania pracovných bodov}{70}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:prep_implementation_comparison}{{4.5}{70}{Porovnanie výsledkov implementácie prepínania pracovných bodov}{subsection.4.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {38}{\ignorespaces Porovnanie experimentálnych výsledkov prepínania pracovných bodov na jednotlivých platformách}}{71}{figure.38}\protected@file@percent }
+\newlabel{fig:ts_prep_real_comparison}{{38}{71}{Porovnanie experimentálnych výsledkov prepínania pracovných bodov na jednotlivých platformách}{figure.38}{}}
 \citation{murgas1993}
 \citation{tao2003}
-\@writefile{toc}{\contentsline {section}{\numberline {5}MRAC regulácia – gradientná metóda}{74}{section.5}\protected@file@percent }
-\newlabel{sec:mrac_gradient}{{5}{74}{MRAC regulácia – gradientná metóda}{section.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Popis algoritmu}{74}{subsection.5.1}\protected@file@percent }
-\newlabel{sec:mrac_gradient_algorithm}{{5.1}{74}{Popis algoritmu}{subsection.5.1}{}}
-\@writefile{toc}{\contentsline {paragraph}{Model riadeného systému}{74}{paragraph*.22}\protected@file@percent }
-\newlabel{eq:mrac_plant}{{93}{74}{Model riadeného systému}{equation.5.93}{}}
-\@writefile{toc}{\contentsline {paragraph}{Referenčný model a statické zosilnenie}{74}{paragraph*.23}\protected@file@percent }
-\newlabel{eq:mrac_ref_model}{{94}{74}{Referenčný model a statické zosilnenie}{equation.5.94}{}}
-\@writefile{toc}{\contentsline {paragraph}{Zákon riadenia}{74}{paragraph*.24}\protected@file@percent }
-\newlabel{eq:mrac_general_control}{{96}{74}{Zákon riadenia}{equation.5.96}{}}
-\newlabel{eq:mrac_control_law}{{98}{74}{Zákon riadenia}{equation.5.98}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}MRAC regulácia – gradientná metóda}{72}{section.5}\protected@file@percent }
+\newlabel{sec:mrac_gradient}{{5}{72}{MRAC regulácia – gradientná metóda}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Popis algoritmu}{72}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:mrac_gradient_algorithm}{{5.1}{72}{Popis algoritmu}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Model riadeného systému}{72}{paragraph*.45}\protected@file@percent }
+\newlabel{eq:mrac_plant}{{5.1}{72}{Model riadeného systému}{equation.5.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Referenčný model a statické zosilnenie}{72}{paragraph*.46}\protected@file@percent }
+\newlabel{eq:mrac_ref_model}{{5.2}{72}{Referenčný model a statické zosilnenie}{equation.5.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Zákon riadenia}{72}{paragraph*.47}\protected@file@percent }
+\newlabel{eq:mrac_general_control}{{5.4}{72}{Zákon riadenia}{equation.5.4}{}}
+\newlabel{eq:mrac_control_law}{{5.6}{72}{Zákon riadenia}{equation.5.6}{}}
 \citation{tao2003}
 \citation{cellier1991}
 \citation{ogata2010}
-\@writefile{toc}{\contentsline {paragraph}{Podmienka zhody a ideálne parametre}{75}{paragraph*.25}\protected@file@percent }
-\newlabel{eq:mracIdeal_parameters_theta_1}{{101}{75}{Podmienka zhody a ideálne parametre}{equation.5.101}{}}
-\newlabel{eq:mracIdeal_parameters_theta_2}{{102}{75}{Podmienka zhody a ideálne parametre}{equation.5.102}{}}
-\newlabel{eq:mracIdeal_parameters_theta_3}{{103}{75}{Podmienka zhody a ideálne parametre}{equation.5.103}{}}
-\@writefile{toc}{\contentsline {paragraph}{Adaptačná odchýlka}{75}{paragraph*.26}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Účelová funkcia a MIT pravidlo}{75}{paragraph*.27}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Zákon adaptácie pre systém druhého rádu}{75}{paragraph*.28}\protected@file@percent }
-\newlabel{eq:mrac_theta1_adapt}{{109}{75}{Zákon adaptácie pre systém druhého rádu}{equation.5.109}{}}
-\newlabel{eq:mrac_theta2_adapt}{{110}{75}{Zákon adaptácie pre systém druhého rádu}{equation.5.110}{}}
-\newlabel{eq:mrac_theta3_adapt}{{111}{75}{Zákon adaptácie pre systém druhého rádu}{equation.5.111}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.1}Prevod systému do stavového priestoru}{76}{subsubsection.5.1.1}\protected@file@percent }
-\newlabel{sec:mrac_gradient_discrete}{{5.1.1}{76}{Prevod systému do stavového priestoru}{subsubsection.5.1.1}{}}
-\newlabel{eq:general_second_order_tf}{{112}{76}{Prevod systému do stavového priestoru}{equation.5.112}{}}
-\newlabel{eq:z_over_u}{{113}{76}{Prevod systému do stavového priestoru}{equation.5.113}{}}
-\newlabel{eq:y_over_z}{{114}{76}{Prevod systému do stavového priestoru}{equation.5.114}{}}
-\newlabel{eq:z_diff_eq}{{116}{76}{Prevod systému do stavového priestoru}{equation.5.116}{}}
-\newlabel{eq:state_matrix_form}{{125}{77}{Prevod systému do stavového priestoru}{equation.5.125}{}}
-\@writefile{toc}{\contentsline {paragraph}{Stavový opis referenčného modelu}{77}{paragraph*.29}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Stavový opis filtra výstupu}{78}{paragraph*.30}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Stavový opis filtra derivácie výstupu}{78}{paragraph*.31}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Stavový opis filtra referencie}{78}{paragraph*.32}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Zhrnutie štruktúry dynamických blokov}{79}{paragraph*.33}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.2}Pseudokód gradientnej MRAC regulácie (diskrétna realizácia)}{79}{subsubsection.5.1.2}\protected@file@percent }
-\newlabel{sec:mrac_gradient_pseudocode}{{5.1.2}{79}{Pseudokód gradientnej MRAC regulácie (diskrétna realizácia)}{subsubsection.5.1.2}{}}
-\newlabel{lst:mrac_gradient_realtime}{{21}{80}{Pseudokód diskrétnej implementácie gradientného MRAC regulátora s prechodom do súradníc pracovného bodu}{lstlisting.21}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {21}{\ignorespaces Pseudokód diskrétnej implementácie gradientného MRAC regulátora s prechodom do súradníc pracovného bodu}}{80}{lstlisting.21}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Implementácia MRAC v prostredí MATLAB}{82}{subsection.5.2}\protected@file@percent }
-\newlabel{sec:mrac_matlab_implementation}{{5.2}{82}{Implementácia MRAC v prostredí MATLAB}{subsection.5.2}{}}
-\newlabel{eq:mrac_ref_model_matlab}{{165}{82}{Implementácia MRAC v prostredí MATLAB}{equation.5.165}{}}
-\newlabel{eq:mrac_sampling_time}{{166}{82}{Implementácia MRAC v prostredí MATLAB}{equation.5.166}{}}
-\newlabel{eq:mrac_adaptation_gains}{{169}{82}{Implementácia MRAC v prostredí MATLAB}{equation.5.169}{}}
-\newlabel{lst:mrac_matlab_function}{{22}{83}{Implementácia gradientného MRAC regulátora v bloku MATLAB Function}{lstlisting.22}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {22}{\ignorespaces Implementácia gradientného MRAC regulátora v bloku MATLAB Function}}{83}{lstlisting.22}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {39}{\ignorespaces Blok MATLAB Function implementujúci gradientný MRAC regulátor v prostredí Simulink}}{85}{figure.39}\protected@file@percent }
-\newlabel{fig:mrac_matlab_block}{{39}{85}{Blok MATLAB Function implementujúci gradientný MRAC regulátor v prostredí Simulink}{figure.39}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}Experiment na tepelnej sústave}{85}{subsubsection.5.2.1}\protected@file@percent }
-\newlabel{sec:mrac_matlab_experiment}{{5.2.1}{85}{Experiment na tepelnej sústave}{subsubsection.5.2.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {40}{\ignorespaces Experimentálne výsledky gradientného MRAC regulátora v absolútnych veličinách}}{86}{figure.40}\protected@file@percent }
-\newlabel{fig:mrac_real_results_raw}{{40}{86}{Experimentálne výsledky gradientného MRAC regulátora v absolútnych veličinách}{figure.40}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {41}{\ignorespaces Experimentálne výsledky gradientného MRAC regulátora po prechode do súradníc pracovného bodu}}{87}{figure.41}\protected@file@percent }
-\newlabel{fig:mrac_real_results}{{41}{87}{Experimentálne výsledky gradientného MRAC regulátora po prechode do súradníc pracovného bodu}{figure.41}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Implementácia gradientného MRAC regulátora v jazyku C++}{87}{subsection.5.3}\protected@file@percent }
-\newlabel{sec:mrac_cpp_implementation}{{5.3}{87}{Implementácia gradientného MRAC regulátora v jazyku C++}{subsection.5.3}{}}
-\newlabel{eq:mrac_cpp_reference}{{171}{88}{Implementácia gradientného MRAC regulátora v jazyku C++}{equation.5.171}{}}
-\newlabel{lst:mrac_cpp_helpers}{{23}{88}{Pomocné funkcie použité pri implementácii gradientného MRAC regulátora v jazyku C++}{lstlisting.23}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {23}{\ignorespaces Pomocné funkcie použité pri implementácii gradientného MRAC regulátora v jazyku C++}}{88}{lstlisting.23}\protected@file@percent }
-\newlabel{lst:mrac_cpp_init}{{24}{88}{Inicializácia stavových premenných gradientného MRAC regulátora v jazyku C++}{lstlisting.24}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {24}{\ignorespaces Inicializácia stavových premenných gradientného MRAC regulátora v jazyku C++}}{88}{lstlisting.24}\protected@file@percent }
-\newlabel{lst:mrac_cpp_logic}{{25}{90}{Hlavná regulačná logika gradientného MRAC regulátora v jazyku C++}{lstlisting.25}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {25}{\ignorespaces Hlavná regulačná logika gradientného MRAC regulátora v jazyku C++}}{90}{lstlisting.25}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1}Experimentálne overenie na reálnom systéme}{92}{subsubsection.5.3.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {42}{\ignorespaces Experimentálne výsledky gradientného MRAC regulátora implementovaného v jazyku C++ v absolútnych veličinách}}{93}{figure.42}\protected@file@percent }
-\newlabel{fig:mrac_cpp_real_raw}{{42}{93}{Experimentálne výsledky gradientného MRAC regulátora implementovaného v jazyku C++ v absolútnych veličinách}{figure.42}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {43}{\ignorespaces Experimentálne výsledky gradientného MRAC regulátora implementovaného v jazyku C++ po vynechaní fázy ustálenia}}{94}{figure.43}\protected@file@percent }
-\newlabel{fig:mrac_cpp_real}{{43}{94}{Experimentálne výsledky gradientného MRAC regulátora implementovaného v jazyku C++ po vynechaní fázy ustálenia}{figure.43}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.2}Heuristická modifikácia implementácie na potlačenie driftu parametrov}{95}{subsubsection.5.3.2}\protected@file@percent }
-\newlabel{sec:mrac_cpp_heuristic_modification}{{5.3.2}{95}{Heuristická modifikácia implementácie na potlačenie driftu parametrov}{subsubsection.5.3.2}{}}
-\@writefile{toc}{\contentsline {paragraph}{Smoothing meraného výstupu}{95}{paragraph*.34}\protected@file@percent }
-\newlabel{eq:mrac_cpp_yavg}{{172}{95}{Smoothing meraného výstupu}{equation.5.172}{}}
-\newlabel{eq:mrac_cpp_yavg_used}{{173}{95}{Smoothing meraného výstupu}{equation.5.173}{}}
-\newlabel{eq:mrac_cpp_avg_window}{{174}{95}{Smoothing meraného výstupu}{equation.5.174}{}}
-\@writefile{toc}{\contentsline {paragraph}{Dead-zone v adaptačnom zákone}{95}{paragraph*.35}\protected@file@percent }
-\newlabel{eq:mrac_cpp_e_original}{{175}{95}{Dead-zone v adaptačnom zákone}{equation.5.175}{}}
-\newlabel{eq:mrac_cpp_control_unchanged}{{176}{95}{Dead-zone v adaptačnom zákone}{equation.5.176}{}}
-\newlabel{eq:mrac_cpp_deadzone}{{177}{95}{Dead-zone v adaptačnom zákone}{equation.5.177}{}}
-\newlabel{eq:mrac_cpp_edead}{{178}{95}{Dead-zone v adaptačnom zákone}{equation.5.178}{}}
-\newlabel{eq:mrac_cpp_deadzone_adaptation}{{179}{96}{Dead-zone v adaptačnom zákone}{equation.5.179}{}}
-\@writefile{toc}{\contentsline {paragraph}{Implementačné doplnenia}{96}{paragraph*.36}\protected@file@percent }
-\newlabel{lst:mrac_cpp_heur_helpers}{{26}{96}{Pomocné funkcie a nové premenné pre heuristickú modifikáciu MRAC regulátora}{lstlisting.26}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {26}{\ignorespaces Pomocné funkcie a nové premenné pre heuristickú modifikáciu MRAC regulátora}}{96}{lstlisting.26}\protected@file@percent }
-\newlabel{lst:mrac_cpp_heur_input}{{27}{96}{Doplnenie ukladania surového meraného výstupu do kruhového buffra}{lstlisting.27}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {27}{\ignorespaces Doplnenie ukladania surového meraného výstupu do kruhového buffra}}{96}{lstlisting.27}\protected@file@percent }
-\newlabel{lst:mrac_cpp_heur_logic}{{28}{97}{Modifikovaný úsek MRAC algoritmu s priemerovaním výstupu a dead-zone v adaptácii}{lstlisting.28}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {28}{\ignorespaces Modifikovaný úsek MRAC algoritmu s priemerovaním výstupu a dead-zone v adaptácii}}{97}{lstlisting.28}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Experimentálne overenie heuristickej modifikácie}{97}{paragraph*.37}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {44}{\ignorespaces Experimentálne výsledky heuristicky upravenej implementácie gradientného MRAC regulátora v jazyku C++}}{98}{figure.44}\protected@file@percent }
-\newlabel{fig:mrac_cpp_experimental}{{44}{98}{Experimentálne výsledky heuristicky upravenej implementácie gradientného MRAC regulátora v jazyku C++}{figure.44}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Implementácia gradientného MRAC regulátora v PLC Siemens}{98}{subsection.5.4}\protected@file@percent }
-\newlabel{sec:mrac_plc_implementation}{{5.4}{98}{Implementácia gradientného MRAC regulátora v PLC Siemens}{subsection.5.4}{}}
-\newlabel{lst:fb_mrac_ts05_plc}{{29}{99}{Implementácia funkčného bloku \texttt {FB\_MRAC\_TS05} v PLC Siemens}{lstlisting.29}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {29}{\ignorespaces Implementácia funkčného bloku \texttt  {FB\_MRAC\_TS05} v PLC Siemens}}{99}{lstlisting.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Podmienka zhody a ideálne parametre}{73}{paragraph*.48}\protected@file@percent }
+\newlabel{eq:mracIdeal_parameters_theta_1}{{5.9}{73}{Podmienka zhody a ideálne parametre}{equation.5.9}{}}
+\newlabel{eq:mracIdeal_parameters_theta_2}{{5.10}{73}{Podmienka zhody a ideálne parametre}{equation.5.10}{}}
+\newlabel{eq:mracIdeal_parameters_theta_3}{{5.11}{73}{Podmienka zhody a ideálne parametre}{equation.5.11}{}}
+\@writefile{toc}{\contentsline {paragraph}{Adaptačná odchýlka}{73}{paragraph*.49}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Účelová funkcia a MIT pravidlo}{73}{paragraph*.50}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Zákon adaptácie pre systém druhého rádu}{73}{paragraph*.51}\protected@file@percent }
+\newlabel{eq:mrac_theta1_adapt}{{5.17}{73}{Zákon adaptácie pre systém druhého rádu}{equation.5.17}{}}
+\newlabel{eq:mrac_theta2_adapt}{{5.18}{73}{Zákon adaptácie pre systém druhého rádu}{equation.5.18}{}}
+\newlabel{eq:mrac_theta3_adapt}{{5.19}{73}{Zákon adaptácie pre systém druhého rádu}{equation.5.19}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.1}Prevod systému do stavového priestoru}{74}{subsubsection.5.1.1}\protected@file@percent }
+\newlabel{sec:mrac_gradient_discrete}{{5.1.1}{74}{Prevod systému do stavového priestoru}{subsubsection.5.1.1}{}}
+\newlabel{eq:general_second_order_tf}{{5.20}{74}{Prevod systému do stavového priestoru}{equation.5.20}{}}
+\newlabel{eq:z_over_u}{{5.21}{74}{Prevod systému do stavového priestoru}{equation.5.21}{}}
+\newlabel{eq:y_over_z}{{5.22}{74}{Prevod systému do stavového priestoru}{equation.5.22}{}}
+\newlabel{eq:z_diff_eq}{{5.24}{74}{Prevod systému do stavového priestoru}{equation.5.24}{}}
+\newlabel{eq:state_matrix_form}{{5.33}{75}{Prevod systému do stavového priestoru}{equation.5.33}{}}
+\@writefile{toc}{\contentsline {paragraph}{Stavový opis referenčného modelu}{75}{paragraph*.52}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Stavový opis filtra výstupu}{76}{paragraph*.53}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Stavový opis filtra derivácie výstupu}{76}{paragraph*.54}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Stavový opis filtra referencie}{76}{paragraph*.55}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Zhrnutie štruktúry dynamických blokov}{77}{paragraph*.56}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.2}Pseudokód gradientnej MRAC regulácie (diskrétna realizácia)}{77}{subsubsection.5.1.2}\protected@file@percent }
+\newlabel{sec:mrac_gradient_pseudocode}{{5.1.2}{77}{Pseudokód gradientnej MRAC regulácie (diskrétna realizácia)}{subsubsection.5.1.2}{}}
+\newlabel{lst:mrac_gradient_realtime}{{21}{78}{Pseudokód diskrétnej implementácie gradientného MRAC regulátora s prechodom do súradníc pracovného bodu}{lstlisting.21}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {21}{\ignorespaces Pseudokód diskrétnej implementácie gradientného MRAC regulátora s prechodom do súradníc pracovného bodu}}{78}{lstlisting.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Implementácia MRAC v prostredí MATLAB}{80}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:mrac_matlab_implementation}{{5.2}{80}{Implementácia MRAC v prostredí MATLAB}{subsection.5.2}{}}
+\newlabel{eq:mrac_ref_model_matlab}{{5.73}{80}{Implementácia MRAC v prostredí MATLAB}{equation.5.73}{}}
+\newlabel{eq:mrac_sampling_time}{{5.74}{80}{Implementácia MRAC v prostredí MATLAB}{equation.5.74}{}}
+\newlabel{eq:mrac_adaptation_gains}{{5.77}{80}{Implementácia MRAC v prostredí MATLAB}{equation.5.77}{}}
+\newlabel{lst:mrac_matlab_function}{{22}{80}{Implementácia gradientného MRAC regulátora v bloku MATLAB Function}{lstlisting.22}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {22}{\ignorespaces Implementácia gradientného MRAC regulátora v bloku MATLAB Function}}{80}{lstlisting.22}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {39}{\ignorespaces Blok MATLAB Function implementujúci gradientný MRAC regulátor v prostredí Simulink}}{83}{figure.39}\protected@file@percent }
+\newlabel{fig:mrac_matlab_block}{{39}{83}{Blok MATLAB Function implementujúci gradientný MRAC regulátor v prostredí Simulink}{figure.39}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}Experiment na tepelnej sústave}{83}{subsubsection.5.2.1}\protected@file@percent }
+\newlabel{sec:mrac_matlab_experiment}{{5.2.1}{83}{Experiment na tepelnej sústave}{subsubsection.5.2.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {40}{\ignorespaces Experimentálne výsledky gradientného MRAC regulátora v absolútnych veličinách}}{84}{figure.40}\protected@file@percent }
+\newlabel{fig:mrac_real_results_raw}{{40}{84}{Experimentálne výsledky gradientného MRAC regulátora v absolútnych veličinách}{figure.40}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {41}{\ignorespaces Experimentálne výsledky gradientného MRAC regulátora po prechode do súradníc pracovného bodu}}{85}{figure.41}\protected@file@percent }
+\newlabel{fig:mrac_real_results}{{41}{85}{Experimentálne výsledky gradientného MRAC regulátora po prechode do súradníc pracovného bodu}{figure.41}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Implementácia gradientného MRAC regulátora v jazyku C++}{85}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:mrac_cpp_implementation}{{5.3}{85}{Implementácia gradientného MRAC regulátora v jazyku C++}{subsection.5.3}{}}
+\newlabel{eq:mrac_cpp_reference}{{5.79}{86}{Implementácia gradientného MRAC regulátora v jazyku C++}{equation.5.79}{}}
+\newlabel{lst:mrac_cpp_helpers}{{23}{86}{Pomocné funkcie použité pri implementácii gradientného MRAC regulátora v jazyku C++}{lstlisting.23}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {23}{\ignorespaces Pomocné funkcie použité pri implementácii gradientného MRAC regulátora v jazyku C++}}{86}{lstlisting.23}\protected@file@percent }
+\newlabel{lst:mrac_cpp_init}{{24}{86}{Inicializácia stavových premenných gradientného MRAC regulátora v jazyku C++}{lstlisting.24}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {24}{\ignorespaces Inicializácia stavových premenných gradientného MRAC regulátora v jazyku C++}}{86}{lstlisting.24}\protected@file@percent }
+\newlabel{lst:mrac_cpp_logic}{{25}{87}{Hlavná regulačná logika gradientného MRAC regulátora v jazyku C++}{lstlisting.25}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {25}{\ignorespaces Hlavná regulačná logika gradientného MRAC regulátora v jazyku C++}}{87}{lstlisting.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1}Experimentálne overenie na reálnom systéme}{90}{subsubsection.5.3.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {42}{\ignorespaces Experimentálne výsledky gradientného MRAC regulátora implementovaného v jazyku C++ v absolútnych veličinách}}{91}{figure.42}\protected@file@percent }
+\newlabel{fig:mrac_cpp_real_raw}{{42}{91}{Experimentálne výsledky gradientného MRAC regulátora implementovaného v jazyku C++ v absolútnych veličinách}{figure.42}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {43}{\ignorespaces Experimentálne výsledky gradientného MRAC regulátora implementovaného v jazyku C++ po vynechaní fázy ustálenia}}{92}{figure.43}\protected@file@percent }
+\newlabel{fig:mrac_cpp_real}{{43}{92}{Experimentálne výsledky gradientného MRAC regulátora implementovaného v jazyku C++ po vynechaní fázy ustálenia}{figure.43}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.2}Heuristická modifikácia implementácie na potlačenie driftu parametrov}{93}{subsubsection.5.3.2}\protected@file@percent }
+\newlabel{sec:mrac_cpp_heuristic_modification}{{5.3.2}{93}{Heuristická modifikácia implementácie na potlačenie driftu parametrov}{subsubsection.5.3.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Smoothing meraného výstupu}{93}{paragraph*.57}\protected@file@percent }
+\newlabel{eq:mrac_cpp_yavg}{{5.80}{93}{Smoothing meraného výstupu}{equation.5.80}{}}
+\newlabel{eq:mrac_cpp_yavg_used}{{5.81}{93}{Smoothing meraného výstupu}{equation.5.81}{}}
+\newlabel{eq:mrac_cpp_avg_window}{{5.82}{93}{Smoothing meraného výstupu}{equation.5.82}{}}
+\@writefile{toc}{\contentsline {paragraph}{Dead-zone v adaptačnom zákone}{93}{paragraph*.58}\protected@file@percent }
+\newlabel{eq:mrac_cpp_e_original}{{5.83}{93}{Dead-zone v adaptačnom zákone}{equation.5.83}{}}
+\newlabel{eq:mrac_cpp_control_unchanged}{{5.84}{93}{Dead-zone v adaptačnom zákone}{equation.5.84}{}}
+\newlabel{eq:mrac_cpp_deadzone}{{5.85}{93}{Dead-zone v adaptačnom zákone}{equation.5.85}{}}
+\newlabel{eq:mrac_cpp_edead}{{5.86}{93}{Dead-zone v adaptačnom zákone}{equation.5.86}{}}
+\newlabel{eq:mrac_cpp_deadzone_adaptation}{{5.87}{94}{Dead-zone v adaptačnom zákone}{equation.5.87}{}}
+\@writefile{toc}{\contentsline {paragraph}{Implementačné doplnenia}{94}{paragraph*.59}\protected@file@percent }
+\newlabel{lst:mrac_cpp_heur_helpers}{{26}{94}{Pomocné funkcie a nové premenné pre heuristickú modifikáciu MRAC regulátora}{lstlisting.26}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {26}{\ignorespaces Pomocné funkcie a nové premenné pre heuristickú modifikáciu MRAC regulátora}}{94}{lstlisting.26}\protected@file@percent }
+\newlabel{lst:mrac_cpp_heur_input}{{27}{94}{Doplnenie ukladania surového meraného výstupu do kruhového buffra}{lstlisting.27}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {27}{\ignorespaces Doplnenie ukladania surového meraného výstupu do kruhového buffra}}{94}{lstlisting.27}\protected@file@percent }
+\newlabel{lst:mrac_cpp_heur_logic}{{28}{95}{Modifikovaný úsek MRAC algoritmu s priemerovaním výstupu a dead-zone v adaptácii}{lstlisting.28}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {28}{\ignorespaces Modifikovaný úsek MRAC algoritmu s priemerovaním výstupu a dead-zone v adaptácii}}{95}{lstlisting.28}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Experimentálne overenie heuristickej modifikácie}{95}{paragraph*.60}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {44}{\ignorespaces Experimentálne výsledky heuristicky upravenej implementácie gradientného MRAC regulátora v jazyku C++}}{96}{figure.44}\protected@file@percent }
+\newlabel{fig:mrac_cpp_experimental}{{44}{96}{Experimentálne výsledky heuristicky upravenej implementácie gradientného MRAC regulátora v jazyku C++}{figure.44}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Implementácia gradientného MRAC regulátora v PLC Siemens}{96}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:mrac_plc_implementation}{{5.4}{96}{Implementácia gradientného MRAC regulátora v PLC Siemens}{subsection.5.4}{}}
+\newlabel{lst:fb_mrac_ts05_plc}{{29}{97}{Implementácia funkčného bloku \texttt {FB\_MRAC\_TS05} v PLC Siemens}{lstlisting.29}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {29}{\ignorespaces Implementácia funkčného bloku \texttt  {FB\_MRAC\_TS05} v PLC Siemens}}{97}{lstlisting.29}\protected@file@percent }
 \gdef \LT@i {\LT@entry 
-    {3}{51.77773pt}\LT@entry 
+    {3}{51.78pt}\LT@entry 
     {3}{69.74985pt}\LT@entry 
-    {1}{68.89491pt}\LT@entry 
-    {1}{113.30106pt}\LT@entry 
-    {3}{58.97227pt}}
-\@writefile{lof}{\contentsline {figure}{\numberline {45}{\ignorespaces Zapojenie gradientného MRAC regulátora v prostredí TIA Portal}}{101}{figure.45}\protected@file@percent }
-\newlabel{fig:tia_mrac_scheme}{{45}{101}{Zapojenie gradientného MRAC regulátora v prostredí TIA Portal}{figure.45}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Premenné funkčného bloku \texttt  {FB\_MRAC\_TS05}}}{101}{table.14}\protected@file@percent }
-\newlabel{tab:tia_mrac_vars}{{14}{101}{Premenné funkčného bloku \texttt {FB\_MRAC\_TS05}}{table.14}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.1}Experimentálne overenie na reálnom systéme}{103}{subsubsection.5.4.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {46}{\ignorespaces Experimentálne výsledky gradientného MRAC regulátora implementovaného v PLC Siemens v absolútnych veličinách}}{103}{figure.46}\protected@file@percent }
-\newlabel{fig:ts_plc_mrac_real_raw}{{46}{103}{Experimentálne výsledky gradientného MRAC regulátora implementovaného v PLC Siemens v absolútnych veličinách}{figure.46}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {47}{\ignorespaces Experimentálne výsledky gradientného MRAC regulátora implementovaného v PLC Siemens po prechode do súradníc pracovného bodu}}{104}{figure.47}\protected@file@percent }
-\newlabel{fig:ts_plc_mrac_real}{{47}{104}{Experimentálne výsledky gradientného MRAC regulátora implementovaného v PLC Siemens po prechode do súradníc pracovného bodu}{figure.47}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Porovnanie výsledkov implementácie MRAC regulátora}{105}{subsection.5.5}\protected@file@percent }
-\newlabel{sec:mrac_implementation_comparison}{{5.5}{105}{Porovnanie výsledkov implementácie MRAC regulátora}{subsection.5.5}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {48}{\ignorespaces Porovnanie experimentálnych výsledkov gradientného MRAC regulátora na jednotlivých platformách}}{105}{figure.48}\protected@file@percent }
-\newlabel{fig:ts_mrac_real_comparison}{{48}{105}{Porovnanie experimentálnych výsledkov gradientného MRAC regulátora na jednotlivých platformách}{figure.48}{}}
-\@writefile{toc}{\contentsline {section}{Záver}{106}{equation.5.183}\protected@file@percent }
+    {1}{68.88992pt}\LT@entry 
+    {1}{113.07993pt}\LT@entry 
+    {3}{58.98001pt}}
+\@writefile{lof}{\contentsline {figure}{\numberline {45}{\ignorespaces Zapojenie gradientného MRAC regulátora v prostredí TIA Portal}}{99}{figure.45}\protected@file@percent }
+\newlabel{fig:tia_mrac_scheme}{{45}{99}{Zapojenie gradientného MRAC regulátora v prostredí TIA Portal}{figure.45}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Premenné funkčného bloku \texttt  {FB\_MRAC\_TS05}}}{99}{table.14}\protected@file@percent }
+\newlabel{tab:tia_mrac_vars}{{14}{99}{Premenné funkčného bloku \texttt {FB\_MRAC\_TS05}}{table.14}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.1}Experimentálne overenie na reálnom systéme}{101}{subsubsection.5.4.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {46}{\ignorespaces Experimentálne výsledky gradientného MRAC regulátora implementovaného v PLC Siemens v absolútnych veličinách}}{101}{figure.46}\protected@file@percent }
+\newlabel{fig:ts_plc_mrac_real_raw}{{46}{101}{Experimentálne výsledky gradientného MRAC regulátora implementovaného v PLC Siemens v absolútnych veličinách}{figure.46}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {47}{\ignorespaces Experimentálne výsledky gradientného MRAC regulátora implementovaného v PLC Siemens po prechode do súradníc pracovného bodu}}{102}{figure.47}\protected@file@percent }
+\newlabel{fig:ts_plc_mrac_real}{{47}{102}{Experimentálne výsledky gradientného MRAC regulátora implementovaného v PLC Siemens po prechode do súradníc pracovného bodu}{figure.47}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Porovnanie výsledkov implementácie MRAC regulátora}{103}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:mrac_implementation_comparison}{{5.5}{103}{Porovnanie výsledkov implementácie MRAC regulátora}{subsection.5.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {48}{\ignorespaces Porovnanie experimentálnych výsledkov gradientného MRAC regulátora na jednotlivých platformách}}{103}{figure.48}\protected@file@percent }
+\newlabel{fig:ts_mrac_real_comparison}{{48}{103}{Porovnanie experimentálnych výsledkov gradientného MRAC regulátora na jednotlivých platformách}{figure.48}{}}
+\@writefile{toc}{\contentsline {section}{Záver}{104}{equation.5.91}\protected@file@percent }
 \bibcite{fikar}{1}
 \bibcite{kut015}{2}
 \bibcite{montgomery}{3}
@@ -453,14 +455,14 @@
 \bibcite{tao2003}{10}
 \bibcite{murgas1993}{11}
 \bibcite{siemens_s71200g2_manual}{12}
-\@writefile{toc}{\contentsline {section}{Zoznam literatúry}{107}{equation.5.183}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{Zdrojové kódy implementácie}{108}{equation.5.183}\protected@file@percent }
-\newlabel{sec:zdrojove_kody_arduino}{{5.5}{108}{}{equation.5.183}{}}
-\newlabel{lst:main_cpp_appendix}{{30}{108}{Hlavný zdrojový kód pre Arduino UNO}{lstlisting.30}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {30}{\ignorespaces Hlavný zdrojový kód pre Arduino UNO}}{108}{lstlisting.30}\protected@file@percent }
-\newlabel{lst:logger_py_appendix}{{31}{111}{Externý skript pre logovanie dát}{lstlisting.31}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {31}{\ignorespaces Externý skript pre logovanie dát}}{111}{lstlisting.31}\protected@file@percent }
-\newlabel{LastPage}{{5.5}{112}{}{page.112}{}}
-\gdef\lastpage@lastpage{112}
-\gdef\lastpage@lastpageHy{112}
-\gdef \@abspage@last{112}
+\@writefile{toc}{\contentsline {section}{Zoznam literatúry}{105}{equation.5.91}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{Zdrojové kódy implementácie}{106}{equation.5.91}\protected@file@percent }
+\newlabel{sec:zdrojove_kody_arduino}{{5.5}{106}{}{equation.5.91}{}}
+\newlabel{lst:main_cpp_appendix}{{30}{106}{Hlavný zdrojový kód pre Arduino UNO}{lstlisting.30}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {30}{\ignorespaces Hlavný zdrojový kód pre Arduino UNO}}{106}{lstlisting.30}\protected@file@percent }
+\newlabel{lst:logger_py_appendix}{{31}{109}{Externý skript pre logovanie dát}{lstlisting.31}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {31}{\ignorespaces Externý skript pre logovanie dát}}{109}{lstlisting.31}\protected@file@percent }
+\newlabel{LastPage}{{5.5}{110}{}{page.110}{}}
+\gdef\lastpage@lastpage{110}
+\gdef\lastpage@lastpageHy{110}
+\gdef \@abspage@last{110}
