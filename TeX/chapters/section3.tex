@@ -7,7 +7,7 @@
 
 V tejto kapitole je riešený návrh a implementácia PI regulátora pre tepelný systém TS05.
 Najskôr je stručne zhrnutá teoretická štruktúra PI regulátora a jeho zapojenie
-v uzavretom regulačnom obvode, následne je tento prístup aplikovaný na
+v~uzavretom regulačnom obvode, následne je tento prístup aplikovaný na
 identifikovaný model systému TS05 vrátane ladenia parametrov a realizácie
 v reálnom čase v prostredí MATLAB a v jazyku C++.
 
@@ -17,9 +17,9 @@ v reálnom čase v prostredí MATLAB a v jazyku C++.
 \subsection{Štruktúra PI regulátora}
 
 PI regulátor predstavuje zjednodušenú formu PID regulátora,
-v ktorej je derivačná zložka vynechaná.
+v~ktorej je derivačná zložka vynechaná.
 Regulátory typu PID a ich modifikácie patria medzi najčastejšie používané
-štruktúry v priemyselnom riadení, najmä vďaka jednoduchej implementácii
+štruktúry v~priemyselnom riadení, najmä vďaka jednoduchej implementácii
 a možnosti praktického ladenia~\cite{wang2020,astrom1995}.
 Pre systémy s pomalou dynamikou, ako sú tepelné sústavy,
 derivačný člen spravidla neprináša zlepšenie regulácie
@@ -37,9 +37,10 @@ so zápornou spätnou väzbou.
 Bloková schéma uzavretého regulačného obvodu je znázornená
 na obr.~\ref{fig:pi_block_scheme}. V schéme označenie $u_1$ predstavuje napätie privádzané na vykurovaciu špirálu,
 $u_2$ napätie privádzané na ventilátor, zatiaľ čo $y_1$ a $y_2$ označujú
-signály zo snímača teploty~1 a snímača teploty~2.
+signály zo snímača teploty~1 a~snímača teploty~2.
 
-\begin{center}
+\begin{figure}[!b]
+% \begin{center}
 	\vbox{
 	\makebox[\textwidth][c]{%
 		\includegraphics{PI_scheme_draw.pdf}
@@ -47,7 +48,8 @@ signály zo snímača teploty~1 a snímača teploty~2.
 	\figcaption[width=1.0\textwidth]{Bloková schéma uzavretého regulačného obvodu s PI regulátorom}
 	\label{fig:pi_block_scheme}
 	}
-\end{center}
+% \end{center}
+\end{figure}
 
 
 \paragraph{Prenosy regulačného obvodu}
@@ -172,9 +174,30 @@ získať parametre potrebné na jej štandardnú aplikáciu.
 Keďže návrh PI regulátora nie je hlavnou témou práce, bol zvolený numerický nástroj \texttt{pidtune} \cite{wang2020,astrom1995}.  
 Jeho princíp spočíva v tom, že pre zvolenú požadovanú šírku pásma uzavretého systému vypočíta optimálne hodnoty parametrov PI regulátora tak, aby bola zabezpečená dobrá dynamická odozva a primeraná robustnosť.
 
+
+
+
+\begin{figure}[!t]
+% \begin{center}
+	\vbox{
+		\makebox[\textwidth][c]{%
+			\includegraphics{ts_pb_vent6_spir4_pidtune_sim.png}
+		}
+		\figcaption{Simulačný výsledok uzavretého PI riadenia systému TS05}
+		\label{fig:pi_simulation_results}
+	}
+% \end{center}
+\end{figure}
+
+
+
+
+
+
+
 Najskôr bol systém prevedený do diskrétnej podoby a následne bolo vykonané
 ladenie PI regulátora pomocou funkcie \texttt{pidtune()}. Použitý postup je uvedený
-v nasledujúcej ukážke.
+v~nasledujúcej ukážke.
 
 \begin{lstlisting}[language=Matlab,
 caption={Diskretizácia modelu a ladenie PI regulátora pomocou \texttt{pidtune()}},
@@ -191,46 +214,32 @@ Cz = pidtune(Gz, 'pi', wc);
 [numC,denC] = tfdata(Cz,'v');
 [Ac,Bc,Cc,Dc] = tf2ss(numC,denC);
 \end{lstlisting}
-
 Získané parametre regulátora:
-
 \begin{equation}
 	K_p = 3.58, \qquad K_i = 1.84
 	\label{eq:pi_gains}
 \end{equation}
-
 Prenosová funkcia otvoreného regulačného obvodu je
-
 \begin{equation}
 	G_{oro}(s) =
 	\frac{21.21 s + 11.15}{s^3 + 59.01 s^2 + 8.95 s}
 	\label{eq:oro_tf}
 \end{equation}
-
 Póly otvoreného systému sú:
-
 \begin{equation}
 	s_{1} = 0, \quad s_{2} = -58.855, \quad s_{3} = -0.1521
 	\label{eq:oro_poles}
 \end{equation}
 
 Z polohy pólov otvoreného obvodu je zrejmé, že systém obsahuje integrujúci člen
-a dva póly v ľavej polrovine komplexnej roviny.
+a~dva póly v ľavej polrovine komplexnej roviny.
 
 Simulácia bola vykonaná s obmedzením odchýlkového akčného zásahu na interval
 \([-4, 6]\), čo po pripočítaní pracovného bodu \(u_{pb}=4~\mathrm{V}\)
 zodpovedá fyzikálnemu rozsahu vstupu špirály 0 až 10~V. 
 Výsledok simulácie je uvedený na obrázku~\ref{fig:pi_simulation_results}.
 
-\begin{center}
-	\vbox{
-		\makebox[\textwidth][c]{%
-			\includegraphics[width=1.5\textwidth]{ts_pb_vent6_spir4_pidtune_sim.png}
-		}
-		\figcaption{Simulačný výsledok uzavretého PI riadenia systému TS05}
-		\label{fig:pi_simulation_results}
-	}
-\end{center}
+
 
 Z výsledkov boli namerané tieto hodnoty:
 
@@ -261,23 +270,18 @@ Pri implementácii regulátora bol zavedený prístup založený na regulácii o
 Namiesto práce s absolútnymi hodnotami veličín sa regulácia vykonáva v inkrementálnom tvare.
 
 Výstupná veličina je vyjadrená ako odchýlka od pracovného bodu:
-
 \begin{align}
     \Delta y &= y - y_{pb},
     \label{eq:pi_delta_y} 
 \end{align}
-
 kde $y_{pb}$ predstavuje odhad ustáleného stavu systému (pracovného bodu).
 
 Podobne aj riadiaci zásah je počítaný ako odchýlka od pracovného bodu:
-
 \begin{align}
     \Delta u &= u - u_{pb},
     \label{eq:pi_delta_u} 
 \end{align}
-
 pričom výsledný akčný zásah je následne získaný ako:
-
 \begin{align}
     u &= \Delta u + u_{pb}.
     \label{eq:pi_u_from_du}
@@ -347,15 +351,17 @@ jednotlivými riadiacimi cyklami.
 Logika zapojenia bloku MATLAB Function je zobrazená na obrázku~\ref{fig:pi_rt_scheme},  
 ktorý ukazuje vstupy, výstupy a spätnú väzbu stavových premenných potrebných pre správnu činnosť regulátora.
 
-\begin{center}
+\begin{figure}[!b]
+% \begin{center}
     \vbox{
         \makebox[\textwidth][c]{%
-            \includegraphics[width=1.3\textwidth, trim=100 150 100 150, clip]{TS_pi_scheme.pdf}
+            \includegraphics[width=1.45\textwidth, trim=100 150 100 150, clip]{TS_pi_scheme.pdf}
         }
         \figcaption{Zapojenie PI regulátora v bloku MATLAB Function so spätnou väzbou stavov}
         \label{fig:pi_rt_scheme}
     }
-\end{center}
+% \end{center}
+\end{figure}
 
 Pred samotným začiatkom regulácie bol zavedený časový úsek, počas ktorého regulátor nevykonáva žiadny zásah.  
 Počas prvých desiatich minút sa na výstupe drží hodnota pracovného bodu a zároveň sa sleduje teplota na výstupe systému.  
@@ -368,27 +374,32 @@ Okrem toho surové merania (obr.~\ref{fig:ts_pb_vent6_spir4_ident_raw}) ukázali
 Z toho dôvodu je ustálený stav zisťovaný automaticky priamo regulátorom ako posledná nameraná hodnota $y$ pred spustením PI riadenia.  
 Tento prístup funguje bez ohľadu na to, či je systém iba málo zahriaty alebo už dosiahol vysokú prevádzkovú teplotu.
 
-\subsubsection{Experimentálne overenie na reálnom systéme}
-\label{sec:pi_matlab_real_system}
 
-\paragraph{Experiment 1: Regulácia okolo jedného pracovného bodu}
-
-Na základe implementácie uvedenej vyššie bol následne vykonaný experiment v simulačnom prostredí s cieľom overiť kvalitu regulácie.  
-Priebeh regulácie je zobrazený na obrázku~\ref{fig:ts_pi_real_basic}.
-
+\begin{figure}[!t]
 \begin{center}
     \vbox{
         \makebox[\textwidth][c]{%
-            \includegraphics[width=1.5\textwidth]{ts_pb_vent6_spir4_PI_real.png}
+            \includegraphics{ts_pb_vent6_spir4_PI_real.png}
         }
         \figcaption{Simulačný experiment s PI regulátorom pri skokovej zmene žiadanej hodnoty}
         \label{fig:ts_pi_real_basic}
     }
 \end{center}
+\end{figure}
+\subsubsection{Experimentálne overenie na reálnom systéme}
+\label{sec:pi_matlab_real_system}
 
+\paragraph{Experiment 1: Regulácia okolo jedného pracovného bodu}
+
+Na základe implementácie uvedenej vyššie bol následne vykonaný experiment v~simulačnom prostredí s~cieľom overiť kvalitu regulácie.  
+Priebeh regulácie je zobrazený na obrázku~\ref{fig:ts_pi_real_basic}.
+
+
+\medskip
+
+\noindent
 Kvalita regulácie bola hodnotená podľa troch kritérií:
-
-\begin{itemize}
+\begin{itemize}[leftmargin=0pt, labelsep=3mm, itemsep=0pt]
     \item prekmit: žiadaná hodnota bola 0.35~V, maximálna hodnota výstupu dosiahla približne 0.52~V,  
     čo zodpovedá približne 49.0 percentnému prekmitu,
     \item čas ustálenia: výstup sa ustálil približne po 28 sekundách,
@@ -408,15 +419,17 @@ ktorá má simulovať prechod medzi rôznymi pracovnými bodmi systému.
 Systém bol najprv ustálený v pracovnom bode s výstupnou hodnotou približne 6.4~V a následne bola žiadaná hodnota skokovo zmenená na 7.5~V. 
 Výsledok je zobrazený na obrázku~\ref{fig:ts_pi_real_big_step}.
 
-\begin{center}
+\begin{figure}[!t]
+% \begin{center}
     \vbox{
         \makebox[\textwidth][c]{%
-            \includegraphics[width=1.5\textwidth]{ts_pb_vent6_pbTopb_real_badToShow.png}
+            \includegraphics{ts_pb_vent6_pbTopb_real_badToShow.png}
         }
         \figcaption{Experiment PI regulátora pri skoku z 6.4~V na 7.5~V}
         \label{fig:ts_pi_real_big_step}
     }
-\end{center}
+% \end{center}
+\end{figure}
 
 Z grafu je zrejmé, že počas regulácie došlo k výraznému presýteniu akčného zásahu.  
 Ovládací signál dosiahol svoj limit a počas určitého času na ňom zotrval.  
@@ -425,7 +438,7 @@ Aj keď bola požadovaná hodnota dosiahnutá, takéto správanie je z pohľadu 
 Z tohto dôvodu možno konštatovať, že navrhnutý PI regulátor je vhodný na riadenie v blízkosti jedného pracovného bodu,  
 avšak nie je vhodný na prepínanie medzi vzdialenejšími pracovnými bodmi.  
 V ďalšej časti práce bude preto implementovaný postup umožňujúci bezpečné a stabilné prepínanie medzi pracovnými bodmi  
-a následne budú jednotlivé regulátory skombinované tak, aby systém disponoval širším využiteľným rozsahom riadenia.
+a~následne budú jednotlivé regulátory skombinované tak, aby systém disponoval širším využiteľným rozsahom riadenia.
 
 \subsection{Implementácia PI regulátora v jazyku C++}
 
@@ -501,15 +514,17 @@ Integrátor sa aj v tejto implementácii aktualizuje diskrétne pomocou periódy
 
 Na základe tejto implementácie bol vykonaný experiment na reálnom systéme, ktorého výsledok je uvedený na obrázku~\ref{fig:ts_cpp_pi_real}.
 
-\begin{center}
+\begin{figure}[!t]
+% \begin{center}
     \vbox{
         \makebox[\textwidth][c]{%
-            \includegraphics[width=1.5\textwidth]{ts_cpp_pi_real.png}
+            \includegraphics{ts_cpp_pi_real.png}
         }
         \figcaption{Experimentálna odozva PI regulátora implementovaného v jazyku C++}
         \label{fig:ts_cpp_pi_real}
     }
-\end{center}
+% \end{center}
+\end{figure}
 
 Z priebehu regulácie je zrejmé, že výsledná odozva je veľmi podobná priebehu získanému pri implementácii v prostredí MATLAB, uvedenom na obrázku~\ref{fig:ts_pi_real_basic}.  
 Tvar regulačnej odozvy, rýchlosť nábehu aj charakter ustálenia zostali vo všeobecnosti zachované.  
@@ -580,48 +595,75 @@ END_IF;
 
 Zoznam interných premenných použitých vo funkčnom bloku je uvedený v tab.~\ref{tab:tia_pi_vars}.
 
-\begin{table}[h!]
+\begin{table}[b!]
     \centering
     \caption{Premenné funkčného bloku \texttt{FB\_PI\_TS05}}
     \label{tab:tia_pi_vars}
-    \begin{tabular}{c c c c c}
-        \hline
-        \textbf{Sekcia} & \textbf{Premenná} & \textbf{Dátový typ} & \textbf{Predvolená hodnota} & \textbf{Retain} \\ \hline
-        Input & \texttt{Y} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-        Input & \texttt{Setpoint\_pb} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-        Input & \texttt{Enable} & \texttt{Bool} & \texttt{false} & Non-retain \\ \hline
-        Output & \texttt{U} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-        Output & \texttt{Ypb} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-        Output & \texttt{vent} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-        Static & \texttt{Integrator} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-        Temp & \texttt{E} & \texttt{Real} & -- & -- \\ \hline
-        Temp & \texttt{DU} & \texttt{Real} & -- & -- \\ \hline
-        Constant & \texttt{Kp} & \texttt{Real} & \texttt{3.58} & -- \\ \hline
-        Constant & \texttt{Ki} & \texttt{Real} & \texttt{1.84} & -- \\ \hline
-        Constant & \texttt{Ts} & \texttt{Real} & \texttt{0.1} & -- \\ \hline
-        Constant & \texttt{U\_pb} & \texttt{Real} & \texttt{4.0} & -- \\ \hline
-        Constant & \texttt{DU\_min} & \texttt{Real} & \texttt{-4.0} & -- \\ \hline
-        Constant & \texttt{DU\_max} & \texttt{Real} & \texttt{6.0} & -- \\ \hline
-    \end{tabular}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}c c c c c}
+        % \hline
+        \textbf{Sekcia} & \textbf{Premenná} & \textbf{Dátový typ} & \textbf{Predvolená hodnota} & \textbf{Retain} \\ \toprule
+        Input & \texttt{Y} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \midrule
+        Input & \texttt{Setpoint\_pb} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \midrule
+        Input & \texttt{Enable} & \texttt{Bool} & \texttt{false} & Non-retain \\ \midrule
+        Output & \texttt{U} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \midrule
+        Output & \texttt{Ypb} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \midrule
+        Output & \texttt{vent} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \midrule
+        Static & \texttt{Integrator} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \midrule
+        Temp & \texttt{E} & \texttt{Real} & -- & -- \\ \midrule
+        Temp & \texttt{DU} & \texttt{Real} & -- & -- \\ \midrule
+        Constant & \texttt{Kp} & \texttt{Real} & \texttt{3.58} & -- \\ \midrule
+        Constant & \texttt{Ki} & \texttt{Real} & \texttt{1.84} & -- \\ \midrule
+        Constant & \texttt{Ts} & \texttt{Real} & \texttt{0.1} & -- \\ \midrule
+        Constant & \texttt{U\_pb} & \texttt{Real} & \texttt{4.0} & -- \\ \midrule
+        Constant & \texttt{DU\_min} & \texttt{Real} & \texttt{-4.0} & -- \\ \midrule
+        Constant & \texttt{DU\_max} & \texttt{Real} & \texttt{6.0} & -- \\ \bottomrule
+    \end{tabular*}
 \end{table}
 
 Celkové zapojenie algoritmu v PLC programe, vrátane časovača, riadiaceho bloku
 a logovania, je uvedené na obr.~\ref{fig:tia_pi_scheme}.
 
-\begin{center}
+
+\begin{figure}[!t]
+% \begin{center}
 \vbox{
 \makebox[\textwidth][c]{%
-    \includegraphics[width=0.9\textwidth]{tia_pi_scheme.png}
+    \includegraphics{ts_plc_pi_real.png}
 }
+\figcaption{Experimentálna odozva PI regulátora implementovaného v PLC Siemens}
+\label{fig:ts_plc_pi_real}
+}
+
+\vspace{-6pt}
+
+% \end{center}
+\end{figure}
+
+\begin{figure}[!b]
+% \begin{center}
+
+\vspace{-6pt}
+
+\vbox{
+\makebox[\textwidth][c]{%
+    \includegraphics[width=1.15\textwidth]{tia_pi_scheme.png}
+}
+
+\vspace{-6pt}
+
 \figcaption{Zapojenie PI regulátora, časovača a logovania v prostredí TIA Portal}
 \label{fig:tia_pi_scheme}
 }
-\end{center}
+
+\vspace{-6pt}
+
+% \end{center}
+\end{figure}
 
 Z hľadiska riadiaceho princípu zostáva implementácia zhodná s predchádzajúcimi
 verziami algoritmu. Aj v tomto prípade sa regulácia vykonáva vzhľadom na pracovný
 bod, pričom chyba regulácie je počítaná z rozdielu medzi požadovanou odchýlkou
-a aktuálnou odchýlkou výstupu od pracovného bodu. Integrátor sa aktualizuje
+a~aktuálnou odchýlkou výstupu od pracovného bodu. Integrátor sa aktualizuje
 diskrétne s periódou vzorkovania a výsledný odchýlkový zásah je následne
 obmedzený saturáciou. Vstup ventilátora zostáva počas celej regulácie nastavený
 na konštantnej hodnote 6~V.
@@ -632,15 +674,7 @@ na konštantnej hodnote 6~V.
 Na základe tejto implementácie bol vykonaný experiment na reálnom systéme TS05.
 Výsledok merania je zobrazený na obr.~\ref{fig:ts_plc_pi_real}.
 
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=1.5\textwidth]{ts_plc_pi_real.png}
-}
-\figcaption{Experimentálna odozva PI regulátora implementovaného v PLC Siemens}
-\label{fig:ts_plc_pi_real}
-}
-\end{center}
+
 
 Z výsledku experimentu je zrejmé, že dynamika regulácie je veľmi podobná tej,
 ktorá bola pozorovaná pri implementácii v prostredí MATLAB aj v jazyku
@@ -663,7 +697,7 @@ prostredie, ale aj pre klasické priemyselné PLC riešenie.
 \label{sec:pi_implementation_comparison}
 
 PI regulátor bol implementovaný na všetkých troch uvažovaných platformách:
-v prostredí MATLAB/Simulink, v jazyku C++ na platforme Arduino a v PLC Siemens.
+v~prostredí MATLAB/Simulink, v~jazyku C++ na platforme Arduino a v PLC Siemens.
 Vo všetkých prípadoch bol zachovaný rovnaký princíp regulácie v okolí pracovného
 bodu a rovnaké parametre PI regulátora.
 
@@ -672,25 +706,33 @@ Z priebehov je zrejmé, že odozvy systému sú na jednotlivých platformách ve
 podobné. Podobnosť je viditeľná nielen na výstupe systému, ale aj na priebehu
 akčného zásahu vypočítaného regulátorom.
 
-\begin{center}
+\begin{figure}[!t]
+% \begin{center}
 \vbox{
 \makebox[\textwidth][c]{%
-    \includegraphics[width=1.5\textwidth]{ts_pi_real_comparison.png}
+    \includegraphics{ts_pi_real_comparison.png}
 }
+
+\vspace{-3pt}
+
 \figcaption{Porovnanie experimentálnych výsledkov PI regulátora na jednotlivých platformách}
 \label{fig:ts_pi_real_comparison}
 }
-\end{center}
+
+\vspace{-12pt}
+
+% \end{center}
+\end{figure}
 
 Pre kvantitatívne porovnanie bola vypočítaná hodnota RMSE vzhľadom na príslušnú
 žiadanú hodnotu každého experimentu:
-
 \begin{align}
     \mathrm{RMSE}_{\mathrm{MATLAB}} &= 0.092899~\mathrm{V}, \\
     \mathrm{RMSE}_{\mathrm{C++}} &= 0.085426~\mathrm{V}, \\
     \mathrm{RMSE}_{\mathrm{PLC}} &= 0.085760~\mathrm{V}.
 \end{align}
-
 Z uvedených hodnôt vyplýva, že rozdiely medzi jednotlivými platformami sú malé.
 Implementácia PI regulátora tak bola úspešne overená vo všetkých troch
 uvažovaných prostrediach.
+
+\clearpage
