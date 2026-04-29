@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.2.13)  29 APR 2026 18:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.2.13)  29 APR 2026 18:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1036,151 +1036,72 @@ File: ../PY/fig/ts_pi_real_comparison.png Graphic file (type png)
 <use ../PY/fig/ts_pi_real_comparison.png>
 Package pdftex.def Info: ../PY/fig/ts_pi_real_comparison.png  used on input line 714.
 (pdftex.def)             Requested size: 560.33203pt x 227.40904pt.
- [43 <../PY/fig/ts_pi_real_comparison.png>]) (./chapters/section4.tex
-Overfull \hbox (14.27821pt too wide) in paragraph at lines 38--60
- [][] 
- []
-
-[44
+ [43 <../PY/fig/ts_pi_real_comparison.png>]) (./chapters/section4.tex [44
 
 ]
 <../SCH/DRAW/PREP_logic.pdf, id=1144, 369.88583pt x 156.49016pt>
 File: ../SCH/DRAW/PREP_logic.pdf Graphic file (type pdf)
 <use ../SCH/DRAW/PREP_logic.pdf>
-Package pdftex.def Info: ../SCH/DRAW/PREP_logic.pdf  used on input line 135.
-(pdftex.def)             Requested size: 369.88583pt x 156.49214pt.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 136.
-See the caption package documentation for explanation.
-
-[45 <../SCH/DRAW/PREP_logic.pdf>] [46] [47] [48] [49] [50]
-<../SCH/SIMULINK/TS_prep_simulink_scheme.pdf, id=1385, 845.1575pt x 597.23125pt>
+Package pdftex.def Info: ../SCH/DRAW/PREP_logic.pdf  used on input line 131.
+(pdftex.def)             Requested size: 369.88492pt x 156.48976pt.
+ [45 <../SCH/DRAW/PREP_logic.pdf>] [46] [47] [48] [49] [50] [51] [52]
+<../SCH/SIMULINK/TS_prep_simulink_scheme.pdf, id=1513, 845.1575pt x 597.23125pt>
 File: ../SCH/SIMULINK/TS_prep_simulink_scheme.pdf Graphic file (type pdf)
 <use ../SCH/SIMULINK/TS_prep_simulink_scheme.pdf>
-Package pdftex.def Info: ../SCH/SIMULINK/TS_prep_simulink_scheme.pdf  used on input line 736.
-(pdftex.def)             Requested size: 499.34813pt x 414.23155pt.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 737.
-See the caption package documentation for explanation.
-
-[51] [52 <../SCH/SIMULINK/TS_prep_simulink_scheme.pdf>] [53]
+Package pdftex.def Info: ../SCH/SIMULINK/TS_prep_simulink_scheme.pdf  used on input line 850.
+(pdftex.def)             Requested size: 388.38124pt x 488.056pt.
+ [53 <../SCH/SIMULINK/TS_prep_simulink_scheme.pdf>]
 <../PY/fig/ts_ml_prep_simulation.png, id=1573, 560.3334pt x 625.8582pt>
 File: ../PY/fig/ts_ml_prep_simulation.png Graphic file (type png)
 <use ../PY/fig/ts_ml_prep_simulation.png>
-Package pdftex.def Info: ../PY/fig/ts_ml_prep_simulation.png  used on input line 912.
-(pdftex.def)             Requested size: 554.82875pt x 619.72568pt.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 913.
-See the caption package documentation for explanation.
-
-[54] [55 <../PY/fig/ts_ml_prep_simulation.png>]
-<../PY/fig/ts_ml_prep_real.png, id=1587, 560.3334pt x 625.8582pt>
+Package pdftex.def Info: ../PY/fig/ts_ml_prep_simulation.png  used on input line 923.
+(pdftex.def)             Requested size: 560.33203pt x 625.85666pt.
+<../PY/fig/ts_ml_prep_real.png, id=1575, 560.3334pt x 625.8582pt>
 File: ../PY/fig/ts_ml_prep_real.png Graphic file (type png)
 <use ../PY/fig/ts_ml_prep_real.png>
-Package pdftex.def Info: ../PY/fig/ts_ml_prep_real.png  used on input line 932.
-(pdftex.def)             Requested size: 554.82875pt x 619.72568pt.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 933.
-See the caption package documentation for explanation.
-
-[56 <../PY/fig/ts_ml_prep_real.png>]
-<../PY/fig/ts_ml_prep_real_zoom.png, id=1595, 560.3334pt x 341.3553pt>
+Package pdftex.def Info: ../PY/fig/ts_ml_prep_real.png  used on input line 948.
+(pdftex.def)             Requested size: 560.33203pt x 625.85666pt.
+<../PY/fig/ts_ml_prep_real_zoom.png, id=1577, 560.3334pt x 341.3553pt>
 File: ../PY/fig/ts_ml_prep_real_zoom.png Graphic file (type png)
 <use ../PY/fig/ts_ml_prep_real_zoom.png>
-Package pdftex.def Info: ../PY/fig/ts_ml_prep_real_zoom.png  used on input line 970.
-(pdftex.def)             Requested size: 554.82875pt x 338.01048pt.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 971.
-See the caption package documentation for explanation.
-
-[57 <../PY/fig/ts_ml_prep_real_zoom.png>] [58] [59] [60] [61]
-<../PY/fig/ts_cpp_prep_real.png, id=1858, 560.3334pt x 625.8582pt>
+Package pdftex.def Info: ../PY/fig/ts_ml_prep_real_zoom.png  used on input line 988.
+(pdftex.def)             Requested size: 560.33203pt x 341.35445pt.
+ [54] [55 <../PY/fig/ts_ml_prep_simulation.png>] [56 <../PY/fig/ts_ml_prep_real.png>] [57 <../PY/fig/ts_ml_prep_real_zoom.png>] [58] [59] [60]
+<../PY/fig/ts_cpp_prep_real.png, id=1830, 560.3334pt x 625.8582pt>
 File: ../PY/fig/ts_cpp_prep_real.png Graphic file (type png)
 <use ../PY/fig/ts_cpp_prep_real.png>
-Package pdftex.def Info: ../PY/fig/ts_cpp_prep_real.png  used on input line 1391.
-(pdftex.def)             Requested size: 554.82875pt x 619.72568pt.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1392.
-See the caption package documentation for explanation.
-
-[62] [63 <../PY/fig/ts_cpp_prep_real.png>]
-<../PY/fig/ts_cpp_prep_real_zoom.png, id=1872, 560.3334pt x 341.3553pt>
+Package pdftex.def Info: ../PY/fig/ts_cpp_prep_real.png  used on input line 1411.
+(pdftex.def)             Requested size: 560.33203pt x 625.85666pt.
+<../PY/fig/ts_cpp_prep_real_zoom.png, id=1833, 560.3334pt x 341.3553pt>
 File: ../PY/fig/ts_cpp_prep_real_zoom.png Graphic file (type png)
 <use ../PY/fig/ts_cpp_prep_real_zoom.png>
-Package pdftex.def Info: ../PY/fig/ts_cpp_prep_real_zoom.png  used on input line 1416.
-(pdftex.def)             Requested size: 554.82875pt x 338.01048pt.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1417.
-See the caption package documentation for explanation.
-
-[64 <../PY/fig/ts_cpp_prep_real_zoom.png>] [65] [66]
-<../SCH/TIA/tia_prep_scheme.png, id=2028, 1297.84875pt x 472.01344pt>
+Package pdftex.def Info: ../PY/fig/ts_cpp_prep_real_zoom.png  used on input line 1438.
+(pdftex.def)             Requested size: 560.33203pt x 341.35445pt.
+ [61] [62 <../PY/fig/ts_cpp_prep_real.png>] [63 <../PY/fig/ts_cpp_prep_real_zoom.png>] [64] [65]
+<../SCH/TIA/tia_prep_scheme.png, id=2043, 1297.84875pt x 472.01344pt>
 File: ../SCH/TIA/tia_prep_scheme.png Graphic file (type png)
 <use ../SCH/TIA/tia_prep_scheme.png>
-Package pdftex.def Info: ../SCH/TIA/tia_prep_scheme.png  used on input line 1644.
-(pdftex.def)             Requested size: 443.86186pt x 161.42595pt.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1645.
-See the caption package documentation for explanation.
-
-[67 <../SCH/TIA/tia_prep_scheme.png>]
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1655.
-See the caption package documentation for explanation.
-
-<../PY/fig/ts_plc_prep_real.png, id=2066, 560.3334pt x 625.8582pt>
+Package pdftex.def Info: ../SCH/TIA/tia_prep_scheme.png  used on input line 1671.
+(pdftex.def)             Requested size: 480.8527pt x 174.87991pt.
+<../PY/fig/ts_plc_prep_real.png, id=2045, 560.3334pt x 625.8582pt>
 File: ../PY/fig/ts_plc_prep_real.png Graphic file (type png)
 <use ../PY/fig/ts_plc_prep_real.png>
-Package pdftex.def Info: ../PY/fig/ts_plc_prep_real.png  used on input line 1733.
-(pdftex.def)             Requested size: 554.82875pt x 619.72568pt.
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1734.
-See the caption package documentation for explanation.
-
-[68
-
-] [69 <../PY/fig/ts_plc_prep_real.png>]
-<../PY/fig/ts_plc_prep_real_zoom.png, id=2079, 560.3334pt x 341.3553pt>
+Package pdftex.def Info: ../PY/fig/ts_plc_prep_real.png  used on input line 1769.
+(pdftex.def)             Requested size: 573.32416pt x 640.38191pt.
+<../PY/fig/ts_plc_prep_real_zoom.png, id=2046, 560.3334pt x 341.3553pt>
 File: ../PY/fig/ts_plc_prep_real_zoom.png Graphic file (type png)
 <use ../PY/fig/ts_plc_prep_real_zoom.png>
-Package pdftex.def Info: ../PY/fig/ts_plc_prep_real_zoom.png  used on input line 1763.
-(pdftex.def)             Requested size: 554.82875pt x 338.01048pt.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1764.
-See the caption package documentation for explanation.
-
-<../PY/fig/ts_prep_real_comparison.png, id=2081, 560.3334pt x 284.5029pt>
+Package pdftex.def Info: ../PY/fig/ts_plc_prep_real_zoom.png  used on input line 1781.
+(pdftex.def)             Requested size: 560.33203pt x 341.35445pt.
+<../PY/fig/ts_prep_real_comparison.png, id=2047, 560.3334pt x 284.5029pt>
 File: ../PY/fig/ts_prep_real_comparison.png Graphic file (type png)
 <use ../PY/fig/ts_prep_real_comparison.png>
-Package pdftex.def Info: ../PY/fig/ts_prep_real_comparison.png  used on input line 1780.
-(pdftex.def)             Requested size: 554.82875pt x 281.71516pt.
+Package pdftex.def Info: ../PY/fig/ts_prep_real_comparison.png  used on input line 1793.
+(pdftex.def)             Requested size: 560.33203pt x 284.5022pt.
+ [66 <../SCH/TIA/tia_prep_scheme.png>] [67] [68 <../PY/fig/ts_plc_prep_real.png>] [69 <../PY/fig/ts_plc_prep_real_zoom.png>] [70 <../PY/fig/ts_prep_real_comparison.png>]) (./chapters/section5.tex [71
 
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1781.
-See the caption package documentation for explanation.
-
-[70 <../PY/fig/ts_plc_prep_real_zoom.png>]) [71 <../PY/fig/ts_prep_real_comparison.png>] (./chapters/section5.tex [72] [73] [74] [75] [76] [77] [78] [79] [80] [81]
-<../SCH/SIMULINK/TS_mrac_simulink_scheme.pdf, id=2462, 845.1575pt x 597.23125pt>
+] [72] [73] [74] [75] [76] [77] [78] [79] [80]
+<../SCH/SIMULINK/TS_mrac_simulink_scheme.pdf, id=2458, 845.1575pt x 597.23125pt>
 File: ../SCH/SIMULINK/TS_mrac_simulink_scheme.pdf Graphic file (type pdf)
 <use ../SCH/SIMULINK/TS_mrac_simulink_scheme.pdf>
 Package pdftex.def Info: ../SCH/SIMULINK/TS_mrac_simulink_scheme.pdf  used on input line 1205.
@@ -1191,8 +1112,8 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 1206.
 See the caption package documentation for explanation.
 
-[82]
-<../PY/fig/ts_ml_mrac_real_raw.png, id=2504, 560.3334pt x 398.32816pt>
+[81]
+<../PY/fig/ts_ml_mrac_real_raw.png, id=2500, 560.3334pt x 398.32816pt>
 File: ../PY/fig/ts_ml_mrac_real_raw.png Graphic file (type png)
 <use ../PY/fig/ts_ml_mrac_real_raw.png>
 Package pdftex.def Info: ../PY/fig/ts_ml_mrac_real_raw.png  used on input line 1253.
@@ -1203,8 +1124,8 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 1254.
 See the caption package documentation for explanation.
 
-[83 <../SCH/SIMULINK/TS_mrac_simulink_scheme.pdf>]
-<../PY/fig/ts_ml_mrac_real.png, id=2569, 560.3334pt x 398.32816pt>
+[82 <../SCH/SIMULINK/TS_mrac_simulink_scheme.pdf>]
+<../PY/fig/ts_ml_mrac_real.png, id=2565, 560.3334pt x 398.32816pt>
 File: ../PY/fig/ts_ml_mrac_real.png Graphic file (type png)
 <use ../PY/fig/ts_ml_mrac_real.png>
 Package pdftex.def Info: ../PY/fig/ts_ml_mrac_real.png  used on input line 1285.
@@ -1215,8 +1136,8 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 1286.
 See the caption package documentation for explanation.
 
-[84 <../PY/fig/ts_ml_mrac_real_raw.png>] [85 <../PY/fig/ts_ml_mrac_real.png>] [86] [87] [88] [89]
-<../PY/fig/ts_cpp_mrac_real_raw.png, id=2872, 560.3334pt x 398.32816pt>
+[83 <../PY/fig/ts_ml_mrac_real_raw.png>] [84 <../PY/fig/ts_ml_mrac_real.png>] [85] [86] [87] [88]
+<../PY/fig/ts_cpp_mrac_real_raw.png, id=2868, 560.3334pt x 398.32816pt>
 File: ../PY/fig/ts_cpp_mrac_real_raw.png Graphic file (type png)
 <use ../PY/fig/ts_cpp_mrac_real_raw.png>
 Package pdftex.def Info: ../PY/fig/ts_cpp_mrac_real_raw.png  used on input line 1679.
@@ -1227,8 +1148,8 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 1680.
 See the caption package documentation for explanation.
 
-[90]
-<../PY/fig/ts_cpp_mrac_real.png, id=2894, 560.3334pt x 398.32816pt>
+[89]
+<../PY/fig/ts_cpp_mrac_real.png, id=2890, 560.3334pt x 398.32816pt>
 File: ../PY/fig/ts_cpp_mrac_real.png Graphic file (type png)
 <use ../PY/fig/ts_cpp_mrac_real.png>
 Package pdftex.def Info: ../PY/fig/ts_cpp_mrac_real.png  used on input line 1702.
@@ -1239,8 +1160,8 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 1703.
 See the caption package documentation for explanation.
 
-[91 <../PY/fig/ts_cpp_mrac_real_raw.png>] [92 <../PY/fig/ts_cpp_mrac_real.png>] [93] [94]
-<../PY/fig/ts_cpp_mrac_experemental.png, id=2979, 560.3334pt x 398.32816pt>
+[90 <../PY/fig/ts_cpp_mrac_real_raw.png>] [91 <../PY/fig/ts_cpp_mrac_real.png>] [92] [93]
+<../PY/fig/ts_cpp_mrac_experemental.png, id=2975, 560.3334pt x 398.32816pt>
 File: ../PY/fig/ts_cpp_mrac_experemental.png Graphic file (type png)
 <use ../PY/fig/ts_cpp_mrac_experemental.png>
 Package pdftex.def Info: ../PY/fig/ts_cpp_mrac_experemental.png  used on input line 1974.
@@ -1251,8 +1172,8 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 1975.
 See the caption package documentation for explanation.
 
-[95] [96 <../PY/fig/ts_cpp_mrac_experemental.png>] [97] [98]
-<../SCH/TIA/tia_mrac_scheme.png, id=3169, 992.20688pt x 401.24907pt>
+[94] [95 <../PY/fig/ts_cpp_mrac_experemental.png>] [96] [97]
+<../SCH/TIA/tia_mrac_scheme.png, id=3165, 992.20688pt x 401.24907pt>
 File: ../SCH/TIA/tia_mrac_scheme.png Graphic file (type png)
 <use ../SCH/TIA/tia_mrac_scheme.png>
 Package pdftex.def Info: ../SCH/TIA/tia_mrac_scheme.png  used on input line 2184.
@@ -1263,8 +1184,8 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 2185.
 See the caption package documentation for explanation.
 
-[99 <../SCH/TIA/tia_mrac_scheme.png>] [100]
-<../PY/fig/ts_plc_mrac_real_raw.png, id=3195, 560.3334pt x 398.32816pt>
+[98 <../SCH/TIA/tia_mrac_scheme.png>] [99]
+<../PY/fig/ts_plc_mrac_real_raw.png, id=3191, 560.3334pt x 398.32816pt>
 File: ../PY/fig/ts_plc_mrac_real_raw.png Graphic file (type png)
 <use ../PY/fig/ts_plc_mrac_real_raw.png>
 Package pdftex.def Info: ../PY/fig/ts_plc_mrac_real_raw.png  used on input line 2290.
@@ -1275,7 +1196,7 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 2291.
 See the caption package documentation for explanation.
 
-<../PY/fig/ts_plc_mrac_real.png, id=3197, 560.3334pt x 398.32816pt>
+<../PY/fig/ts_plc_mrac_real.png, id=3193, 560.3334pt x 398.32816pt>
 File: ../PY/fig/ts_plc_mrac_real.png Graphic file (type png)
 <use ../PY/fig/ts_plc_mrac_real.png>
 Package pdftex.def Info: ../PY/fig/ts_plc_mrac_real.png  used on input line 2303.
@@ -1285,8 +1206,8 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 2304.
 See the caption package documentation for explanation.
 
-[101 <../PY/fig/ts_plc_mrac_real_raw.png>] [102 <../PY/fig/ts_plc_mrac_real.png>]
-<../PY/fig/ts_mrac_real_comparison.png, id=3212, 560.3334pt x 270.2898pt>
+[100 <../PY/fig/ts_plc_mrac_real_raw.png>] [101 <../PY/fig/ts_plc_mrac_real.png>]
+<../PY/fig/ts_mrac_real_comparison.png, id=3208, 560.3334pt x 270.2898pt>
 File: ../PY/fig/ts_mrac_real_comparison.png Graphic file (type png)
 <use ../PY/fig/ts_mrac_real_comparison.png>
 Package pdftex.def Info: ../PY/fig/ts_mrac_real_comparison.png  used on input line 2349.
@@ -1297,7 +1218,7 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 2350.
 See the caption package documentation for explanation.
 
-) [103 <../PY/fig/ts_mrac_real_comparison.png>] (./chapters/zaver.tex) [104] (./chapters/literatura.tex
+) [102 <../PY/fig/ts_mrac_real_comparison.png>] (./chapters/zaver.tex) [103] (./chapters/literatura.tex
 Underfull \hbox (badness 4686) in paragraph at lines 24--27
 []\T1/clm2/m/n/10 (+20) L. Wang, \T1/clm2/m/it/10 (+20) PID Con-trol Sys-tem De-sign and Au-to-ma-tic Tu-ning using
  []
@@ -1307,11 +1228,11 @@ Underfull \hbox (badness 1817) in paragraph at lines 66--71
 \T1/clm2/m/n/10 (+20) line: []$\T1/clm2t/m/n/10 https : / / support . industry . siemens . com / cs / document / 109972011 / s7 -[]
  []
 
-) [105
+) [104
 
-] (./chapters/prilohy.tex [106] [107] [108] (c:/texlive/2023/texmf-dist/tex/latex/listings/lstlang1.sty
+] (./chapters/prilohy.tex [105] [106] [107] (c:/texlive/2023/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2023/02/27 1.9 listings language file
-) [109]) [110] 
+) [108]) [109] 
 enddocument/afterlastpage: lastpage setting LastPage.
 (./DP.aux)
  ***********
@@ -1322,18 +1243,18 @@ Package rerunfilecheck Info: File `DP.out' has not changed.
 (rerunfilecheck)             Checksum: C5BB812EBA3C5FC771F2A8A4B9CBB2F7;14518.
  ) 
 Here is how much of TeX's memory you used:
- 26190 strings out of 474221
- 412208 string characters out of 5750188
+ 26189 strings out of 474221
+ 412296 string characters out of 5750188
  2385978 words of memory out of 5000000
  45149 multiletter control sequences out of 15000+600000
  670211 words of font info for 357 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,12n,120p,1024b,2208s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmtt9.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on DP.pdf (110 pages, 15107998 bytes).
+Output written on DP.pdf (109 pages, 15106324 bytes).
 PDF statistics:
- 4215 PDF objects out of 4296 (max. 8388607)
- 3880 compressed objects within 39 object streams
- 2510 named destinations out of 2984 (max. 500000)
+ 4211 PDF objects out of 4296 (max. 8388607)
+ 3877 compressed objects within 39 object streams
+ 2509 named destinations out of 2984 (max. 500000)
  90836 words of extra memory for PDF output out of 106986 (max. 10000000)
 
