@@ -106,16 +106,16 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.5520265"
-     inkscape:cx="296.43109"
+     inkscape:cx="296.23517"
      inkscape:cy="46.433687"
      inkscape:document-units="mm"
      inkscape:current-layer="layer3"
      showgrid="true"
      inkscape:showpageshadow="false"
-     inkscape:window-width="2560"
-     inkscape:window-height="1369"
-     inkscape:window-x="1432"
-     inkscape:window-y="688"
+     inkscape:window-width="3765"
+     inkscape:window-height="1577"
+     inkscape:window-x="67"
+     inkscape:window-y="1113"
      inkscape:window-maximized="1"
      inkscape:snap-bbox="true"
      inkscape:snap-intersection-paths="true"
@@ -319,7 +319,7 @@
          sodipodi:role="line"
          x="54.294411"
          y="22.609089"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:LMRoman10;-inkscape-font-specification:LMRoman10;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:'Latin Modern Roman';-inkscape-font-specification:'Latin Modern Roman,  Italic';text-align:center;text-anchor:middle;stroke-width:0.264583"
          id="tspan1374">C(s)</tspan></text>
     <text
        xml:space="preserve"
@@ -330,9 +330,9 @@
          sodipodi:role="line"
          x="94.294411"
          y="22.609089"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:LMRoman10;-inkscape-font-specification:LMRoman10;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:'Latin Modern Roman';-inkscape-font-specification:'Latin Modern Roman,  Italic';text-align:center;text-anchor:middle;stroke-width:0.264583"
          id="tspan1374-1">G<tspan
-   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:65%;font-family:LMRoman10;-inkscape-font-specification:LMRoman10;baseline-shift:sub"
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:65%;font-family:'Latin Modern Roman';-inkscape-font-specification:'Latin Modern Roman,  Italic';baseline-shift:sub"
    id="tspan4">S</tspan>(s)</tspan></text>
     <text
        xml:space="preserve"
@@ -343,9 +343,9 @@
          sodipodi:role="line"
          x="73.68399"
          y="17.109087"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:LMRoman10;-inkscape-font-specification:LMRoman10;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:'Latin Modern Roman';-inkscape-font-specification:'Latin Modern Roman,  Italic';text-align:center;text-anchor:middle;stroke-width:0.264583"
          id="tspan1374-6">u<tspan
-   style="font-size:65%;baseline-shift:sub"
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:65%;font-family:'Latin Modern Roman';-inkscape-font-specification:'Latin Modern Roman,  Italic';baseline-shift:sub"
    id="tspan6">1</tspan>(s)</tspan></text>
     <text
        xml:space="preserve"
@@ -356,18 +356,18 @@
          sodipodi:role="line"
          x="33.68399"
          y="17.109087"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:LMRoman10;-inkscape-font-specification:LMRoman10;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:'Latin Modern Roman';-inkscape-font-specification:'Latin Modern Roman,  Italic';text-align:center;text-anchor:middle;stroke-width:0.264583"
          id="tspan1374-6-5">e(s)</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:100%;font-family:'Open Sans';-inkscape-font-specification:'Open Sans';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:100%;font-family:'Latin Modern Roman';-inkscape-font-specification:'Latin Modern Roman,  Italic';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="10.693868"
        y="17.109087"
        id="text4912-4-7-4-4-53-5-3-8"><tspan
          sodipodi:role="line"
          x="10.693868"
          y="17.109087"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:LMRoman10;-inkscape-font-specification:LMRoman10;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:'Latin Modern Roman';-inkscape-font-specification:'Latin Modern Roman,  Italic';text-align:center;text-anchor:middle;stroke-width:0.264583"
          id="tspan1374-6-5-4">w(s)</tspan></text>
     <text
        xml:space="preserve"
@@ -388,10 +388,10 @@
        id="text4912-4-7-4-4-53-5-7"><tspan
          x="116.38284"
          y="13.273082"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:LMRoman10;-inkscape-font-specification:LMRoman10;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:'Latin Modern Roman';-inkscape-font-specification:'Latin Modern Roman,  Italic';text-align:center;text-anchor:middle;stroke-width:0.264583"
          id="tspan1374-6-4"
          sodipodi:role="line">y<tspan
-   style="font-size:65%;baseline-shift:sub"
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:65%;font-family:'Latin Modern Roman';-inkscape-font-specification:'Latin Modern Roman,  Italic';baseline-shift:sub"
    id="tspan1">1</tspan>(s)</tspan></text>
     <text
        xml:space="preserve"
@@ -401,10 +401,10 @@
        id="text4912-4-7-4-4-53-5-7-4"><tspan
          x="116.71086"
          y="24.332699"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:LMRoman10;-inkscape-font-specification:LMRoman10;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:'Latin Modern Roman';-inkscape-font-specification:'Latin Modern Roman,  Italic';text-align:center;text-anchor:middle;stroke-width:0.264583"
          id="tspan1374-6-4-5"
          sodipodi:role="line">y<tspan
-   style="font-size:65%;baseline-shift:sub"
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:65%;font-family:'Latin Modern Roman';-inkscape-font-specification:'Latin Modern Roman,  Italic';baseline-shift:sub"
    id="tspan3">2</tspan>(s)</tspan></text>
     <text
        xml:space="preserve"
@@ -463,20 +463,20 @@
        id="text5"><tspan
          sodipodi:role="line"
          id="tspan5"
-         style="stroke-width:0.264583"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Latin Modern Roman';-inkscape-font-specification:'Latin Modern Roman,  Italic';stroke-width:0.264583"
          x="19.802071"
          y="42.092365">y<tspan
-   style="font-size:65%;baseline-shift:sub"
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:65%;font-family:'Latin Modern Roman';-inkscape-font-specification:'Latin Modern Roman,  Italic';baseline-shift:sub"
    id="tspan2">1</tspan>(s)</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;font-family:LMRoman10;-inkscape-font-specification:LMRoman10;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;stroke-width:0.264583"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:LMRoman10;-inkscape-font-specification:LMRoman10;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;stroke-width:0.264583"
        x="91.649384"
        y="3.2139482"
        id="text7"><tspan
          sodipodi:role="line"
          id="tspan7"
-         style="stroke-width:0.264583"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:'Latin Modern Roman';-inkscape-font-specification:'Latin Modern Roman,  Italic';stroke-width:0.264583"
          x="91.649384"
          y="3.2139482">u<tspan
    style="font-size:65%;baseline-shift:sub"
