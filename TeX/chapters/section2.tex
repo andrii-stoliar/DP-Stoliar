@@ -2,7 +2,7 @@
 % Section 2: Popis systému + Identifikácia 
 % ===================================================================
 
-\section{Identifikácia a popis tepelného systému TS05}
+\section{Riadený systém}
 \label{sec:system_ident_ts05}
 
 V tejto kapitole sa budeme zaoberať laboratórnym modelom, ktorý bol poskytnutý pre potreby tejto diplomovej práce – tepelným systémom TS05.  
@@ -15,6 +15,42 @@ Táto časť má umožniť porovnanie prístupov k implementácii riadenia v sim
 % Subsection 2.1 - Tepelný systém TS05 
 % -------------------------------------------------------------------
 
+
+\begin{table}[!b]
+    \centering
+    \caption{Vstupy a výstupy systému TS05}
+    \label{tab:io_ts05}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} c c c}
+    % \begin{tabular}{c c c}
+        \toprule
+        \textbf{Typ signálu} & \textbf{Označenie} & \textbf{Rozsah} \\ 
+        \midrule
+        Vstup & Ventilátor & 0–10~V \\ 
+        \midrule
+        Vstup & Výkon špirály & 0–10~V \\ 
+        \midrule
+        Výstup & Senzor~1 (teplota 1) & 0–10~V \\ 
+        \midrule
+        Výstup & Senzor~2 (teplota 2) & 0–10~V \\ 
+        \bottomrule
+    % \end{tabular}
+    \end{tabular*}
+\end{table}
+
+
+
+\begin{figure}[!b]
+% \begin{center}
+\vbox{
+\makebox[\textwidth][c]{%
+    \includegraphics[width=15cm]{TS_sch3_foto.pdf}
+}
+\figcaption{Laboratórny model TS05 – reálna zostava~\cite{kut015}}
+\label{fig:TS_sch3_foto}
+}
+% \end{center}
+\end{figure}
+
 \subsection{Popis tepelného systému}
 
 Táto časť sa zaoberá popisom laboratórneho modelu TS05 a jeho základnými statickými vlastnosťami.  
@@ -24,36 +60,12 @@ Model predstavuje fyzický systém určený na výučbu a experimentálne overov
 % Subsubsection 2.1.1 - Popis systému
 % -------------------------------------------------------------------
 
-\subsubsection{Popis laboratórneho fyzikálneho modelu}
+\subsubsection{Technický opis laboratórneho modelu dynamického systému}
 
 Laboratórny model TS05 predstavuje MIMO systém (Multiple Input – Multiple Output) so dvomi vstupmi a dvomi výstupmi, ktorého zapojenie je uvedené v tabuľke~\ref{tab:io_ts05}.  
-Vstupné veličiny tvoria napätia riadiace ventilátor a vykurovaciu špirálu (v rozsahu 0–10~V), zatiaľ čo výstupy sú merané pomocou Senzora~1 a Senzora~2 (tiež v rozsahu 0–10~V).
+Vstupné veličiny tvoria napätia riadiace ventilátor a vykurovaciu špirálu (v rozsahu 0–10~V), zatiaľ čo výstupy sú merané pomocou Senzora~1 a Senzora~2 (tiež v rozsahu 0–10~V). Fotografia zariadenia je na obrázku~\ref{fig:TS_sch3_foto}.
 
-\begin{table}[h!]
-    \centering
-    \caption{Vstupy a výstupy systému TS05}
-    \label{tab:io_ts05}
-    \begin{tabular}{c c c}
-        \hline
-        \textbf{Typ signálu} & \textbf{Označenie} & \textbf{Rozsah} \\ \hline
-        Vstup & Ventilátor & 0–10~V \\ \hline
-        Vstup & Výkon špirály & 0–10~V \\ \hline
-        Výstup & Senzor~1 (teplota 1) & 0–10~V \\ \hline
-        Výstup & Senzor~2 (teplota 2) & 0–10~V \\ \hline
-    \end{tabular}
-\end{table}
 
-Vizuálny vzhľad systému je znázornený na obrázku~\ref{fig:TS_sch3_foto}.
-
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=1.1\textwidth]{TS_sch3_foto.pdf}
-}
-\figcaption{Laboratórny model TS05 – reálna zostava~\cite{kut015}}
-\label{fig:TS_sch3_foto}
-}
-\end{center}
 
 V ďalšom texte tejto sekcie bude systém TS05 v prostredí
 MATLAB/Simulink používaný prostredníctvom komunikačného rozhrania
@@ -72,81 +84,33 @@ Počas meraní boli skúmané tri pracovné body ventilátora – 3~V, 6~V a 9~V
 Napätie na vykurovacej špirále sa menilo lineárne od 0~V do 10~V počas celého merania, keďže špirála má výraznejší vplyv na teplotu ako ventilátor.  
 Priebeh signálu špirály počas experimentov je zobrazený na obrázku~\ref{fig:ts_prevodova_spirala}.
 
-\begin{center}
+\begin{figure}[!t]
+% \begin{center}
 \vbox{
 \makebox[\textwidth][c]{%
-    \includegraphics[width=1.5\textwidth]{ts_prevodova_spirala.png}
+    \includegraphics{ts_prevodova_spirala.png}
 }
 \figcaption{Priebeh napätia na špirále počas všetkých troch experimentov}
 \label{fig:ts_prevodova_spirala}
 }
-\end{center}
+% \end{center}
+\end{figure}
 
-Výsledkom meraní sú šesť grafov, ktoré zobrazujú odozvu systému na zmenu vstupných veličín.  
+
+Výsledkom meraní sú šesť grafov (obrázky~\ref{fig:ts_prevodova_sensors3}--\ref{fig:ts_prevodova_sensors9}), ktoré zobrazujú odozvu systému na zmenu vstupných veličín.  
 Každý graf obsahuje výstupy zo Senzora~1 a Senzora~2 ako funkcie času pre jednotlivé pracovné body ventilátora.
 
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=1.5\textwidth]{ts_prevodova_sensors3.png}
-}
-\figcaption{Odozva systému TS05 pre pracovný bod ventilátora 3~V}
-\label{fig:ts_prevodova_sensors3}
-}
-\end{center}
-
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=1.5\textwidth]{ts_prevodova_sensors6.png}
-}
-\figcaption{Odozva systému TS05 pre pracovný bod ventilátora 6~V}
-\label{fig:ts_prevodova_sensors6}
-}
-\end{center}
-
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=1.5\textwidth]{ts_prevodova_sensors9.png}
-}
-\figcaption{Odozva systému TS05 pre pracovný bod ventilátora 9~V}
-\label{fig:ts_prevodova_sensors9}
-}
-\end{center}
-
 Z tých istých meraní boli zostavené aj prevodové (statické) charakteristiky,  
-ktoré opisujú závislosť výstupných veličín od vstupného napätia špirály pre jednotlivé pracovné body ventilátora.
+ktoré opisujú závislosť výstupných veličín od vstupného napätia špirály pre jednotlivé pracovné body ventilátora. Sú znázornené na obrázkoch~\ref{fig:ts_static_sensors3}--\ref{fig:ts_static_sensors9}.
 
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=1.5\textwidth]{ts_static_sensors3.png}
-}
-\figcaption{Prevodová charakteristika systému TS05 pre pracovný bod ventilátora 3~V}
-\label{fig:ts_static_sensors3}
-}
-\end{center}
 
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=1.5\textwidth]{ts_static_sensors6.png}
-}
-\figcaption{Prevodová charakteristika systému TS05 pre pracovný bod ventilátora 6~V}
-\label{fig:ts_static_sensors6}
-}
-\end{center}
 
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=1.5\textwidth]{ts_static_sensors9.png}
-}
-\figcaption{Prevodová charakteristika systému TS05 pre pracovný bod ventilátora 9~V}
-\label{fig:ts_static_sensors9}
-}
-\end{center}
+
+
+
+
+
+
 
 % -------------------------------------------------------------------
 % Subsection 2.2 - Identifikácia systému TS05 
@@ -155,8 +119,8 @@ ktoré opisujú závislosť výstupných veličín od vstupného napätia špir�
 \subsection{Identifikácia tepelného systému}
 \label{sec:identifikacia}
 
-V tejto časti sa pokúsime identifikovať tepelný systém TS05 rôznymi metódami a porovnať ich výsledky.  
-Cieľom je určiť, ktoré prístupy poskytujú presnejšie modely a na aké faktory je potrebné dávať pozor počas procesu identifikácie.
+V tejto časti sa pokúsime identifikovať tepelný systém TS05 rôznymi metódami a~porovnať ich výsledky.  
+Cieľom je určiť, ktoré prístupy poskytujú presnejšie modely a~na aké faktory je potrebné dávať pozor počas procesu identifikácie.
 
 % -------------------------------------------------------------------
 % Subsubsection 2.2.1 - Meranie údajov a ich spracovanie
@@ -167,24 +131,178 @@ Cieľom je určiť, ktoré prístupy poskytujú presnejšie modely a na aké fak
 Na účely identifikácie systému pomocou nami zvolených \textit{off-line} metód je najprv potrebné získať reakciu systému na jednotkové skoky v okolí pracovného bodu.  
 V našom prípade bol pracovný bod zvolený ako vstupné napätia špirály~4~V a ventilátora~6~V.  
 
+
 Na obrázku~\ref{fig:ts_pb_vent6_spir4_ident_raw} je zobrazený vstupný signál špirály a odpoveď systému na výstupe zo senzora~1.
 
-\begin{center}
+
+
+Z grafu možno pozorovať zreteľný lineárny trend, teda postupné zvyšovanie výstupnej teploty počas celého merania.  
+Tento jav je spôsobený pomalým nahrievaním špirály a tiež prirodzenými zmenami teploty v miestnosti, ktoré neboli v rámci experimentu kontrolované.  
+Teplota prostredia sa však počas meraní pohybovala v~rozsahu bežnej izbovej teploty.
+
+
+
+
+
+
+
+
+\begin{figure}[!h]
+
+    \begin{center}
+    
+    \vspace{-6pt}
+
+    \vbox{
+    \makebox[\textwidth][c]{%
+        \includegraphics{ts_prevodova_sensors3.png}
+    }
+    
+    \vspace{-6pt}
+
+    \figcaption{Odozva systému TS05 pre pracovný bod ventilátora 3~V}
+    \label{fig:ts_prevodova_sensors3}
+    }
+
+    \vspace{-6pt}
+
+    \end{center}
+
+
+
+    \begin{center}
+
+    \vspace{-6pt}
+
+    \vbox{
+    \makebox[\textwidth][c]{%
+        \includegraphics{ts_prevodova_sensors6.png}
+    }
+
+    \vspace{-6pt}
+
+    \figcaption{Odozva systému TS05 pre pracovný bod ventilátora 6~V}
+    \label{fig:ts_prevodova_sensors6}
+    }
+    \end{center}
+
+
+
+    \begin{center}
+
+    \vspace{-6pt}
+
+    \vbox{
+    \makebox[\textwidth][c]{%
+        \includegraphics{ts_prevodova_sensors9.png}
+    }
+
+    \vspace{-6pt}
+    
+    \figcaption{Odozva systému TS05 pre pracovný bod ventilátora 9~V}
+    \label{fig:ts_prevodova_sensors9}
+
+    \vspace{-6pt}
+
+    }
+    \end{center}
+
+\end{figure}
+
+
+
+
+\begin{figure}[!h]
+
+    \begin{center}
+    
+    % \vspace{-6pt}
+
+    \vbox{
+    \makebox[\textwidth][c]{%
+        \includegraphics{ts_static_sensors3.png}
+    }
+
+    % \vspace{-6pt}
+    
+    \figcaption{Prevodová charakteristika systému TS05 pre pracovný bod ventilátora 3~V}
+    \label{fig:ts_static_sensors3}
+
+    % \vspace{-6pt}
+
+    }
+    \end{center}
+
+    % \vfill
+
+    \begin{center}
+
+    % \vspace{-6pt}
+
+    \vbox{
+    \makebox[\textwidth][c]{%
+        \includegraphics{ts_static_sensors6.png}
+    }
+    \figcaption{Prevodová charakteristika systému TS05 pre pracovný bod ventilátora 6~V}
+    \label{fig:ts_static_sensors6}
+
+    % \vspace{-6pt}
+
+    }
+    \end{center}
+
+    % \vfill
+
+    \begin{center}
+
+    % \vspace{-6pt}
+
+    \vbox{
+    \makebox[\textwidth][c]{%
+        \includegraphics{ts_static_sensors9.png}
+    }
+    
+    % \vspace{-6pt}
+    
+    \figcaption{Prevodová charakteristika systému TS05 pre pracovný bod ventilátora 9~V}
+    \label{fig:ts_static_sensors9}
+
+    % \vspace{-6pt}
+
+    }
+    \end{center}
+
+\end{figure}
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\begin{figure}[!t]
+% \begin{center}
 \vbox{
 \makebox[\textwidth][c]{%
-    \includegraphics[width=1.5\textwidth]{ts_pb_vent6_spir4_ident_raw.png}
+    \includegraphics{ts_pb_vent6_spir4_ident_raw.png}
 }
 \figcaption{Vstupný signál špirály a výstup senzora~1 pri skokovej zmene}
 \label{fig:ts_pb_vent6_spir4_ident_raw}
 }
-\end{center}
+% \end{center}
+\end{figure}
 
-Z grafu možno pozorovať zreteľný lineárny trend, teda postupné zvyšovanie výstupnej teploty počas celého merania.  
-Tento jav je spôsobený pomalým nahrievaním špirály a tiež prirodzenými zmenami teploty v miestnosti, ktoré neboli v rámci experimentu kontrolované.  
-Teplota prostredia sa však počas meraní pohybovala v rozsahu bežnej izbovej teploty.
+
+
+
+
+
 
 Aby bolo možné získať z nameraných údajov vhodné parametre pre identifikáciu, bolo potrebné odstrániť tento trend aplikovaním odstránenia lineárneho trendu.  
-Metodika výpočtu je založená na lineárnej regresii, kde sa určuje priamka trendu v tvare
+Metodika výpočtu je založená na lineárnej regresii, kde sa určuje priamka trendu v~tvare
 
 \begin{equation}
     \hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x
@@ -232,7 +350,8 @@ end
 Po odstránení lineárneho trendu bol signál zároveň normalizovaný pre potreby ďalšej identifikácie.  
 Výsledné priebehy normalizovaných a detrendovaných údajov sú zobrazené na obrázku~\ref{fig:ts_pb_vent6_spir4_ident_raw_normalized}.
 
-\begin{center}
+\begin{figure}[!t]
+% \begin{center}
 \vbox{
 \makebox[\textwidth][c]{%
     \includegraphics[width=1.5\textwidth]{ts_pb_vent6_spir4_ident_raw_normalized.png}
@@ -240,7 +359,8 @@ Výsledné priebehy normalizovaných a detrendovaných údajov sú zobrazené na
 \figcaption{Normalizované a detrendované priebehy vstupného a výstupného signálu}
 \label{fig:ts_pb_vent6_spir4_ident_raw_normalized}
 }
-\end{center}
+% \end{center}
+\end{figure}
 
 Z grafov možno vidieť, že jednotlivé skokové odozvy sa mierne líšia svojím priebehom,  
 čo poukazuje na citlivosť systému TS05 na vonkajšie podmienky a fluktuácie prostredia.  
@@ -253,15 +373,7 @@ Výsledný stredný priebeh, znázornený na obrázku~\ref{fig:ts_pb_vent6_spir4
 predstavuje typickú reakciu systému TS05 v okolí pracovného bodu 4~V s rozsahom~$\pm 0{,}5$~V  
 a slúži ako podklad pre ďalšiu identifikáciu modelu.
 
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=1.5\textwidth]{ts_pb_vent6_spir4_ident_avg.png}
-}
-\figcaption{Priemerná odozva systému TS05 v pracovnom bode 4~V}
-\label{fig:ts_pb_vent6_spir4_ident_avg}
-}
-\end{center}
+
 
 % -------------------------------------------------------------------
 % Subsubsection 2.2.2 - Identifikácia pomocou metódy najmenších štvorcov
@@ -290,6 +402,26 @@ Pre odhad parametrov bola vytvorená regresná matica $H(k,:)$ a vektor výstupo
 Na základe týchto odhadov boli vypočítané koeficienty diskrétneho modelu druhého rádu,  
 ktorý následne predstavuje prenosovú funkciu $G_d(z)$.  
 Pre účely simulácie a ďalšieho návrhu riadenia bol tento model prevedený na spojitú formu $G(s)$ pomocou Tustinovej aproximácie.
+
+
+
+
+
+\begin{figure}[!t]
+% \begin{center}
+\vbox{
+\makebox[\textwidth][c]{%
+    \includegraphics[width=1.5\textwidth]{ts_pb_vent6_spir4_ident_avg.png}
+}
+\figcaption{Priemerná odozva systému TS05 v pracovnom bode 4~V}
+\label{fig:ts_pb_vent6_spir4_ident_avg}
+}
+% \end{center}
+\end{figure}
+
+
+
+
 
 V prostredí MATLAB bola implementovaná funkcia, ktorá realizuje uvedené výpočty a vytvára identifikovaný model systému.  
 Implementácia tejto funkcie je uvedená nižšie:
@@ -350,9 +482,13 @@ V našom prípade je účelová funkcia definovaná ako koreň zo strednej kvadr
     }
     \label{eq:rmse_function}
 \end{equation}
-
 kde $y(k)$ je nameraný výstup, $y_{\text{sim}}(k,\mathbf{p})$ je výstup simulovaný modelom s parametrami $\mathbf{p}$  
 a $N$ je počet vzoriek merania.
+
+
+
+
+
 
 Optimalizácia prebieha nad parametrami diskrétneho modelu druhého rádu, ktoré sú následne prevedené na spojitú prenosovú funkciu pomocou Tustinovej aproximácie.  
 Implementácia použitej funkcie v prostredí MATLAB je uvedená nižšie:
@@ -420,11 +556,26 @@ Z tohto dôvodu sú v uvedenej implementácii parametre počas optimalizácie ma
 	p_i^\ast = 50 \tanh(p_i)
 	\label{eq:param_transform_extended}
 \end{equation}
-
 čím sú efektívne udržiavané v konečnom rozsahu a znižuje sa riziko vzniku numericky extrémnych alebo fyzikálne nezmyselných modelov.  
 Okrem toho bola do optimalizácie pridaná aj dodatočná penalizácia, ktorá výrazne zvyšuje hodnotu účelovej funkcie v prípade,  
 že identifikovaná prenosová funkcia vykazuje známky nestability.  
 Týmto spôsobom algoritmus uprednostňuje iba stabilné riešenia a zabraňuje vzniku modelov s numericky nevhodnými pólmi.
+
+
+
+
+\begin{figure}[!t]
+% \begin{center}
+\vbox{
+\makebox[\textwidth][c]{%
+    \includegraphics{ts_pb_vent6_spir4_ident_comparison.png}
+}
+\figcaption{Porovnanie skokovej odozvy reálneho systému TS05 a identifikovaných modelov}
+\label{fig:ts_pb_vent6_spir4_ident_comparison}
+}
+% \end{center}
+\end{figure}
+
 
 % -------------------------------------------------------------------
 % Subsubsection 2.2.4 - Výsledky identifikácie TS05
@@ -434,17 +585,9 @@ Týmto spôsobom algoritmus uprednostňuje iba stabilné riešenia a zabraňuje 
 
 Po identifikácii systému v pracovnom bode pomocou dvoch rôznych metód  
 (metódy najmenších štvorcov a optimalizácie prenosovej funkcie)  
-boli získané nasledujúce výsledky.
+boli získané výsledky zobrazené na obrázku~\ref{fig:ts_pb_vent6_spir4_ident_comparison}.
 
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=1.5\textwidth]{ts_pb_vent6_spir4_ident_comparison.png}
-}
-\figcaption{Porovnanie skokovej odozvy reálneho systému TS05 a identifikovaných modelov}
-\label{fig:ts_pb_vent6_spir4_ident_comparison}
-}
-\end{center}
+
 
 Porovnanie priemernej skokovej odozvy reálneho systému a odoziev oboch identifikovaných modelov  
 je zobrazené na obrázku~\ref{fig:ts_pb_vent6_spir4_ident_comparison}.
@@ -527,15 +670,17 @@ Z uvedených hodnôt pólov je zrejmé, že obidva modely majú póly s negatív
 Následne bola uskutočnená simulácia odozvy systému analogická tej, ktorá bola uvedená na obrázku~\ref{fig:ts_pb_vent6_spir4_ident_comparison}.  
 Porovnanie reálnej odozvy systému TS05 s oboma aproximovanými modelmi je zobrazené na obrázku~\ref{fig:ts_pb_vent6_spir4_ident_approximated_comparison}.
 
-\begin{center}
+\begin{figure}[!t]
+% \begin{center}
 	\vbox{
 		\makebox[\textwidth][c]{%
-			\includegraphics[width=1.5\textwidth]{ts_pb_vent6_spir4_ident_approximated_comparison.png}
+			\includegraphics{ts_pb_vent6_spir4_ident_approximated_comparison.png}
 		}
 		\figcaption{Porovnanie skokovej odozvy reálneho systému TS05 a aproximovaných modelov}
 		\label{fig:ts_pb_vent6_spir4_ident_approximated_comparison}
 	}
-\end{center}
+% \end{center}
+\end{figure}
 
 Výsledné hodnoty strednej kvadratickej chyby (RMSE) medzi reálnym systémom a simulovanými odozvami boli:
 
@@ -570,6 +715,8 @@ a zároveň spoľahlivo zaznamenávať namerané údaje pre ďalšie spracovanie
 % Subsubsection - MATLAB
 % -------------------------------------------------------------------
 
+
+
 \subsubsection{Komunikácia s MATLAB}
 \label{sec:komunikacia_matlab}
 
@@ -588,15 +735,20 @@ obr.~\ref{fig:TS_simulink_start}. Táto časť schémy predstavuje nadradenú
 vrstvu zapojenia, v ktorej sú definované jednotlivé signálové väzby medzi
 reálnym systémom a rozhraním komunikačnej karty.
 
-\begin{center}
+
+\begin{figure}[!t]
+% \begin{center}
 \vbox{
 \makebox[\textwidth][c]{%
-    \includegraphics[width=1.3\textwidth, trim=100 200 100 200, clip]{TS01_start.pdf}
+    \includegraphics[width=1.4\textwidth, trim=100 200 100 200, clip]{TS01_start.pdf}
 }
 \figcaption{Základná Simulinková schéma pre spustenie komunikácie so systémom TS05}
 \label{fig:TS_simulink_start}
 }
-\end{center}
+% \end{center}
+\end{figure}
+
+
 
 Vnútorná časť komunikačného subsystému, v ktorej sú už explicitne definované
 jednotlivé porty meracej karty a spôsob spracovania analógových vstupov a
@@ -605,15 +757,7 @@ predstavuje detailnejšiu implementačnú vrstvu komunikácie, na ktorú nadväz
 ďalšie experimentálne a riadiace úlohy realizované v prostredí
 MATLAB/Simulink.
 
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=1.3\textwidth, trim=100 200 100 200, clip]{TS_simulink_scheme.pdf}
-}
-\figcaption{Vnútorná časť Simulinkového bloku komunikácie so systémom TS05}
-\label{fig:TS_simulink_scheme}
-}
-\end{center}
+
 
 Uvedené schémy boli vytvorené ako súčasť projektu KUT – Krátke výučbové
 materiály a slúžia aj ako podklad pre predmet \textit{Modelovanie a riadenie
@@ -642,6 +786,26 @@ blok typu \textit{Unit Delay}, štandardne reprezentovaný operátorom $z^{-1}$.
 Tým sa zabezpečí, že algoritmus bude implementovaný explicitne numerickým
 spôsobom v rámci vlastného kódu, bez použitia preddefinovaných regulačných
 blokov prostredia Simulink.
+
+
+
+\begin{figure}[!t]
+% \begin{center}
+\vbox{
+\makebox[\textwidth][c]{%
+    \includegraphics[width=1.3\textwidth, trim=100 200 100 200, clip]{TS_simulink_scheme.pdf}
+}
+\figcaption{Vnútorná časť Simulinkového bloku komunikácie so systémom TS05}
+\label{fig:TS_simulink_scheme}
+}
+% \end{center}
+\end{figure}
+
+
+
+
+
+
 % -------------------------------------------------------------------
 % Subsubsection - C++
 % -------------------------------------------------------------------
@@ -658,26 +822,26 @@ ktoré by umožnilo komunikáciu systému TS05 s platformou Arduino UNO.
 
 Zo zariadenia TS05 je vyvedený kruhový 8-pinový konektor.
 Pomocou multimetra boli identifikované jednotlivé kontakty, pričom výsledné
-priradenie je uvedené v tabuľke~\ref{tab:ts05_pinout}.
+priradenie je uvedené v~tabuľke~\ref{tab:ts05_pinout}.
 
-\begin{table}[h!]
+\begin{table}[!b]
     \centering
     \caption{Identifikované kontakty konektora systému TS05}
     \label{tab:ts05_pinout}
-    \begin{tabular}{c l}
-        \hline
-        \textbf{Pin} & \textbf{Funkcia} \\ \hline
-        1 & Snímač 1 \\ \hline
-        2 & Snímač 2 \\ \hline
-        6 & Ventilátor \\ \hline
-        7 & Špirála \\ \hline
-        8 & GND \\ \hline
-    \end{tabular}
+    \begin{tabular*}{0.34\textwidth}{@{\extracolsep{\fill}} c l}
+        % \toprule
+        \textbf{Pin} & \textbf{Funkcia} \\ \toprule
+        1 & Snímač 1 \\ \midrule
+        2 & Snímač 2 \\ \midrule
+        6 & Ventilátor \\ \midrule
+        7 & Špirála \\ \midrule
+        8 & GND \\ \bottomrule
+    \end{tabular*}
 \end{table}
 
 Po identifikácii pinov bol zhotovený nový kábel, ktorý umožnil priamy prístup
 k meraným aj akčným signálom systému TS05. Následne bola zostavená riadiaca
-a meracia reťaz založená na mikrokontroléri Arduino UNO.
+a~meracia reťaz založená na mikrokontroléri Arduino UNO.
 
 Akčné veličiny systému, teda ventilátor a vykurovacia špirála, boli z platformy
 Arduino generované pomocou PWM signálu s rozsahom 0 až 255.
@@ -688,8 +852,8 @@ Takýmto spôsobom bolo možné z digitálnych PWM výstupov Arduino
 vytvoriť analógové riadiace signály použiteľné pre systém TS05.
 
 Na druhej strane, výstupné signály snímačov systému TS05 sú analógové napätia
-v rozsahu 0 až 10~V.
-Keďže analógové vstupy platformy Arduino UNO pracujú iba v rozsahu
+v~rozsahu 0 až 10~V.
+Keďže analógové vstupy platformy Arduino UNO pracujú iba v~rozsahu
 0 až 5~V, bolo potrebné tieto signály vhodne upraviť.
 Na tento účel boli použité napäťové deliče, pričom každý delič bol zostavený
 z dvoch rezistorov s hodnotou 90~k$\Omega$.
@@ -710,31 +874,14 @@ pričom pre $R_1 = R_2 = 90~\mathrm{k}\Omega$ dostaneme
 Z toho vyplýva, že signál 0 až 10~V zo snímača je po delení prevedený približne
 na rozsah 0 až 5~V, čo už zodpovedá možnostiam analógových vstupov
 mikrokontroléra. Samotný prevod v Arduino je následne reprezentovaný
-hodnotou A/D prevodníka v rozsahu 0 až 1023.
+hodnotou A/D prevodníka v~rozsahu 0 až 1023.
 
 Mapovanie vstupov a výstupov medzi systémom TS05 a platformou Arduino UNO
 je uvedené v tabuľke~\ref{tab:arduino_mapping_ts05}.
 
-\begin{table}[h!]
-    \centering
-    \caption{Mapovanie vstupov a výstupov medzi TS05 a Arduino UNO}
-    \label{tab:arduino_mapping_ts05}
-    \begin{tabular}{c l c c}
-        \hline
-        \textbf{Port Arduino} & \textbf{Signál} & \textbf{Reálny rozsah} & \textbf{Digitálny rozsah} \\ \hline
-        A1   & Snímač 1    & 0--10~V & 0--1023 \\ \hline
-        A2   & Snímač 2    & 0--10~V & 0--1023 \\ \hline
-        PWM5 & Ventilátor  & 0--10~V & 0--255  \\ \hline
-        PWM6 & Špirála     & 0--10~V & 0--255  \\ \hline
-    \end{tabular}
-\end{table}
 
-Celkové fyzické zapojenie systému je znázornené na obrázku~\ref{fig:arduino_ts05_connection}.
-V schéme označenie $u_1$ predstavuje napätie privádzané na vykurovaciu špirálu,
-$u_2$ napätie privádzané na ventilátor, zatiaľ čo $y_1$ a $y_2$ označujú
-signály zo snímača teploty~1 a snímača teploty~2.
-
-\begin{center}
+\begin{figure}[!t]
+% \begin{center}
 \vbox{
 \makebox[\textwidth][c]{%
     \includegraphics[width=1.0\textwidth]{ARDUINO_connect_scheme.pdf}
@@ -742,7 +889,29 @@ signály zo snímača teploty~1 a snímača teploty~2.
 \figcaption{Schéma prepojenia systému TS05 s platformou Arduino UNO}
 \label{fig:arduino_ts05_connection}
 }
-\end{center}
+% \end{center}
+\end{figure}
+
+\begin{table}[!b]
+    \centering
+    \caption{Mapovanie vstupov a výstupov medzi TS05 a Arduino UNO}
+    \label{tab:arduino_mapping_ts05}
+    \begin{tabular*}{1.0\textwidth}{@{\extracolsep{\fill}}c l c c}
+        % \hline
+        \textbf{Port Arduino} & \textbf{Signál} & \textbf{Reálny rozsah} & \textbf{Digitálny rozsah} \\ \toprule
+        A1   & Snímač 1    & 0--10~V & 0--1023 \\ \midrule
+        A2   & Snímač 2    & 0--10~V & 0--1023 \\ \midrule
+        PWM5 & Ventilátor  & 0--10~V & 0--255  \\ \midrule
+        PWM6 & Špirála     & 0--10~V & 0--255  \\ \bottomrule
+    \end{tabular*}
+\end{table}
+
+Celkové fyzické zapojenie systému je znázornené na obrázku~\ref{fig:arduino_ts05_connection}.
+V schéme označenie $u_1$ predstavuje napätie privádzané na vykurovaciu špirálu,
+$u_2$ napätie privádzané na ventilátor, zatiaľ čo $y_1$ a $y_2$ označujú
+signály zo snímača teploty~1 a snímača teploty~2.
+
+
 
 Rovnako ako v podkapitole~\ref{sec:komunikacia_matlab}, aj v prípade implementácie
 v jazyku C++ bude systém TS05 pre účely ďalších experimentov a návrhu riadenia
@@ -751,11 +920,76 @@ privádzané na vykurovaciu špirálu, výstup $y$ bude tvorený signálom zo
 Snímača~1 a vstup ventilátora bude udržiavaný na konštantnej hodnote 6~V.
 
 Po vytvorení hardvérovej časti bolo potrebné vyriešiť aj interpretáciu vstupných
-a výstupných hodnôt.
+a~výstupných hodnôt.
 Najjednoduchším riešením by bolo použiť lineárny prevod medzi digitálnymi rozsahmi
 0 až 255, resp. 0 až 1023 a fyzikálnym rozsahom 0 až 10~V.
 Experimentálne merania však ukázali, že hoci je správanie systému približne lineárne,
 nejde o ideálne lineárny prevod.
+
+
+\begin{table}[b!]
+    \centering
+    \caption{Kalibračné merania pre výstup PWM5 -- ventilátor}
+    \label{tab:pwm5_vent}
+    \begin{tabular*}{0.5\textwidth}{@{\extracolsep{\fill}}c c}
+        % \hline
+        \textbf{PWM5} & \textbf{Namerané napätie [V]} \\ \toprule
+        0   & 0.00 \\ \midrule
+        50  & 2.19 \\ \midrule
+        100 & 4.13 \\ \midrule
+        150 & 6.03 \\ \midrule
+        200 & 7.91 \\ \midrule
+        250 & 9.32 \\ \bottomrule
+    \end{tabular*}
+\end{table}
+
+\begin{table}[!b]
+    \centering
+    \caption{Kalibračné merania pre výstup PWM6 -- špirála}
+    \label{tab:pwm6_spirala}
+    \begin{tabular*}{0.5\textwidth}{@{\extracolsep{\fill}}c c}
+        % \hline
+        \textbf{PWM6} & \textbf{Namerané napätie [V]} \\ \toprule
+        0   & 0.00 \\ \midrule
+        50  & 2.36 \\ \midrule
+        100 & 4.34 \\ \midrule
+        150 & 6.24 \\ \midrule
+        200 & 8.07 \\ \midrule
+        250 & 9.30 \\ \bottomrule
+    \end{tabular*}
+\end{table}
+
+\begin{table}[!b]
+    \centering
+    \caption{Kalibračné merania pre vstup A1 -- snímač 1}
+    \label{tab:a1_snimac1}
+    \begin{tabular*}{0.5\textwidth}{@{\extracolsep{\fill}}c c}
+        % \hline
+        \textbf{Hodnota A1} & \textbf{Namerané napätie [V]} \\ \toprule
+        0   & 0.00 \\ \midrule
+        365 & 3.68 \\ \midrule
+        390 & 3.90 \\ \midrule
+        739 & 7.34 \\ \midrule
+        904 & 8.95 \\ \midrule
+        972 & 9.64 \\ \bottomrule
+    \end{tabular*}
+\end{table}
+
+\begin{table}[!b]
+    \centering
+    \caption{Kalibračné merania pre vstup A2 -- snímač 2}
+    \label{tab:a2_snimac2}
+    \begin{tabular*}{0.5\textwidth}{@{\extracolsep{\fill}}c c}
+        % \hline
+        \textbf{Hodnota A2} & \textbf{Namerané napätie [V]} \\ \toprule
+        0   & 0.00 \\ \midrule
+        383 & 3.83 \\ \midrule
+        406 & 4.06 \\ \midrule
+        655 & 6.55 \\ \midrule
+        755 & 7.47 \\ \midrule
+        769 & 7.68 \\ \bottomrule
+    \end{tabular*}
+\end{table}
 
 Odchýlky sú spôsobené viacerými faktormi.
 V prípade napäťových deličov zohráva úlohu tolerancia použitých rezistorov,
@@ -770,69 +1004,6 @@ Pre každý vstup a výstup bolo realizovaných šesť meraní.
 Výsledky pre jednotlivé kanály sú uvedené v tabuľkách~\ref{tab:pwm5_vent},
 \ref{tab:pwm6_spirala}, \ref{tab:a1_snimac1} a \ref{tab:a2_snimac2}.
 
-\begin{table}[h!]
-    \centering
-    \caption{Kalibračné merania pre výstup PWM5 -- ventilátor}
-    \label{tab:pwm5_vent}
-    \begin{tabular}{c c}
-        \hline
-        \textbf{PWM5} & \textbf{Namerané napätie [V]} \\ \hline
-        0   & 0.00 \\ \hline
-        50  & 2.19 \\ \hline
-        100 & 4.13 \\ \hline
-        150 & 6.03 \\ \hline
-        200 & 7.91 \\ \hline
-        250 & 9.32 \\ \hline
-    \end{tabular}
-\end{table}
-
-\begin{table}[h!]
-    \centering
-    \caption{Kalibračné merania pre výstup PWM6 -- špirála}
-    \label{tab:pwm6_spirala}
-    \begin{tabular}{c c}
-        \hline
-        \textbf{PWM6} & \textbf{Namerané napätie [V]} \\ \hline
-        0   & 0.00 \\ \hline
-        50  & 2.36 \\ \hline
-        100 & 4.34 \\ \hline
-        150 & 6.24 \\ \hline
-        200 & 8.07 \\ \hline
-        250 & 9.30 \\ \hline
-    \end{tabular}
-\end{table}
-
-\begin{table}[h!]
-    \centering
-    \caption{Kalibračné merania pre vstup A1 -- snímač 1}
-    \label{tab:a1_snimac1}
-    \begin{tabular}{c c}
-        \hline
-        \textbf{Hodnota A1} & \textbf{Namerané napätie [V]} \\ \hline
-        0   & 0.00 \\ \hline
-        365 & 3.68 \\ \hline
-        390 & 3.90 \\ \hline
-        739 & 7.34 \\ \hline
-        904 & 8.95 \\ \hline
-        972 & 9.64 \\ \hline
-    \end{tabular}
-\end{table}
-
-\begin{table}[h!]
-    \centering
-    \caption{Kalibračné merania pre vstup A2 -- snímač 2}
-    \label{tab:a2_snimac2}
-    \begin{tabular}{c c}
-        \hline
-        \textbf{Hodnota A2} & \textbf{Namerané napätie [V]} \\ \hline
-        0   & 0.00 \\ \hline
-        383 & 3.83 \\ \hline
-        406 & 4.06 \\ \hline
-        655 & 6.55 \\ \hline
-        755 & 7.47 \\ \hline
-        769 & 7.68 \\ \hline
-    \end{tabular}
-\end{table}
 
 Z uvedených hodnôt je zrejmé, že priebehy sú síce blízke lineárnemu správaniu,
 avšak nie natoľko, aby bolo možné bezvýhradne použiť jednoduchú lineárnu kalibráciu.
@@ -851,7 +1022,6 @@ Jej všeobecný tvar možno zapísať ako
     y = ax^3 + bx^2 + cx + d
     \label{eq:cubic_calibration}
 \end{equation}
-
 kde $x$ predstavuje vstupnú hodnotu a $y$ kalibrovaný výstup.
 
 Pre jednotlivé kanály boli použité nasledujúce kalibračné funkcie. Pre
@@ -892,7 +1062,7 @@ koeficientov, konkrétne s ôsmimi desatinnými miestami.
 
 Aj keď sa neskôr experimentálne ukázalo, že ani táto aproximácia nie je úplne ideálna,
 pre potreby tejto práce bola dosiahnutá presnosť dostatočná.
-Jedným z možných spôsobov ďalšieho zlepšenia by bolo vykonanie väčšieho počtu
+Jedným z~možných spôsobov ďalšieho zlepšenia by bolo vykonanie väčšieho počtu
 kalibračných meraní a následná identifikácia presnejšej prevodovej charakteristiky.
 
 Softvérová implementácia pre platformu Arduino UNO bola realizovaná
@@ -905,7 +1075,7 @@ V programe je použitá pevná vykonávacia postupnosť, ktorá zodpovedá diskr
 riadeniu. Jej cieľom je zabezpečiť, aby aktuálne meraná veličina $y(k)$ závisela
 iba od riadiaceho zásahu z predchádzajúceho kroku $u(k-1)$. Nový zásah $u(k)$ sa
 naopak vypočíta na základe práve odmeranej hodnoty $y(k)$ a na systém sa aplikuje
-až v nasledujúcom kroku. Tým sa zabráni miešaniu aktuálne meranej odozvy
+až v~nasledujúcom kroku. Tým sa zabráni miešaniu aktuálne meranej odozvy
 s práve vypočítavaným riadiacim zásahom.
 
 Postup jedného vykonávacieho kroku možno znázorniť nasledovne:
@@ -923,7 +1093,7 @@ Postup jedného vykonávacieho kroku možno znázorniť nasledovne:
 \end{center}
 
 Pri začiatku každého kroku sa preto najprv na výstupy odošlú hodnoty
-\texttt{vent} a \texttt{spirala}, ktoré boli vypočítané už v predchádzajúcej iterácii.
+\texttt{vent} a~\texttt{spirala}, ktoré boli vypočítané už v predchádzajúcej iterácii.
 Pred odoslaním sa tieto veličiny obmedzia na rozsah 0 až 10~V a následne sa
 pomocou kubických kalibračných funkcií prevedú na PWM hodnoty v rozsahu
 0 až 255. Takto sa na systém aplikuje zásah $u(k-1)$.
@@ -1011,7 +1181,7 @@ nasadeniam v praxi.
 
 Z pohľadu priemyselnej automatizácie je tradičným štandardom pre analógové
 signály najmä prúdová slučka \mbox{4--20~mA}, keďže ide o riešenie široko
-používané v technologických prevádzkach a priemyselných zariadeniach.
+používané v~technologických prevádzkach a~priemyselných zariadeniach.
 Existujú aj spôsoby, ako prevádzať napäťové signály \mbox{0--10~V} na prúdový
 štandard \mbox{4--20~mA}, napríklad pomocou externých prevodníkov. Podobný
 princíp externého prevodu bol v tejto práci použitý aj pri implementácii
@@ -1019,7 +1189,7 @@ komunikácie v jazyku C++, kde bolo potrebné prevádzať PWM signál na analóg
 rozsah \mbox{0--10~V} v podkapitole~\ref{sec:komunikacia_cpp}.
 
 V tomto prípade však nebolo potrebné realizovať externý prevod signálov, pretože
-k PLC systému boli k dispozícii aj nové analógové rozširujúce moduly
+k~PLC systému boli k dispozícii aj nové analógové rozširujúce moduly
 Siemens typu SM 1233 AI 4×14 bit / AQ 4×14 bit, 6ES7 233-4HF50-0XB0. Tento modul
 obsahuje dva analógové vstupy a dva analógové výstupy, čo pre potreby systému
 TS05 plne postačuje. Z hľadiska počtu kanálov teda presne zodpovedá požiadavkám
@@ -1030,7 +1200,7 @@ parametrizovať digitálne vyhladzovanie nameraných hodnôt (\textit{smoothing}
 V rámci merania bolo toto vyhladzovanie nastavené na možnosť \textit{None}, aby modul
 nevykonával dodatočné priemerovanie vzoriek. Súčasne však zostáva aktívna funkcia
 potlačenia rušenia (\textit{noise rejection}), ktorá je súčasťou prevodu analógovej
-hodnoty a jej frekvenciu možno iba parametrizovať. V tomto prípade bolo zvolené potlačenie rušenia s frekvenciou 50~Hz.
+hodnoty a jej frekvenciu možno iba parametrizovať. V tomto prípade bolo zvolené potlačenie rušenia s~frekvenciou 50~Hz.
 
 Analógové signály sú v PLC systémoch Siemens interne reprezentované
 ako celočíselné hodnoty s rozsahom \mbox{0 až 27648}, pričom tento digitálny
@@ -1062,23 +1232,23 @@ textový programovací jazyk používaný v prostredí TIA Portal. V prvom kroku
 analógových vstupov a výstupov modulu. Výsledné adresovanie je uvedené v
 tabuľke~\ref{tab:plc_ts05_addresses}.
 
-\begin{table}[h!]
+\begin{table}[b!]
     \centering
     \caption{Adresovanie analógových vstupov a výstupov PLC modulu pre systém TS05}
     \label{tab:plc_ts05_addresses}
-    \begin{tabular}{c c c}
-        \hline
-        \textbf{Signál} & \textbf{Typ} & \textbf{Adresa} \\ \hline
-        Ventilátor & Int & \%QW80 \\ \hline
-        Špirála & Int & \%QW82 \\ \hline
-        Snímač 1 & Int & \%IW80 \\ \hline
-        Snímač 2 & Int & \%IW82 \\ \hline
-    \end{tabular}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}c c c}
+        % \hline
+        \textbf{Signál} & \textbf{Typ} & \textbf{Adresa} \\ \toprule
+        Ventilátor & Int & \%QW80 \\ \midrule
+        Špirála & Int & \%QW82 \\ \midrule
+        Snímač 1 & Int & \%IW80 \\ \midrule
+        Snímač 2 & Int & \%IW82 \\ \bottomrule
+    \end{tabular*}
 \end{table}
 
 Keďže analógová hodnota je v tomto prípade reprezentovaná ako slovo
 (\textit{word}), teda ako dvojbajtová veličina, jednotlivé adresy sa posúvajú
-po dvoch bajtoch, napríklad z \%IW80 na \%IW82, resp. z \%QW80 na \%QW82.
+po dvoch bajtoch, napríklad z~\%IW80 na \%IW82, resp. z~\%QW80 na \%QW82.
 
 V hlavnom organizačnom bloku PLC programu bolo rozhodnuté realizovať iba
 základné servisné operácie, konkrétne prevod medzi internou digitálnou
@@ -1107,7 +1277,7 @@ funkčný blok \texttt{Current\_time}. Tento blok využíva systémovú funkciu
 \texttt{RD\_SYS\_T}, ktorá vracia aktuálny systémový čas PLC vo forme dátového
 typu \textit{DTL}. Uvedený typ obsahuje viacero zložiek, ako sú rok, mesiac,
 deň a denný čas. Keďže na účely logovania nebolo potrebné uchovávať kompletnú
-časovú štruktúru, ale iba čas od začiatku merania v sekundách, bol vytvorený
+časovú štruktúru, ale iba čas od začiatku merania v~sekundách, bol vytvorený
 samostatný blok, ktorý pri prvom úspešnom volaní uloží počiatočný čas a pri
 ďalších volaniach vypočítava časový rozdiel voči tomuto okamihu.
 
@@ -1130,23 +1300,22 @@ ELSE
     #CurrentTimeSec := 0.0;
 END_IF;
 \end{lstlisting}
-
 Zoznam interných premenných použitých v tomto bloku je uvedený v tab.~\ref{tab:tia_time_vars}.
 
-\begin{table}[h!]
+\begin{table}[b!]
     \centering
     \caption{Premenné funkčného bloku \texttt{Current\_time} v prostredí TIA Portal}
     \label{tab:tia_time_vars}
-    \begin{tabular}{c c c c c}
-        \hline
-        \textbf{Sekcia} & \textbf{Premenná} & \textbf{Dátový typ} & \textbf{Predvolená hodnota} & \textbf{Retain} \\ \hline
-        Output & \texttt{CurrentTimeSec} & \texttt{LReal} & \texttt{0.0} & Non-retain \\ \hline
-        Static & \texttt{started} & \texttt{Bool} & \texttt{false} & Non-retain \\ \hline
-        Static & \texttt{retVal} & \texttt{Int} & \texttt{0} & Non-retain \\ \hline
-        Static & \texttt{startTime} & \texttt{DTL} & \texttt{DTL\#1970-01-01-...} & Non-retain \\ \hline
-        Static & \texttt{currentTime} & \texttt{DTL} & \texttt{DTL\#1970-01-01-...} & Non-retain \\ \hline
-        Static & \texttt{elapsedTime} & \texttt{Time} & \texttt{T\#0ms} & Non-retain \\ \hline
-    \end{tabular}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}c c c c c}
+        % \hline
+        \textbf{Sekcia} & \textbf{Premenná} & \textbf{Dátový typ} & \textbf{Predvolená hodnota} & \textbf{Retain} \\ \toprule
+        Output & \texttt{CurrentTimeSec} & \texttt{LReal} & \texttt{0.0} & Non-retain \\ \midrule
+        Static & \texttt{started} & \texttt{Bool} & \texttt{false} & Non-retain \\ \midrule
+        Static & \texttt{retVal} & \texttt{Int} & \texttt{0} & Non-retain \\ \midrule
+        Static & \texttt{startTime} & \texttt{DTL} & \texttt{DTL\#1970-01-01-...} & Non-retain \\ \midrule
+        Static & \texttt{currentTime} & \texttt{DTL} & \texttt{DTL\#1970-01-01-...} & Non-retain \\ \midrule
+        Static & \texttt{elapsedTime} & \texttt{Time} & \texttt{T\#0ms} & Non-retain \\ \bottomrule
+    \end{tabular*}
 \end{table}
 
 Celková štruktúra hlavného organizačného bloku, ktorý je vykonávaný v každom
@@ -1154,15 +1323,17 @@ cykle PLC, je zobrazená na obr.~\ref{fig:tia_service_scheme}. Ako už bolo uved
 v tomto bloku sa realizuje iba škálovanie analógových premenných a výpočet
 aktuálneho času od začiatku experimentu.
 
-\begin{center}
+\begin{figure}[!t]
+% \begin{center}
 \vbox{
 \makebox[\textwidth][c]{%
-    \includegraphics[width=0.8\textwidth]{tia_service_scheme.png}
+    \includegraphics[width=0.95\textwidth]{tia_service_scheme.png}
 }
 \figcaption{Servisná časť hlavného organizačného bloku PLC programu}
 \label{fig:tia_service_scheme}
 }
-\end{center}
+% \end{center}
+\end{figure}
 
 Platforma Siemens zároveň umožňuje realizovať používateľskú logiku
 v blokoch spúšťaných s pevne definovanou periódou. Na tento účel bol vytvorený
@@ -1220,32 +1391,31 @@ IF NOT #Full AND #Enable THEN
     END_IF;
 END_IF;
 \end{lstlisting}
-
 Zoznam premenných tohto logovacieho bloku je uvedený v tab.~\ref{tab:tia_pi_logger_vars}.
 
-\begin{table}[h!]
+\begin{table}[b!]
     \centering
     \caption{Premenné funkčného bloku \texttt{FB\_PI\_LOGGER}}
     \label{tab:tia_pi_logger_vars}
     \makebox[\textwidth][c]{%
-    \begin{tabular}{c c c c c}
-        \hline
-        \textbf{Sekcia} & \textbf{Premenná} & \textbf{Dátový typ} & \textbf{Predvolená hodnota} & \textbf{Retain} \\ \hline
-        Input & \texttt{CurrentTimeSec} & \texttt{LReal} & \texttt{0.0} & Non-retain \\ \hline
-        Input & \texttt{u} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-        Input & \texttt{y} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-        Input & \texttt{r} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-        Input & \texttt{ypb} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-        Input & \texttt{Enable} & \texttt{Bool} & \texttt{false} & Non-retain \\ \hline
-        Output & \texttt{SampleCount} & \texttt{DInt} & \texttt{0} & Non-retain \\ \hline
-        Output & \texttt{Full} & \texttt{Bool} & \texttt{false} & Non-retain \\ \hline
-        Static & \texttt{idx} & \texttt{DInt} & \texttt{0} & Non-retain \\ \hline
-        Static & \texttt{TimeLog\_s} & \texttt{Array[0..9999] of LReal} & -- & Non-retain \\ \hline
-        Static & \texttt{ULOG} & \texttt{Array[0..9999] of Real} & -- & Non-retain \\ \hline
-        Static & \texttt{YLOG} & \texttt{Array[0..9999] of Real} & -- & Non-retain \\ \hline
-        Static & \texttt{RLOG} & \texttt{Array[0..9999] of Real} & -- & Non-retain \\ \hline
-        Static & \texttt{YPBLOG} & \texttt{Array[0..9999] of Real} & -- & Non-retain \\ \hline
-    \end{tabular}
+    \begin{tabular*}{1.2\textwidth}{@{\extracolsep{\fill}} c c c c c}
+        % \hline
+        \textbf{Sekcia} & \textbf{Premenná} & \textbf{Dátový typ} & \textbf{Predvolená hodnota} & \textbf{Retain} \\ \toprule
+        Input & \texttt{CurrentTimeSec} & \texttt{LReal} & \texttt{0.0} & Non-retain \\ \midrule
+        Input & \texttt{u} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \midrule
+        Input & \texttt{y} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \midrule
+        Input & \texttt{r} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \midrule
+        Input & \texttt{ypb} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \midrule
+        Input & \texttt{Enable} & \texttt{Bool} & \texttt{false} & Non-retain \\ \midrule
+        Output & \texttt{SampleCount} & \texttt{DInt} & \texttt{0} & Non-retain \\ \midrule
+        Output & \texttt{Full} & \texttt{Bool} & \texttt{false} & Non-retain \\ \midrule
+        Static & \texttt{idx} & \texttt{DInt} & \texttt{0} & Non-retain \\ \midrule
+        Static & \texttt{TimeLog\_s} & \texttt{Array[0..9999] of LReal} & -- & Non-retain \\ \midrule
+        Static & \texttt{ULOG} & \texttt{Array[0..9999] of Real} & -- & Non-retain \\ \midrule
+        Static & \texttt{YLOG} & \texttt{Array[0..9999] of Real} & -- & Non-retain \\ \midrule
+        Static & \texttt{RLOG} & \texttt{Array[0..9999] of Real} & -- & Non-retain \\ \midrule
+        Static & \texttt{YPBLOG} & \texttt{Array[0..9999] of Real} & -- & Non-retain \\ \bottomrule
+    \end{tabular*}
     }
 \end{table}
 
@@ -1253,7 +1423,7 @@ Z uvedeného dôvodu už v ďalších častiach práce nebudú logovacie bloky
 samostatne zobrazované pre každý algoritmus. Pri jednotlivých návrhoch riadenia
 budú prezentované iba samotné bloky riadiacej logiky a príslušné siete
 organizačných blokov, v ktorých budú tieto algoritmy volané. Tým sa zachová
-prehľadnosť textu a zároveň sa zabráni opakovaniu už raz vysvetlených
+prehľadnosť textu a~zároveň sa zabráni opakovaniu už raz vysvetlených
 implementačných princípov.
 
 \clearpage
