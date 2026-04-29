@@ -19,9 +19,8 @@ presýtenie akčného zásahu alebo príliš veľké prekmitové správanie.
 Okrem samotnej prepínacej logiky bola v tejto časti rozšírená aj pracovná
 oblasť regulácie o dva ďalšie pracovné body systému, a to pre napätia
 špirály 2~V a 6~V. Pre každý z týchto pracovných bodov bol postup zopakovaný
-rovnakým spôsobom ako v sekcii~\ref{sec:identifikacia}, teda boli:
-
-\begin{itemize}
+rovnakým spôsobom ako v~sekcii~\ref{sec:identifikacia}, teda boli:
+\begin{itemize}[leftmargin=0pt, labelsep=3mm, itemsep=0pt]
     \item vykonané merania reakcií systému na jednotkové skoky $\pm 0.5$~V okolo pracovného bodu,
     \item z nameraných údajov bola identifikovaná prenosová funkcia v danom pracovnom bode,
     \item pre každý pracovný bod bol navrhnutý PI regulátor s vlastnými parametrami,
@@ -31,32 +30,31 @@ rovnakým spôsobom ako v sekcii~\ref{sec:identifikacia}, teda boli:
 Prehľad všetkých troch pracovných bodov je uvedený v tabuľke~\ref{tab:pb_overview},  
 kde sú uvedené identifikované prenosové funkcie, hodnoty pracovného bodu $y_{pb}$ a parametre jednotlivých PI regulátorov.
 
-\begin{table}[h!]
+\begin{table}[b!]
     \centering
     \caption{Parametre pracovných bodov, identifikované prenosové funkcie a PI regulátory}
     \label{tab:pb_overview}
-    \begin{tabular}{c c c c c}
-        \hline
-        \textbf{$u_{pb}$} & \textbf{Prenosová funkcia} & \textbf{$y_{pb}$} & \textbf{$\Delta y_{pb}$ pri $u_{pb}$ $\pm 0.5$~V} & \textbf{PI parametre} \\ \hline
-
+    \makebox[\textwidth][c]{%
+    \begin{tabular*}{1.15\textwidth}{@{\extracolsep{\fill}} c c c c c}
+        % \hline
+        \textbf{$u_{pb}$} & \textbf{Prenosová funkcia} & \textbf{$y_{pb}$} & \textbf{$\Delta y_{pb}$ pri $u_{pb}$ $\pm 0.5$~V} & \textbf{PI parametre} \\ \toprule
         2~V &
         $\displaystyle \frac{5.79}{s^2 + 44.21 s + 7.276}$ &
         4.4884 &
         $\pm 0.41$ &
-        $K_p = 2.77$, $K_i = 1.48$ \\ \hline
-
+        $K_p = 2.77$, $K_i = 1.48$ \\ \midrule
         4~V &
         $\displaystyle \frac{6.074}{s^2 + 59.01 s + 8.95}$ &
         6.3412 &
         $\pm 0.35$ &
-        $K_p = 3.58$, $K_i = 1.84$ \\ \hline
-
+        $K_p = 3.58$, $K_i = 1.84$ \\ \midrule
         6~V &
         $\displaystyle \frac{7.161}{s^2 + 52.87 s + 21.37}$ &
         7.7441 &
         $\pm 0.18$ &
-        $K_p = 1.83$, $K_i = 2.20$ \\ \hline
-    \end{tabular}
+        $K_p = 1.83$, $K_i = 2.20$ \\ \bottomrule
+    \end{tabular*}
+    }
 \end{table}
 
 Keďže pôvodné statické charakteristiky systému boli merané ešte počas letného obdobia, bolo rozhodnuté hodnoty $y_{pb}$ pre tieto experimenty zmerať znova, rovnakým spôsobom ako v sekcii~\ref{sec:staticke_vlastnosti}.  
@@ -75,17 +73,15 @@ Prvý z nich predstavuje globálny PI regulátor,
 ktorý pracuje s absolútnymi veličinami systému.
 Druhý predstavuje lokálny PI regulátor,
 ktorý pracuje s odchýlkami veličín
-v okolí aktuálneho pracovného bodu.
+v~okolí aktuálneho pracovného bodu.
 
 Lokálny regulátor pracuje s odchýlkami veličín od pracovného bodu
-
 \begin{equation}
 \Delta y = y - y_{pb},
 \qquad
 \Delta u = u - u_{pb},
 \label{eq:pi_switch_delta_variables}
 \end{equation}
-
 kde $y_{pb}$ a $u_{pb}$
 predstavujú výstupnú a vstupnú hodnotu príslušného pracovného bodu.
 Parametre lokálneho PI regulátora
@@ -96,7 +92,6 @@ Globálny regulátor pracuje s absolútnou žiadanou hodnotou.
 Aby prechod medzi pracovnými bodmi neprebiehal príliš prudko,
 globálna žiadaná hodnota je pred vstupom do regulátora filtrovaná
 prenosom druhého rádu v tvare
-
 \begin{equation}
 G_f(s)=\frac{1}{(10s+1)^2}.
 \label{eq:pi_switch_global_filter_tf}
@@ -105,7 +100,7 @@ G_f(s)=\frac{1}{(10s+1)^2}.
 Takto zvolený filter zabezpečuje dostatočne plynulý priebeh
 globálnej žiadanej hodnoty,
 v dôsledku čoho prechod medzi pracovnými bodmi
-prebieha pomalšie a s menším rizikom vzniku neželaných prechodových javov.
+prebieha pomalšie a~s~menším rizikom vzniku neželaných prechodových javov.
 
 Parametre globálneho PI regulátora boli zvolené empiricky.
 Cieľom bolo navrhnúť taký regulátor, ktorý bude dostatočne pomalý a robustný
@@ -114,7 +109,7 @@ pomalý, aby boli prechody medzi pracovnými bodmi zbytočne dlhé.
 Proporcionálna zložka bola preto volená tak, aby zabezpečila primeranú rýchlosť
 prechodu, zatiaľ čo integračná zložka bola doplnená s cieľom odstrániť trvalú
 regulačnú odchýlku pri globálnej regulácii.
-V implementovaných algoritmoch boli použité hodnoty
+V~implementovaných algoritmoch boli použité hodnoty
 $K_{p,g} = 4$ a $K_{i,g} = 0.7$.
 
 O tom, ktorý PI regulátor bude v danom okamihu aktívny,
@@ -128,15 +123,17 @@ a vytvára jej filtrovanú verziu pre globálnu reguláciu.
 Navrhnutá bloková schéma algoritmu
 je znázornená na obr.~\ref{fig:pi_switch_logic_scheme}.
 
-\begin{center}
+\begin{figure}[!t]
+% \begin{center}
     \vbox{
         \makebox[\textwidth][c]{%
-            \includegraphics[width=1.0\textwidth]{PREP_logic.pdf}
+            \includegraphics{PREP_logic.pdf}
         }
         \figcaption{Bloková schéma riadenia s globálnym a lokálnym PI regulátorom}
         \label{fig:pi_switch_logic_scheme}
     }
-\end{center}
+% \end{center}
+\end{figure}
 
 Logika prepínania je založená na nasledujúcom princípe.
 Ak je detegovaná skoková zmena globálnej žiadanej hodnoty,
@@ -290,7 +287,7 @@ akčného zásahu.
 Prvou uvažovanou realizáciou prepínacej logiky
 je regulácia založená na pevne zvolenom čase pôsobenia globálneho PI regulátora.
 Predpokladá sa pritom,
-že na prechod z jedného pracovného bodu do druhého
+že na prechod z~jedného pracovného bodu do druhého
 postačuje približne konštantný čas.
 Na základe experimentálnych pozorovaní
 bol tento čas určený ako
@@ -387,7 +384,7 @@ Z implementačného hľadiska je preto potrebné
 prenášať medzi jednotlivými krokmi
 stav filtra globálnej žiadanej hodnoty,
 integračné stavy oboch PI regulátorov
-a predchádzajúcu hodnotu globálnej žiadanej hodnoty.
+a~predchádzajúcu hodnotu globálnej žiadanej hodnoty.
 V prípade časovo riadeného prepínania
 je zároveň potrebné poznať čas aktivácie globálnej regulačnej vetvy,
 pričom aktuálny čas je dostupný ako vstup algoritmu.
@@ -543,14 +540,13 @@ Lokálny PI regulátor má naopak za úlohu
 presnú reguláciu v okolí aktuálneho pracovného bodu,
 teda v oblasti približne
 $u_{pb} \pm 0.5$~V.
-Z tohto dôvodu pracuje s odchýlkami veličín od pracovného bodu
+Z tohto dôvodu pracuje s~odchýlkami veličín od pracovného bodu
 a jeho parametre sa volia pomocou gain scheduling
 na základe tabuľkových hodnôt pracovných bodov.
 
 Pri tejto metóde sa okrem stavu filtra,
 integračných stavov a predchádzajúcej hodnoty globálnej žiadanej hodnoty
-uchováva aj posledných $30$ hodnôt výstupu $y$
-a posledných $30$ hodnôt vstupu $u$.
+uchováva aj posledných $30$ hodnôt výstupu $y$~a~posledných $30$ hodnôt vstupu $u$.
 Globálna regulácia sa opäť aktivuje pri skoku globálnej žiadanej hodnoty,
 avšak jej deaktivácia nastane až po splnení podmienky ustálenia.
 
@@ -724,23 +720,15 @@ bez použitia preddefinovaných blokov.
 Keďže blok MATLAB Function neuchováva automaticky vnútorné stavy,
 všetky potrebné premenné
 (stav filtra, integračné stavy, príznak aktivity,
-história signálov a predchádzajúca hodnota žiadanej veličiny)
+história signálov a~predchádzajúca hodnota žiadanej veličiny)
 boli prenášané medzi krokmi ako vstupno-výstupné signály.
 
 Schéma implementácie je uvedená na obr.~\ref{fig:pi_switch_simulink_scheme}.
 
-\begin{center}
-    \vbox{
-        \makebox[\textwidth][c]{%
-            \includegraphics[width=1.35\textwidth, trim=2.2cm 0cm 2.2cm 0cm, clip]{TS_prep_simulink_scheme.pdf}
-        }
-        \figcaption{Implementácia prepínacej logiky v prostredí MATLAB/Simulink}
-        \label{fig:pi_switch_simulink_scheme}
-    }
-\end{center}
 
+
+\noindent
 Implementovaný kód je uvedený v nasledujúcom výpise.
-
 \begin{lstlisting}[language=Matlab,
 caption={Implementácia prepínacej logiky v bloku MATLAB Function},
 label={lst:pi_switch_matlab_code}]
@@ -853,6 +841,28 @@ $e_l \approx 0$. V takom prípade je ideálna počiatočná hodnota
 lokálneho integrátora blízka nule, a preto je takéto zjednodušenie
 pre praktickú implementáciu prijateľné.
 
+
+\begin{figure}[!t]
+% \begin{center}
+    \vbox{
+        \makebox[\textwidth][c]{%
+            \includegraphics[width=1.05\textwidth, trim=6.5cm 0cm 6.5cm 0cm, clip]{TS_prep_simulink_scheme.pdf}
+        }
+        \figcaption{Implementácia prepínacej logiky v prostredí MATLAB/Simulink}
+        \label{fig:pi_switch_simulink_scheme}
+    }
+% \end{center}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
 % -------------------------------------------------------------------
 % Subsubsection 4.2.1 - Simulácia algoritmu
 % -------------------------------------------------------------------
@@ -905,15 +915,20 @@ Posledný graf zobrazuje aktivačný signál globálneho regulátora.
 Hodnota $1$ znamená aktívnu globálnu reguláciu,
 zatiaľ čo hodnota $0$ zodpovedá lokálnej regulácii.
 
-\begin{center}
+\begin{figure}[!p]
+% \begin{center}
     \vbox{
         \makebox[\textwidth][c]{%
-            \includegraphics[width=1.5\textwidth]{ts_ml_prep_simulation.png}
+            \includegraphics{ts_ml_prep_simulation.png}
         }
         \figcaption{Simulácia prepínania pracovných bodov a správanie regulačných veličín}
         \label{fig:pi_switch_simulation}
     }
-\end{center}
+% \end{center}
+\end{figure}
+
+
+
 
 % -------------------------------------------------------------------
 % Subsubsection 4.2.2 - Experimentálne overenie na reálnom systéme
@@ -925,15 +940,17 @@ zatiaľ čo hodnota $0$ zodpovedá lokálnej regulácii.
 Navrhnutý algoritmus bol následne overený aj na reálnom systéme TS05.
 Výsledky experimentu sú uvedené na obr.~\ref{fig:pi_switch_real}.
 
-\begin{center}
+\begin{figure}[!p]
+% \begin{center}
     \vbox{
         \makebox[\textwidth][c]{%
-            \includegraphics[width=1.5\textwidth]{ts_ml_prep_real.png}
+            \includegraphics{ts_ml_prep_real.png}
         }
         \figcaption{Experimentálne overenie prepínania pracovných bodov na systéme TS05}
         \label{fig:pi_switch_real}
     }
-\end{center}
+% \end{center}
+\end{figure}
 
 Správanie systému je kvalitatívne veľmi podobné výsledkom získaným simuláciou.
 Aj v tomto prípade je možné pozorovať mierny offset výstupu
@@ -963,15 +980,17 @@ po ukončení globálnej regulácie
 je na obr.~\ref{fig:pi_switch_real_zoom}
 zobrazený detail priebehov výstupu.
 
-\begin{center}
+\begin{figure}[!t]
+% \begin{center}
     \vbox{
         \makebox[\textwidth][c]{%
-            \includegraphics[width=1.5\textwidth]{ts_ml_prep_real_zoom.png}
+            \includegraphics{ts_ml_prep_real_zoom.png}
         }
         \figcaption{Detail regulácie v okolí pracovného bodu po ukončení globálnej regulácie}
         \label{fig:pi_switch_real_zoom}
     }
-\end{center}
+% \end{center}
+\end{figure}
 
 Z detailu je zrejmé,
 že výstup systému $y$
@@ -990,7 +1009,7 @@ Je viditeľné,
 sa nachádza práve v tomto intervale,
 čo potvrdzuje,
 že určenie pracovného bodu nie je náhodné,
-ale priamo vyplýva z definovanej detekcie ustálenia.
+ale priamo vyplýva z~definovanej detekcie ustálenia.
 
 Výsledky experimentu tak potvrdzujú,
 že navrhnutý algoritmus dokáže spoľahlivo realizovať
@@ -1190,18 +1209,18 @@ aktualizácia histórie signálov
 a vyhodnotenie podmienky ustálenia.
 
 Ak je splnená podmienka ustálenia,
-z posledných $30$ hodnôt výstupu a vstupu
+z~posledných $30$ hodnôt výstupu a vstupu
 sa odhadnú nové hodnoty $y_{pb}$ a $u_{pb}$.
 Tieto hodnoty sa však nezačnú používať okamžite
-v tom istom vzorkovacom kroku.
+v~tom istom vzorkovacom kroku.
 Najprv sa iba pripravia nové hodnoty pracovného bodu
 a nový stav aktivity globálneho regulátora,
 pričom samotné prepnutie sa prejaví až
-v nasledujúcom kroku výpočtu.
+v~nasledujúcom kroku výpočtu.
 Tým sa zachová diskrétny charakter algoritmu
 a zabráni sa tomu,
 aby sa regulačný zákon menil dvakrát
-v rámci jednej periódy vzorkovania.
+v~rámci jednej periódy vzorkovania.
 
 Implementovaný kód hlavnej regulačnej logiky
 je uvedený vo výpise~\ref{lst:pi_switch_cpp_code}.
@@ -1352,18 +1371,18 @@ skutočnej periódy vykonávania kódu
 od nominálnej hodnoty.
 
 Ďalším rozdielom oproti implementácii
-v bloku MATLAB Function je spôsob práce
+v~bloku MATLAB Function je spôsob práce
 so stavovými premennými.
 V prostredí MATLAB bolo potrebné všetky vnútorné stavy
 explicitne prenášať medzi jednotlivými krokmi výpočtu
-vo forme vstupných a výstupných signálov.
+vo forme vstupných a~výstupných signálov.
 V jazyku C++ sú však tieto veličiny
-uchovávané priamo v pamäti programu,
-a preto nebolo potrebné zavádzať
+uchovávané priamo v~pamäti programu,
+a~preto nebolo potrebné zavádzať
 samostatné pomocné premenné
 pre každý aktualizovaný stav.
 Napriek tomu zostal princíp výpočtu nezmenený
-a poradie jednotlivých krokov algoritmu
+a~poradie jednotlivých krokov algoritmu
 bolo zachované.
 
 \subsubsection{Experiment na tepelnej sústave}
@@ -1384,15 +1403,17 @@ do nového pracovného bodu
 a po jej ukončení preberá riadenie
 lokálny PI regulátor.
 
-\begin{center}
+\begin{figure}[!p]
+% \begin{center}
     \vbox{
         \makebox[\textwidth][c]{%
-            \includegraphics[width=1.5\textwidth]{ts_cpp_prep_real.png}
+            \includegraphics{ts_cpp_prep_real.png}
         }
         \figcaption{Experimentálne overenie prepínania pracovných bodov pri implementácii algoritmu v jazyku C++}
         \label{fig:pi_switch_cpp_real}
     }
-\end{center}
+% \end{center}
+\end{figure}
 
 Pre detailnejšie posúdenie správania systému
 po ukončení globálnej regulácie
@@ -1409,15 +1430,20 @@ ktoré boli pozorované už na obr.~\ref{fig:pi_switch_real_zoom},
 čo potvrdzuje správnosť implementácie algoritmu
 aj na mikrokontrolérovej platforme.
 
-\begin{center}
+\begin{figure}[!t]
+% \begin{center}
     \vbox{
         \makebox[\textwidth][c]{%
-            \includegraphics[width=1.5\textwidth]{ts_cpp_prep_real_zoom.png}
+            \includegraphics{ts_cpp_prep_real_zoom.png}
         }
         \figcaption{Detail regulácie v okolí pracovného bodu pri implementácii algoritmu v jazyku C++}
         \label{fig:pi_switch_cpp_real_zoom}
     }
-\end{center}
+
+    \vspace{-12pt}
+
+% \end{center}
+\end{figure}
 
 \subsection{Realizácia algoritmu v PLC Siemens}
 \label{sec:pi_switch_plc_implementation}
@@ -1434,7 +1460,7 @@ a na jeho experimentálne overenie.
 Celá prepínacia logika bola realizovaná vo funkčnom bloku
 \texttt{FB\_PREP\_TS05}. Vo vnútri bloku sú uložené všetky potrebné stavové
 premenné algoritmu, teda stav filtra globálnej žiadanej hodnoty, integračné
-stavy oboch regulátorov, história vstupu a výstupu, odhadnuté hodnoty
+stavy oboch regulátorov, história vstupu a~výstupu, odhadnuté hodnoty
 pracovného bodu aj pomocné premenné prepínacej logiky. Rovnako ako pri
 predchádzajúcich algoritmoch bol k implementácii pripojený aj logovací blok.
 
@@ -1455,13 +1481,13 @@ implementáciách. Najprv sa deteguje skoková zmena globálnej žiadanej
 hodnoty, potom sa vypočíta filtrovaná globálna referencia, určia sa
 parametre lokálneho PI regulátora podľa aktuálneho pracovného bodu,
 vypočíta sa akčný zásah, aktualizuje sa história signálov a vyhodnotí sa
-podmienka ustálenia. Ak je táto podmienka splnená, z posledných 30 hodnôt
+podmienka ustálenia. Ak je táto podmienka splnená, z~posledných 30 hodnôt
 vstupu a výstupu sa vypočíta nový odhad pracovného bodu, ktorý sa začne
-používať až v nasledujúcom vzorkovacom kroku.
+používať až v~nasledujúcom vzorkovacom kroku.
+
 
 Implementácia funkčného bloku \texttt{FB\_PREP\_TS05} je uvedená
 v nasledujúcej ukážke.
-
 \begin{lstlisting}[language=Pascal,
 caption={Implementácia funkčného bloku \texttt{FB\_PREP\_TS05} v PLC Siemens},
 label={lst:fb-prep-ts05}]
@@ -1637,27 +1663,33 @@ Schéma zapojenia algoritmu v PLC programe, vrátane bloku pre generovanie
 žiadanej hodnoty, riadiaceho bloku a logovania, je uvedená na
 obr.~\ref{fig:tia_prep_scheme}.
 
-\begin{center}
+\begin{figure}[!b]
+% \begin{center}
 \vbox{
 \makebox[\textwidth][c]{%
-    \includegraphics[width=1.2\textwidth]{../SCH/TIA/tia_prep_scheme.png}
+    \includegraphics[width=1.3\textwidth]{../SCH/TIA/tia_prep_scheme.png}
 }
 \figcaption{Zapojenie algoritmu prepínania pracovných bodov v prostredí TIA Portal}
 \label{fig:tia_prep_scheme}
 }
-\end{center}
+% \end{center}
+\end{figure}
 
 Zoznam premenných funkčného bloku je uvedený v tab.~\ref{tab:tia_prep_vars}.
 
-\clearpage
-\vspace*{-2.0cm}
-\begin{center}
+% \clearpage
+% \vspace*{-2.0cm}
+\begin{table}[!p]
+% \begin{center}
+
+\vspace*{-1.5cm}
+
 \captionof{table}{Premenné funkčného bloku \texttt{FB\_PREP\_TS05}}
 \label{tab:tia_prep_vars}
 \makebox[\textwidth][c]{%
 \begin{tabular}{c c c c c}
 
-    \hline
+    % \hline
     \textbf{Sekcia} & \textbf{Premenná} & \textbf{Dátový typ} & \textbf{Predvolená hodnota} & \textbf{Retain} \\ \hline
 
     Input & \texttt{Y} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
@@ -1721,20 +1753,52 @@ Zoznam premenných funkčného bloku je uvedený v tab.~\ref{tab:tia_prep_vars}.
     Constant & \texttt{Ki\_g} & \texttt{Real} & \texttt{0.7} & -- \\ \hline
 \end{tabular}
 }
-\end{center}
+
+\vspace*{-2.0cm}
+% \end{center}
+\end{table}
 
 \subsubsection{Experiment na tepelnej sústave}
 \label{sec:prep_plc_experiment}
 
-\begin{center}
+\begin{figure}[!p]
+% \begin{center}
 \vbox{
 \makebox[\textwidth][c]{%
-    \includegraphics[width=1.5\textwidth]{ts_plc_prep_real.png}
+    \includegraphics[width=1.55\textwidth]{ts_plc_prep_real.png}
 }
 \figcaption{Experimentálne overenie prepínania pracovných bodov pri implementácii algoritmu v PLC Siemens}
 \label{fig:ts_plc_prep_real}
 }
-\end{center}
+% \end{center}
+\end{figure}
+
+\begin{figure}[!t]
+% \begin{center}
+\vbox{
+\makebox[\textwidth][c]{%
+    \includegraphics{ts_plc_prep_real_zoom.png}
+}
+\figcaption{Detail regulácie v okolí pracovného bodu pri implementácii algoritmu v PLC Siemens}
+\label{fig:ts_plc_prep_real_zoom}
+}
+% \end{center}
+\end{figure}
+
+\begin{figure}[!b]
+% \begin{center}
+\vbox{
+\makebox[\textwidth][c]{%
+    \includegraphics{ts_prep_real_comparison.png}
+}
+\figcaption{Porovnanie experimentálnych výsledkov prepínania pracovných bodov na jednotlivých platformách}
+\label{fig:ts_prep_real_comparison}
+}
+
+
+
+% \end{center}
+\end{figure}
 
 Na základe tejto implementácie bol vykonaný experiment na reálnom systéme TS05.
 Výsledok merania je zobrazený na obr.~\ref{fig:ts_plc_prep_real}.
@@ -1756,15 +1820,8 @@ uvedený detail vybraných úsekov experimentu. Vidno, že odhadnutý pracovný 
 sa po prepnutí nachádza v tolerančnom pásme $\pm 3\,\%$, čo potvrdzuje správnu
 činnosť použitej podmienky ustálenia aj v PLC implementácii.
 
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=1.5\textwidth]{ts_plc_prep_real_zoom.png}
-}
-\figcaption{Detail regulácie v okolí pracovného bodu pri implementácii algoritmu v PLC Siemens}
-\label{fig:ts_plc_prep_real_zoom}
-}
-\end{center}
+
+
 
 \subsection{Porovnanie výsledkov implementácie prepínania pracovných bodov}
 \label{sec:prep_implementation_comparison}
@@ -1773,24 +1830,15 @@ Algoritmus prepínania pracovných bodov bol implementovaný v prostredí
 MATLAB/Simulink, v jazyku C++ a v PLC Siemens. Porovnanie experimentálnych
 výsledkov je uvedené na obr.~\ref{fig:ts_prep_real_comparison}.
 
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=1.5\textwidth]{ts_prep_real_comparison.png}
-}
-\figcaption{Porovnanie experimentálnych výsledkov prepínania pracovných bodov na jednotlivých platformách}
-\label{fig:ts_prep_real_comparison}
-}
-\end{center}
+
 
 Z priebehov výstupu je viditeľné, že správanie systému je vo všetkých troch
 prípadoch podobné. Priebehy akčného zásahu majú podobný charakter, avšak
 medzi jednotlivými experimentmi možno pozorovať rozdielny \textit{offset}. Ten môže
-súvisieť s odlišnými vonkajšími podmienkami počas meraní.
+súvisieť s~odlišnými vonkajšími podmienkami počas meraní.
 
 Pre kvantitatívne porovnanie bola vypočítaná hodnota RMSE vzhľadom na príslušnú
 hodnotu $r_{gf}+r_l$ každého experimentu:
-
 \begin{align}
     \mathrm{RMSE}_{\mathrm{MATLAB}} &= 0.497536~\mathrm{V}, \\
     \mathrm{RMSE}_{\mathrm{C++}} &= 0.405534~\mathrm{V}, \\
@@ -1798,4 +1846,8 @@ hodnotu $r_{gf}+r_l$ každého experimentu:
 \end{align}
 
 Výsledky ukazujú, že algoritmus bol realizovaný na všetkých troch platformách
-s porovnateľným správaním výstupu systému.
+s~porovnateľným správaním výstupu systému.
+
+
+
+\clearpage
