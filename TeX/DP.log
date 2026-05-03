@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.9.3)  3 MAY 2026 22:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.9.3)  3 MAY 2026 22:34
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1078,61 +1078,67 @@ File: ../SCH/TIA/tia_prep_scheme.png Graphic file (type png)
 <use ../SCH/TIA/tia_prep_scheme.png>
 Package pdftex.def Info: ../SCH/TIA/tia_prep_scheme.png  used on input line 1671.
 (pdftex.def)             Requested size: 480.8527pt x 174.87991pt.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <9> on input line 1757.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 1757.
+LaTeX Font Info:    Font shape `T1/clm2/b/n' in size <9> not available
+(Font)              Font shape `T1/clm2/bx/n' tried instead on input line 1757.
 <../PY/fig//ts_plc_prep_real.png, id=2045, 560.3334pt x 625.8582pt>
 File: ../PY/fig//ts_plc_prep_real.png Graphic file (type png)
 <use ../PY/fig//ts_plc_prep_real.png>
-Package pdftex.def Info: ../PY/fig//ts_plc_prep_real.png  used on input line 1769.
+Package pdftex.def Info: ../PY/fig//ts_plc_prep_real.png  used on input line 1771.
 (pdftex.def)             Requested size: 573.32416pt x 640.38191pt.
 <../PY/fig//ts_plc_prep_real_zoom.png, id=2046, 560.3334pt x 341.3553pt>
 File: ../PY/fig//ts_plc_prep_real_zoom.png Graphic file (type png)
 <use ../PY/fig//ts_plc_prep_real_zoom.png>
-Package pdftex.def Info: ../PY/fig//ts_plc_prep_real_zoom.png  used on input line 1781.
+Package pdftex.def Info: ../PY/fig//ts_plc_prep_real_zoom.png  used on input line 1783.
 (pdftex.def)             Requested size: 560.33203pt x 341.35445pt.
 <../PY/fig//ts_prep_real_comparison.png, id=2047, 560.3334pt x 284.5029pt>
 File: ../PY/fig//ts_prep_real_comparison.png Graphic file (type png)
 <use ../PY/fig//ts_prep_real_comparison.png>
-Package pdftex.def Info: ../PY/fig//ts_prep_real_comparison.png  used on input line 1793.
+Package pdftex.def Info: ../PY/fig//ts_prep_real_comparison.png  used on input line 1795.
 (pdftex.def)             Requested size: 560.33203pt x 284.5022pt.
  [66 <../SCH/TIA/tia_prep_scheme.png>] [67] [68 <../PY/fig//ts_plc_prep_real.png>] [69 <../PY/fig//ts_plc_prep_real_zoom.png>] [70 <../PY/fig//ts_prep_real_comparison.png>]) (./chapters/section5.tex [71
 
 ] [72] [73] [74] [75] [76] [77]
-<../SCH/SIMULINK/TS_mrac_simulink_scheme.pdf, id=2308, 845.1575pt x 597.23125pt>
+<../SCH/SIMULINK/TS_mrac_simulink_scheme.pdf, id=2311, 845.1575pt x 597.23125pt>
 File: ../SCH/SIMULINK/TS_mrac_simulink_scheme.pdf Graphic file (type pdf)
 <use ../SCH/SIMULINK/TS_mrac_simulink_scheme.pdf>
 Package pdftex.def Info: ../SCH/SIMULINK/TS_mrac_simulink_scheme.pdf  used on input line 961.
 (pdftex.def)             Requested size: 628.80478pt x 348.0618pt.
  [78] [79 <../SCH/SIMULINK/TS_mrac_simulink_scheme.pdf>] [80]
-<../PY/fig//ts_ml_mrac_real_raw.png, id=2531, 560.3334pt x 398.32816pt>
+<../PY/fig//ts_ml_mrac_real_raw.png, id=2534, 560.3334pt x 398.32816pt>
 File: ../PY/fig//ts_ml_mrac_real_raw.png Graphic file (type png)
 <use ../PY/fig//ts_ml_mrac_real_raw.png>
 Package pdftex.def Info: ../PY/fig//ts_ml_mrac_real_raw.png  used on input line 1129.
 (pdftex.def)             Requested size: 560.33203pt x 398.32718pt.
  [81 <../PY/fig//ts_ml_mrac_real_raw.png>]
-<../PY/fig//ts_ml_mrac_real.png, id=2560, 560.3334pt x 398.32816pt>
+<../PY/fig//ts_ml_mrac_real.png, id=2563, 560.3334pt x 398.32816pt>
 File: ../PY/fig//ts_ml_mrac_real.png Graphic file (type png)
 <use ../PY/fig//ts_ml_mrac_real.png>
 Package pdftex.def Info: ../PY/fig//ts_ml_mrac_real.png  used on input line 1160.
 (pdftex.def)             Requested size: 560.33203pt x 398.32718pt.
  [82 <../PY/fig//ts_ml_mrac_real.png>] [83] [84] [85] [86]
-<../PY/fig//ts_cpp_mrac_real_raw.png, id=2830, 560.3334pt x 398.32816pt>
+<../PY/fig//ts_cpp_mrac_real_raw.png, id=2833, 560.3334pt x 398.32816pt>
 File: ../PY/fig//ts_cpp_mrac_real_raw.png Graphic file (type png)
 <use ../PY/fig//ts_cpp_mrac_real_raw.png>
 Package pdftex.def Info: ../PY/fig//ts_cpp_mrac_real_raw.png  used on input line 1599.
 (pdftex.def)             Requested size: 560.33203pt x 398.32718pt.
  [87]
-<../PY/fig//ts_cpp_mrac_real.png, id=2884, 560.3334pt x 398.32816pt>
+<../PY/fig//ts_cpp_mrac_real.png, id=2887, 560.3334pt x 398.32816pt>
 File: ../PY/fig//ts_cpp_mrac_real.png Graphic file (type png)
 <use ../PY/fig//ts_cpp_mrac_real.png>
 Package pdftex.def Info: ../PY/fig//ts_cpp_mrac_real.png  used on input line 1624.
 (pdftex.def)             Requested size: 560.33203pt x 398.32718pt.
  [88 <../PY/fig//ts_cpp_mrac_real_raw.png>] [89 <../PY/fig//ts_cpp_mrac_real.png>] [90] [91]
-<../PY/fig//ts_cpp_mrac_experemental.png, id=2985, 560.3334pt x 398.32816pt>
+<../PY/fig//ts_cpp_mrac_experemental.png, id=2988, 560.3334pt x 398.32816pt>
 File: ../PY/fig//ts_cpp_mrac_experemental.png Graphic file (type png)
 <use ../PY/fig//ts_cpp_mrac_experemental.png>
 Package pdftex.def Info: ../PY/fig//ts_cpp_mrac_experemental.png  used on input line 1881.
 (pdftex.def)             Requested size: 560.33203pt x 398.32718pt.
  [92 <../PY/fig//ts_cpp_mrac_experemental.png>] [93] [94]
-<../SCH/TIA/tia_mrac_scheme.png, id=3132, 992.20688pt x 401.24907pt>
+<../SCH/TIA/tia_mrac_scheme.png, id=3135, 992.20688pt x 401.24907pt>
 File: ../SCH/TIA/tia_mrac_scheme.png Graphic file (type png)
 <use ../SCH/TIA/tia_mrac_scheme.png>
 Package pdftex.def Info: ../SCH/TIA/tia_mrac_scheme.png  used on input line 2106.
@@ -1143,8 +1149,6 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 2117.
 See the caption package documentation for explanation.
 
-LaTeX Font Info:    Font shape `T1/clm2/b/n' in size <9> not available
-(Font)              Font shape `T1/clm2/bx/n' tried instead on input line 2128.
 [96
 
 ]
@@ -1200,18 +1204,18 @@ Package rerunfilecheck Info: File `DP.out' has not changed.
 (rerunfilecheck)             Checksum: F05A146EB906AFC85D527CBC228491F5;14533.
  ) 
 Here is how much of TeX's memory you used:
- 26364 strings out of 475075
- 412828 string characters out of 5783002
+ 26397 strings out of 475075
+ 413351 string characters out of 5783002
  1381215 words of memory out of 5000000
- 44373 multiletter control sequences out of 15000+600000
- 590126 words of font info for 369 fonts, out of 8000000 for 9000
+ 44401 multiletter control sequences out of 15000+600000
+ 604033 words of font info for 381 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  77i,12n,120p,1024b,2688s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {c:/texlive/2022/texmf-dist/fonts/enc/dvips/cfr-lm/dotdigits-clm.enc}{c:/texlive/2022/texmf-dist/fonts/enc/dvips/cfr-lm/t1-clm.enc}{c:/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{c:/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{c:/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}<c:/texlive/2022/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/lm/lmbx9.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/lm/lmtt9.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on DP.pdf (106 pages, 15155187 bytes).
+Output written on DP.pdf (106 pages, 15154175 bytes).
 PDF statistics:
  4211 PDF objects out of 4296 (max. 8388607)
  3875 compressed objects within 39 object streams
  2506 named destinations out of 2984 (max. 500000)
- 103636 words of extra memory for PDF output out of 106986 (max. 10000000)
+ 105684 words of extra memory for PDF output out of 106986 (max. 10000000)
 
