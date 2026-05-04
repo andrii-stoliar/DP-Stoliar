@@ -1,6 +1,6 @@
 \babel@toc {slovak}{}\relax 
 \contentsline {section}{Úvod}{8}{Doc-Start}%
-\contentsline {section}{\numberline {1}Podstata návrhu implementácie algoritmu riadenia}{8}{section.1}%
+\contentsline {section}{\numberline {1}Podstata návrhu implementácie algoritmu riadenia}{9}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Regulačná odchýlka a regulátor}{9}{subsection.1.1}%
 \contentsline {paragraph}{Uzavretý regulačný obvod}{9}{paragraph*.1}%
 \contentsline {paragraph}{Poloha pólov a stabilita}{10}{paragraph*.3}%

@@ -37,7 +37,7 @@ so zápornou spätnou väzbou.
 Bloková schéma uzavretého regulačného obvodu je znázornená
 na obr.~\ref{fig:pi_block_scheme}. V schéme označenie $u_1$ predstavuje napätie privádzané na vykurovaciu špirálu,
 $u_2$ napätie privádzané na ventilátor, zatiaľ čo $y_1$ a $y_2$ označujú
-signály zo snímača teploty~1 a~snímača teploty~2.
+signály zo snímača teploty~1~a~snímača teploty~2.
 
 \begin{figure}[!b]
 % \begin{center}
@@ -128,7 +128,7 @@ u = min(max(u, u_min), u_max);
 
 Pri návrhu parametrov PI regulátora bolo najprv potrebné zvoliť vhodnú metódu ladenia.
 Vzhľadom na štruktúru identifikovaného modelu systému TS05 sa ukázalo, že viaceré
-bežné analytické metódy ladenia nie je možné použiť priamo alebo v štandardnom tvare.
+bežné analytické metódy ladenia nie je možné použiť priamo alebo v~štandardnom tvare.
 Z tohto dôvodu boli najskôr posúdené ich obmedzenia a následne bol na samotné ladenie
 zvolený numerický nástroj \texttt{pidtune} v prostredí MATLAB.
 
@@ -503,11 +503,11 @@ Kým v prostredí Simulink bolo potrebné prenášať stav integrátora a hodnot
 Implementácia tak prirodzene disponuje vlastnou vnútornou pamäťou, čo zjednodušuje štruktúru programu a znižuje potrebu vytvárania pomocných spätných väzieb medzi blokmi.
 
 Ďalším rozdielom je spôsob vykonávania algoritmu.  
-V Simulinku je beh regulátora naviazaný na simulačný model a jeho blokovú štruktúru, zatiaľ čo v jazyku C++ je regulačný algoritmus súčasťou hlavného cyklu programu, v ktorom sa postupne vykonáva komunikácia so systémom, čítanie meraných veličín, výpočet regulácie a zápis akčných zásahov na výstupy.  
+V Simulinku je beh regulátora naviazaný na simulačný model a~jeho blokovú štruktúru, zatiaľ čo v~jazyku C++ je regulačný algoritmus súčasťou hlavného cyklu programu, v~ktorom sa postupne vykonáva komunikácia so systémom, čítanie meraných veličín, výpočet regulácie a~zápis akčných zásahov na výstupy.  
 Z tohto dôvodu je pri implementácii v C++ potrebné venovať zvýšenú pozornosť správnemu časovaniu výpočtu, dodržaniu periódy vzorkovania a stabilite komunikácie s hardvérom.
 
 Z numerického hľadiska zostáva princíp výpočtu nezmenený.  
-Integrátor sa aj v tejto implementácii aktualizuje diskrétne pomocou periódy vzorkovania a výsledný zásah je následne obmedzený saturáciou.  
+Integrátor sa aj v~tejto implementácii aktualizuje diskrétne pomocou periódy vzorkovania a~výsledný zásah je následne obmedzený saturáciou.  
 
 \subsubsection{Experimentálne overenie na reálnom systéme}
 \label{sec:pi_cpp_real_system}
@@ -530,7 +530,7 @@ Z priebehu regulácie je zrejmé, že výsledná odozva je veľmi podobná prieb
 Tvar regulačnej odozvy, rýchlosť nábehu aj charakter ustálenia zostali vo všeobecnosti zachované.  
 Možno však pozorovať menšie rozdiely v detailoch priebehu, ktoré možno vysvetliť odlišnými vonkajšími podmienkami počas experimentu.  
 Jednotlivé merania boli realizované pri rozdielnej teplote v miestnosti, pričom tepelný systém TS05 je na zmeny okolitej teploty citlivý.  
-Preto možno konštatovať, že implementácia v jazyku C++ potvrdila správnosť navrhnutého algoritmu aj mimo prostredia MATLAB/Simulink a zároveň ukázala, že regulátor si zachováva porovnateľné vlastnosti aj pri nasadení na odlišnej softvérovej platforme.
+Preto možno konštatovať, že implementácia v~jazyku C++ potvrdila správnosť navrhnutého algoritmu aj mimo prostredia MATLAB/Simulink a~zároveň ukázala, že regulátor si zachováva porovnateľné vlastnosti aj pri nasadení na odlišnej softvérovej platforme.
 
 \subsection{Implementácia PI regulátora v PLC Siemens}
 \label{sec:pi_plc_system}

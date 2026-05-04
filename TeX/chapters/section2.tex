@@ -363,7 +363,7 @@ Výsledné priebehy normalizovaných a detrendovaných údajov sú zobrazené na
 \end{figure}
 
 Z grafov možno vidieť, že jednotlivé skokové odozvy sa mierne líšia svojím priebehom,  
-čo poukazuje na citlivosť systému TS05 na vonkajšie podmienky a fluktuácie prostredia.  
+čo poukazuje na citlivosť systému TS05 na vonkajšie podmienky a~fluktuácie prostredia.  
 Preto boli vykonané tri nezávislé experimenty s rovnakým vstupným signálom,  
 ktorých priebehy sú zobrazené na obrázku~\ref{fig:ts_pb_vent6_spir4_ident_raw_normalized}.  
 Po detrendácii a normalizácii boli tieto dáta spriemerované bod po bode,  
@@ -382,11 +382,11 @@ a slúži ako podklad pre ďalšiu identifikáciu modelu.
 \subsubsection{Identifikácia systému pomocou metódy najmenších štvorcov}
 
 V tejto časti bola uskutočnená identifikácia systému TS05 na základe priemernej odozvy získanej z troch experimentálnych meraní popísaných v predchádzajúcej kapitole.  
-Tento priemerný priebeh reprezentuje typickú reakciu systému v okolí pracovného bodu 4~V a slúži ako základ pre odhad parametrov modelu.  
-Cieľom bolo získať lineárny model druhého rádu, ktorý dostatočne presne opisuje dynamické správanie systému v tejto oblasti.
+Tento priemerný priebeh reprezentuje typickú reakciu systému v okolí pracovného bodu 4~V~a~slúži ako základ pre odhad parametrov modelu.  
+Cieľom bolo získať lineárny model druhého rádu, ktorý dostatočne presne opisuje dynamické správanie systému v~tejto oblasti.
 
 Identifikácia bola realizovaná pomocou metódy najmenších štvorcov~\cite{fikar},  
-ktorá umožňuje odhad parametrov diskrétneho modelu systému na základe meraných vstupov a výstupov.  
+ktorá umožňuje odhad parametrov diskrétneho modelu systému na základe meraných vstupov a~výstupov.  
 Pre odhad parametrov bola vytvorená regresná matica $H(k,:)$ a vektor výstupov $Y$, pričom výsledný odhad parametrov $\hat{\theta}$ bol určený podľa rovníc:
 
 \begin{equation}
@@ -401,7 +401,7 @@ Pre odhad parametrov bola vytvorená regresná matica $H(k,:)$ a vektor výstupo
 
 Na základe týchto odhadov boli vypočítané koeficienty diskrétneho modelu druhého rádu,  
 ktorý následne predstavuje prenosovú funkciu $G_d(z)$.  
-Pre účely simulácie a ďalšieho návrhu riadenia bol tento model prevedený na spojitú formu $G(s)$ pomocou Tustinovej aproximácie.
+Pre účely simulácie a~ďalšieho návrhu riadenia bol tento model prevedený na spojitú formu $G(s)$ pomocou Tustinovej aproximácie.
 
 
 
@@ -470,7 +470,7 @@ aby sa minimalizovala chyba medzi simulovanou odozvou modelu a reálnou priemern
 
 Ako nástroj optimalizácie bola použitá funkcia \texttt{fminsearch} z prostredia MATLAB,  
 ktorá implementuje Nelderovu–Meadovu simplexovú metódu \cite{hudzovic2000}.  
-Ide o bezderivačnú lokálnu optimalizačnú metódu, ktorá na základe hodnotenia účelovej funkcie v niekoľkých bodoch parametrov iteratívne posúva simplex (mnohouholník v priestore parametrov) tak, aby sa znižovala hodnota účelovej funkcie.  
+Ide o bezderivačnú lokálnu optimalizačnú metódu, ktorá na základe hodnotenia účelovej funkcie v~niekoľkých bodoch parametrov iteratívne posúva simplex (mnohouholník v priestore parametrov) tak, aby sa znižovala hodnota účelovej funkcie.  
 V našom prípade je účelová funkcia definovaná ako koreň zo strednej kvadratickej chyby (RMSE) medzi nameranou odozvou systému a simulovaným výstupom modelu:
 
 \begin{equation}
@@ -547,7 +547,7 @@ Pri tomto prístupe je dôležité upozorniť na jeden podstatný problém.
 Ak nie sú parametre prenosovej funkcie počas optimalizácie vhodne obmedzené,  
 algoritmus môže nájsť také hodnoty parametrov, ktoré síce veľmi dobre aproximujú konkrétnu meranú odozvu,  
 ale vedú k nerealistickému alebo nestabilnému správaniu modelu pri iných vstupoch.  
-V predchádzajúcich pokusoch viedlo práve toto k prenosovým funkciám s numericky nevhodnými parametrami,  
+V predchádzajúcich pokusoch viedlo práve toto k prenosovým funkciám s~numericky nevhodnými parametrami,  
 ktoré boli použiteľné iba pre konkrétny fitovaný experiment.
 
 Z tohto dôvodu sú v uvedenej implementácii parametre počas optimalizácie mapované pomocou transformácie
@@ -635,30 +635,25 @@ Možno ich interpretovať ako numerické artefakty vzniknuté pri prevode z disk
 Zahrnutie týchto vyšších rádov v čitateli by výrazne komplikovalo niektoré analytické metódy návrhu regulátorov, napríklad metódu umiestnenia pólov.
 
 Pre účely ďalšej práce sme sa preto rozhodli tieto prenosové funkcie aproximovať jednoduchšou formou.  
-Najzrejmejší prístup spočíva v tom, že malé koeficienty pri $s$ a $s^2$ v čitateli zanedbáme a overíme vplyv tejto úpravy pomocou simulácie.
+Najzrejmejší prístup spočíva v tom, že malé koeficienty pri $s$~a~$s^2$~v~čitateli zanedbáme a~overíme vplyv tejto úpravy pomocou simulácie.
 
 Výsledkom tejto aproximácie sú nasledujúce prenosové funkcie:
-
 \begin{equation}
 	G_{s,\mathrm{LS,approx}}(s) =
 	\frac{6.074}{s^2 + 59.01s + 8.95}
 	\label{eq:Gs_ls_approx}
 \end{equation}
-
 póly:
 \begin{equation}
 	s_{1} = -58.8550, \quad s_{2} = -0.1521
 	\label{eq:poles_ls_approx}
 \end{equation}
-
 a
-
 \begin{equation}
 	G_{s,\mathrm{fmin,approx}}(s) =
 	\frac{0.9012}{s^2 + 18.94s + 1.291}
 	\label{eq:Gs_fmin_approx}
 \end{equation}
-
 póly:
 \begin{equation}
 	s_{1} = -18.8736, \quad s_{2} = -0.0684
@@ -682,8 +677,7 @@ Porovnanie reálnej odozvy systému TS05 s oboma aproximovanými modelmi je zobr
 % \end{center}
 \end{figure}
 
-Výsledné hodnoty strednej kvadratickej chyby (RMSE) medzi reálnym systémom a simulovanými odozvami boli:
-
+Výsledné hodnoty strednej kvadratickej chyby (RMSE) medzi reálnym systémom a~simulovanými odozvami boli:
 \begin{align}
 	\mathrm{RMSE}_{\mathrm{LS,approx}} &= 0.036951,
 	\label{eq:rmse_ls_approx} \\
@@ -691,7 +685,7 @@ Výsledné hodnoty strednej kvadratickej chyby (RMSE) medzi reálnym systémom a
 	\label{eq:rmse_fmin_approx}
 \end{align}
 
-Z výsledkov, ako aj z priebehov simulácií, je zrejmé, že rozdiel medzi pôvodnými a aproximovanými modelmi je zanedbateľný.  
+Z výsledkov, ako aj z priebehov simulácií, je zrejmé, že rozdiel medzi pôvodnými a~aproximovanými modelmi je zanedbateľný.  
 Hodnota RMSE sa zhoršila len minimálne, čo je z pohľadu ďalšieho použitia modelov úplne prijateľné, najmä vzhľadom na zjednodušenie analytického spracovania, ktoré táto aproximácia prináša.
 
 % -------------------------------------------------------------------
@@ -702,10 +696,10 @@ Hodnota RMSE sa zhoršila len minimálne, čo je z pohľadu ďalšieho použitia
 \label{sec:komunikacia_ts05}
 
 V tejto časti je opísaný spôsob komunikácie laboratórneho tepelného systému TS05
-s jednotlivými hardvérovými a softvérovými platformami použitými v práci.
-Cieľom bolo zabezpečiť jednotný a funkčný prístup k vstupom a výstupom systému
-nielen v prostredí MATLAB/Simulink, ale aj pri implementácii na platforme
-Arduino UNO v jazyku C++ a na priemyselnom PLC systéme Siemens.
+~jednotlivými hardvérovými a softvérovými platformami použitými v~práci.
+Cieľom bolo zabezpečiť jednotný a~funkčný prístup k~vstupom a~výstupom systému
+nielen v~prostredí MATLAB/Simulink, ale aj pri implementácii na platforme
+Arduino UNO v~jazyku C++ a~na priemyselnom PLC systéme Siemens.
 
 Osobitná pozornosť bola venovaná najmä tomu, aby bolo možné realizovať experimenty
 aj mimo pôvodného simulačného prostredia, vytvárať nové riadiace algoritmy
@@ -751,10 +745,9 @@ reálnym systémom a rozhraním komunikačnej karty.
 
 
 Vnútorná časť komunikačného subsystému, v ktorej sú už explicitne definované
-jednotlivé porty meracej karty a spôsob spracovania analógových vstupov a
-výstupov, je zobrazená na obr.~\ref{fig:TS_simulink_scheme}. Táto schéma
+jednotlivé porty meracej karty a spôsob spracovania analógových vstupov a~výstupov, je zobrazená na obr.~\ref{fig:TS_simulink_scheme}. Táto schéma
 predstavuje detailnejšiu implementačnú vrstvu komunikácie, na ktorú nadväzujú
-ďalšie experimentálne a riadiace úlohy realizované v prostredí
+ďalšie experimentálne a riadiace úlohy realizované v~prostredí
 MATLAB/Simulink.
 
 
