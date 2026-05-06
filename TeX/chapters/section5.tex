@@ -26,7 +26,7 @@ a adaptačného zákona založeného na gradientnej metóde.
 % -------------------------------------------------------------------
 % Subsection - Popis algoritmu
 % -------------------------------------------------------------------
-\subsection{Popis algoritmu}
+\subsection{Rozbor algoritmu riadenia}
 \label{sec:mrac_gradient_algorithm}
 
 Gradientný MRAC algoritmus je založený na myšlienke,
@@ -185,14 +185,14 @@ v zákone riadenia.
 % -------------------------------------------------------------------
 % Subsubsection - Diskrétna realizácia steady-state
 % -------------------------------------------------------------------
-\subsubsection{Prevod systému do stavového priestoru}
+\subsubsection{Prepis vstupno-výstupného opisu systému do stavového opisu}
 \label{sec:mrac_gradient_discrete}
 
 Pre potreby diskrétnej implementácie je vhodné
-preniesť opis riadeného systému z tvaru prenosovej funkcie
-do tvaru stavového modelu. Stavový opis predstavuje prirodzený spôsob
+preniesť opis dynamického systému z~tvaru prenosovej funkcie
+do tvaru stavového opisu. Stavový opis predstavuje prirodzený spôsob
 reprezentácie dynamických systémov, keďže umožňuje pracovať priamo
-s vnútornými stavmi systému a ich časovým vývojom~\cite{cellier1991,ogata2010}.
+s~vnútornými stavmi systému a ich časovým vývojom~\cite{cellier1991,ogata2010}.
 
 Uvažujme všeobecný lineárny systém druhého rádu
 \begin{equation}
@@ -365,6 +365,11 @@ y(t)=c^{T}x(t).
 Takto získaný stavový opis je vhodný pre numerickú implementáciu,
 pretože dynamika systému je sústredená do stavovej rovnice
 a výstup je určený ako lineárna kombinácia stavových premenných.
+
+
+
+
+\subsubsection{Stavový opis súčastí MRAC algoritmu}
 
 \paragraph{Stavový opis referenčného modelu}
 
@@ -652,7 +657,7 @@ so stavovým vektorom $x_{ym}(t)$, pričom jeho výstup je
 % -------------------------------------------------------------------
 % Subsubsection - Pseudokód gradientnej MRAC regulácie
 % -------------------------------------------------------------------
-\subsubsection{Pseudokód gradientnej MRAC regulácie (diskrétna realizácia)}
+\subsubsection{Pseudokód adaptívneho riadiaceho systému}
 \label{sec:mrac_gradient_pseudocode}
 
 Diskrétna realizácia gradientnej MRAC regulácie
@@ -878,7 +883,7 @@ y_prev_next = y;
 % -------------------------------------------------------------------
 % Subsection - Implementácia MRAC v prostredí MATLAB
 % -------------------------------------------------------------------
-\subsection{Implementácia MRAC v prostredí MATLAB}
+\subsection{Implementácia: MATLAB/Simulink}
 \label{sec:mrac_matlab_implementation}
 
 
@@ -1136,7 +1141,7 @@ end
 
 
 
-\subsubsection{Experiment na tepelnej sústave}
+\subsubsection{Overenie na reálnom systéme}
 \label{sec:mrac_matlab_experiment}
 
 Navrhnutý gradientný MRAC regulátor bol najskôr overený
@@ -1215,7 +1220,7 @@ aj pri aplikácii na reálnu sústavu.
 %% C++ implementation
 %% -------------------------------------------------------------------
 
-\subsection{Implementácia gradientného MRAC regulátora v jazyku C++}
+\subsection{Implementácia: mikrokontrolér a jazyk C++}
 \label{sec:mrac_cpp_implementation}
 
 Po overení funkčnosti gradientného MRAC regulátora v prostredí
@@ -1582,7 +1587,7 @@ Súčasne zostáva zachovaná rovnaká logika prechodu do súradníc pracovného
 rovnaký referenčný model aj rovnaký adaptačný zákon ako pri implementácii
 v prostredí MATLAB/Simulink.
 
-\subsubsection{Experimentálne overenie na reálnom systéme}
+\subsubsection{Overenie na reálnom systéme}
 
 Na základe uvedenej implementácie bol vykonaný experiment na reálnom systéme
 TS05. Celkový priebeh experimentu v absolútnych veličinách je zobrazený
@@ -1659,7 +1664,7 @@ forme.
 %% Pokus o zlepšenie stability adaptácie
 %% -------------------------------------------------------------------
 
-\subsubsection{Heuristická modifikácia implementácie na potlačenie driftu parametrov}
+\subsubsection{Heuristická modifikácia na potlačenie driftu adaptovaných parametrov}
 \label{sec:mrac_cpp_heuristic_modification}
 
 V predchádzajúcej časti bolo ukázané, že pri dlhšej prevádzke gradientného
@@ -1680,7 +1685,7 @@ Modifikácia sa týkala iba dvoch praktických oblastí:
 \end{itemize}
 
 
-\paragraph{Smoothing meraného výstupu}
+\paragraph{Filtrácia šumu spätnoväzbovného signálu}
 
 Prvá úprava spočívala v tom, že namiesto použitia jedinej okamžitej hodnoty
 meraného signálu zo snímača sa začalo používať priemerovanie posledných
@@ -1711,7 +1716,7 @@ Cieľom tejto úpravy bolo zmenšiť vplyv meracieho šumu a kvantovania A/D pre
 ktoré sa inak priamo prenášajú do výpočtu regulačnej chyby a najmä do diskrétnej
 aproximácie derivácie výstupu.
 
-\paragraph{Dead-zone v adaptačnom zákone}
+\paragraph{Pásmo necitlivosti v zákone adaptácie}
 
 Druhá úprava sa týkala adaptačného zákona.
 Samotná regulačná chyba zostala definovaná v pôvodnom tvare
@@ -1762,7 +1767,7 @@ ale dlhodobo prítomnou chybou, ktorá môže mať pôvod v šume,
 numerickej derivácii alebo v pomalom drifte pracovného bodu.
 
 
-\paragraph{Implementačné doplnenia}
+\paragraph{Doplnenie implementácie}
 
 Na realizáciu uvedených úprav bolo potrebné doplniť dve pomocné funkcie
 pre obsluhu kruhového buffra a niekoľko nových globálnych premenných.
@@ -1885,7 +1890,7 @@ dTheta[2] = -SIGN_B0 * e_ad * (ALPHA3 * rf);
 % \end{center}
 \end{figure}
 
-\paragraph{Experimentálne overenie heuristickej modifikácie}
+\paragraph{Overenie modifikovaného algoritmu riadenia na reálnom systéme}
 
 Na základe tejto úpravy bol následne vykonaný nový experiment na reálnom systéme
 TS05. Je tu
@@ -1910,7 +1915,8 @@ problém driftu parametrov úplne neodstránila.
 
 
 
-\subsection{Implementácia gradientného MRAC regulátora v PLC Siemens}
+
+\subsection{Implementácia: programovateľný logický automat (PLC)}
 \label{sec:mrac_plc_implementation}
 
 Po overení funkčnosti gradientného MRAC regulátora v prostredí MATLAB/Simulink
@@ -2216,7 +2222,7 @@ je uvedená na obr.~\ref{fig:tia_mrac_scheme}. Zoznam premenných funkčného bl
 
 \end{center}
 
-\subsubsection{Experimentálne overenie na reálnom systéme}
+\subsubsection{Overenie na reálnom systéme}
 
 Na základe popisanej implementácie bol následne vykonaný experiment na reálnom
 systéme TS05. Celkový priebeh experimentu v absolútnych veličinách je
@@ -2267,15 +2273,12 @@ MATLAB/Simulink.
 }
 \figcaption{Experimentálne výsledky gradientného MRAC regulátora implementovaného v PLC Siemens v absolútnych veličinách}
 \label{fig:ts_plc_mrac_real_raw}
-
-
-
 }
 % \end{center}
 \end{figure}
 
 
-\subsection{Porovnanie výsledkov implementácie MRAC regulátora}
+\subsection{Porovnanie výsledkov z jednotlivých implementácií adaptívneho riadiaceho systému}
 \label{sec:mrac_implementation_comparison}
 
 Porovnanie experimentálnych výsledkov jednotlivých implementácií MRAC regulátora
@@ -2306,6 +2309,7 @@ Napriek týmto rozdielom výsledky ukazujú, že základná implementácia MRAC
 algoritmu bola realizovaná na všetkých uvažovaných platformách. Detailná
 optimalizácia adaptačných parametrov pre každú platformu samostatne však nebola
 cieľom tejto práce.
+
 
 
 % \begin{figure}[!t]

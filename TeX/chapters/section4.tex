@@ -2,7 +2,7 @@
 % Section 4: PI + prepínač pracovných bodov 
 % ===================================================================
 
-\section{PI regulácia s prepínaním pracovných bodov}
+\section[Riadiaci systém s prepínaním pre celý rozsah výstupnej veličiny riadeného systému]{Riadiaci systém s prepínaním\\pre celý rozsah výstupnej veličiny riadeného systému}
 \label{sec:pi_switching}
 
 
@@ -65,9 +65,9 @@ V tabuľke sú preto uvedené aktuálne hodnoty pracovných bodov, ktoré vernej
 % Subsection 4.1 - Opis a schéma riadenia s použitím prepínača
 % -------------------------------------------------------------------
 
-\subsection{Opis a schéma riadenia s použitím prepínača}
+\subsection{Syntéza riadiaceho systému}
 
-V tejto časti je uvažovaná riadiaca štruktúra,
+V tejto časti je prezentovaná riadiaca štruktúra,
 ktorá pozostáva z dvoch PI regulátorov.
 Prvý z nich predstavuje globálny PI regulátor,
 ktorý pracuje s absolútnymi veličinami systému.
@@ -157,7 +157,7 @@ pracovný bod systému, pričom v závislosti od fázy algoritmu môžu nadobúd
 tabuľkové hodnoty z tabuľky~\ref{tab:pb_overview}, alebo odhadnuté hodnoty
 získané počas globálnej regulácie po detekcii ustálenia.
 
-\paragraph{Počiatočná podmienka integračnej zložky pri prepnutí}   
+\paragraph{Začiatočná podmienka integračnej zložky pri prepnutí}   
 
 Dôležitou požiadavkou navrhnutej štruktúry
 je zabezpečenie plynulého prepínania medzi globálnym
@@ -522,7 +522,7 @@ ustálenia, ktorý lepšie zodpovedá reálnemu správaniu systému.
 % Subsubsection 4.1.3 - Prepínanie na základe detekcie ustálenia
 % -------------------------------------------------------------------
 
-\subsubsection{Prepínanie na základe detekcie ustálenia}
+\subsubsection{Prepínanie na základe detekcie ustálenia v okolí želaného pracovného bodu}
 \label{sec:pi_switch_settling_detection}
 
 Druhá uvažovaná realizácia prepínacej logiky
@@ -708,7 +708,7 @@ spôsobené reálnymi prevádzkovými podmienkami.
 % Subsection 4.2 - Realizácia algoritmu v prostredí Matlab Simulink
 % -------------------------------------------------------------------
 
-\subsection{Realizácia algoritmu v prostredí MATLAB/Simulink}
+\subsection{Realizácia riadiaceho systému v prostredí MATLAB/Simulink}
 \label{sec:pi_switch_matlab_implementation}
 
 Navrhnutý algoritmus prepínania pracovných bodov
@@ -867,7 +867,7 @@ pre praktickú implementáciu prijateľné.
 % Subsubsection 4.2.1 - Simulácia algoritmu
 % -------------------------------------------------------------------
 
-\subsubsection{Simulácia algoritmu}
+\subsubsection{Simulačné overenie}
 \label{sec:pi_switch_simulation}
 
 Funkčnosť navrhnutého algoritmu bola overená simuláciou
@@ -934,7 +934,7 @@ zatiaľ čo hodnota $0$ zodpovedá lokálnej regulácii.
 % Subsubsection 4.2.2 - Experimentálne overenie na reálnom systéme
 % -------------------------------------------------------------------
 
-\subsubsection{Experimentálne overenie na reálnom systéme}
+\subsubsection{Overenie na reálnom systéme}
 \label{sec:pi_switch_real_system}
 
 Navrhnutý algoritmus bol následne overený aj na reálnom systéme TS05.
@@ -1021,7 +1021,7 @@ aj v podmienkach reálneho systému.
 % Subsection 4.2.2 - Realizácia algoritmu v jazyku C++
 % -------------------------------------------------------------------
 
-\subsection{Realizácia algoritmu v jazyku C++}
+\subsection{Realizácia riadiaceho systému v jazyku C++ pre mikrokontrolér}
 \label{sec:pi_switch_cpp_implementation}
 
 Po overení funkčnosti navrhnutého algoritmu
@@ -1385,7 +1385,7 @@ Napriek tomu zostal princíp výpočtu nezmenený
 a~poradie jednotlivých krokov algoritmu
 bolo zachované.
 
-\subsubsection{Experiment na tepelnej sústave}
+\subsubsection{Overenie na reálnom systéme}
 \label{sec:prep_matlab_experiment}
 
 Výsledky experimentálneho overenia
@@ -1445,7 +1445,7 @@ aj na mikrokontrolérovej platforme.
 % \end{center}
 \end{figure}
 
-\subsection{Realizácia algoritmu v PLC Siemens}
+\subsection{Implementácia pre programovateľný logický kontrolér (PLC)}
 \label{sec:pi_switch_plc_implementation}
 
 Po overení funkčnosti navrhnutého algoritmu v prostredí MATLAB/Simulink
@@ -1770,7 +1770,7 @@ Zoznam premenných funkčného bloku je uvedený v tab.~\ref{tab:tia_prep_vars}.
 % \end{center}
 \end{table}
 
-\subsubsection{Experiment na tepelnej sústave}
+\subsubsection{Overenie na reálnom systéme}
 \label{sec:prep_plc_experiment}
 
 \begin{figure}[!p]
@@ -1834,7 +1834,7 @@ sa po prepnutí nachádza v~tolerančnom pásme $\pm 3\,\%$, čo potvrdzuje spr�
 
 
 
-\subsection{Porovnanie výsledkov implementácie prepínania pracovných bodov}
+\subsection{Porovnanie výsledkov z jednotlivých implementácií}
 \label{sec:prep_implementation_comparison}
 
 Algoritmus prepínania pracovných bodov bol implementovaný v~MATLAB/Simulink, v~jazyku C++ a~v~PLC Siemens. Porovnanie experimentálnych

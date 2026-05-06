@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.2.13)  4 MAY 2026 16:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.2.13)  6 MAY 2026 17:27
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -774,7 +774,7 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<../zadanieDP/zadanieDP.pdf, id=236, 597.51233pt x 845.0471pt>
+<../zadanieDP/zadanieDP.pdf, id=248, 597.51233pt x 845.0471pt>
 File: ../zadanieDP/zadanieDP.pdf Graphic file (type pdf)
 <use ../zadanieDP/zadanieDP.pdf>
 Package pdftex.def Info: ../zadanieDP/zadanieDP.pdf  used on input line 97.
@@ -812,7 +812,7 @@ LaTeX Font Info:    Font shape `T1/clm2s/b/n' in size <12> not available
  [9
 
 {c:/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}]
-<../SCH/DRAW/URO_scheme.pdf, id=374, 369.88583pt x 99.58464pt>
+<../SCH/DRAW/URO_scheme.pdf, id=393, 369.88583pt x 99.58464pt>
 File: ../SCH/DRAW/URO_scheme.pdf Graphic file (type pdf)
 <use ../SCH/DRAW/URO_scheme.pdf>
 Package pdftex.def Info: ../SCH/DRAW/URO_scheme.pdf  used on input line 96.
@@ -839,7 +839,7 @@ Package microtype Info: Character `texttrademark ' is missing
 (microtype)             in font `TS1/lmtt/m/n/8.5'.
 (microtype)             Ignoring protrusion settings for this character.
  [11{c:/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]) (./chapters/section2.tex
-<../SVG/TS_sch3_foto.pdf, id=425, 455.2441pt x 241.84843pt>
+<../SVG/TS_sch3_foto.pdf, id=444, 455.2441pt x 241.84843pt>
 File: ../SVG/TS_sch3_foto.pdf Graphic file (type pdf)
 <use ../SVG/TS_sch3_foto.pdf>
 Package pdftex.def Info: ../SVG/TS_sch3_foto.pdf  used on input line 47.
@@ -847,22 +847,22 @@ Package pdftex.def Info: ../SVG/TS_sch3_foto.pdf  used on input line 47.
  [12
 
  <../SVG/TS_sch3_foto.pdf>]
-<../PY/fig/ts_prevodova_spirala.png, id=443, 560.3334pt x 170.67764pt>
+<../PY/fig/ts_prevodova_spirala.png, id=462, 560.3334pt x 170.67764pt>
 File: ../PY/fig/ts_prevodova_spirala.png Graphic file (type png)
 <use ../PY/fig/ts_prevodova_spirala.png>
 Package pdftex.def Info: ../PY/fig/ts_prevodova_spirala.png  used on input line 92.
 (pdftex.def)             Requested size: 560.33203pt x 170.6772pt.
-<../PY/fig/ts_prevodova_sensors3.png, id=450, 560.3334pt x 204.765pt>
+<../PY/fig/ts_prevodova_sensors3.png, id=469, 560.3334pt x 204.765pt>
 File: ../PY/fig/ts_prevodova_sensors3.png Graphic file (type png)
 <use ../PY/fig/ts_prevodova_sensors3.png>
 Package pdftex.def Info: ../PY/fig/ts_prevodova_sensors3.png  used on input line 159.
 (pdftex.def)             Requested size: 560.33203pt x 204.76448pt.
-<../PY/fig/ts_prevodova_sensors6.png, id=451, 560.3334pt x 204.765pt>
+<../PY/fig/ts_prevodova_sensors6.png, id=470, 560.3334pt x 204.765pt>
 File: ../PY/fig/ts_prevodova_sensors6.png Graphic file (type png)
 <use ../PY/fig/ts_prevodova_sensors6.png>
 Package pdftex.def Info: ../PY/fig/ts_prevodova_sensors6.png  used on input line 180.
 (pdftex.def)             Requested size: 560.33203pt x 204.76448pt.
-<../PY/fig/ts_prevodova_sensors9.png, id=452, 560.3334pt x 204.765pt>
+<../PY/fig/ts_prevodova_sensors9.png, id=471, 560.3334pt x 204.765pt>
 File: ../PY/fig/ts_prevodova_sensors9.png Graphic file (type png)
 <use ../PY/fig/ts_prevodova_sensors9.png>
 Package pdftex.def Info: ../PY/fig/ts_prevodova_sensors9.png  used on input line 198.
@@ -871,17 +871,17 @@ Package pdftex.def Info: ../PY/fig/ts_prevodova_sensors9.png  used on input line
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<../PY/fig/ts_static_sensors3.png, id=453, 560.3334pt x 184.89075pt>
+<../PY/fig/ts_static_sensors3.png, id=472, 560.3334pt x 184.89075pt>
 File: ../PY/fig/ts_static_sensors3.png Graphic file (type png)
 <use ../PY/fig/ts_static_sensors3.png>
 Package pdftex.def Info: ../PY/fig/ts_static_sensors3.png  used on input line 224.
 (pdftex.def)             Requested size: 560.33203pt x 184.89027pt.
-<../PY/fig/ts_static_sensors6.png, id=454, 560.3334pt x 184.89075pt>
+<../PY/fig/ts_static_sensors6.png, id=473, 560.3334pt x 184.89075pt>
 File: ../PY/fig/ts_static_sensors6.png Graphic file (type png)
 <use ../PY/fig/ts_static_sensors6.png>
 Package pdftex.def Info: ../PY/fig/ts_static_sensors6.png  used on input line 245.
 (pdftex.def)             Requested size: 560.33203pt x 184.89027pt.
-<../PY/fig/ts_static_sensors9.png, id=455, 560.3334pt x 184.89075pt>
+<../PY/fig/ts_static_sensors9.png, id=474, 560.3334pt x 184.89075pt>
 File: ../PY/fig/ts_static_sensors9.png Graphic file (type png)
 <use ../PY/fig/ts_static_sensors9.png>
 Package pdftex.def Info: ../PY/fig/ts_static_sensors9.png  used on input line 263.
@@ -894,12 +894,12 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 LaTeX Warning: Text page 14 contains only floats.
 
 [14 <../PY/fig/ts_prevodova_sensors3.png> <../PY/fig/ts_prevodova_sensors6.png> <../PY/fig/ts_prevodova_sensors9.png>] [15 <../PY/fig/ts_static_sensors3.png> <../PY/fig/ts_static_sensors6.png> <../PY/fig/ts_static_sensors9.png>]
-<../PY/fig/ts_pb_vent6_spir4_ident_raw.png, id=481, 560.3334pt x 227.53004pt>
+<../PY/fig/ts_pb_vent6_spir4_ident_raw.png, id=500, 560.3334pt x 227.53004pt>
 File: ../PY/fig/ts_pb_vent6_spir4_ident_raw.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_spir4_ident_raw.png>
 Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_ident_raw.png  used on input line 291.
 (pdftex.def)             Requested size: 560.33203pt x 227.52948pt.
-<../PY/fig/ts_pb_vent6_spir4_ident_raw_normalized.png, id=484, 560.3334pt x 284.5029pt>
+<../PY/fig/ts_pb_vent6_spir4_ident_raw_normalized.png, id=503, 560.3334pt x 284.5029pt>
 File: ../PY/fig/ts_pb_vent6_spir4_ident_raw_normalized.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_spir4_ident_raw_normalized.png>
 Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_ident_raw_normalized.png  used on input line 358.
@@ -907,7 +907,7 @@ Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_ident_raw_normalized.png  u
  [16
 
  <../PY/fig/ts_pb_vent6_spir4_ident_raw.png>]
-<../PY/fig/ts_pb_vent6_spir4_ident_avg.png, id=516, 560.3334pt x 199.10385pt>
+<../PY/fig/ts_pb_vent6_spir4_ident_avg.png, id=534, 560.3334pt x 199.10385pt>
 File: ../PY/fig/ts_pb_vent6_spir4_ident_avg.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_spir4_ident_avg.png>
 Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_ident_avg.png  used on input line 415.
@@ -922,65 +922,65 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
  [18 <../PY/fig/ts_pb_vent6_spir4_ident_avg.png>] [19]
-<../PY/fig/ts_pb_vent6_spir4_ident_comparison.png, id=617, 560.3334pt x 170.67764pt>
+<../PY/fig/ts_pb_vent6_spir4_ident_comparison.png, id=636, 560.3334pt x 170.67764pt>
 File: ../PY/fig/ts_pb_vent6_spir4_ident_comparison.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_spir4_ident_comparison.png>
-Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_ident_comparison.png  used on input line 572.
+Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_ident_comparison.png  used on input line 570.
 (pdftex.def)             Requested size: 560.33203pt x 170.6772pt.
  [20 <../PY/fig/ts_pb_vent6_spir4_ident_comparison.png>]
-<../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png, id=633, 560.3334pt x 170.67764pt>
+<../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png, id=651, 560.3334pt x 170.67764pt>
 File: ../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png>
-Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png  used on input line 673.
+Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png  used on input line 664.
 (pdftex.def)             Requested size: 560.33203pt x 170.6772pt.
  [21 <../PY/fig/ts_pb_vent6_spir4_ident_approximated_comparison.png>]
-<../SCH/SIMULINK/TS01_start.pdf, id=647, 845.1575pt x 597.23125pt>
+<../SCH/SIMULINK/TS01_start.pdf, id=665, 845.1575pt x 597.23125pt>
 File: ../SCH/SIMULINK/TS01_start.pdf Graphic file (type pdf)
 <use ../SCH/SIMULINK/TS01_start.pdf>
-Package pdftex.def Info: ../SCH/SIMULINK/TS01_start.pdf  used on input line 738.
+Package pdftex.def Info: ../SCH/SIMULINK/TS01_start.pdf  used on input line 729.
 (pdftex.def)             Requested size: 517.8379pt x 157.29224pt.
  [22 <../SCH/SIMULINK/TS01_start.pdf>]
-<../SCH/SIMULINK/TS_simulink_scheme.pdf, id=669, 794.97pt x 614.295pt>
+<../SCH/SIMULINK/TS_simulink_scheme.pdf, id=687, 794.97pt x 614.295pt>
 File: ../SCH/SIMULINK/TS_simulink_scheme.pdf Graphic file (type pdf)
 <use ../SCH/SIMULINK/TS_simulink_scheme.pdf>
-Package pdftex.def Info: ../SCH/SIMULINK/TS_simulink_scheme.pdf  used on input line 790.
+Package pdftex.def Info: ../SCH/SIMULINK/TS_simulink_scheme.pdf  used on input line 781.
 (pdftex.def)             Requested size: 480.8527pt x 172.2031pt.
  [23 <../SCH/SIMULINK/TS_simulink_scheme.pdf>]
-<../SCH/DRAW/ARDUINO_connect_scheme.pdf, id=691, 369.88583pt x 156.49016pt>
+<../SCH/DRAW/ARDUINO_connect_scheme.pdf, id=709, 369.88583pt x 156.49016pt>
 File: ../SCH/DRAW/ARDUINO_connect_scheme.pdf Graphic file (type pdf)
 <use ../SCH/DRAW/ARDUINO_connect_scheme.pdf>
-Package pdftex.def Info: ../SCH/DRAW/ARDUINO_connect_scheme.pdf  used on input line 881.
+Package pdftex.def Info: ../SCH/DRAW/ARDUINO_connect_scheme.pdf  used on input line 872.
 (pdftex.def)             Requested size: 369.88583pt x 156.49214pt.
- [24 <../SCH/DRAW/ARDUINO_connect_scheme.pdf>]
-Overfull \hbox (5.22702pt too wide) in alignment at lines 959--968
+
+Overfull \hbox (5.22702pt too wide) in alignment at lines 950--959
 [] [] 
  []
 
 
-Overfull \hbox (6.587pt too wide) in alignment at lines 975--984
+Overfull \hbox (6.587pt too wide) in alignment at lines 966--975
 [] [] 
  []
 
-[25] [26] (c:/texlive/2023/texmf-dist/tex/latex/listings/lstlang1.sty
+[24 <../SCH/DRAW/ARDUINO_connect_scheme.pdf>] [25] [26] (c:/texlive/2023/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2023/02/27 1.9 listings language file
 ) (c:/texlive/2023/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2023/02/27 1.9 listings language file
 ) (c:/texlive/2023/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
-) [27]
-LaTeX Font Info:    Trying to load font information for TS1+clm2 on input line 1186.
+)
+LaTeX Font Info:    Trying to load font information for TS1+clm2 on input line 1175.
  (c:/texlive/2023/texmf-dist/tex/latex/cfr-lm/ts1clm2.fd
 File: ts1clm2.fd 2015/02/01 Fontinst v1.928 font definitions for TS1/clm2.
-) [28] (c:/texlive/2023/texmf-dist/tex/latex/listings/lstlang1.sty
+) [27] [28] (c:/texlive/2023/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2023/02/27 1.9 listings language file
 )
-<../SCH/TIA/tia_service_scheme.png, id=771, 470.50781pt x 626.34pt>
+<../SCH/TIA/tia_service_scheme.png, id=789, 470.50781pt x 626.34pt>
 File: ../SCH/TIA/tia_service_scheme.png Graphic file (type png)
 <use ../SCH/TIA/tia_service_scheme.png>
-Package pdftex.def Info: ../SCH/TIA/tia_service_scheme.png  used on input line 1324.
+Package pdftex.def Info: ../SCH/TIA/tia_service_scheme.png  used on input line 1313.
 (pdftex.def)             Requested size: 351.39041pt x 467.7755pt.
  [29] [30 <../SCH/TIA/tia_service_scheme.png>] [31]) (./chapters/section3.tex
-<../SCH/DRAW/PI_scheme_draw.pdf, id=825, 369.88583pt x 125.19212pt>
+<../SCH/DRAW/PI_scheme_draw.pdf, id=843, 369.88583pt x 125.19212pt>
 File: ../SCH/DRAW/PI_scheme_draw.pdf Graphic file (type pdf)
 <use ../SCH/DRAW/PI_scheme_draw.pdf>
 Package pdftex.def Info: ../SCH/DRAW/PI_scheme_draw.pdf  used on input line 47.
@@ -988,99 +988,99 @@ Package pdftex.def Info: ../SCH/DRAW/PI_scheme_draw.pdf  used on input line 47.
  [32
 
  <../SCH/DRAW/PI_scheme_draw.pdf>] [33]
-<../PY/fig/ts_pb_vent6_spir4_pidtune_sim.png, id=876, 560.3334pt x 270.2898pt>
+<../PY/fig/ts_pb_vent6_spir4_pidtune_sim.png, id=894, 560.3334pt x 270.2898pt>
 File: ../PY/fig/ts_pb_vent6_spir4_pidtune_sim.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_spir4_pidtune_sim.png>
-Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_pidtune_sim.png  used on input line 185.
+Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_pidtune_sim.png  used on input line 181.
 (pdftex.def)             Requested size: 560.33203pt x 270.28914pt.
  [34 <../PY/fig/ts_pb_vent6_spir4_pidtune_sim.png>]
 Package microtype Info: Character `texttrademark ' is missing
 (microtype)             in font `TS1/lmtt/m/it/8.5'.
 (microtype)             Ignoring protrusion settings for this character.
  [35]
-<../SCH/SIMULINK/TS_pi_scheme.pdf, id=923, 845.1575pt x 597.23125pt>
+<../SCH/SIMULINK/TS_pi_scheme.pdf, id=943, 845.1575pt x 597.23125pt>
 File: ../SCH/SIMULINK/TS_pi_scheme.pdf Graphic file (type pdf)
 <use ../SCH/SIMULINK/TS_pi_scheme.pdf>
-Package pdftex.def Info: ../SCH/SIMULINK/TS_pi_scheme.pdf  used on input line 359.
+Package pdftex.def Info: ../SCH/SIMULINK/TS_pi_scheme.pdf  used on input line 356.
 (pdftex.def)             Requested size: 536.33333pt x 246.45427pt.
  [36 <../SCH/SIMULINK/TS_pi_scheme.pdf>]
-<../PY/fig/ts_pb_vent6_spir4_PI_real.png, id=1012, 560.3334pt x 270.2898pt>
+<../PY/fig/ts_pb_vent6_spir4_PI_real.png, id=1030, 560.3334pt x 270.2898pt>
 File: ../PY/fig/ts_pb_vent6_spir4_PI_real.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_spir4_PI_real.png>
-Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_PI_real.png  used on input line 383.
+Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_PI_real.png  used on input line 381.
 (pdftex.def)             Requested size: 560.33203pt x 270.28914pt.
  [37 <../PY/fig/ts_pb_vent6_spir4_PI_real.png>]
-<../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png, id=1023, 560.3334pt x 270.2898pt>
+<../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png, id=1041, 560.3334pt x 270.2898pt>
 File: ../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png>
-Package pdftex.def Info: ../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png  used on input line 427.
+Package pdftex.def Info: ../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png  used on input line 425.
 (pdftex.def)             Requested size: 560.33203pt x 270.28914pt.
  [38 <../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png>]
-<../PY/fig/ts_cpp_pi_real.png, id=1034, 560.3334pt x 270.2898pt>
+<../PY/fig/ts_cpp_pi_real.png, id=1054, 560.3334pt x 270.2898pt>
 File: ../PY/fig/ts_cpp_pi_real.png Graphic file (type png)
 <use ../PY/fig/ts_cpp_pi_real.png>
-Package pdftex.def Info: ../PY/fig/ts_cpp_pi_real.png  used on input line 522.
+Package pdftex.def Info: ../PY/fig/ts_cpp_pi_real.png  used on input line 520.
 (pdftex.def)             Requested size: 560.33203pt x 270.28914pt.
  [39] [40 <../PY/fig/ts_cpp_pi_real.png>]
-<../PY/fig/ts_plc_pi_real.png, id=1082, 560.3334pt x 270.2898pt>
+<../PY/fig/ts_plc_pi_real.png, id=1101, 560.3334pt x 270.2898pt>
 File: ../PY/fig/ts_plc_pi_real.png Graphic file (type png)
 <use ../PY/fig/ts_plc_pi_real.png>
-Package pdftex.def Info: ../PY/fig/ts_plc_pi_real.png  used on input line 632.
+Package pdftex.def Info: ../PY/fig/ts_plc_pi_real.png  used on input line 630.
 (pdftex.def)             Requested size: 560.33203pt x 270.28914pt.
-<../SCH/TIA/tia_pi_scheme.png, id=1083, 844.65562pt x 455.45157pt>
+<../SCH/TIA/tia_pi_scheme.png, id=1102, 844.65562pt x 455.45157pt>
 File: ../SCH/TIA/tia_pi_scheme.png Graphic file (type png)
 <use ../SCH/TIA/tia_pi_scheme.png>
-Package pdftex.def Info: ../SCH/TIA/tia_pi_scheme.png  used on input line 650.
+Package pdftex.def Info: ../SCH/TIA/tia_pi_scheme.png  used on input line 648.
 (pdftex.def)             Requested size: 425.36644pt x 229.36533pt.
  [41] [42 <../PY/fig/ts_plc_pi_real.png> <../SCH/TIA/tia_pi_scheme.png>]
-<../PY/fig/ts_pi_real_comparison.png, id=1122, 560.3334pt x 227.4096pt>
+<../PY/fig/ts_pi_real_comparison.png, id=1141, 560.3334pt x 227.4096pt>
 File: ../PY/fig/ts_pi_real_comparison.png Graphic file (type png)
 <use ../PY/fig/ts_pi_real_comparison.png>
-Package pdftex.def Info: ../PY/fig/ts_pi_real_comparison.png  used on input line 714.
+Package pdftex.def Info: ../PY/fig/ts_pi_real_comparison.png  used on input line 712.
 (pdftex.def)             Requested size: 560.33203pt x 227.40904pt.
  [43 <../PY/fig/ts_pi_real_comparison.png>]) (./chapters/section4.tex [44
 
 ]
-<../SCH/DRAW/PREP_logic.pdf, id=1144, 369.88583pt x 156.49016pt>
+<../SCH/DRAW/PREP_logic.pdf, id=1164, 369.88583pt x 156.49016pt>
 File: ../SCH/DRAW/PREP_logic.pdf Graphic file (type pdf)
 <use ../SCH/DRAW/PREP_logic.pdf>
 Package pdftex.def Info: ../SCH/DRAW/PREP_logic.pdf  used on input line 131.
 (pdftex.def)             Requested size: 369.88492pt x 156.48976pt.
  [45 <../SCH/DRAW/PREP_logic.pdf>] [46] [47] [48] [49] [50] [51] [52]
-<../SCH/SIMULINK/TS_prep_simulink_scheme.pdf, id=1513, 845.1575pt x 597.23125pt>
+<../SCH/SIMULINK/TS_prep_simulink_scheme.pdf, id=1532, 845.1575pt x 597.23125pt>
 File: ../SCH/SIMULINK/TS_prep_simulink_scheme.pdf Graphic file (type pdf)
 <use ../SCH/SIMULINK/TS_prep_simulink_scheme.pdf>
 Package pdftex.def Info: ../SCH/SIMULINK/TS_prep_simulink_scheme.pdf  used on input line 850.
 (pdftex.def)             Requested size: 388.38124pt x 488.056pt.
  [53 <../SCH/SIMULINK/TS_prep_simulink_scheme.pdf>]
-<../PY/fig/ts_ml_prep_simulation.png, id=1573, 560.3334pt x 625.8582pt>
+<../PY/fig/ts_ml_prep_simulation.png, id=1593, 560.3334pt x 625.8582pt>
 File: ../PY/fig/ts_ml_prep_simulation.png Graphic file (type png)
 <use ../PY/fig/ts_ml_prep_simulation.png>
 Package pdftex.def Info: ../PY/fig/ts_ml_prep_simulation.png  used on input line 923.
 (pdftex.def)             Requested size: 560.33203pt x 625.85666pt.
-<../PY/fig/ts_ml_prep_real.png, id=1575, 560.3334pt x 625.8582pt>
+<../PY/fig/ts_ml_prep_real.png, id=1595, 560.3334pt x 625.8582pt>
 File: ../PY/fig/ts_ml_prep_real.png Graphic file (type png)
 <use ../PY/fig/ts_ml_prep_real.png>
 Package pdftex.def Info: ../PY/fig/ts_ml_prep_real.png  used on input line 948.
 (pdftex.def)             Requested size: 560.33203pt x 625.85666pt.
-<../PY/fig/ts_ml_prep_real_zoom.png, id=1577, 560.3334pt x 341.3553pt>
+<../PY/fig/ts_ml_prep_real_zoom.png, id=1597, 560.3334pt x 341.3553pt>
 File: ../PY/fig/ts_ml_prep_real_zoom.png Graphic file (type png)
 <use ../PY/fig/ts_ml_prep_real_zoom.png>
 Package pdftex.def Info: ../PY/fig/ts_ml_prep_real_zoom.png  used on input line 988.
 (pdftex.def)             Requested size: 560.33203pt x 341.35445pt.
  [54] [55 <../PY/fig/ts_ml_prep_simulation.png>] [56 <../PY/fig/ts_ml_prep_real.png>] [57 <../PY/fig/ts_ml_prep_real_zoom.png>] [58] [59] [60]
-<../PY/fig/ts_cpp_prep_real.png, id=1830, 560.3334pt x 625.8582pt>
+<../PY/fig/ts_cpp_prep_real.png, id=1849, 560.3334pt x 625.8582pt>
 File: ../PY/fig/ts_cpp_prep_real.png Graphic file (type png)
 <use ../PY/fig/ts_cpp_prep_real.png>
 Package pdftex.def Info: ../PY/fig/ts_cpp_prep_real.png  used on input line 1411.
 (pdftex.def)             Requested size: 560.33203pt x 625.85666pt.
-<../PY/fig/ts_cpp_prep_real_zoom.png, id=1833, 560.3334pt x 341.3553pt>
+<../PY/fig/ts_cpp_prep_real_zoom.png, id=1852, 560.3334pt x 341.3553pt>
 File: ../PY/fig/ts_cpp_prep_real_zoom.png Graphic file (type png)
 <use ../PY/fig/ts_cpp_prep_real_zoom.png>
 Package pdftex.def Info: ../PY/fig/ts_cpp_prep_real_zoom.png  used on input line 1438.
 (pdftex.def)             Requested size: 560.33203pt x 341.35445pt.
  [61] [62 <../PY/fig/ts_cpp_prep_real.png>] [63 <../PY/fig/ts_cpp_prep_real_zoom.png>] [64] [65]
-<../SCH/TIA/tia_prep_scheme.png, id=2041, 1297.84875pt x 472.01344pt>
+<../SCH/TIA/tia_prep_scheme.png, id=2060, 1297.84875pt x 472.01344pt>
 File: ../SCH/TIA/tia_prep_scheme.png Graphic file (type png)
 <use ../SCH/TIA/tia_prep_scheme.png>
 Package pdftex.def Info: ../SCH/TIA/tia_prep_scheme.png  used on input line 1680.
@@ -1091,17 +1091,17 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <6> on input line 1767.
 LaTeX Font Info:    Font shape `T1/clm2/b/n' in size <9> not available
 (Font)              Font shape `T1/clm2/bx/n' tried instead on input line 1767.
-<../PY/fig/ts_plc_prep_real.png, id=2043, 560.3334pt x 625.8582pt>
+<../PY/fig/ts_plc_prep_real.png, id=2062, 560.3334pt x 625.8582pt>
 File: ../PY/fig/ts_plc_prep_real.png Graphic file (type png)
 <use ../PY/fig/ts_plc_prep_real.png>
 Package pdftex.def Info: ../PY/fig/ts_plc_prep_real.png  used on input line 1781.
 (pdftex.def)             Requested size: 573.32416pt x 640.38191pt.
-<../PY/fig/ts_plc_prep_real_zoom.png, id=2044, 560.3334pt x 341.3553pt>
+<../PY/fig/ts_plc_prep_real_zoom.png, id=2063, 560.3334pt x 341.3553pt>
 File: ../PY/fig/ts_plc_prep_real_zoom.png Graphic file (type png)
 <use ../PY/fig/ts_plc_prep_real_zoom.png>
 Package pdftex.def Info: ../PY/fig/ts_plc_prep_real_zoom.png  used on input line 1793.
 (pdftex.def)             Requested size: 560.33203pt x 341.35445pt.
-<../PY/fig/ts_prep_real_comparison.png, id=2045, 560.3334pt x 284.5029pt>
+<../PY/fig/ts_prep_real_comparison.png, id=2064, 560.3334pt x 284.5029pt>
 File: ../PY/fig/ts_prep_real_comparison.png Graphic file (type png)
 <use ../PY/fig/ts_prep_real_comparison.png>
 Package pdftex.def Info: ../PY/fig/ts_prep_real_comparison.png  used on input line 1805.
@@ -1109,83 +1109,83 @@ Package pdftex.def Info: ../PY/fig/ts_prep_real_comparison.png  used on input li
  [66 <../SCH/TIA/tia_prep_scheme.png>] [67] [68 <../PY/fig/ts_plc_prep_real.png>] [69 <../PY/fig/ts_plc_prep_real_zoom.png>] [70 <../PY/fig/ts_prep_real_comparison.png>]) (./chapters/section5.tex [71
 
 ] [72] [73] [74] [75] [76] [77]
-<../SCH/SIMULINK/TS_mrac_simulink_scheme.pdf, id=2311, 845.1575pt x 597.23125pt>
+<../SCH/SIMULINK/TS_mrac_simulink_scheme.pdf, id=2330, 845.1575pt x 597.23125pt>
 File: ../SCH/SIMULINK/TS_mrac_simulink_scheme.pdf Graphic file (type pdf)
 <use ../SCH/SIMULINK/TS_mrac_simulink_scheme.pdf>
-Package pdftex.def Info: ../SCH/SIMULINK/TS_mrac_simulink_scheme.pdf  used on input line 961.
+Package pdftex.def Info: ../SCH/SIMULINK/TS_mrac_simulink_scheme.pdf  used on input line 966.
 (pdftex.def)             Requested size: 628.80478pt x 348.0618pt.
  [78] [79 <../SCH/SIMULINK/TS_mrac_simulink_scheme.pdf>] [80]
-<../PY/fig/ts_ml_mrac_real_raw.png, id=2534, 560.3334pt x 398.32816pt>
+<../PY/fig/ts_ml_mrac_real_raw.png, id=2554, 560.3334pt x 398.32816pt>
 File: ../PY/fig/ts_ml_mrac_real_raw.png Graphic file (type png)
 <use ../PY/fig/ts_ml_mrac_real_raw.png>
-Package pdftex.def Info: ../PY/fig/ts_ml_mrac_real_raw.png  used on input line 1129.
+Package pdftex.def Info: ../PY/fig/ts_ml_mrac_real_raw.png  used on input line 1134.
 (pdftex.def)             Requested size: 560.33203pt x 398.32718pt.
  [81 <../PY/fig/ts_ml_mrac_real_raw.png>]
-<../PY/fig/ts_ml_mrac_real.png, id=2563, 560.3334pt x 398.32816pt>
+<../PY/fig/ts_ml_mrac_real.png, id=2582, 560.3334pt x 398.32816pt>
 File: ../PY/fig/ts_ml_mrac_real.png Graphic file (type png)
 <use ../PY/fig/ts_ml_mrac_real.png>
-Package pdftex.def Info: ../PY/fig/ts_ml_mrac_real.png  used on input line 1160.
+Package pdftex.def Info: ../PY/fig/ts_ml_mrac_real.png  used on input line 1165.
 (pdftex.def)             Requested size: 560.33203pt x 398.32718pt.
  [82 <../PY/fig/ts_ml_mrac_real.png>] [83] [84] [85] [86]
-<../PY/fig/ts_cpp_mrac_real_raw.png, id=2833, 560.3334pt x 398.32816pt>
+<../PY/fig/ts_cpp_mrac_real_raw.png, id=2852, 560.3334pt x 398.32816pt>
 File: ../PY/fig/ts_cpp_mrac_real_raw.png Graphic file (type png)
 <use ../PY/fig/ts_cpp_mrac_real_raw.png>
-Package pdftex.def Info: ../PY/fig/ts_cpp_mrac_real_raw.png  used on input line 1599.
+Package pdftex.def Info: ../PY/fig/ts_cpp_mrac_real_raw.png  used on input line 1604.
 (pdftex.def)             Requested size: 560.33203pt x 398.32718pt.
  [87]
-<../PY/fig/ts_cpp_mrac_real.png, id=2887, 560.3334pt x 398.32816pt>
+<../PY/fig/ts_cpp_mrac_real.png, id=2906, 560.3334pt x 398.32816pt>
 File: ../PY/fig/ts_cpp_mrac_real.png Graphic file (type png)
 <use ../PY/fig/ts_cpp_mrac_real.png>
-Package pdftex.def Info: ../PY/fig/ts_cpp_mrac_real.png  used on input line 1624.
+Package pdftex.def Info: ../PY/fig/ts_cpp_mrac_real.png  used on input line 1629.
 (pdftex.def)             Requested size: 560.33203pt x 398.32718pt.
  [88 <../PY/fig/ts_cpp_mrac_real_raw.png>] [89 <../PY/fig/ts_cpp_mrac_real.png>] [90] [91]
-<../PY/fig/ts_cpp_mrac_experemental.png, id=2988, 560.3334pt x 398.32816pt>
+<../PY/fig/ts_cpp_mrac_experemental.png, id=3007, 560.3334pt x 398.32816pt>
 File: ../PY/fig/ts_cpp_mrac_experemental.png Graphic file (type png)
 <use ../PY/fig/ts_cpp_mrac_experemental.png>
-Package pdftex.def Info: ../PY/fig/ts_cpp_mrac_experemental.png  used on input line 1881.
+Package pdftex.def Info: ../PY/fig/ts_cpp_mrac_experemental.png  used on input line 1886.
 (pdftex.def)             Requested size: 560.33203pt x 398.32718pt.
  [92 <../PY/fig/ts_cpp_mrac_experemental.png>] [93] [94]
-<../SCH/TIA/tia_mrac_scheme.png, id=3135, 992.20688pt x 401.24907pt>
+<../SCH/TIA/tia_mrac_scheme.png, id=3154, 992.20688pt x 401.24907pt>
 File: ../SCH/TIA/tia_mrac_scheme.png Graphic file (type png)
 <use ../SCH/TIA/tia_mrac_scheme.png>
-Package pdftex.def Info: ../SCH/TIA/tia_mrac_scheme.png  used on input line 2106.
+Package pdftex.def Info: ../SCH/TIA/tia_mrac_scheme.png  used on input line 2112.
 (pdftex.def)             Requested size: 499.34813pt x 201.93427pt.
  [95 <../SCH/TIA/tia_mrac_scheme.png>]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 2117.
+(caption)                particular \caption on input line 2123.
 See the caption package documentation for explanation.
 
 [96
 
 ]
-<../PY/fig/ts_plc_mrac_real_raw.png, id=3185, 560.3334pt x 398.32816pt>
+<../PY/fig/ts_plc_mrac_real_raw.png, id=3204, 560.3334pt x 398.32816pt>
 File: ../PY/fig/ts_plc_mrac_real_raw.png Graphic file (type png)
 <use ../PY/fig/ts_plc_mrac_real_raw.png>
-Package pdftex.def Info: ../PY/fig/ts_plc_mrac_real_raw.png  used on input line 2267.
+Package pdftex.def Info: ../PY/fig/ts_plc_mrac_real_raw.png  used on input line 2273.
 (pdftex.def)             Requested size: 560.33203pt x 398.32718pt.
  [97]
-<../PY/fig/ts_plc_mrac_real.png, id=3200, 560.3334pt x 398.32816pt>
+<../PY/fig/ts_plc_mrac_real.png, id=3219, 560.3334pt x 398.32816pt>
 File: ../PY/fig/ts_plc_mrac_real.png Graphic file (type png)
 <use ../PY/fig/ts_plc_mrac_real.png>
-Package pdftex.def Info: ../PY/fig/ts_plc_mrac_real.png  used on input line 2319.
+Package pdftex.def Info: ../PY/fig/ts_plc_mrac_real.png  used on input line 2323.
 (pdftex.def)             Requested size: 560.33203pt x 398.32718pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 2323.
+(caption)                particular \caption on input line 2327.
 See the caption package documentation for explanation.
 
 [98 <../PY/fig/ts_plc_mrac_real_raw.png>]
-<../PY/fig/ts_mrac_real_comparison.png, id=3206, 560.3334pt x 270.2898pt>
+<../PY/fig/ts_mrac_real_comparison.png, id=3225, 560.3334pt x 270.2898pt>
 File: ../PY/fig/ts_mrac_real_comparison.png Graphic file (type png)
 <use ../PY/fig/ts_mrac_real_comparison.png>
-Package pdftex.def Info: ../PY/fig/ts_mrac_real_comparison.png  used on input line 2340.
+Package pdftex.def Info: ../PY/fig/ts_mrac_real_comparison.png  used on input line 2344.
 (pdftex.def)             Requested size: 554.82875pt x 267.64134pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 2344.
+(caption)                particular \caption on input line 2348.
 See the caption package documentation for explanation.
 
 [99 <../PY/fig/ts_plc_mrac_real.png> <../PY/fig/ts_mrac_real_comparison.png>]) (./chapters/zaver.tex) [100
@@ -1212,21 +1212,21 @@ LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 Package rerunfilecheck Info: File `DP.out' has not changed.
-(rerunfilecheck)             Checksum: F05A146EB906AFC85D527CBC228491F5;14533.
+(rerunfilecheck)             Checksum: A99FDF054A6953293B6E206DC6A8D4BA;15875.
  ) 
 Here is how much of TeX's memory you used:
- 26256 strings out of 474221
- 413273 string characters out of 5750188
+ 26258 strings out of 474221
+ 413336 string characters out of 5750188
  2385978 words of memory out of 5000000
- 45183 multiletter control sequences out of 15000+600000
- 692843 words of font info for 389 fonts, out of 8000000 for 9000
+ 45186 multiletter control sequences out of 15000+600000
+ 692683 words of font info for 387 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,12n,120p,1024b,2208s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,12n,120p,1024b,2210s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmbx9.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmtt9.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on DP.pdf (106 pages, 15154846 bytes).
+Output written on DP.pdf (106 pages, 15147407 bytes).
 PDF statistics:
- 4211 PDF objects out of 4296 (max. 8388607)
- 3875 compressed objects within 39 object streams
- 2506 named destinations out of 2984 (max. 500000)
- 105684 words of extra memory for PDF output out of 106986 (max. 10000000)
+ 4229 PDF objects out of 4296 (max. 8388607)
+ 3894 compressed objects within 39 object streams
+ 2509 named destinations out of 2984 (max. 500000)
+ 105708 words of extra memory for PDF output out of 106986 (max. 10000000)
 
