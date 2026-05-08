@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.2.13)  8 MAY 2026 14:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.2.13)  8 MAY 2026 14:31
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1191,6 +1191,16 @@ See the caption package documentation for explanation.
 [99 <../PY/fig/ts_plc_mrac_real.png> <../PY/fig/ts_mrac_real_comparison.png>]) (./chapters/zaver.tex) [100
 
 ] (./chapters/literatura.tex
+Underfull \hbox (badness 5388) in paragraph at lines 12--16
+[]\T1/clm2/m/n/10 (+20) Ústav ro-bo-tiky a ky-ber-ne-tiky FEI STU v Bra-ti-slave, U£ebný text
+ []
+
+
+Underfull \hbox (badness 4995) in paragraph at lines 12--16
+\T1/clm2/m/n/10 (+20) uni-ver-zita v Bra-ti-slave, 2025. Do-stupné on-line: []$\T1/clm2t/m/n/10 https : / / github . com /
+ []
+
+
 Underfull \hbox (badness 4686) in paragraph at lines 24--27
 []\T1/clm2/m/n/10 (+20) L. Wang, \T1/clm2/m/it/10 (+20) PID Con-trol Sys-tem De-sign and Au-to-ma-tic Tu-ning using
  []
@@ -1215,15 +1225,15 @@ Package rerunfilecheck Info: File `DP.out' has not changed.
 (rerunfilecheck)             Checksum: A99FDF054A6953293B6E206DC6A8D4BA;15875.
  ) 
 Here is how much of TeX's memory you used:
- 26258 strings out of 474221
- 413336 string characters out of 5750188
+ 26254 strings out of 474221
+ 413285 string characters out of 5750188
  2385978 words of memory out of 5000000
  45186 multiletter control sequences out of 15000+600000
- 692683 words of font info for 387 fonts, out of 8000000 for 9000
+ 692401 words of font info for 384 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,12n,120p,1024b,2210s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmbx9.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmtt9.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on DP.pdf (106 pages, 15147627 bytes).
+Output written on DP.pdf (106 pages, 15147654 bytes).
 PDF statistics:
  4229 PDF objects out of 4296 (max. 8388607)
  3894 compressed objects within 39 object streams
