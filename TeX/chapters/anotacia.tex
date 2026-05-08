@@ -25,29 +25,14 @@ Mesiac, rok odovzdania: & Máj, 2026 \\
 
 \bigskip
 \noindent
-Kľúčové slová: riadenie systémov, laboratórny dynamický systém, identifikácia systému, numerická simulácia, PI regulátor, prepínanie pracovných bodov, gain scheduling, adaptívne riadenie, MRAC, gradientná metóda, MATLAB/Simulink, Arduino UNO, C++, PLC Siemens, TIA Portal, experimentálne overenie
+Kľúčové slová: 
+implementácia algoritmu riadenia, laboratórny dynamický systém, identifikácia systémov, PID regulátor, adaptívne riadenie, MATLAB/Simulink, Arduino UNO, C++, programovateľný logický automat, PLC
+
 
 \bigskip
 \noindent
-Diplomová práca sa zaoberá návrhom, implementáciou a experimentálnym
-overením vybraných algoritmov riadenia pre laboratórny tepelný systém.
-Hlavným cieľom práce je zostavenie riadiaceho systému pre reálny laboratórny
-dynamický systém a realizácia vlastného softvérového návrhu na viacerých
-implementačných platformách. V práci sú využité postupy z oblasti identifikácie
-systémov, numerickej simulácie a~vyhodnocovania kvality riadenia.
-
-V prvej časti je opísaný použitý laboratórny systém, jeho vstupy, výstupy a spôsob
-komunikácie s jednotlivými platformami. Na základe experimentálne nameraných
-údajov je vykonaná identifikácia systému, pričom získaný model slúži ako podklad
-pre návrh a simulačné overenie regulačných algoritmov. Následne sú navrhnuté
-a~realizované tri prístupy riadenia: PI regulátor, PI regulácia s prepínaním
-pracovných bodov a~adaptívna regulácia typu MRAC založená na gradientnej
-metóde.
-
-Jednotlivé algoritmy sú implementované v prostredí MATLAB/Simulink, v jazyku
-C++ na platforme Arduino UNO a na priemyselnom PLC systéme Siemens
-SIMATIC S7-1200 G2. Experimentálne overenie je zamerané na posúdenie
-funkčnosti navrhnutých riadiacich systémov pri riadení reálneho zariadenia.
+Diplomová práca prezentuje návrh implementácie riadiaceho systému pre laboratórne zariadenie predstavujúce reálny dynamický riadený systém. Implementované sú tri algoritmy riadenia: PI regulátor, PI regulátor s prepínaním pracovných bodov a adaptívny regulátor typu MRAC. Riadeným systémom je tepelný systém, kde riadenou veličinou je teplota vzduchu vháňaného do trubice. K riadenému systému je vypracovaná dokumentácia jeho komponentov a komunikačného rozhrania. Zrealizovaná je tiež potrebná identifikácia matematických modelov daného systému z hľadiska jeho statických aj dynamický vlastností.
+Samotná implementácia algoritmov riadenia je realizovaná na troch rôznych platformách: v prostredí MATLAB/Simulink, v jazyku C++ na vývojovej doske Arduino UNO a na priemyselnom PLC systéme. Ku každému prípadu je prezentovaný teoretický rozbor algoritmu, jeho sumarizácia vo forme pseudo-kódu a technická dokumentácia výslednej implementácie. Súčasťou je aj overenie každého z implementovaných algoritmov riadenia na reálnom laboratórnom zariadení a vzájomné porovnanie výsledkov pre daný algoritmus implementovaný na rôznych platformách.
 Výsledky práce ukazujú praktické možnosti implementácie zvolených algoritmov
 na rôznych platformách a zároveň poukazujú na vplyv merania, časovania,
 spracovania signálov a vlastností hardvéru na výsledné správanie regulačného

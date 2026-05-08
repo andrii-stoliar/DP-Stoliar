@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1778243466.22448 "e:/_CurrentContent/01_work_repo/ZP_active/DP-Stoliar/TeX/DP.tex" "DP.pdf" "DP" 1778243489.23508 0
+["pdflatex"] 1778246092.02498 "e:/_CurrentContent/01_work_repo/ZP_active/DP-Stoliar/TeX/DP.tex" "DP.pdf" "DP" 1778246115.19608 0
   "../PY/fig/ts_cpp_mrac_experemental.png" 1777385365 963313 debd19c891f4ba193280f725ebaf139d ""
   "../PY/fig/ts_cpp_mrac_real.png" 1777385365 958865 ba4021abbca0ffbeb5e83417f2c74de2 ""
   "../PY/fig/ts_cpp_mrac_real_raw.png" 1777385365 772048 429ac03990e3de2d0e9cbbbc91ae4f60 ""
@@ -50,10 +50,10 @@
   "../SVG/TS_sch3_foto.pdf" 1761841238 80040 1b74f28156c7762abaf4f86565790e36 ""
   "../zadanieDP/zadanieDP.pdf" 1763994083 104063 33f92488344945982c50291e0dd07c97 ""
   "COMMONFILES/preamble.tex" 1778077225 8789 c51fe0c74183e03286df25beb9484412 ""
-  "DP.aux" 1778243489 59054 4d29c5095426c71480aefab653188dd1 "pdflatex"
-  "DP.out" 1778243489 15875 a99fdf054a6953293b6e206dc6a8d4ba "pdflatex"
+  "DP.aux" 1778246114 59054 4d29c5095426c71480aefab653188dd1 "pdflatex"
+  "DP.out" 1778246114 15875 a99fdf054a6953293b6e206dc6a8d4ba "pdflatex"
   "DP.tex" 1777897022 5399 d42d4051c99be782ef6e52f9bdb065fa ""
-  "DP.toc" 1778243489 8597 f40c679cb5e6e37bc519c819a6092a7c "pdflatex"
+  "DP.toc" 1778246114 8597 f40c679cb5e6e37bc519c819a6092a7c "pdflatex"
   "c:/texlive/2023/texmf-dist/fonts/enc/dvips/cfr-lm/dotdigits-clm.enc" 1707818926 3921 eb65b2d07511e6dc37706a00bb293a76 ""
   "c:/texlive/2023/texmf-dist/fonts/enc/dvips/cfr-lm/t1-clm.enc" 1707818926 3104 554211af71f34bcdc3ed0d44a5fba87f ""
   "c:/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1707820840 2375 baa924870cfb487815765f9094cf3728 ""
@@ -283,8 +283,8 @@
   "c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1707823566 5518052 de2a91c664d75f3971de4662dc6b5a65 ""
   "c:/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1707823621 8211099 db9c0b16bbf9e266118fd92cb5c1f2dc ""
   "c:/texlive/2023/texmf.cnf" 1707823554 713 e69b156964470283e0530f5060668171 ""
-  "chapters/abstract.tex" 1777833179 2456 02dae993ef22c6e0cb14133bf2dc1ef4 ""
-  "chapters/anotacia.tex" 1777833179 2508 dea667b293298da370c20be2b9d5020e ""
+  "chapters/abstract.tex" 1778246091 2398 343e250781f5b69503de2f3c031d0105 ""
+  "chapters/anotacia.tex" 1778245760 2327 c59cec9f95bf6fc33f7a21e811d0472a ""
   "chapters/literatura.tex" 1778243445 2432 48f2f32aad48da061c8fdcb367927cbb ""
   "chapters/prilohy.tex" 1778077104 9787 52695436a4c01bf87f60416d80100007 ""
   "chapters/section1.tex" 1778060278 8072 ed498532e34c93801233085d425ab021 ""
