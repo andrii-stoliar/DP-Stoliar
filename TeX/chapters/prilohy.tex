@@ -1,8 +1,25 @@
-\section*{Zdrojové kódy implementácie}
-\addcontentsline{toc}{section}{Zdrojové kódy implementácie}
+
+
+\setcounter{section}{16}
+\setcounter{subsection}{0}
+\setcounter{figure}{0}
+\renewcommand{\thesection}{\Alph{section}}
+
+
+
+
+
+
+\section*{Prílohy}
+\addcontentsline{toc}{section}{Prílohy}
 \label{sec:zdrojove_kody_arduino}
 
-\begin{lstlisting}[language=C++, caption={Hlavný zdrojový kód pre Arduino UNO}, label={lst:main_cpp_appendix}]
+
+
+\subsection{Hlavný program pre mikrokontrolér platformy Arduino UNO}
+\label{sec:main_cpp_appendix}
+
+\begin{lstlisting}[language=C++, caption={Hlavný program pre mikrokontrolér platformy Arduino UNO}, label={lst:main_cpp_appendix}]
 #include <Arduino.h>
 
 // a1 -> snimac1
@@ -233,6 +250,10 @@ void loop() {
     }
 }
 \end{lstlisting}
+
+
+
+\subsection{Externý skript pre logovanie dát}
 
 \begin{lstlisting}[language=Python, caption={Externý skript pre logovanie dát}, label={lst:logger_py_appendix}]
 import csv

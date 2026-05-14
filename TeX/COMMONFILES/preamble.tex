@@ -24,6 +24,7 @@
 \usepackage{lmodern}
 
 % \usepackage[tt={oldstyle=false,proportional=true,monowidth}]{cfr-lm}
+\usepackage[rm={oldstyle=false}, sf={oldstyle=false}, tt={oldstyle=false,proportional=true,monowidth}]{cfr-lm}
 % https://mirror.szerverem.hu/ctan/fonts/cfr-lm/doc/cfr-lm.pdf
 
 % ------------------------------
@@ -43,7 +44,7 @@
 
 
 
-
+\numberwithin{equation}{section}
 
 % ------------------------------
 
@@ -170,7 +171,7 @@
 
 % ------------------------------
 
-
+\usepackage{caption}
 
 \usepackage{listings}
 
@@ -251,7 +252,7 @@
 
 
 
-\usepackage{caption}
+
 
 \DeclareCaptionFormat{odsadene}{\protect\makebox[0pt][r]{#1#2\hspace{4mm}}#3\par}
 \DeclareCaptionLabelSeparator{lendvojbodka}{:}
@@ -264,13 +265,14 @@
 \lstset{
     language=Matlab,
     backgroundcolor=\color[RGB]{245,245,245}, % light gray background
-    basicstyle=\fontfamily{cmtt}\selectfont\footnotesize,
+    % basicstyle=\fontfamily{cmtt}\selectfont\footnotesize,
+    basicstyle=\fontfamily{lmtt}\fontsize{8.5pt}{8.75pt}\selectfont,
     keywordstyle=\color[RGB]{0,0,255}\bfseries,
     stringstyle=\color[RGB]{163,21,21}, % MATLAB string color
     commentstyle=\color[RGB]{0,128,0}\itshape,
     showstringspaces=false,
     numbers=left,
-    numberstyle=\scriptsize\color{gray!80},
+    numberstyle=\fontfamily{lmtt}\fontsize{8.5pt}{8.75pt}\selectfont\color{lightgray},
     stepnumber=1,
     numbersep=10pt,
     frame=single,
@@ -290,7 +292,7 @@
 
 \lstdefinestyle{pseudocode}{
     backgroundcolor=\color{white},
-    basicstyle=\ttfamily\small,
+    basicstyle=\fontfamily{lmtt}\fontsize{8.5pt}{8.75pt}\selectfont,
     keywordstyle=\bfseries,
     commentstyle=\itshape\color{gray},
     stringstyle=\color{black},
@@ -309,8 +311,8 @@
 
 % Cool cpp style------------------------------
 
-\usepackage{xcolor}
-\usepackage{listings}
+
+
 
 \definecolor{codebg}{RGB}{30,32,34}
 \definecolor{codeframe}{RGB}{70,70,70}
@@ -331,7 +333,8 @@
     identifierstyle=\color{codeid},
     emphstyle=\color{codeemph}\bfseries,
     numbers=left,
-    numberstyle=\scriptsize\color{codenum},
+    % numberstyle=\scriptsize\color{codenum},
+    numberstyle=\fontfamily{lmtt}\fontsize{8.5pt}{8.75pt}\selectfont\color{codenum},
     stepnumber=1,
     numbersep=8pt,
     frame=none,

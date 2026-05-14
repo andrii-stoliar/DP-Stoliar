@@ -2,12 +2,13 @@
 % Section 5: MRAC 
 % ===================================================================
 
-\section{MRAC regulácia – gradientná metóda}
+% \section{MRAC regulácia – gradientná metóda}
+\section{Adaptívne riadenie s referenčným modelom}
 \label{sec:mrac_gradient}
 
-V tejto kapitole je riešená adaptívna regulácia typu
+V tejto kapitole je implementovaný algoritmus riadenia typu
 MRAC (\textit{Model Reference Adaptive Control}),
-ktorá umožňuje automatické prispôsobovanie parametrov regulátora
+ktorý umožňuje automatické prispôsobovanie parametrov regulátora
 pri nepresne známej dynamike riadeného systému.
 Adaptívne riadenie a jeho použitie pri technologických procesoch je
 podrobne spracované napríklad v~\cite{murgas1993,tao2003}.
@@ -25,10 +26,10 @@ a adaptačného zákona založeného na gradientnej metóde.
 % -------------------------------------------------------------------
 % Subsection - Popis algoritmu
 % -------------------------------------------------------------------
-\subsection{Popis algoritmu}
+\subsection{Rozbor algoritmu riadenia}
 \label{sec:mrac_gradient_algorithm}
 
-Gradientná MRAC regulácia je založená na myšlienke,
+Gradientný MRAC algoritmus je založený na myšlienke,
 že dynamika riadeného systému má byť v čase prispôsobovaná tak,
 aby výstup systému sledoval výstup zvoleného referenčného modelu.
 Návrh algoritmu pozostáva z troch základných častí:
@@ -69,7 +70,6 @@ pričom sa volí
 čím sa zabezpečí jednotkové statické zosilnenie modelu.
 
 \paragraph{Zákon riadenia}
-
 Všeobecný tvar zákona riadenia pri splnenej podmienke zhody je
 \begin{equation}
 	u(t) = \Theta^T(t)\,\omega(t),
@@ -86,7 +86,6 @@ Pre systém druhého rádu zvolíme
 		r(t)
 	\end{bmatrix}.
 \end{equation}
-
 Zákon riadenia potom nadobúda tvar
 \begin{equation}
 	u(t) = \Theta_1 y(t) + \Theta_2 \dot{y}(t) + \Theta_3 r(t).
@@ -96,8 +95,7 @@ Zákon riadenia potom nadobúda tvar
 \paragraph{Podmienka zhody a ideálne parametre}
 
 Po dosadení \eqref{eq:mrac_control_law} do systému
-\eqref{eq:mrac_plant} dostávame podmienku zhody
-
+\eqref{eq:mrac_plant} dostávame 
 \begin{equation}
 	y(s)\left(
 	s^2 + (a_1 - b_0\Theta_2)s + a_0 - b_0\Theta_1
@@ -105,16 +103,13 @@ Po dosadení \eqref{eq:mrac_control_law} do systému
 	=
 	b_0\Theta_3 r(s).
 \end{equation}
-
 Prenos uzavretého regulačného obvodu je
 \begin{equation}
 	\frac{y(s)}{r(s)} =
 	\frac{b_0\Theta_3}
 	{s^2 + (a_1 - b_0\Theta_2)s + (a_0 - b_0\Theta_1)}.
 \end{equation}
-
 Porovnaním s referenčným modelom získame ideálny vektor parametrov
-
 \begin{align}
 	\Theta_1^\ast &= \frac{a_0 - a_{0m}}{b_0}, 
 	\label{eq:mracIdeal_parameters_theta_1} \\
@@ -130,19 +125,18 @@ Adaptačná odchýlka je definovaná ako
 \begin{equation}
 	e(t) = y(t) - y_m(t),
 \end{equation}
-pričom cieľom regulácie je dosiahnuť
+pričom cieľom riadenia je dosiahnuť
 \begin{equation}
 	\lim_{t \to \infty} e(t) = 0.
 \end{equation}
 
 \paragraph{Účelová funkcia a MIT pravidlo}
 
-Minimalizovaná je účelová funkcia
+Účelová funkcia sa uvažuje v tvare
 \begin{equation}
 	J(\Theta) = \frac{1}{2} e^2(t).
 \end{equation}
-
-MIT pravidlo patrí medzi základné gradientné prístupy používané
+a využíva sa v rámci tzv. MIT pravidla (vzniklo na Massachusetts Institute of Technology), ktoré patrí medzi základné gradientné prístupy používané
 pri návrhu adaptačných zákonov v adaptívnom riadení~\cite{tao2003}.
 Je formulované ako
 \begin{equation}
@@ -152,7 +146,6 @@ Je formulované ako
 	=
 	-\alpha e \frac{\partial e}{\partial \Theta}.
 \end{equation}
-
 Keďže $y_m$ nezávisí od $\Theta$, platí
 \begin{equation}
 	\frac{d\Theta}{dt}
@@ -162,8 +155,7 @@ Keďže $y_m$ nezávisí od $\Theta$, platí
 
 \paragraph{Zákon adaptácie pre systém druhého rádu}
 
-Pre systém druhého rádu sú adaptačné zákony dané vzťahmi
-
+Pre uvažovaný prípad sú zákony adaptácie dané vzťahmi
 \begin{align}
 	\dot{\Theta}_1
 	&=
@@ -186,35 +178,31 @@ Pre systém druhého rádu sú adaptačné zákony dané vzťahmi
 	\frac{1}{s^2 + a_{1m}s + a_{0m}}\,r.
 	\label{eq:mrac_theta3_adapt}
 \end{align}
-
-Člen $s$ v adaptačnom zákone pre parameter $\Theta_2$
+pričom $s$ v adaptačnom zákone pre parameter $\Theta_2$
 zohľadňuje dynamický vplyv derivácie výstupu
 v zákone riadenia.
 
 % -------------------------------------------------------------------
 % Subsubsection - Diskrétna realizácia steady-state
 % -------------------------------------------------------------------
-\subsubsection{Prevod systému do stavového priestoru}
+\subsubsection{Prepis vstupno-výstupného opisu systému do stavového opisu}
 \label{sec:mrac_gradient_discrete}
 
 Pre potreby diskrétnej implementácie je vhodné
-preniesť opis riadeného systému z tvaru prenosovej funkcie
-do tvaru stavového modelu. Stavový opis predstavuje prirodzený spôsob
+preniesť opis dynamického systému z~tvaru prenosovej funkcie
+do tvaru stavového opisu. Stavový opis predstavuje prirodzený spôsob
 reprezentácie dynamických systémov, keďže umožňuje pracovať priamo
-s vnútornými stavmi systému a ich časovým vývojom~\cite{cellier1991,ogata2010}.
+s~vnútornými stavmi systému a ich časovým vývojom~\cite{cellier1991,ogata2010}.
 
 Uvažujme všeobecný lineárny systém druhého rádu
-
 \begin{equation}
 	G_s(s) = \frac{Y(s)}{U(s)}
 	=
 	\frac{b_1 s + b_0}{s^2 + a_1 s + a_0}.
 	\label{eq:general_second_order_tf}
 \end{equation}
-
 Tento prenos je možné interpretovať ako kaskádové spojenie
 dvoch čiastkových prenosov zavedením pomocnej premennej $Z(s)$
-
 \begin{align}
 	\frac{Z(s)}{U(s)}
 	&=
@@ -226,55 +214,42 @@ dvoch čiastkových prenosov zavedením pomocnej premennej $Z(s)$
 	b_1 s + b_0.
 	\label{eq:y_over_z}
 \end{align}
-
 Platí teda
-
 \begin{equation}
 	\frac{Y(s)}{U(s)}
 	=
 	\frac{Y(s)}{Z(s)}
 	\frac{Z(s)}{U(s)}.
 \end{equation}
-
 Prvý z uvedených prenosov
 \eqref{eq:z_over_u}
 možno zapísať v časovej oblasti ako diferenciálnu rovnicu
-
 \begin{equation}
 	\ddot{z}(t) + a_1 \dot{z}(t) + a_0 z(t) = u(t).
 	\label{eq:z_diff_eq}
 \end{equation}
-
 Táto rovnica je druhého rádu a je možné ju previesť
 na sústavu diferenciálnych rovníc prvého rádu
 vhodnou voľbou stavových veličín.
 
 Zaveďme prvú stavovú veličinu
-
 \begin{equation}
 	x_1(t) = z(t),
 \end{equation}
-
 z čoho vyplýva
-
 \begin{equation}
 	\dot{x}_1(t) = \dot{z}(t).
 \end{equation}
 
 Ako druhú stavovú veličinu zvolíme
-
 \begin{equation}
 	x_2(t) = \dot{z}(t),
 \end{equation}
-
 a teda
-
 \begin{equation}
 	\dot{x}_2(t) = \ddot{z}(t).
 \end{equation}
-
 Z rovnice \eqref{eq:z_diff_eq} je možné vyjadriť druhú deriváciu
-
 \begin{equation}
 	\ddot{z}(t)
 	=
@@ -282,9 +257,7 @@ Z rovnice \eqref{eq:z_diff_eq} je možné vyjadriť druhú deriváciu
 	- a_0 z(t)
 	+ u(t),
 \end{equation}
-
 čo po dosadení za stavové premenné vedie k
-
 \begin{equation}
 	\dot{x}_2(t)
 	=
@@ -292,9 +265,7 @@ Z rovnice \eqref{eq:z_diff_eq} je možné vyjadriť druhú deriváciu
 	- a_0 x_1(t)
 	+ u(t).
 \end{equation}
-
 Sústava diferenciálnych rovníc prvého rádu má teda tvar
-
 \begin{align}
 	\dot{x}_1(t) &= x_2(t),
 	\\
@@ -302,7 +273,6 @@ Sústava diferenciálnych rovníc prvého rádu má teda tvar
 \end{align}
 
 V maticovom zápise možno systém vyjadriť ako
-
 \begin{equation}
 	\dot{x}(t)
 	=
@@ -319,9 +289,7 @@ V maticovom zápise možno systém vyjadriť ako
 	u(t),
 	\label{eq:state_matrix_form}
 \end{equation}
-
 kde stavový vektor je definovaný ako
-
 \begin{equation}
 	x(t)
 	=
@@ -333,7 +301,6 @@ kde stavový vektor je definovaný ako
 
 Výstupná rovnica vyplýva z prenosu \eqref{eq:y_over_z}.
 V časovej oblasti platí
-
 \begin{equation}
 	y(t)
 	=
@@ -341,9 +308,7 @@ V časovej oblasti platí
 	+
 	b_0 z(t).
 \end{equation}
-
 Po vyjadrení pomocou stavových veličín dostávame
-
 \begin{equation}
 	y(t)
 	=
@@ -351,9 +316,7 @@ Po vyjadrení pomocou stavových veličín dostávame
 	+
 	b_0 x_1(t),
 \end{equation}
-
 resp. v maticovom tvare
-
 \begin{equation}
 	y(t)
 	=
@@ -364,15 +327,12 @@ resp. v maticovom tvare
 \end{equation}
 
 Celý systém je teda v štandardnom stavovom tvare
-
 \begin{align}
 	\dot{x}(t) &= A x(t) + b u(t),
 	\\
 	y(t) &= c^{T} x(t),
 \end{align}
-
 kde jednotlivé matice majú tvar
-
 \begin{equation}
 	A =
 	\begin{bmatrix}
@@ -402,19 +362,21 @@ pomocou výstupnej rovnice
 \[
 y(t)=c^{T}x(t).
 \]
-
 Takto získaný stavový opis je vhodný pre numerickú implementáciu,
 pretože dynamika systému je sústredená do stavovej rovnice
 a výstup je určený ako lineárna kombinácia stavových premenných.
+
+
+
+
+\subsubsection{Stavový opis súčastí MRAC algoritmu}
 
 \paragraph{Stavový opis referenčného modelu}
 
 Referenčný model definovaný prenosom
 \eqref{eq:mrac_ref_model}
 je potrebné previesť do stavového tvaru.
-
 Zvolíme stavový vektor
-
 \begin{equation}
 	x_{ym}(t)
 	=
@@ -423,10 +385,8 @@ Zvolíme stavový vektor
 		\dot{y}_m(t)
 	\end{bmatrix}.
 \end{equation}
-
 Na základe všeobecného tvaru odvodeného v predchádzajúcej časti
 má referenčný model podobu
-
 \begin{align}
 	\dot{x}_{ym}(t)
 	&=
@@ -438,9 +398,7 @@ má referenčný model podobu
 	&=
 	c_{ym}^{T} x_{ym}(t),
 \end{align}
-
 kde
-
 \begin{equation}
 	A_{ym}
 	=
@@ -471,15 +429,12 @@ Filtračný člen použitý v adaptačnom zákone
 pre parameter $\Theta_1$
 \eqref{eq:mrac_theta1_adapt}
 je daný prenosom
-
 \begin{equation}
 	\frac{y_f(s)}{y(s)}
 	=
 	\frac{1}{s^2 + a_{1m}s + a_{0m}}.
 \end{equation}
-
 Zvolíme stavový vektor
-
 \begin{equation}
 	x_{yf}(t)
 	=
@@ -488,9 +443,7 @@ Zvolíme stavový vektor
 		\dot{y}_f(t)
 	\end{bmatrix}.
 \end{equation}
-
 Stavový opis má tvar
-
 \begin{align}
 	\dot{x}_{yf}(t)
 	&=
@@ -502,9 +455,7 @@ Stavový opis má tvar
 	&=
 	c_{yf}^{T} x_{yf}(t),
 \end{align}
-
 kde
-
 \begin{equation}
 	A_{yf}
 	=
@@ -534,18 +485,14 @@ kde
 V adaptačnom zákone pre parameter $\Theta_2$
 \eqref{eq:mrac_theta2_adapt}
 sa nachádza člen
-
 \begin{equation}
 	\frac{\dot{y}_f(s)}{y(s)}
 	=
 	\frac{s}{s^2 + a_{1m}s + a_{0m}},
 \end{equation}
-
 ktorý zodpovedá derivácii výstupu predchádzajúceho filtra.
-
 Použijeme rovnaký stavový vektor $x_{yf}(t)$,
 pričom výstupná rovnica reprezentuje druhú stavovú veličinu
-
 \begin{align}
 	\dot{x}_{yf}(t)
 	&=
@@ -557,9 +504,7 @@ pričom výstupná rovnica reprezentuje druhú stavovú veličinu
 	&=
 	c_{ydf}^{T} x_{yf}(t),
 \end{align}
-
 kde
-
 \begin{equation}
 	A_{ydf}
 	=
@@ -590,14 +535,12 @@ Filtračný člen použitý v adaptačnom zákone
 pre parameter $\Theta_3$
 \eqref{eq:mrac_theta3_adapt}
 je daný prenosom
-
 \begin{equation}
 	\frac{r_f(s)}{r(s)}
 	=
 	\frac{1}{s^2 + a_{1m}s + a_{0m}}.
 \end{equation}
 Zvolíme stavový vektor
-
 \begin{equation}
 	x_{rf}(t)
 	=
@@ -606,9 +549,7 @@ Zvolíme stavový vektor
 		\dot{r}_f(t)
 	\end{bmatrix}.
 \end{equation}
-
 Stavový opis má tvar
-
 \begin{align}
 	\dot{x}_{rf}(t)
 	&=
@@ -620,9 +561,7 @@ Stavový opis má tvar
 	&=
 	c_{rf}^{T} x_{rf}(t),
 \end{align}
-
 kde
-
 \begin{equation}
 	A_{rf}
 	=
@@ -651,7 +590,6 @@ kde
 
 Zo získaných stavových opisov vyplýva, že všetky dynamické bloky
 využívajú rovnakú menovateľovú dynamiku, teda
-
 \begin{equation}
 	A_{ym} = A_{yf} = A_{ydf} = A_{rf}
 	=
@@ -660,9 +598,7 @@ využívajú rovnakú menovateľovú dynamiku, teda
 		- a_{0m} & - a_{1m}
 	\end{bmatrix},
 \end{equation}
-
 a rovnako
-
 \begin{equation}
 	b_{ym} = b_{yf} = b_{ydf} = b_{rf}
 	=
@@ -671,17 +607,14 @@ a rovnako
 		1
 	\end{bmatrix}.
 \end{equation}
-
 Jednotlivé bloky sa odlišujú iba výstupnou maticou $c$.
-
-Táto vlastnosť je výhodná aj z implementačného hľadiska, pretože
-referenčný model aj oba filtračné bloky možno v diskrétnej realizácii
+Táto vlastnosť je výhodná aj z~implementačného hľadiska, pretože
+referenčný model aj oba filtračné bloky možno v~diskrétnej realizácii
 aktualizovať rovnakým numerickým postupom. Odlišujú sa iba vstupnými
-a výstupnými veličinami, nie vnútornou dynamikou modelu.
+a~výstupnými veličinami, nie vnútornou dynamikou modelu.
 
 Pre filter výstupu a jeho derivácie možno zapísať
-spoločnú výstupnú rovnicu v maticovom tvare
-
+spoločnú výstupnú rovnicu v~maticovom tvare
 \begin{equation}
 	\begin{bmatrix}
 		y_f(t) \\
@@ -691,9 +624,7 @@ spoločnú výstupnú rovnicu v maticovom tvare
 	C_{yf}
 	x_{yf}(t),
 \end{equation}
-
 kde
-
 \begin{equation}
 	C_{yf}
 	=
@@ -704,7 +635,6 @@ kde
 \end{equation}
 
 Pre filter referencie platí
-
 \begin{equation}
 	r_f(t)
 	=
@@ -713,10 +643,8 @@ Pre filter referencie platí
 	\end{bmatrix}
 	x_{rf}(t).
 \end{equation}
-
 Referenčný model je realizovaný samostatne
 so stavovým vektorom $x_{ym}(t)$, pričom jeho výstup je
-
 \begin{equation}
 	y_m(t)
 	=
@@ -729,7 +657,7 @@ so stavovým vektorom $x_{ym}(t)$, pričom jeho výstup je
 % -------------------------------------------------------------------
 % Subsubsection - Pseudokód gradientnej MRAC regulácie
 % -------------------------------------------------------------------
-\subsubsection{Pseudokód gradientnej MRAC regulácie (diskrétna realizácia)}
+\subsubsection{Pseudokód adaptívneho riadiaceho systému}
 \label{sec:mrac_gradient_pseudocode}
 
 Diskrétna realizácia gradientnej MRAC regulácie
@@ -753,7 +681,6 @@ označené ako $y_{pb}$ a $r_{pb}$.
 Ďalšia činnosť regulátora potom prebieha
 so signálmi vyjadrenými ako odchýlky
 od pracovného bodu, teda
-
 \begin{equation}
 	\Delta y(k) = y(k) - y_{pb},
 	\qquad
@@ -761,22 +688,17 @@ od pracovného bodu, teda
 	\qquad
 	\Delta u(k) = u(k) - u_{pb}.
 \end{equation}
-
 Keďže zákon riadenia využíva aj deriváciu výstupu,
-je potrebné túto veličinu v diskrétnom čase numericky aproximovať.
-Použitá je spätná diferencia v tvare
-
+je potrebné túto veličinu v~diskrétnom čase numericky aproximovať.
+Použitá je spätná diferencia v~tvare
 \begin{equation}
 	\Delta \dot{y}(k)
 	=
 	\frac{\Delta y(k)-\Delta y(k-1)}{T_s},
 \end{equation}
-
 kde $\Delta y(k-1)$ predstavuje odchýlku výstupu
 v predchádzajúcom vzorkovacom kroku.
-
 Po skončení fázy ustálenia sa zostaví regresný vektor
-
 \begin{equation}
 	\omega(k)
 	=
@@ -786,32 +708,24 @@ Po skončení fázy ustálenia sa zostaví regresný vektor
 		\Delta r(k)
 	\end{bmatrix},
 \end{equation}
-
 na základe ktorého sa určí adaptívna zložka riadiaceho zásahu
-
 \begin{equation}
 	\Delta u(k)=\Theta^T(k)\omega(k).
 \end{equation}
-
 Celkový riadiaci zásah má potom tvar
-
 \begin{equation}
 	u(k)=u_{pb}+\Delta u(k).
 \end{equation}
-
 Chyba sledovania je definovaná ako
-
 \begin{equation}
 	e(k)=\Delta y(k)-y_m(k),
 \end{equation}
-
 kde $y_m(k)$ je výstup referenčného modelu
 budeného odchýlkou referencie $\Delta r(k)$.
 
 Aktualizácia parametrov regulátora
 je realizovaná diskrétnym tvarom MIT pravidla
 pomocou Eulerovej integrácie
-
 \begin{equation}
 	\Theta(k+1)
 	=
@@ -824,12 +738,10 @@ pomocou Eulerovej integrácie
 		\alpha_3 r_f(k)
 	\end{bmatrix}.
 \end{equation}
-
 Stavové rovnice referenčného modelu
 a filtračných blokov
 sú integrované rovnakým spôsobom
 v explicitnom Eulerovom tvare
-
 \begin{equation}
 	x(k+1)
 	=
@@ -837,7 +749,6 @@ v explicitnom Eulerovom tvare
 	+
 	T_s \bigl(Ax(k)+bv(k)\bigr),
 \end{equation}
-
 kde vstup $v(k)$ predstavuje
 buď odchýlku referencie $\Delta r(k)$,
 alebo odchýlku výstupu $\Delta y(k)$
@@ -853,14 +764,12 @@ v súradniciach vzťahovaných k pracovnému bodu.
 Rovnako sa pri prvom kroku po prepnutí
 nastaví na nulu aj predchádzajúca odchýlka výstupu,
 čím sa zabezpečí korektný výpočet diskrétnej derivácie.
-
 Pseudokód diskrétnej realizácie algoritmu
-je uvedený nižšie.
+je uvedený nižšie vo výpise kódu~\ref{lst:mrac_gradient_realtime}.
 
 \begin{lstlisting}[style=pseudocode,
 caption={Pseudokód diskrétnej implementácie gradientného MRAC regulátora s prechodom do súradníc pracovného bodu},
 label={lst:mrac_gradient_realtime}]
-
 % Inputs:
 % r - reference signal
 % y - plant output
@@ -970,50 +879,44 @@ y_prev_next = y;
 
 \end{lstlisting}
 
+
 % -------------------------------------------------------------------
 % Subsection - Implementácia MRAC v prostredí MATLAB
 % -------------------------------------------------------------------
-\subsection{Implementácia MRAC v prostredí MATLAB}
+\subsection{Implementácia: MATLAB/Simulink}
 \label{sec:mrac_matlab_implementation}
 
-Navrhnutý gradientný MRAC algoritmus
+
+Navrhnutý algoritmus MRAC
 bol implementovaný v prostredí MATLAB/Simulink
 bez využitia špecializovaných blokov adaptívneho riadenia.
 Celý regulátor je realizovaný
-v rámci jedného bloku MATLAB Function,
+v~rámci jedného bloku MATLAB Function,
 pričom jeho štruktúra zodpovedá
 diskrétnej realizácii uvedenej
-v časti \ref{sec:mrac_gradient_pseudocode}.
+v~časti \ref{sec:mrac_gradient_pseudocode}.
 
 V implementácii bol použitý referenčný model
-
 \begin{equation}
 	\frac{y_m(s)}{r(s)}
 	=
 	\frac{1}{s^2 + 20s + 1},
 	\label{eq:mrac_ref_model_matlab}
 \end{equation}
-
 so vzorkovacou periódou
-
 \begin{equation}
 	T_s = 0.1~\mathrm{s}.
 	\label{eq:mrac_sampling_time}
 \end{equation}
-
 Počas úvodnej fázy ustálenia
 je na vstup systému privádzaný konštantný zásah
-
 \begin{equation}
 	u_{pb} = 3,
 \end{equation}
-
 po dobu
-
 \begin{equation}
 	T_{\mathrm{settle}} = 400~\mathrm{s}.
 \end{equation}
-
 Po ukončení tejto fázy
 implementácia prechádza do režimu riadenia
 v súradniciach vzťahovaných k pracovnému bodu,
@@ -1026,9 +929,7 @@ a aktivuje sa adaptačný mechanizmus.
 Riadiaci zásah je v implementácii
 obmedzený saturáciou na interval $\langle 0,10\rangle$,
 aby boli rešpektované fyzikálne obmedzenia sústavy.
-
-Adaptačné koeficienty boli zvolené v tvare
-
+Adaptačné koeficienty boli zvolené v~tvare
 \begin{equation}
 	\alpha_1 = 14 \cdot 10^{-2},
 	\qquad
@@ -1037,17 +938,44 @@ Adaptačné koeficienty boli zvolené v tvare
 	\alpha_3 = 14 \cdot 10^{-2}.
 	\label{eq:mrac_adaptation_gains}
 \end{equation}
-
 Znamienko parametra $b_0$
 je v implementácii uvažované ako kladné, teda
-
 \begin{equation}
 	\mathrm{sign}(b_0)=1.
 \end{equation}
 
 Zdrojový kód implementovaného regulátora
 v bloku MATLAB Function
-je uvedený nižšie.
+je uvedený nižšie vo výpise kódu~\ref{lst:mrac_matlab_function}.
+Schéma implementovaného bloku MATLAB Function
+v~prostredí Simulink
+spolu s~jeho vstupmi a výstupmi
+je znázornená na obr.~\ref{fig:mrac_matlab_block}.
+
+
+\begin{figure}[!t]
+% \begin{center}
+    \vbox{
+        \makebox[\textwidth][c]{%
+            \includegraphics[
+                width=1.7\textwidth,
+                angle=0,
+                trim=10 60 10 80,
+                clip
+            ]{TS_mrac_simulink_scheme.pdf}
+        }
+
+        \vspace{-18pt}
+
+        \figcaption{Blok MATLAB Function implementujúci gradientný MRAC regulátor v~prostredí Simulink}
+        \label{fig:mrac_matlab_block}
+
+        \vspace{-18pt}
+
+    }
+% \end{center}
+\end{figure}
+
 
 \begin{lstlisting}[language=Matlab,
 caption={Implementácia gradientného MRAC regulátora v bloku MATLAB Function},
@@ -1188,105 +1116,99 @@ y_prev_next = y;
 end
 \end{lstlisting}
 
-Schéma implementovaného bloku MATLAB Function
-v prostredí Simulink
-spolu s jeho vstupmi a výstupmi
-je znázornená na obr.~\ref{fig:mrac_matlab_block}.
 
-\begin{center}
-    \vbox{
-        \makebox[\textwidth][c]{%
-            \includegraphics[
-                width=1.8\textwidth,
-                angle=0,
-                trim=10 60 10 80,
-                clip
-            ]{TS_mrac_simulink_scheme.pdf}
-        }
-        \figcaption{Blok MATLAB Function implementujúci gradientný MRAC regulátor v prostredí Simulink}
-        \label{fig:mrac_matlab_block}
-    }
-\end{center}
+% \vspace{-12pt}
+
+\vfill
+
 
 % -------------------------------------------------------------------
 % Subsubsection - Simulácia
 % -------------------------------------------------------------------
-\subsubsection{Experiment na tepelnej sústave}
+
+\begin{figure}[!b]
+% \begin{center}
+    \vbox{
+        \makebox[\textwidth][c]{%
+            \includegraphics{ts_ml_mrac_real_raw.png}
+        }
+
+        \figcaption{Experimentálne výsledky gradientného MRAC regulátora v absolútnych veličinách}
+        \label{fig:mrac_real_results_raw}
+    }
+% \end{center}
+\end{figure}
+
+
+
+\subsubsection{Overenie na reálnom systéme}
 \label{sec:mrac_matlab_experiment}
 
 Navrhnutý gradientný MRAC regulátor bol najskôr overený
 na modeli získanom identifikáciou
 \eqref{eq:Gs_ls_approx}
 a následne aplikovaný aj na reálnu tepelnú sústavu TS05.
-
 Cieľom bolo overiť,
 či implementovaný adaptačný mechanizmus
 zabezpečuje sledovanie výstupu referenčného modelu
 pri súčasnej adaptácii parametrov regulátora.
 
+
+\begin{figure}[!b]
+% \begin{center}
+
+    \vspace{-12pt}
+
+    \vbox{
+        \makebox[\textwidth][c]{%
+            \includegraphics{ts_ml_mrac_real.png}
+        }
+        \figcaption{Experimentálne výsledky gradientného MRAC regulátora po prechode do súradníc pracovného bodu}
+        \label{fig:mrac_real_results}
+    }
+% \end{center}
+\end{figure}
+
+
 Na obr.~\ref{fig:mrac_real_results_raw}
 sú priebehy v absolútnych veličinách.
 V hornom grafe sú zobrazené priebehy
 $y(t)$, $y_m(t)$ a $r(t)$.
-
 Počas prvých $400~\mathrm{s}$
 prebieha fáza ustálenia pri konštantnom riadiacom zásahu,
 pričom systém nereaguje na zmeny referencie
-a veličiny sa ustália v okolí pracovného bodu.
-
+a veličiny sa ustália v~okolí pracovného bodu.
 V druhom grafe je riadiaci zásah $u(t)$,
 ktorý je počas tejto fázy konštantný.
 Po uplynutí času $T_{\mathrm{settle}}$
 sa aktivuje adaptačný zákon
 a riadiaci zásah sa začne meniť.
-
 V treťom grafe sú priebehy parametrov
 $\Theta_1$, $\Theta_2$ a $\Theta_3$.
 Počas ustálenia sú konštantné,
 po prepnutí dochádza k ich adaptácii,
 čo potvrdzuje činnosť adaptačného mechanizmu.
 
-\begin{center}
-    \vbox{
-        \makebox[\textwidth][c]{%
-            \includegraphics[width=1.5\textwidth]{ts_ml_mrac_real_raw.png}
-        }
-        \figcaption{Experimentálne výsledky gradientného MRAC regulátora v absolútnych veličinách}
-        \label{fig:mrac_real_results_raw}
-    }
-\end{center}
-
 Detail adaptačnej fázy je uvedený
 na obr.~\ref{fig:mrac_real_results},
 kde sú priebehy vyjadrené ako odchýlky od pracovného bodu
 a fáza ustálenia nie je zobrazená.
-
 V hornom grafe sú veličiny
 $\Delta y(t)$, $\Delta y_m(t)$ a $\Delta r(t)$,
 v druhom $\Delta u(t)$
 a v treťom priebehy parametrov $\Theta$.
-
 Z priebehov je zrejmé,
 že výstup systému sleduje výstup referenčného modelu
 bez výrazných oscilácií
 a parametre regulátora sa počas deja prispôsobujú.
-
 Adaptačné koeficienty boli zvolené experimentálne
 na základe správania reálnej sústavy
 \eqref{eq:mrac_adaptation_gains},
 čo umožnilo dosiahnuť
-s uspokojivou presnosťou sledovanie
+s~uspokojivou presnosťou sledovanie
 výstupu referenčného modelu.
 
-\begin{center}
-    \vbox{
-        \makebox[\textwidth][c]{%
-            \includegraphics[width=1.5\textwidth]{ts_ml_mrac_real.png}
-        }
-        \figcaption{Experimentálne výsledky gradientného MRAC regulátora po prechode do súradníc pracovného bodu}
-        \label{fig:mrac_real_results}
-    }
-\end{center}
+
 
 Na základe experimentu možno konštatovať,
 že regulátor zabezpečuje sledovanie referenčného modelu
@@ -1298,7 +1220,7 @@ aj pri aplikácii na reálnu sústavu.
 %% C++ implementation
 %% -------------------------------------------------------------------
 
-\subsection{Implementácia gradientného MRAC regulátora v jazyku C++}
+\subsection{Implementácia: mikrokontrolér a jazyk C++}
 \label{sec:mrac_cpp_implementation}
 
 Po overení funkčnosti gradientného MRAC regulátora v prostredí
@@ -1328,7 +1250,7 @@ v tvare
 \end{equation}
 
 pričom počiatočná fáza ustálenia systému zostala rovnaká ako pri implementácii
-v prostredí MATLAB. Počas intervalu $T_{\mathrm{settle}} = 400~\mathrm{s}$
+v~prostredí MATLAB. Počas intervalu $T_{\mathrm{settle}} = 400~\mathrm{s}$
 je na vstup systému privádzaný konštantný zásah $u_{pb} = 3~\mathrm{V}$,
 čím sa sústava uvedie do okolia zvoleného pracovného bodu. Až po uplynutí
 tohto času sa aktivuje samotný adaptačný mechanizmus.
@@ -1654,6 +1576,8 @@ sw = sw_next;
 spirala = u;
 \end{lstlisting}
 
+\vspace{12pt}
+
 Z hľadiska numerickej realizácie zostáva princíp výpočtu rovnaký ako v prostredí
 MATLAB, avšak implementácia v jazyku C++ využíva pri aktualizácii stavových
 premenných reálne nameranú dĺžku vykonaného kroku \texttt{timeTickPeriod}
@@ -1663,24 +1587,26 @@ Súčasne zostáva zachovaná rovnaká logika prechodu do súradníc pracovného
 rovnaký referenčný model aj rovnaký adaptačný zákon ako pri implementácii
 v prostredí MATLAB/Simulink.
 
-\subsubsection{Experimentálne overenie na reálnom systéme}
+\subsubsection{Overenie na reálnom systéme}
 
 Na základe uvedenej implementácie bol vykonaný experiment na reálnom systéme
 TS05. Celkový priebeh experimentu v absolútnych veličinách je zobrazený
 na obr.~\ref{fig:mrac_cpp_real_raw}. V hornom grafe sú znázornené priebehy
 výstupu systému $y(t)$, výstupu referenčného modelu $y_m(t)$ a referencie $r(t)$.
-V druhom grafe je zobrazený akčný zásah $u(t)$ a v treťom priebehy parametrov
+V druhom grafe je zobrazený akčný zásah $u(t)$ a~v~treťom priebehy parametrov
 $\Theta_1$, $\Theta_2$ a $\Theta_3$.
 
-\begin{center}
+\begin{figure}[!t]
+% \begin{center}
     \vbox{
         \makebox[\textwidth][c]{%
-            \includegraphics[width=1.5\textwidth]{ts_cpp_mrac_real_raw.png}
+            \includegraphics{ts_cpp_mrac_real_raw.png}
         }
         \figcaption{Experimentálne výsledky gradientného MRAC regulátora implementovaného v jazyku C++ v absolútnych veličinách}
         \label{fig:mrac_cpp_real_raw}
     }
-\end{center}
+% \end{center}
+\end{figure}
 
 Z obr.~\ref{fig:mrac_cpp_real_raw} je zrejmé, že počas prvých
 $400~\mathrm{s}$ prebieha ustálenie systému pri konštantnom zásahu $u_{pb}$.
@@ -1693,22 +1619,24 @@ Pre detailnejšie posúdenie správania počas samotnej adaptívnej fázy je na
 obr.~\ref{fig:mrac_cpp_real} zobrazený priebeh po prechode do súradníc
 pracovného bodu. V hornom grafe sú znázornené odchýlkové veličiny
 $\Delta y(t)$, $\Delta y_m(t)$ a $\Delta r(t)$, v druhom priebeh
-$\Delta u(t)$ a v treťom priebehy adaptačných parametrov.
+$\Delta u(t)$ a~v~treťom priebehy adaptačných parametrov.
 
-\begin{center}
+\begin{figure}[!t]
+% \begin{center}
     \vbox{
         \makebox[\textwidth][c]{%
-            \includegraphics[width=1.5\textwidth]{ts_cpp_mrac_real.png}
+            \includegraphics{ts_cpp_mrac_real.png}
         }
         \figcaption{Experimentálne výsledky gradientného MRAC regulátora implementovaného v jazyku C++ po vynechaní fázy ustálenia}
         \label{fig:mrac_cpp_real}
     }
-\end{center}
+% \end{center}
+\end{figure}
 
 Z priebehov možno pozorovať, že bezprostredne po aktivácii adaptácie regulátor
 spočiatočne sleduje referenčný model pomerne uspokojivo. Výstup systému sa
-v úvodnej časti experimentu viaže na priebeh $\Delta y_m(t)$ bez výrazných
-prechodových javov a adaptačné parametre sa menia spojito. V neskoršej fáze
+v~úvodnej časti experimentu viaže na priebeh $\Delta y_m(t)$ bez výrazných
+prechodových javov a~adaptačné parametre sa menia spojito. V neskoršej fáze
 experimentu však možno pozorovať, že parametre $\Theta$ sa neustália na približne
 konštantných hodnotách, ale začínajú postupne driftovať. Tento jav sa následne
 prejavuje aj na zhoršení kvality sledovania referenčného modelu.
@@ -1718,7 +1646,7 @@ určiteľná, pričom pravdepodobne ide o kombináciu viacerých vplyvov. Jednou
 z možností je citlivosť gradientného adaptačného zákona na merací šum, ktorý sa
 výraznejšie prejavuje najmä v signáli numerickej derivácie $\Delta \dot{y}$.
 Ďalším faktorom môže byť pomalý drift pracovného bodu tepelnej sústavy,
-spôsobený zmenami teploty okolia a dlhodobým tepelným nahrievaním systému.
+spôsobený zmenami teploty okolia a~dlhodobým tepelným nahrievaním systému.
 Svoju úlohu môže zohrávať aj nepresná zhoda medzi reálnou sústavou a zvoleným
 referenčným modelom, ako aj skutočnosť, že v implementovanom adaptačnom
 zákone nebola použitá žiadna dodatočná stabilizačná úprava, napríklad
@@ -1736,12 +1664,12 @@ forme.
 %% Pokus o zlepšenie stability adaptácie
 %% -------------------------------------------------------------------
 
-\subsubsection{Heuristická modifikácia implementácie na potlačenie driftu parametrov}
+\subsubsection{Heuristická modifikácia na potlačenie driftu adaptovaných parametrov}
 \label{sec:mrac_cpp_heuristic_modification}
 
 V predchádzajúcej časti bolo ukázané, že pri dlhšej prevádzke gradientného
 MRAC regulátora na reálnom systéme TS05 dochádza k driftu adaptačných
-parametrov $\Theta$. Z tohto dôvodu bola následne overená jednoduchá
+parametrov~$\Theta$. Z~tohto dôvodu bola následne overená jednoduchá
 heuristická modifikácia implementácie, ktorej cieľom bolo tento jav
 prakticky potlačiť.
 
@@ -1751,20 +1679,19 @@ Základný zákon riadenia zostal nezmenený, rovnako ako referenčný model,
 štruktúra regresného vektora aj adaptačné koeficienty
 $\alpha_1$, $\alpha_2$, $\alpha_3$ uvedené v \eqref{eq:mrac_adaptation_gains}.
 Modifikácia sa týkala iba dvoch praktických oblastí:
-
-\begin{itemize}
+\begin{itemize}[leftmargin=0pt, labelsep=3mm, itemsep=0pt]
     \item spracovania meraného výstupného signálu,
     \item potlačenia driftu v adaptačnom mechanizme.
 \end{itemize}
 
-\paragraph{Smoothing meraného výstupu}
+
+\paragraph{Filtrácia šumu spätnoväzbovného signálu}
 
 Prvá úprava spočívala v tom, že namiesto použitia jedinej okamžitej hodnoty
 meraného signálu zo snímača sa začalo používať priemerovanie posledných
 $n_y$ vzoriek uložených v kruhovom buffri.
 Ak označíme surový meraný výstup ako $y_{\mathrm{raw}}(k)$ a počet použitých vzoriek
 v danom okamihu ako $M(k)$, potom vyhladený výstup možno zapísať v tvare
-
 \begin{equation}
     y_{\mathrm{avg}}(k) =
     \frac{1}{M(k)}
@@ -1774,16 +1701,12 @@ v danom okamihu ako $M(k)$, potom vyhladený výstup možno zapísať v tvare
     M(k) \leq n_y.
     \label{eq:mrac_cpp_yavg}
 \end{equation}
-
 V samotnom algoritme sa potom ako aktuálny výstup použije
-
 \begin{equation}
     y(k) = y_{\mathrm{avg}}(k).
     \label{eq:mrac_cpp_yavg_used}
 \end{equation}
-
 V implementácii bola zvolená veľkosť okna
-
 \begin{equation}
     n_y = 8.
     \label{eq:mrac_cpp_avg_window}
@@ -1793,29 +1716,24 @@ Cieľom tejto úpravy bolo zmenšiť vplyv meracieho šumu a kvantovania A/D pre
 ktoré sa inak priamo prenášajú do výpočtu regulačnej chyby a najmä do diskrétnej
 aproximácie derivácie výstupu.
 
-\paragraph{Dead-zone v adaptačnom zákone}
+\paragraph{Pásmo necitlivosti v zákone adaptácie}
 
 Druhá úprava sa týkala adaptačného zákona.
 Samotná regulačná chyba zostala definovaná v pôvodnom tvare
-
 \begin{equation}
     e(k) = \Delta y(k) - y_m(k),
     \label{eq:mrac_cpp_e_original}
 \end{equation}
-
 pričom ani zákon riadenia sa nezmenil:
-
 \begin{equation}
     \Delta u(k) = \Theta^T(k)\,\omega(k),
     \qquad
     u(k) = \mathrm{sat}\!\left(u_{pb} + \Delta u(k)\right).
     \label{eq:mrac_cpp_control_unchanged}
 \end{equation}
-
 Zmena bola vykonaná iba v adaptačnom mechanizme.
 Namiesto priameho použitia chyby $e(k)$ sa zaviedla modifikovaná chyba
 $e_{\mathrm{ad}}(k)$ s dead-zone nelinearitou:
-
 \begin{equation}
     e_{\mathrm{ad}}(k)=
     \begin{cases}
@@ -1825,16 +1743,12 @@ $e_{\mathrm{ad}}(k)$ s dead-zone nelinearitou:
     \end{cases}
     \label{eq:mrac_cpp_deadzone}
 \end{equation}
-
 V implementácii bola zvolená hodnota prahu
-
 \begin{equation}
     E_{\mathrm{dead}} = 0.02.
     \label{eq:mrac_cpp_edead}
 \end{equation}
-
 Adaptácia parametrov potom prebieha podľa vzťahu
-
 \begin{equation}
     \dot{\Theta}(k) =
     -\mathrm{sign}(b_0)\,e_{\mathrm{ad}}(k)
@@ -1847,12 +1761,13 @@ Adaptácia parametrov potom prebieha podľa vzťahu
 \end{equation}
 
 Zmyslom tejto úpravy je, že pri veľmi malej chybe sa adaptácia úplne vypne
-a pri väčšej chybe sa jej účinok zmenší o pevnú prahovú hodnotu.
+a~pri väčšej chybe sa jej účinok zmenší o pevnú prahovú hodnotu.
 Takto sa obmedzí postupné hromadenie parametrov spôsobené malou,
 ale dlhodobo prítomnou chybou, ktorá môže mať pôvod v šume,
 numerickej derivácii alebo v pomalom drifte pracovného bodu.
 
-\paragraph{Implementačné doplnenia}
+
+\paragraph{Doplnenie implementácie}
 
 Na realizáciu uvedených úprav bolo potrebné doplniť dve pomocné funkcie
 pre obsluhu kruhového buffra a niekoľko nových globálnych premenných.
@@ -1923,7 +1838,7 @@ Modifikovaný úsek regulačnej logiky je uvedený vo výpise
 \ref{lst:mrac_cpp_heur_logic}.
 
 \begin{lstlisting}[language=C++,
-caption={Modifikovaný úsek MRAC algoritmu s priemerovaním výstupu a dead-zone v adaptácii},
+caption={Modifikovaný úsek MRAC algoritmu s priemerovaním výstupu a dead-zone v~adaptácii},
 label={lst:mrac_cpp_heur_logic}]
 // Measured output
 y_avg = meanRing(yHist, yHistCount);
@@ -1959,7 +1874,23 @@ dTheta[1] = -SIGN_B0 * e_ad * (ALPHA2 * ydot_f);
 dTheta[2] = -SIGN_B0 * e_ad * (ALPHA3 * rf);
 \end{lstlisting}
 
-\paragraph{Experimentálne overenie heuristickej modifikácie}
+
+\begin{figure}[!b]
+% \begin{center}
+
+    \vspace{-12pt}
+
+    \vbox{
+        \makebox[\textwidth][c]{%
+            \includegraphics{ts_cpp_mrac_experemental.png}
+        }
+        \figcaption{Experimentálne výsledky heuristicky upravenej implementácie gradientného MRAC regulátora v jazyku C++}
+        \label{fig:mrac_cpp_experimental}
+    }
+% \end{center}
+\end{figure}
+
+\paragraph{Overenie modifikovaného algoritmu riadenia na reálnom systéme}
 
 Na základe tejto úpravy bol následne vykonaný nový experiment na reálnom systéme
 TS05. Je tu
@@ -1967,15 +1898,7 @@ zobrazená už iba samotná regulačná fáza po ukončení úvodného ustáleni
 teda bez prvých $400~\mathrm{s}$.
 Výsledok experimentu je uvedený na obr.~\ref{fig:mrac_cpp_experimental}.
 
-\begin{center}
-    \vbox{
-        \makebox[\textwidth][c]{%
-            \includegraphics[width=1.5\textwidth]{ts_cpp_mrac_experemental.png}
-        }
-        \figcaption{Experimentálne výsledky heuristicky upravenej implementácie gradientného MRAC regulátora v jazyku C++}
-        \label{fig:mrac_cpp_experimental}
-    }
-\end{center}
+
 
 Adaptačné koeficienty zostali pri tomto experimente rovnaké ako v pôvodnej
 implementácii, teda nebola menená ich hodnota ani samotná štruktúra adaptácie.
@@ -1990,7 +1913,10 @@ Možno teda konštatovať, že navrhnutá heuristická modifikácia viedla
 k praktickému zlepšeniu správania implementovaného regulátora, avšak
 problém driftu parametrov úplne neodstránila.
 
-\subsection{Implementácia gradientného MRAC regulátora v PLC Siemens}
+
+
+
+\subsection{Implementácia: programovateľný logický automat (PLC)}
 \label{sec:mrac_plc_implementation}
 
 Po overení funkčnosti gradientného MRAC regulátora v prostredí MATLAB/Simulink
@@ -2016,7 +1942,7 @@ diskrétnej derivácie po prechode do aktívneho režimu.
 
 Po aktivácii regulátora sa pri prvom kroku vykoná prechod do súradníc
 pracovného bodu. Uložia sa hodnoty $y_{pb}$ a $r_{pb}$, nulovo sa inicializujú
-stavy dynamických blokov a nastaví sa prepínací príznak. V ďalších krokoch už
+stavy dynamických blokov a~nastaví sa prepínací príznak. V ďalších krokoch už
 algoritmus pracuje s odchýlkovými veličinami $\Delta y$ a $\Delta r$,
 počíta ich diskrétnu deriváciu, výstup referenčného modelu, výstupy filtračných
 blokov, samotný akčný zásah a následne aj prírastky adaptačných parametrov.
@@ -2175,136 +2101,139 @@ END_IF;
 
 Schéma zapojenia algoritmu v hlavnom organizačnom bloku, vrátane bloku
 pre generovanie referencie, samotného MRAC regulátora, logovania a časovača,
-je uvedená na obr.~\ref{fig:tia_mrac_scheme}.
+je uvedená na obr.~\ref{fig:tia_mrac_scheme}. Zoznam premenných funkčného bloku je uvedený v tab.~\ref{tab:tia_mrac_vars}.
 
-\begin{center}
+
+\begin{figure}[!b]
+% \begin{center}
 \vbox{
 \makebox[\textwidth][c]{%
-    \includegraphics[width=1.2\textwidth]{tia_mrac_scheme.png}
+    \includegraphics[width=1.35\textwidth]{tia_mrac_scheme.png}
 }
 \figcaption{Zapojenie gradientného MRAC regulátora v prostredí TIA Portal}
 \label{fig:tia_mrac_scheme}
 }
-\end{center}
+% \end{center}
+\end{figure}
 
-Zoznam premenných funkčného bloku je uvedený v tab.~\ref{tab:tia_mrac_vars}.
+\clearpage
+
+\begin{center}
+
+\tabcaption{Premenné funkčného bloku \texttt{FB\_MRAC\_TS05}}
+\label{tab:tia_mrac_vars} 
+
+\fontsize{9pt}{11pt}\selectfont
+
+
 
 \begin{longtable}{c c c c c}
-    \caption{Premenné funkčného bloku \texttt{FB\_MRAC\_TS05}}
-    \label{tab:tia_mrac_vars} \\
+  
 
-    \hline
-    \textbf{Sekcia} & \textbf{Premenná} & \textbf{Dátový typ} & \textbf{Predvolená hodnota} & \textbf{Retain} \\ \hline
+    % \hline
+    \textbf{Sekcia} & \textbf{Premenná} & \textbf{Dátový typ} & \textbf{Predvolená hodnota} & \textbf{Retain} \\ \toprule
     \endfirsthead
 
-    \hline
-    \textbf{Sekcia} & \textbf{Premenná} & \textbf{Dátový typ} & \textbf{Predvolená hodnota} & \textbf{Retain} \\ \hline
+    % \hline
+    \textbf{Sekcia} & \textbf{Premenná} & \textbf{Dátový typ} & \textbf{Predvolená hodnota} & \textbf{Retain} \\ \toprule
     \endhead
 
-    Input & \texttt{Y} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-    Input & \texttt{R} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-    Input & \texttt{Enable} & \texttt{Bool} & \texttt{false} & Non-retain \\ \hline
-    Input & \texttt{Vent\_in} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    % --- This rule appears at the bottom of every page ---
+    \bottomrule
+    \endfoot
 
-    Output & \texttt{U} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-    Output & \texttt{Ym} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-    Output & \texttt{Theta1\_out} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-    Output & \texttt{Theta2\_out} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-    Output & \texttt{Theta3\_out} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-    Output & \texttt{Y\_pb\_out} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-    Output & \texttt{Vent\_out} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Input & \texttt{Y} & \texttt{Real} & \texttt{0.0} & Non-retain \\ %\hline
+    Input & \texttt{R} & \texttt{Real} & \texttt{0.0} & Non-retain \\ %\hline
+    Input & \texttt{Enable} & \texttt{Bool} & \texttt{false} & Non-retain \\ %\hline
+    Input & \texttt{Vent\_in} & \texttt{Real} & \texttt{0.0} & Non-retain \\ %\hline
 
-    Static & \texttt{Theta1} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-    Static & \texttt{Theta2} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-    Static & \texttt{Theta3} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-    Static & \texttt{X\_ym1} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-    Static & \texttt{X\_ym2} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-    Static & \texttt{X\_yf1} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-    Static & \texttt{X\_yf2} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-    Static & \texttt{X\_rf1} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-    Static & \texttt{X\_rf2} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-    Static & \texttt{Y\_prev} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-    Static & \texttt{Y\_pb} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-    Static & \texttt{R\_pb} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
-    Static & \texttt{Sw} & \texttt{Real} & \texttt{0.0} & Non-retain \\ \hline
+    Output & \texttt{U} & \texttt{Real} & \texttt{0.0} & Non-retain \\ %\hline
+    Output & \texttt{Ym} & \texttt{Real} & \texttt{0.0} & Non-retain \\ %\hline
+    Output & \texttt{Theta1\_out} & \texttt{Real} & \texttt{0.0} & Non-retain \\ %\hline
+    Output & \texttt{Theta2\_out} & \texttt{Real} & \texttt{0.0} & Non-retain \\ %\hline
+    Output & \texttt{Theta3\_out} & \texttt{Real} & \texttt{0.0} & Non-retain \\ %\hline
+    Output & \texttt{Y\_pb\_out} & \texttt{Real} & \texttt{0.0} & Non-retain \\ %\hline
+    Output & \texttt{Vent\_out} & \texttt{Real} & \texttt{0.0} & Non-retain \\ %\hline
 
-    Temp & \texttt{Theta1\_work} & \texttt{Real} & -- & -- \\ \hline
-    Temp & \texttt{Theta2\_work} & \texttt{Real} & -- & -- \\ \hline
-    Temp & \texttt{Theta3\_work} & \texttt{Real} & -- & -- \\ \hline
-    Temp & \texttt{X\_ym1\_work} & \texttt{Real} & -- & -- \\ \hline
-    Temp & \texttt{X\_ym2\_work} & \texttt{Real} & -- & -- \\ \hline
-    Temp & \texttt{X\_yf1\_work} & \texttt{Real} & -- & -- \\ \hline
-    Temp & \texttt{X\_yf2\_work} & \texttt{Real} & -- & -- \\ \hline
-    Temp & \texttt{X\_rf1\_work} & \texttt{Real} & -- & -- \\ \hline
-    Temp & \texttt{X\_rf2\_work} & \texttt{Real} & -- & -- \\ \hline
-    Temp & \texttt{Theta1\_next} & \texttt{Real} & -- & -- \\ \hline
-    Temp & \texttt{Theta2\_next} & \texttt{Real} & -- & -- \\ \hline
-    Temp & \texttt{Theta3\_next} & \texttt{Real} & -- & -- \\ \hline
-    Temp & \texttt{X\_ym1\_next} & \texttt{Real} & -- & -- \\ \hline
-    Temp & \texttt{X\_ym2\_next} & \texttt{Real} & -- & -- \\ \hline
-    Temp & \texttt{X\_yf1\_next} & \texttt{Real} & -- & -- \\ \hline
-    Temp & \texttt{X\_yf2\_next} & \texttt{Real} & -- & -- \\ \hline
-    Temp & \texttt{X\_rf1\_next} & \texttt{Real} & -- & -- \\ \hline
-    Temp & \texttt{X\_rf2\_next} & \texttt{Real} & -- & -- \\ \hline
-    Temp & \texttt{Y\_prev\_next} & \texttt{Real} & -- & -- \\ \hline
-    Temp & \texttt{Y\_pb\_next} & \texttt{Real} & -- & -- \\ \hline
-    Temp & \texttt{R\_pb\_next} & \texttt{Real} & -- & -- \\ \hline
-    Temp & \texttt{Sw\_next} & \texttt{Real} & -- & -- \\ \hline
-    Temp & \texttt{Dy} & \texttt{Real} & -- & -- \\ \hline
-    Temp & \texttt{Dr} & \texttt{Real} & -- & -- \\ \hline
-    Temp & \texttt{Dy\_prev} & \texttt{Real} & -- & -- \\ \hline
-    Temp & \texttt{Dy\_dot} & \texttt{Real} & -- & -- \\ \hline
-    Temp & \texttt{Yf} & \texttt{Real} & -- & -- \\ \hline
-    Temp & \texttt{Ydot\_f} & \texttt{Real} & -- & -- \\ \hline
-    Temp & \texttt{Rf} & \texttt{Real} & -- & -- \\ \hline
-    Temp & \texttt{E} & \texttt{Real} & -- & -- \\ \hline
-    Temp & \texttt{Du} & \texttt{Real} & -- & -- \\ \hline
-    Temp & \texttt{U\_unsat} & \texttt{Real} & -- & -- \\ \hline
-    Temp & \texttt{DTheta1} & \texttt{Real} & -- & -- \\ \hline
-    Temp & \texttt{DTheta2} & \texttt{Real} & -- & -- \\ \hline
-    Temp & \texttt{DTheta3} & \texttt{Real} & -- & -- \\ \hline
+    Static & \texttt{Theta1} & \texttt{Real} & \texttt{0.0} & Non-retain \\ %\hline
+    Static & \texttt{Theta2} & \texttt{Real} & \texttt{0.0} & Non-retain \\ %\hline
+    Static & \texttt{Theta3} & \texttt{Real} & \texttt{0.0} & Non-retain \\ %\hline
+    Static & \texttt{X\_ym1} & \texttt{Real} & \texttt{0.0} & Non-retain \\ %\hline
+    Static & \texttt{X\_ym2} & \texttt{Real} & \texttt{0.0} & Non-retain \\ %\hline
+    Static & \texttt{X\_yf1} & \texttt{Real} & \texttt{0.0} & Non-retain \\ %\hline
+    Static & \texttt{X\_yf2} & \texttt{Real} & \texttt{0.0} & Non-retain \\ %\hline
+    Static & \texttt{X\_rf1} & \texttt{Real} & \texttt{0.0} & Non-retain \\ %\hline
+    Static & \texttt{X\_rf2} & \texttt{Real} & \texttt{0.0} & Non-retain \\ %\hline
+    Static & \texttt{Y\_prev} & \texttt{Real} & \texttt{0.0} & Non-retain \\ %\hline
+    Static & \texttt{Y\_pb} & \texttt{Real} & \texttt{0.0} & Non-retain \\ %\hline
+    Static & \texttt{R\_pb} & \texttt{Real} & \texttt{0.0} & Non-retain \\ %\hline
+    Static & \texttt{Sw} & \texttt{Real} & \texttt{0.0} & Non-retain \\ %\hline
 
-    Constant & \texttt{A0M} & \texttt{Real} & \texttt{1.0} & -- \\ \hline
-    Constant & \texttt{A1M} & \texttt{Real} & \texttt{20.0} & -- \\ \hline
-    Constant & \texttt{B0M} & \texttt{Real} & \texttt{1.0} & -- \\ \hline
-    Constant & \texttt{Alpha1} & \texttt{Real} & \texttt{0.14} & -- \\ \hline
-    Constant & \texttt{Alpha2} & \texttt{Real} & \texttt{0.3} & -- \\ \hline
-    Constant & \texttt{Alpha3} & \texttt{Real} & \texttt{0.14} & -- \\ \hline
-    Constant & \texttt{Sign\_b0} & \texttt{Real} & \texttt{1.0} & -- \\ \hline
-    Constant & \texttt{Ts} & \texttt{Real} & \texttt{0.1} & -- \\ \hline
-    Constant & \texttt{U\_pb} & \texttt{Real} & \texttt{3.0} & -- \\ \hline
-    Constant & \texttt{U\_min} & \texttt{Real} & \texttt{0.0} & -- \\ \hline
-    Constant & \texttt{U\_max} & \texttt{Real} & \texttt{10.0} & -- \\ \hline
+    Temp & \texttt{Theta1\_work} & \texttt{Real} & -- & -- \\ %\hline
+    Temp & \texttt{Theta2\_work} & \texttt{Real} & -- & -- \\ %\hline
+    Temp & \texttt{Theta3\_work} & \texttt{Real} & -- & -- \\ %\hline
+    Temp & \texttt{X\_ym1\_work} & \texttt{Real} & -- & -- \\ %\hline
+    Temp & \texttt{X\_ym2\_work} & \texttt{Real} & -- & -- \\ %\hline
+    Temp & \texttt{X\_yf1\_work} & \texttt{Real} & -- & -- \\ %\hline
+    Temp & \texttt{X\_yf2\_work} & \texttt{Real} & -- & -- \\ %\hline
+    Temp & \texttt{X\_rf1\_work} & \texttt{Real} & -- & -- \\ %\hline
+    Temp & \texttt{X\_rf2\_work} & \texttt{Real} & -- & -- \\ %\hline
+    Temp & \texttt{Theta1\_next} & \texttt{Real} & -- & -- \\ %\hline
+    Temp & \texttt{Theta2\_next} & \texttt{Real} & -- & -- \\ %\hline
+    Temp & \texttt{Theta3\_next} & \texttt{Real} & -- & -- \\ %\hline
+    Temp & \texttt{X\_ym1\_next} & \texttt{Real} & -- & -- \\ %\hline
+    Temp & \texttt{X\_ym2\_next} & \texttt{Real} & -- & -- \\ %\hline
+    Temp & \texttt{X\_yf1\_next} & \texttt{Real} & -- & -- \\ %\hline
+    Temp & \texttt{X\_yf2\_next} & \texttt{Real} & -- & -- \\ %\hline
+    Temp & \texttt{X\_rf1\_next} & \texttt{Real} & -- & -- \\ %\hline
+    Temp & \texttt{X\_rf2\_next} & \texttt{Real} & -- & -- \\ %\hline
+    Temp & \texttt{Y\_prev\_next} & \texttt{Real} & -- & -- \\ %\hline
+    Temp & \texttt{Y\_pb\_next} & \texttt{Real} & -- & -- \\ %\hline
+    Temp & \texttt{R\_pb\_next} & \texttt{Real} & -- & -- \\ %\hline
+    Temp & \texttt{Sw\_next} & \texttt{Real} & -- & -- \\ %\hline
+    Temp & \texttt{Dy} & \texttt{Real} & -- & -- \\ %\hline
+    Temp & \texttt{Dr} & \texttt{Real} & -- & -- \\ %\hline
+    Temp & \texttt{Dy\_prev} & \texttt{Real} & -- & -- \\ %\hline
+    Temp & \texttt{Dy\_dot} & \texttt{Real} & -- & -- \\ %\hline
+    Temp & \texttt{Yf} & \texttt{Real} & -- & -- \\ %\hline
+    Temp & \texttt{Ydot\_f} & \texttt{Real} & -- & -- \\ %\hline
+    Temp & \texttt{Rf} & \texttt{Real} & -- & -- \\ %\hline
+    Temp & \texttt{E} & \texttt{Real} & -- & -- \\ %\hline
+    Temp & \texttt{Du} & \texttt{Real} & -- & -- \\ %\hline
+    Temp & \texttt{U\_unsat} & \texttt{Real} & -- & -- \\ %\hline
+    Temp & \texttt{DTheta1} & \texttt{Real} & -- & -- \\ %\hline
+    Temp & \texttt{DTheta2} & \texttt{Real} & -- & -- \\ %\hline
+    Temp & \texttt{DTheta3} & \texttt{Real} & -- & -- \\ %\hline
+
+    Constant & \texttt{A0M} & \texttt{Real} & \texttt{1.0} & -- \\ %\hline
+    Constant & \texttt{A1M} & \texttt{Real} & \texttt{20.0} & -- \\ %\hline
+    Constant & \texttt{B0M} & \texttt{Real} & \texttt{1.0} & -- \\ %\hline
+    Constant & \texttt{Alpha1} & \texttt{Real} & \texttt{0.14} & -- \\ %\hline
+    Constant & \texttt{Alpha2} & \texttt{Real} & \texttt{0.3} & -- \\ %\hline
+    Constant & \texttt{Alpha3} & \texttt{Real} & \texttt{0.14} & -- \\ %\hline
+    Constant & \texttt{Sign\_b0} & \texttt{Real} & \texttt{1.0} & -- \\ %\hline
+    Constant & \texttt{Ts} & \texttt{Real} & \texttt{0.1} & -- \\ %\hline
+    Constant & \texttt{U\_pb} & \texttt{Real} & \texttt{3.0} & -- \\ %\hline
+    Constant & \texttt{U\_min} & \texttt{Real} & \texttt{0.0} & -- \\ %\hline
+    Constant & \texttt{U\_max} & \texttt{Real} & \texttt{10.0} & -- \\ %\hline
 \end{longtable}
 
-\subsubsection{Experimentálne overenie na reálnom systéme}
+
+
+\end{center}
+
+\subsubsection{Overenie na reálnom systéme}
 
 Na základe popisanej implementácie bol následne vykonaný experiment na reálnom
 systéme TS05. Celkový priebeh experimentu v absolútnych veličinách je
 zobrazený na obr.~\ref{fig:ts_plc_mrac_real_raw}.
 
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=1.5\textwidth]{ts_plc_mrac_real_raw.png}
-}
-\figcaption{Experimentálne výsledky gradientného MRAC regulátora implementovaného v PLC Siemens v absolútnych veličinách}
-\label{fig:ts_plc_mrac_real_raw}
-}
-\end{center}
+
 
 Po vynechaní úvodnej fázy ustálenia sú výsledky zobrazené aj v odchýlkových
 veličinách na obr.~\ref{fig:ts_plc_mrac_real}.
 
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=1.5\textwidth]{ts_plc_mrac_real.png}
-}
-\figcaption{Experimentálne výsledky gradientného MRAC regulátora implementovaného v PLC Siemens po prechode do súradníc pracovného bodu}
-\label{fig:ts_plc_mrac_real}
-}
-\end{center}
+
 
 Z priebehov je zrejmé, že regulátor bol implementovaný korektne a jeho
 správanie je kvalitatívne podobné výsledkom získaným v prostredí MATLAB/Simulink
@@ -2336,25 +2265,26 @@ v PLC Siemens je správna a výsledné správanie systému zodpovedá charakteru
 výsledkov, ktoré boli pozorované pri realizácii v jazyku C++ aj v prostredí
 MATLAB/Simulink.
 
-\subsection{Porovnanie výsledkov implementácie MRAC regulátora}
+\begin{figure}[!t]
+% \begin{center}
+\vbox{
+\makebox[\textwidth][c]{%
+    \includegraphics{ts_plc_mrac_real_raw.png}
+}
+\figcaption{Experimentálne výsledky gradientného MRAC regulátora implementovaného v PLC Siemens v absolútnych veličinách}
+\label{fig:ts_plc_mrac_real_raw}
+}
+% \end{center}
+\end{figure}
+
+
+\subsection{Porovnanie výsledkov z jednotlivých implementácií adaptívneho riadiaceho systému}
 \label{sec:mrac_implementation_comparison}
 
 Porovnanie experimentálnych výsledkov jednotlivých implementácií MRAC regulátora
 je uvedené na obr.~\ref{fig:ts_mrac_real_comparison}.
-
-\begin{center}
-\vbox{
-\makebox[\textwidth][c]{%
-    \includegraphics[width=1.5\textwidth]{ts_mrac_real_comparison.png}
-}
-\figcaption{Porovnanie experimentálnych výsledkov gradientného MRAC regulátora na jednotlivých platformách}
-\label{fig:ts_mrac_real_comparison}
-}
-\end{center}
-
 Pre kvantitatívne porovnanie bola vypočítaná hodnota RMSE medzi priebehmi
 $\Delta y$ a $\Delta y_m$:
-
 \begin{align}
     \mathrm{RMSE}_{\mathrm{MATLAB}} &= 0.062104~\mathrm{V}, \\
     \mathrm{RMSE}_{\mathrm{C++}} &= 0.176280~\mathrm{V}, \\
@@ -2379,3 +2309,49 @@ Napriek týmto rozdielom výsledky ukazujú, že základná implementácia MRAC
 algoritmu bola realizovaná na všetkých uvažovaných platformách. Detailná
 optimalizácia adaptačných parametrov pre každú platformu samostatne však nebola
 cieľom tejto práce.
+
+
+
+% \begin{figure}[!t]
+\begin{center}
+
+\vspace*{-8mm}
+
+\vbox{
+\makebox[\textwidth][c]{%
+    \includegraphics{ts_plc_mrac_real.png}
+}
+
+\vspace{-8pt}
+
+\figcaption{Experimentálne výsledky gradientného MRAC regulátora implementovaného v PLC Siemens po prechode do súradníc pracovného bodu}
+\label{fig:ts_plc_mrac_real}
+
+\vspace{-2mm}
+
+}
+\end{center}
+% \end{figure}
+
+% \begin{figure}[!t]
+\begin{center}
+
+% \vspace*{-5mm}
+
+\vbox{
+\makebox[\textwidth][c]{%
+    \includegraphics[width=1.5\textwidth]{ts_mrac_real_comparison.png}
+}
+
+\vspace{-8pt}
+
+\figcaption{Porovnanie experimentálnych výsledkov gradientného MRAC regulátora na jednotlivých platformách}
+\label{fig:ts_mrac_real_comparison}
+}
+
+\vspace*{-8mm}
+
+\end{center}
+% \end{figure}
+
+\clearpage

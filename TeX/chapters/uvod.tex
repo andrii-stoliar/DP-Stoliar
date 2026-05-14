@@ -1,8 +1,7 @@
 \section*{Úvod}
 \addcontentsline{toc}{section}{Úvod}
 
-Riadenie dynamických systémov patrí medzi základné úlohy automatizácie a
-kybernetiky. V technickej praxi však samotný návrh regulačného algoritmu
+Riadenie dynamických systémov patrí medzi základné úlohy automatizácie a~kybernetiky. V technickej praxi však samotný návrh regulačného algoritmu
 nepredstavuje celý problém. Aby bolo možné algoritmus použiť na reálnom
 zariadení, je potrebné zabezpečiť jeho softvérovú implementáciu, komunikáciu
 s meracím a akčným hardvérom, správne časovanie výpočtu, spracovanie vstupných
@@ -14,7 +13,7 @@ hlavným cieľom zostavenie riadiaceho systému pre dostupný laboratórny hardv
 vrátane vlastného softvérového návrhu. Súčasťou riešenia je aj stručná technická
 dokumentácia použitého laboratórneho zariadenia, keďže poznanie jeho vstupov,
 výstupov, fyzikálnych vlastností a spôsobu pripojenia je nevyhnutné pre návrh
-a realizáciu riadiacich algoritmov.
+a~realizáciu riadiacich algoritmov.
 
 Práca zároveň využíva postupy z oblasti identifikácie systémov, numerickej
 simulácie a vyhodnocovania kvality riadenia. Pred samotným návrhom regulátorov
@@ -23,11 +22,11 @@ experimentálne nameraných údajov. Identifikovaný model následne slúži ako
 podklad pre numerickú simuláciu, návrh parametrov regulátorov a počiatočné
 overenie regulačných štruktúr pred ich nasadením na reálne zariadenie.
 
-Riadiace algoritmy sú realizované na viacerých hardvérových a softvérových
+Riadiace algoritmy sú realizované na viacerých hardvérových a~softvérových
 platformách. Uvažované platformy sa odlišujú spôsobom práce so stavovými
 premennými, spracovaním analógových signálov, časovaním výpočtu aj možnosťami
-záznamu údajov. Práve tieto rozdiely sú z praktického hľadiska dôležité pri
-prenose algoritmu z návrhového alebo simulačného prostredia na reálny hardvér.
+záznamu údajov. Práve tieto rozdiely sú z~praktického hľadiska dôležité pri
+prenose algoritmu z~návrhového alebo simulačného prostredia na reálny hardvér.
 
 Výber riadiacich algoritmov bol zvolený tak, aby pokrýval viacero úrovní
 náročnosti návrhu a implementácie. Prvým algoritmom je PI regulátor, ktorý
@@ -40,14 +39,14 @@ Druhým algoritmom je PI regulácia s prepínaním pracovných bodov. Ide o vlas
 navrhnutú riadiacu štruktúru, ktorej cieľom je rozšíriť použiteľný pracovný rozsah
 základného PI riadenia. Algoritmus kombinuje globálnu regulačnú vetvu, lokálnu
 regulačnú vetvu a prepínaciu logiku založenú na vyhodnotení ustálenia systému.
-Tým vzniká prechod medzi jednoduchým lokálnym regulátorom a zložitejšou
+Tým vzniká prechod medzi jednoduchým lokálnym regulátorom a~zložitejšou
 štruktúrou, ktorá zohľadňuje zmenu pracovného bodu.
 
 Tretím algoritmom je adaptívna regulácia typu MRAC
-(\textit{Model Reference Adaptive Control}) založená na gradientnej metóde.
+(\emph{Model Reference Adaptive Control}) založená na gradientnej metóde.
 Tento prístup bol zvolený ako reprezentant pokročilejšej regulačnej metódy,
 pri ktorej sa parametre regulátora menia počas prevádzky. Zároveň ide
-o algoritmus citlivejší na praktické podmienky merania a implementácie,
+o algoritmus citlivejší na praktické podmienky merania a~implementácie,
 napríklad na merací šum, numerickú deriváciu, voľbu adaptačných koeficientov
 a vlastnosti konkrétnej hardvérovej platformy.
 
@@ -58,3 +57,5 @@ algoritmov. Ďalšie kapitoly sa venujú návrhu, realizácii a experimentálnem
 overeniu jednotlivých riadiacich systémov na dostupných platformách. V závere
 práce sú vyhodnotené dosiahnuté výsledky a zhrnuté praktické poznatky získané
 pri implementácii algoritmov na reálnom laboratórnom zariadení.
+
+\clearpage

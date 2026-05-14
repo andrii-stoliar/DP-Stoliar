@@ -23,33 +23,15 @@ Month, Year: & May, 2026 \\
 
 \bigskip
 \noindent
-Keywords: control systems, laboratory dynamic system, system identification, numerical simulation, PI controller, operating point switching, gain scheduling, adaptive control, MRAC, gradient method, MATLAB/Simulink, Arduino UNO, C++, Siemens PLC, TIA Portal, experimental verification
+Keywords: control algorithm implementation, laboratory dynamic system, system identification, PID controller, adaptive control, MATLAB/Simulink, Arduino UNO, C++, programmable logic controller, PLC
 
 \bigskip
 \noindent
-This diploma thesis deals with the design, implementation and experimental
-verification of selected control algorithms for a laboratory thermal system.
-The main objective of the thesis is to build a control system for a real laboratory
-dynamic system and to create a custom software design on several implementation
-platforms. The thesis applies methods from the fields of system identification,
-numerical simulation and evaluation of control quality.
+This master’s thesis presents the design and implementation of a control system for a laboratory device representing a real dynamic controlled system. Three control algorithms are implemented: a PI controller, a PI controller with operating point switching, and an adaptive controller of the MRAC type. The controlled system is a thermal system in which the controlled variable is the temperature of air forced into a tube. Documentation of the system components and the communication interface is provided for the controlled system. The necessary identification of mathematical models of the system, considering both its static and dynamic properties, is also carried out.
+The implementation of the control algorithms is realized on three different platforms: in the MATLAB/Simulink software, using the C++ programming language on an Arduino UNO development board, and by means of an industrial PLC system. For each case, a theoretical analysis of the algorithm, its summary in the form of pseudocode, and technical documentation of the resulting implementation are presented. The thesis also includes verification of each implemented control algorithm on a real laboratory device, together with a comparative evaluation of the results obtained for the same algorithm implemented on different platforms.
+The results demonstrate the practical possibilities of implementing the selected algorithms on various platforms while also highlighting the influence of measurement, timing, signal processing, and hardware characteristics on the resulting behavior of the control system.
 
-The first part describes the used laboratory system, its inputs, outputs and the
-method of communication with individual platforms. Based on experimentally
-measured data, system identification is performed, while the obtained model serves
-as a basis for the design and simulation verification of the control algorithms.
-Subsequently, three control approaches are designed and implemented: a PI
-controller, PI control with operating point switching and MRAC adaptive control
-based on the gradient method.
 
-The individual algorithms are implemented in MATLAB/Simulink, in C++ on the
-Arduino UNO platform and on the Siemens SIMATIC S7-1200 G2 industrial PLC
-system. The experimental verification is focused on assessing the functionality of
-the designed control systems when controlling a real device. The results of the
-thesis show the practical possibilities of implementing the selected algorithms on
-different platforms and at the same time point out the influence of measurement,
-timing, signal processing and hardware properties on the resulting behaviour of the
-control system.
 
 
 
