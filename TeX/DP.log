@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.28)  15 MAY 2026 12:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.28)  15 MAY 2026 14:42
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1092,7 +1092,7 @@ Package pdftex.def Info: ../PY/fig/ts_pb_vent6_spir4_PI_real.png  used on input 
 <../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png, id=1041, 560.3334pt x 270.2898pt>
 File: ../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png Graphic file (type png)
 <use ../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png>
-Package pdftex.def Info: ../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png  used on input line 425.
+Package pdftex.def Info: ../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png  used on input line 426.
 (pdftex.def)             Requested size: 560.33203pt x 270.28914pt.
 
 
@@ -1100,7 +1100,7 @@ Package pdftex.def Info: ../PY/fig/ts_pb_vent6_pbTopb_real_badToShow.png  used o
 <../PY/fig/ts_cpp_pi_real.png, id=1054, 560.3334pt x 270.2898pt>
 File: ../PY/fig/ts_cpp_pi_real.png Graphic file (type png)
 <use ../PY/fig/ts_cpp_pi_real.png>
-Package pdftex.def Info: ../PY/fig/ts_cpp_pi_real.png  used on input line 520.
+Package pdftex.def Info: ../PY/fig/ts_cpp_pi_real.png  used on input line 521.
 (pdftex.def)             Requested size: 560.33203pt x 270.28914pt.
 
 
@@ -1110,12 +1110,12 @@ Package pdftex.def Info: ../PY/fig/ts_cpp_pi_real.png  used on input line 520.
 <../PY/fig/ts_plc_pi_real.png, id=1101, 560.3334pt x 270.2898pt>
 File: ../PY/fig/ts_plc_pi_real.png Graphic file (type png)
 <use ../PY/fig/ts_plc_pi_real.png>
-Package pdftex.def Info: ../PY/fig/ts_plc_pi_real.png  used on input line 630.
+Package pdftex.def Info: ../PY/fig/ts_plc_pi_real.png  used on input line 631.
 (pdftex.def)             Requested size: 560.33203pt x 270.28914pt.
 <../SCH/TIA/tia_pi_scheme.png, id=1102, 844.65562pt x 455.45157pt>
 File: ../SCH/TIA/tia_pi_scheme.png Graphic file (type png)
 <use ../SCH/TIA/tia_pi_scheme.png>
-Package pdftex.def Info: ../SCH/TIA/tia_pi_scheme.png  used on input line 648.
+Package pdftex.def Info: ../SCH/TIA/tia_pi_scheme.png  used on input line 649.
 (pdftex.def)             Requested size: 425.36644pt x 229.36533pt.
 
 
@@ -1125,7 +1125,7 @@ Package pdftex.def Info: ../SCH/TIA/tia_pi_scheme.png  used on input line 648.
 <../PY/fig/ts_pi_real_comparison.png, id=1141, 560.3334pt x 227.4096pt>
 File: ../PY/fig/ts_pi_real_comparison.png Graphic file (type png)
 <use ../PY/fig/ts_pi_real_comparison.png>
-Package pdftex.def Info: ../PY/fig/ts_pi_real_comparison.png  used on input line 712.
+Package pdftex.def Info: ../PY/fig/ts_pi_real_comparison.png  used on input line 713.
 (pdftex.def)             Requested size: 560.33203pt x 227.40904pt.
 
 
@@ -1440,13 +1440,13 @@ Package rerunfilecheck Info: File `DP.out' has not changed.
 Here is how much of TeX's memory you used:
  26612 strings out of 467747
  423217 string characters out of 5431120
- 1447295 words of memory out of 5000000
+ 1447280 words of memory out of 5000000
  51999 multiletter control sequences out of 15000+600000
  762053 words of font info for 388 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  80i,12n,82p,1273b,2163s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx9.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt9.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on DP.pdf (106 pages, 15138265 bytes).
+Output written on DP.pdf (106 pages, 15138241 bytes).
 PDF statistics:
  4229 PDF objects out of 4296 (max. 8388607)
  3894 compressed objects within 39 object streams
